@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private const int BodyRotatingSpeed = 50;
     PlayerInputMap _inputs;
     CharacterController _charaCon;
     bool _isMoving;
@@ -63,10 +64,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        _wantedDirection = new Vector3(_inputs.Movement.Move.ReadValue<Vector2>().x, 0 , _inputs.Movement.Move.ReadValue<Vector2>().y);
+        _wantedDirection = new Vector3(_inputs.Movement.Move.ReadValue<Vector2>().x, 0, _inputs.Movement.Move.ReadValue<Vector2>().y);
         _charaCon.Move(_wantedDirection * _speed * _easeInValue * Time.deltaTime);
 
-        _playerBody.transform.forward = Vector3.Lerp(_playerBody.transform.forward, _wantedDirection, 22 * Time.deltaTime);
+        RotateBody();
+    }
+
+    private void RotateBody()
+    {
+        Vector3 BodyRotationOffset = new Vector3(0.01f, 0, 0.01f);
+        //Ridiculous offset to prevent body from looking directly in a cardinal direction
+        //as it takes a ridiculously long time to go the opposite way afterwards
+
+        _playerBody.transform.forward = Vector3.Lerp(_playerBody.transform.forward, _wantedDirection + BodyRotationOffset, BodyRotatingSpeed * Time.deltaTime);
     }
 
     #region disable inputs on Player disable to avoid weird inputs
