@@ -94,9 +94,8 @@ GameObject:
   - component: {fileID: 5669221073195817247}
   - component: {fileID: 536890842217713802}
   - component: {fileID: 8931593102642085082}
-  - component: {fileID: 7888936524799964317}
   m_Layer: 0
-  m_Name: Cylinder_1
+  m_Name: SpearR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,7 +142,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: a48ffef3d64a7484cb0032a3acccbadb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -165,20 +164,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7888936524799964317
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 571837492250484298}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: 0.0000003874302}
 --- !u!1 &996396039397119898
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,8 +212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 862f25ca78e24eb41ad4be44f69cd5c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 6.79
-  _easeInSpeed: 15
+  _speed: 9.1
+  _easeInSpeed: 15.32
   _playerBody: {fileID: 1336719606}
 --- !u!54 &388534879
 Rigidbody:
@@ -289,6 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a17dd61c226014a8c01164b8f945ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _plasmaBar: {fileID: 0}
 --- !u!1 &8816856545309871854
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,9 +286,8 @@ GameObject:
   - component: {fileID: 4834739990389064450}
   - component: {fileID: 8708032614708491981}
   - component: {fileID: 2647240709704022240}
-  - component: {fileID: 7572964850264195544}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: SpearL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -349,7 +334,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: a48ffef3d64a7484cb0032a3acccbadb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -371,17 +356,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7572964850264195544
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8816856545309871854}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: 0.0000003874302}
