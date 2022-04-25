@@ -1,13 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using NaughtyAttributes;
 public class FSM : MonoBehaviour
 {
     private Dictionary<string, State> m_states = new Dictionary<string, State>();
 
     [HideInInspector] public DanuAI agent = null;
-
+    [Foldout("Phase 1 Distance")]
+    [SerializeField] private int p1d_nbShot;
+    public int GetP1d_nbShot(){return p1d_nbShot;}
+    [SerializeField] private float p1d_delay;
+    public float GetP1d_delay(){return p1d_delay;}
+    
+    [Foldout("Phase 1 Close Combat")][SerializeField]GameObject boombox;
+    public GameObject GetBoomBox(){return boombox;}
+    [Foldout("Phase 1 Close Combat")] [SerializeField] Vector3 frames;
+    public Vector3 AttackFrames(){return frames;}
+    [Foldout("Phase 2")]
+    int indexx;
     public State curr { get; private set; }
     public State prev { get; private set; }
 

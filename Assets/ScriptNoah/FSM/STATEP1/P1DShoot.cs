@@ -12,6 +12,8 @@ public class P1DShoot : State
     // Start is called before the first frame update
     public override void Begin()
     {
+        delay=fsm.GetP1d_delay();
+        nbShot=fsm.GetP1d_nbShot();
         index=0;
         timer=0;
     }

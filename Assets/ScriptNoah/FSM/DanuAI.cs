@@ -24,6 +24,7 @@ public class DanuAI : MonoBehaviour
     {
         m_fsm.AddState(new P1DShoot());
         m_fsm.AddState(new P1Idle());
+        m_fsm.AddState(new P1CBoom());
         this.m_fsm.ChangeState( StateNames.P1IDLE);
 
     }
@@ -77,7 +78,12 @@ public class DanuAI : MonoBehaviour
     }
     public void ToIdle()
     {
-        m_fsm.ChangeState(StateNames.P1IDLE);
+        if (phase==1)
+            m_fsm.ChangeState(StateNames.P1IDLE);
+        else if (phase==2)
+            m_fsm.ChangeState(StateNames.P2IDLE);
+        
+
     }
     public float GetWaitingTime()
     {
