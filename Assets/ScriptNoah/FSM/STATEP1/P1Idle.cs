@@ -8,12 +8,21 @@ public class P1Idle : State
     // Start is called before the first frame update
     public override void Begin()
     {
-        
+        idleTime=fsm.agent.GetWaitingTime();
     }
 
     // Update is called once per frame
     public override void Update()
     {
-        
+        idleTime-=Time.deltaTime;
+        if (idleTime<=0f)
+        {
+            fsm.agent.NextPattern();
+        }
+    }
+    public void SetIdleTime(float newTime)
+    {
+        idleTime=newTime;
     }
 }
+;

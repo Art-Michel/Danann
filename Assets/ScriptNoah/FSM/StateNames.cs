@@ -1,7 +1,7 @@
 ﻿public class StateNames
 {
-    public const string P1IDLE = "P2Idle";
-    public const string P2IDLE = "P1Idle";
+    public const string P1IDLE = "P1Idle";
+    public const string P2IDLE = "P2Idle";
     public const string P1D_SHOOT = "P1DShoot";
     public const string P1D_BOOMERANG = "P1DBoomerang";
     public const string P1D_WAVE = "P1DWave";

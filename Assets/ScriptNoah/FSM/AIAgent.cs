@@ -42,7 +42,7 @@ public class AIAgent : MonoBehaviour
         this.m_line = this.gameObject.GetComponent<LineRenderer>();
 
         this.m_fsm = this.gameObject.GetComponent<FSM>();
-        this.m_fsm.agent = this;
+        //this.m_fsm.agent = this;
 
         this.m_fsm.AddState( new AIStatePatrol() );
         this.m_fsm.AddState( new AIStateInvestigate() );

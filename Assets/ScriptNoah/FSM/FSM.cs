@@ -6,7 +6,7 @@ public class FSM : MonoBehaviour
 {
     private Dictionary<string, State> m_states = new Dictionary<string, State>();
 
-    [HideInInspector] public AIAgent agent = null;
+    [HideInInspector] public DanuAI agent = null;
 
     public State curr { get; private set; }
     public State prev { get; private set; }
@@ -21,7 +21,7 @@ public class FSM : MonoBehaviour
         m_states.Remove(state.name);
     }
 
-    public void ChangeState( string nextStateName )
+    public void ChangeState( string nextStateName, float idleTime=0f )
     {
         State state = null;
         this.m_states.TryGetValue( nextStateName, out state );
@@ -37,6 +37,7 @@ public class FSM : MonoBehaviour
         if( this.curr != null ) {
             this.curr.End();
         }
+        if (state.name==StateNames.P1IDLE)
         this.prev = curr;
         this.curr = state;
         this.curr.Begin();

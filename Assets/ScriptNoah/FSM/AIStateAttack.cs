@@ -12,10 +12,11 @@ public class AIStateAttack : State
 	public override void Begin()
 	{
         // feedback to show that we're attacking
+        /*
         this.fsm.agent.SetConeColour( Color.red );
 
         // stop moving
-        this.fsm.agent.navAgent.isStopped = true;
+        this.fsm.agent.navAgent.isStopped = true;*/
 
         
 	}
@@ -40,7 +41,7 @@ public class AIStateAttack : State
 
 	public override void End()
 	{
-        this.fsm.agent.navAgent.isStopped = false;
+//        this.fsm.agent.navAgent.isStopped = false;
        
 	}
 

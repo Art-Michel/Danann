@@ -13,7 +13,7 @@ public class AIStatePatrol : State
 
 	public override void Begin()
 	{
-        // feedback to show that we're attacking
+        /*// feedback to show that we're attacking
         this.fsm.agent.SetConeColour( Color.white );
 
         int closestPathIndex = -1;
@@ -32,12 +32,12 @@ public class AIStatePatrol : State
         this.m_pathIndex = closestPathIndex;
 
         // start moving to the closest point
-        this.fsm.agent.navAgent.destination = this.fsm.agent.path[this.m_pathIndex].position;
+        this.fsm.agent.navAgent.destination = this.fsm.agent.path[this.m_pathIndex].position;*/
 	}
 
 	public override void Update()
 	{
-        if(this.fsm.agent.navAgent.hasPath) {
+       /* if(this.fsm.agent.navAgent.hasPath) {
             // if we're close to our point, get the next one
             Vector3 toDestination = this.fsm.agent.navAgent.destination - this.fsm.agent.transform.position;
             toDestination.y = 0.0f; 
@@ -47,16 +47,16 @@ public class AIStatePatrol : State
                 this.m_pathIndex = ( this.m_pathIndex + 1 ) % this.fsm.agent.path.Length; // next point
 
                 this.fsm.agent.navAgent.destination = this.fsm.agent.path[this.m_pathIndex].position;
-            }
-        }
+            }*/
+       // }
 
         // check if we can see the player
         /*CanSeeStatus canSee = this.fsm.agent.CanSee(this.fsm.agent.target);
         if(canSee == CanSeeStatus.CAN_KINDA_SEE) {
             this.fsm.ChangeState(StateNames.AI_INVESTIGATE);
         } else if( canSee == CanSeeStatus.CAN_SEE ) {
-            this.fsm.ChangeState(StateNames.AI_ATTACK);
-        }*/
+            this.fsm.ChangeState(StateNames.AI_ATTACK);*/
+       // }
 	}
 
 

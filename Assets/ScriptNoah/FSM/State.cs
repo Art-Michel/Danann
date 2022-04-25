@@ -5,7 +5,7 @@ using UnityEngine;
 public class State
 {
     public FSM fsm = null;
-
+    public float idleTime;
     public string name { get; private set; }
 
     public State( string name )

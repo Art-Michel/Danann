@@ -12,7 +12,7 @@ public class AIStateLookAround : State
 
 	public override void Begin(){
         // disable the nav mesh agent so we can manually change the rotation
-        this.fsm.agent.navAgent.enabled = false;
+       // this.fsm.agent.navAgent.enabled = false;
 
         // start looking around
         this.fsm.StartCoroutine( this._changeLookDirection() );
@@ -21,7 +21,7 @@ public class AIStateLookAround : State
         this.fsm.StopAllCoroutines();
 
         // re-enable the nav mesh agent
-        this.fsm.agent.navAgent.enabled = true;
+        //this.fsm.agent.navAgent.enabled = true;
 	}
 	public override void Update(){
         // lerp to our next rotation

@@ -11,17 +11,17 @@ public class AIStateOnLoseSight : State
 
 	public override void Begin()
 	{
-        this.fsm.agent.navAgent.destination = this.fsm.agent.targetLastPos;
+        //this.fsm.agent.navAgent.destination = this.fsm.agent.targetLastPos;
 	}
 
 	public override void Update()
 	{
         // check if we've arrived at our destination, then look around
-        Vector3 toDestination = this.fsm.agent.navAgent.destination - this.fsm.agent.transform.position;
-        toDestination.y = 0.0f; 
-        if( toDestination.magnitude < 0.5f ) {
-            this.fsm.ChangeState( StateNames.P1C_SWEEP );
-        }
+       // Vector3 toDestination = this.fsm.agent.navAgent.destination - this.fsm.agent.transform.position;
+        //toDestination.y = 0.0f; 
+        //if( toDestination.magnitude < 0.5f ) {
+        //    this.fsm.ChangeState( StateNames.P1C_SWEEP );
+        //}
 
         /*// can we see the player
         CanSeeStatus canSee = this.fsm.agent.CanSee(this.fsm.agent.target);
