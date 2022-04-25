@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
+using Cinemachine;
 
 public class PlayerHP : MonoBehaviour
 {
@@ -11,6 +12,14 @@ public class PlayerHP : MonoBehaviour
     const float _maxHealthPoints = 100;
     private bool _isInvulnerable = false;
     [SerializeField] Image _healthBar;
+
+    [SerializeField] CinemachineVirtualCamera _vcam;
+    CinemachineBasicMultiChannelPerlin _vcamPerlin;
+
+    void Awake()
+    {
+        _vcamPerlin = _vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+    }
 
     void Start()
     {
@@ -25,6 +34,7 @@ public class PlayerHP : MonoBehaviour
         {
             HealthPoints= Mathf.Clamp(HealthPoints -= amount, 0, _maxHealthPoints);
             UpdateHealthBar();
+            StartCoroutine("PostDamage");
             if (HealthPoints <= 0) Die();
         }
     }
@@ -46,5 +56,21 @@ public class PlayerHP : MonoBehaviour
     private void Die()
     {
         throw new NotImplementedException();
+    }
+
+    IEnumerator PostDamage()
+    {
+        //Play PlayerHitSFX
+        _vcamPerlin.m_AmplitudeGain = 1f;
+        _isInvulnerable = true;
+        Time.timeScale = 0.2f;
+        yield return new WaitForSecondsRealtime(0.2f);
+
+        _vcamPerlin.m_AmplitudeGain = 0f;
+        Time.timeScale = 1f;
+        yield return new WaitForSecondsRealtime(0.7f);
+
+        _isInvulnerable = false;
+        yield return null;
     }
 }
