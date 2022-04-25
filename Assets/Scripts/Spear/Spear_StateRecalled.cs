@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spear_StateAttached : Spear_State
+public class Spear_StateRecalled : Spear_State
 {
-    public Spear_StateAttached() : base(Spear_StateNames.ATTACHED)
+    public Spear_StateRecalled() : base(Spear_StateNames.RECALLED)
     {
 
     }

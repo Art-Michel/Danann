@@ -6,11 +6,11 @@ public class Ccl_State
 {
     public Ccl_FSM fsm = null;
 
-    public string StateName { get; private set; }
+    public string Name { get; private set; }
 
     public Ccl_State(string name)
     {
-        this.StateName = name;
+        this.Name = name;
     }
 
     public virtual void Begin()

@@ -7,4 +7,6 @@
     public const string PARRYING = "StateParrying";
     public const string LIGHTATTACKING = "StateLightAttacking";
     public const string DASHING = "StateDashing";
+    public const string HITSTUN = "StateHitstun";
+    public const string KKOCKDOWN = "StateKnockdown";
 }

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spear_StateAttached : Spear_State
+public class Ccl_StateParrying : Ccl_State
 {
-    public Spear_StateAttached() : base(Spear_StateNames.ATTACHED)
+    public Ccl_StateParrying() : base(Ccl_StateNames.PARRYING)
     {
 
     }

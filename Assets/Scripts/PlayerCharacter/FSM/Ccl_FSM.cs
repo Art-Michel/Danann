@@ -14,10 +14,15 @@ public class Ccl_FSM : MonoBehaviour
         states = new Dictionary<string, Ccl_State>();
     }
 
+    void Start()
+    {
+        ChangeState(Ccl_StateNames.IDLE);
+    }
+
     public void AddState(Ccl_State state)
     {
         state.fsm = this;
-        states[state.StateName] = state;
+        states[state.Name] = state;
     }
 
     public void ChangeState(string nextStateName)
@@ -41,7 +46,7 @@ public class Ccl_FSM : MonoBehaviour
         currentState = nextState;
         currentState.Begin();
 
-        Debug.Log(currentState.StateName + " started");
+        Debug.Log(currentState.Name + " started");
     }
 
     private void Update()
