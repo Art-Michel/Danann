@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using System;
+
 public class DanuAI : MonoBehaviour
 {
     private FSM m_fsm=null;
@@ -11,9 +13,20 @@ public class DanuAI : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private AnimationCurve distEvaluator;
     [SerializeField] private float revenge;
+
+    public float GetMovementRange()
+    {
+        return movementRange;
+    }
+
     [SerializeField] private float waitingTime;
+    [SerializeField] private float arenaRadius;
+    [SerializeField] private Vector3 arenaCenter;
+    [SerializeField] private float movementRange;
+
     [SerializeField] private GameObject projectile;
-    
+    private bool isPushed;
+
     private void Awake() {
         if (m_fsm==null)
             m_fsm=GetComponent<FSM>();
@@ -24,7 +37,7 @@ public class DanuAI : MonoBehaviour
     {
         m_fsm.AddState(new P1DShoot());
         m_fsm.AddState(new P1Idle());
-        m_fsm.AddState(new P1CBoom());
+        m_fsm.AddState(new P1CSlam());
         this.m_fsm.ChangeState( StateNames.P1IDLE);
 
     }
@@ -43,7 +56,7 @@ public class DanuAI : MonoBehaviour
         float mod = distEvaluator.Evaluate(dist);
         if (mod < 0.9f) //short ranged patterns
         {
-            m_fsm.ChangeState(StateNames.P1D_SHOOT);
+            m_fsm.ChangeState(StateNames.P1C_BOOM);
             Debug.Log("smol");
         }
         else if (mod > 1.3f) //long ranged patterns
@@ -93,4 +106,7 @@ public class DanuAI : MonoBehaviour
     {
         waitingTime=newWT;
     }
+    public Vector3 GetArenaCenter(){return arenaCenter;}
+    public float GetArenaRadius(){return arenaRadius;}
+    public bool GetIsPushed(){return isPushed;}
 }
