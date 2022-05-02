@@ -7,6 +7,7 @@ public class SoundManager : ProjectManager<SoundManager>
 {
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip hit;
+    [SerializeField] AudioClip bong;
 
     private void PlaySound(AudioClip clip, float volume)
     {
@@ -18,5 +19,8 @@ public class SoundManager : ProjectManager<SoundManager>
         PlaySound(hit, 1f);
     }
     
-
+    public void PlayBong()
+    {
+        PlaySound(bong, 1f);
+    }
 }
