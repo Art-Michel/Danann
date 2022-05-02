@@ -410,7 +410,7 @@ GameObject:
   - component: {fileID: 520852773}
   - component: {fileID: 520852772}
   m_Layer: 0
-  m_Name: Hurtbox
+  m_Name: Hurtbox_Danu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -440,7 +440,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 520852771}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 1, z: 0}
+  m_LocalPosition: {x: -6.336, y: 2.022, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -665,6 +665,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 626597027}
   m_CullTransparentMesh: 1
+--- !u!1 &757495224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 757495226}
+  - component: {fileID: 757495225}
+  m_Layer: 0
+  m_Name: Hitbox_CCL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &757495225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757495224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Radius: 2
+  SphereColor: {r: 1, g: 0.4198113, b: 0.4198113, a: 0.7372549}
+  SphereHitColor: {r: 1, g: 0, b: 0, a: 1}
+  SphereWireColor: {r: 0.4056604, g: 0, b: 0, a: 1}
+  _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
+  Hurtboxes:
+  - {fileID: 520852772}
+--- !u!4 &757495226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757495224}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.526, y: 2.534, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &763397639
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,13 +790,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 763397639}
   m_CullTransparentMesh: 1
+--- !u!1 &836023076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 836023078}
+  - component: {fileID: 836023077}
+  m_Layer: 0
+  m_Name: Hurtbox_CCL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &836023077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836023076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccca9daeec5df04408f7b0c333e173bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Radius: 1
+  SphereColor: {r: 0.3219337, g: 1, b: 0.2216981, a: 0.56078434}
+  SphereWireColor: {r: 0.05853534, g: 0.2924528, b: 0, a: 1}
+  _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
+--- !u!4 &836023078
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836023076}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.85, y: 2.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1026511251
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh20900
+  m_Name: pb_Mesh20526
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -957,53 +1054,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4834739990389064450, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
   m_PrefabInstance: {fileID: 4131936353881019158}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1234431856
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1234431858}
-  - component: {fileID: 1234431857}
-  m_Layer: 0
-  m_Name: Hurtbox_1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1234431857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1234431856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccca9daeec5df04408f7b0c333e173bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Radius: 1
-  SphereColor: {r: 0.3219337, g: 1, b: 0.2216981, a: 0.56078434}
-  SphereWireColor: {r: 0.05853534, g: 0.2924528, b: 0, a: 1}
-  _mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1234431858
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1234431856}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.571, y: 2.467, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1278277375 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4873842968632304813, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
@@ -1026,7 +1076,7 @@ GameObject:
   - component: {fileID: 1323201031}
   - component: {fileID: 1323201030}
   m_Layer: 0
-  m_Name: Hitbox
+  m_Name: Hitbox_Danu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1051,7 +1101,6 @@ MonoBehaviour:
   _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
   Hurtboxes:
   - {fileID: 520852772}
-  - {fileID: 1234431857}
 --- !u!4 &1323201031
 Transform:
   m_ObjectHideFlags: 0
@@ -1060,7 +1109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323201029}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.323, y: 2.275, z: 0}
+  m_LocalPosition: {x: -4.428, y: 2.592, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

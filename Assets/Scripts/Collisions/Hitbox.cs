@@ -21,8 +21,8 @@ public class Hitbox : MonoBehaviour
         if (CheckIntersection())
         {
             Gizmos.color = SphereHitColor;
-            if(!_hasEntered && SoundManager.Instance != null)
-            SoundManager.Instance.PlayBong();
+            if (!_hasEntered && SoundManager.Instance != null)
+                SoundManager.Instance.PlayBong();
             _hasEntered = true;
         }
         else _hasEntered = false;
@@ -35,8 +35,9 @@ public class Hitbox : MonoBehaviour
     {
         foreach (Hurtbox hurtbox in Hurtboxes)
         {
-            float distance = Vector3.Distance(transform.position, hurtbox.transform.position);
-            if (distance < (Radius / 2 + hurtbox.Radius / 2)) return true;
+            //float distance = Vector3.Distance(transform.position, hurtbox.transform.position);
+            float distance = (hurtbox.transform.position - transform.position).sqrMagnitude;
+            if (distance < (Radius / 2 + hurtbox.Radius / 2) * (Radius / 2 + hurtbox.Radius / 2)) return true;
         }
         return false;
     }
