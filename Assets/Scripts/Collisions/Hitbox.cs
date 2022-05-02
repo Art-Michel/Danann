@@ -6,9 +6,9 @@ using NaughtyAttributes;
 public class Hitbox : MonoBehaviour
 {
     public float Radius;
-    public Color SphereColor;
-    public Color SphereHitColor;
-    public Color SphereWireColor;
+    Color SphereColor = new Color(255, 50, 50, 0.5f);
+    Color SphereHitColor = new Color(255, 0, 0, 1f);
+    Color SphereWireColor = new Color(150, 0, 0, 1);
     [SerializeField] Mesh _mesh;
 
     public List<Hurtbox> Hurtboxes;
@@ -16,16 +16,9 @@ public class Hitbox : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        Gizmos.color = SphereColor;
+        if (CheckIntersection()) Gizmos.color = SphereHitColor;
+        else Gizmos.color = SphereColor;
 
-        if (CheckIntersection())
-        {
-            Gizmos.color = SphereHitColor;
-            if (!_hasEntered && SoundManager.Instance != null)
-                SoundManager.Instance.PlayBong();
-            _hasEntered = true;
-        }
-        else _hasEntered = false;
         Gizmos.DrawMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
         Gizmos.color = SphereWireColor;
         Gizmos.DrawWireMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
