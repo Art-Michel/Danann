@@ -18,7 +18,7 @@ public class P1CSlam : State
     // Start is called before the first frame update
     public override void Begin()
     {
-        boombox=fsm.GetBoomBox();
+        boombox=fsm.Getp1SlamHitBox();
         Vector3[] frames =new Vector3[3];
         for (int i=0;i<3;i++)
         {
@@ -30,9 +30,9 @@ public class P1CSlam : State
         index=0;
         timer=0;
         slamCount=0;
-        scales[0] = fsm.GetSlamScale(0);
-        scales[1] = fsm.GetSlamScale(1);       
-        scales[2] = fsm.GetSlamScale(2);
+        scales[0] = fsm.GetP1SlamScale(0);
+        scales[1] = fsm.GetP1SlamScale(1);       
+        scales[2] = fsm.GetP1SlamScale(2);
         RescaleBoomBox();        
     }
 
@@ -120,7 +120,7 @@ private void ToIdle()
     }
     public override void End()
     {
-        boombox=fsm.GetBoomBox();
+        boombox=fsm.Getp1SlamHitBox();
         Vector3[] frames =new Vector3[3];
         for (int i=0;i<3;i++)
         {
@@ -132,9 +132,9 @@ private void ToIdle()
         index=0;
         timer=0;
         slamCount=0;
-        scales[0] = fsm.GetSlamScale(0);
-        scales[1] = fsm.GetSlamScale(1);       
-        scales[2] = fsm.GetSlamScale(2);
+        scales[0] = fsm.GetP1SlamScale(0);
+        scales[1] = fsm.GetP1SlamScale(1);       
+        scales[2] = fsm.GetP1SlamScale(2);
         RescaleBoomBox();       
     }
 }

@@ -4,7 +4,7 @@
     public const string P2IDLE = "P2Idle";
     public const string P1D_SHOOT = "P1DShoot";
     public const string P1D_BOOMERANG = "P1DBoomerang";
-    public const string P1D_WAVE = "P1DWave";
+    public const string P1D_SPIN = "P1DSpin";
     public const string P1C_SWEEP = "P1CSweep";
     public const string P1C_BOOM = "P1CBoom";
     public const string P1C_TELEPORTATION = "P1CTeleportation";

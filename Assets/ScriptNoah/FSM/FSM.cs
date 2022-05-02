@@ -19,29 +19,47 @@ public class FSM : MonoBehaviour
         public float GetP1d_wait(){return P1D_wait;}
         #endregion
         #region Slam
-        [Foldout("Phase 1 Slam")][SerializeField]GameObject boombox;
-        public GameObject GetBoomBox(){return boombox;}
-        [Foldout("Phase 1 Slam")] [SerializeField] Vector3[] boomFrames=new Vector3[3];
-        public Vector3 GetAttackFrames(int index){return boomFrames[index];}
-        [Foldout("Phase 1 Slam")][SerializeField] private float P1C_BoomWait;
-        public float GetP1C_BoomWait(){return P1C_BoomWait;}
-        [Foldout("Phase 1 Slam")][SerializeField] private Vector3[] slamScales=new Vector3[3];
+        [Foldout("Phase 1 Slam")][SerializeField]GameObject p1SlamHitBox;
+        public GameObject Getp1SlamHitBox(){return p1SlamHitBox;}
+        [Foldout("Phase 1 Slam")] [SerializeField] Vector3[] P1AttackFrames=new Vector3[3];
+        public Vector3 GetAttackFrames(int index){return P1AttackFrames[index];}
+        [Foldout("Phase 1 Slam")][SerializeField] private float P1SlamRecovery;
+        public float GetP1SlamRecovery(){return P1SlamRecovery;}
+        [Foldout("Phase 1 Slam")][SerializeField] private Vector3[] P1slamScales=new Vector3[3];
+        public Vector3 GetP1SlamScale(int index) {return P1slamScales[index];}
         #endregion
         #region Spin
         [Foldout("Phase 1 Spin")][SerializeField] private GameObject staticProj;
         public GameObject GetStaticProj(){  return staticProj;  }
-        [Foldout("Phase 1 Spin")][SerializeField] private GameObject globalGO;
-        public GameObject GetGlobalGO(){return globalGO;}
-        [Foldout("Phase 1 Spin")][SerializeField] private Transform[] nweMax=new Transform[3];
-        public Transform[] GetNWEMax(){return nweMax;}
-        [Foldout("Phase 1 Spin")][SerializeField] private float rotationSpeed;
-        public float GetRotationSpeed(){return rotationSpeed;}
-        [Foldout("Phase 1 Spin")][SerializeField] private bool turningRight;
-        public bool GetTurningRight(){return turningRight;}
-        [Foldout("Phase 1 Spin")][SerializeField] private float maxWaitTime;
-        public float GetMaxWaitTime(){return maxWaitTime;}
-        [Foldout("Phase 1 Spin")][SerializeField] private float SpinLifeTime;
-        public float GetSpinLifeTime(){return SpinLifeTime;}
+        [Foldout("Phase 1 Spin")][SerializeField] private GameObject P1globalGO;
+        public GameObject GetP1GlobalGO(){return P1globalGO;}
+        [Foldout("Phase 1 Spin")][SerializeField] private Transform[] P1nweMax=new Transform[3];
+        public Transform[] GetP1NWEMax(){return P1nweMax;}
+        [Foldout("Phase 1 Spin")][SerializeField] private float P1rotationSpeed;
+        public float GetP1RotationSpeed(){return P1rotationSpeed;}
+        [Foldout("Phase 1 Spin")][SerializeField] private bool P1turningRight;
+        public bool GetP1TurningRight(){return P1turningRight;}
+        [Foldout("Phase 1 Spin")][SerializeField] private float P1maxWaitTime;
+        public float GetP1MaxWaitTime(){return P1maxWaitTime;}
+        [Foldout("Phase 1 Spin")][SerializeField] private float P1SpinLifeTime;
+        public float GetP1SpinLifeTime(){return P1SpinLifeTime;}
+        #endregion
+        #region Boomerang
+        [Foldout("Phase 1 Boomerang")][SerializeField] private GameObject P1BoomeRangboomerangL;
+        public GameObject GetP1BoomeRangboomerangL(){return P1BoomeRangboomerangL;}
+        [Foldout("Phase 1 Boomerang")][SerializeField] private GameObject P1BoomeRangboomerangR;
+        public GameObject GetP1BoomeRangboomerangR(){return P1BoomeRangboomerangR;}
+
+        [Foldout("Phase 1 Boomerang")][SerializeField] private float P1BoomeRangSpeed;
+        public float GetP1BoomeRangSpeed(){return P1BoomeRangSpeed;}
+        [Foldout("Phase 1 Boomerang")][SerializeField] private float P1BoomeRangMaxStraightTime;
+        public float GetP1BoomeRangMaxStraightTime(){return P1BoomeRangMaxStraightTime;}
+        [Foldout("Phase 1 Boomerang")][SerializeField]Transform P1BoomeRangcurveMidL;
+        public Transform GetP1BoomeRangcurveMidL(){return P1BoomeRangcurveMidL;}
+        [Foldout("Phase 1 Boomerang")][SerializeField]Transform P1BoomeRangcurveMidR;
+        public Transform GetP1BoomeRangcurveMidR(){return P1BoomeRangcurveMidR;}
+        [Foldout("Phase 1 Boomerang")][SerializeField] private float P1BoomeRangMaxCurveTime;
+        public float GetP1BoomeRangMaxCurveTime(){return P1BoomeRangMaxCurveTime;}
         #endregion
     #endregion
     int indexx;
@@ -87,13 +105,10 @@ public class FSM : MonoBehaviour
             this.curr.Update();
         }
     }
-    public Vector3 GetSlamScale(int index)
-    {
-        return slamScales[index];
-    }
+    
     public GameObject InstantiateStaticProjectile(Vector3 pos)
     {
-        return Instantiate(staticProj,pos,Quaternion.identity,globalGO.transform);
+        return Instantiate(staticProj,pos,Quaternion.identity,P1globalGO.transform);
     }
 
 

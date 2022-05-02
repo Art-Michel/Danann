@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class P1DHelicopter : State
 {
-    public P1DHelicopter() : base(StateNames.P1D_WAVE) { }
+    public P1DHelicopter() : base(StateNames.P1D_SPIN) { }
     private GameObject globalGO; 
     private Transform dSphereN;
     private Transform  dSphereSW;
@@ -27,15 +27,15 @@ public class P1DHelicopter : State
     {
         //setup des variables
         dist=fsm.agent.GetArenaRadius();
-        globalGO=fsm.GetGlobalGO();
-        Transform[] nweTrans=fsm.GetNWEMax();
+        globalGO=fsm.GetP1GlobalGO();
+        Transform[] nweTrans=fsm.GetP1NWEMax();
         dSphereN=nweTrans[0];
         dSphereSE=nweTrans[1];
         dSphereSW=nweTrans[2];
-        rotationSpeed=fsm.GetRotationSpeed();
-        turningRight=fsm.GetTurningRight();
-        maxWaitTime=fsm.GetMaxWaitTime();
-        lifetime=fsm.GetSpinLifeTime();
+        rotationSpeed=fsm.GetP1RotationSpeed();
+        turningRight=fsm.GetP1TurningRight();
+        maxWaitTime=fsm.GetP1MaxWaitTime();
+        lifetime=fsm.GetP1SpinLifeTime();
 
         //repositionnement du boss et des helices
         fsm.transform.position=fsm.agent.GetArenaCenter();
@@ -101,14 +101,14 @@ public class P1DHelicopter : State
     private void Rotate()
     {
         if (turningRight)
-            globalGO.transform.Rotate(new Vector3(0,rotationSpeed,0));
+            globalGO.transform.Rotate(new Vector3(0,rotationSpeed*Time.deltaTime,0));
         else
-            globalGO.transform.Rotate(new Vector3(0,-rotationSpeed,0));    
+            globalGO.transform.Rotate(new Vector3(0,-rotationSpeed*Time.deltaTime,0));    
     }
     public override void End()
     {
         globalGO.SetActive(false);
-        lifetime=fsm.GetSpinLifeTime();
+        lifetime=fsm.GetP1SpinLifeTime();
         dSphereN.position=n;
         dSphereSW.position=w;
         dSphereSE.position=e;

@@ -1,38 +1,35 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P1DBoomerang : State
+public class Boomerang : MonoBehaviour
 {
-    public P1DBoomerang() : base(StateNames.P1D_BOOMERANG) { }
     [SerializeField] private GameObject boomerangL;
     [SerializeField] private GameObject boomerangR;
-    private Transform target;    
+    [SerializeField] private GameObject target;    
     [SerializeField] private float speed;
     [SerializeField] private float MaxStraightTime;
-    [SerializeField]Transform curveMidL;
-    [SerializeField]Transform curveMidR;
-    [SerializeField] private float MaxCurveTime;
     float straightTime;
     Vector3 curveStartL;
     Vector3 curveStartR;
+    [SerializeField]Transform curveMidL;
+    [SerializeField]Transform curveMidR;
     Vector3 curveEnd;
+    [SerializeField] private float MaxCurveTime;
     float curveTime=0;
     bool startCurve;
     // Start is called before the first frame update
-    public override void Begin()
-    {
-        boomerangL.SetActive(true);
-        boomerangR.SetActive(true);
-        target=fsm.agent.GetPlayer();
-        curveEnd=fsm.transform.position;
-        fsm.transform.LookAt(target);
-        curveStartL=boomerangL.transform.position+fsm.transform.forward*10;
-        curveStartR=boomerangR.transform.position+fsm.transform.forward*10;
+    void Start()
+    {   
+        curveEnd=transform.position;
+        transform.LookAt(target.transform);
+        curveStartL=boomerangL.transform.position+transform.forward*10;
+        curveStartR=boomerangR.transform.position+transform.forward*10;
     }
 
     // Update is called once per frame
-    public override void Update()
+    void Update()
     {
         if (startCurve)
         {
@@ -42,6 +39,11 @@ public class P1DBoomerang : State
         {
             UpdateStraight();
         }
+        /*Vector3 bL = boomerangL.transform.position;
+        Vector3 bR = boomerangR.transform.position;
+        boomerangL.transform.position= new Vector3(bL.x,transform.position.y,bL.z);
+        boomerangR.transform.position= new Vector3(bR.x,transform.position.y,bR.z);
+        *///boomerang.transform.Rotate(Vector3.up,rotationSpeed*Time.deltaTime);
     }
     void UpdateStraight()
     {
@@ -55,7 +57,7 @@ public class P1DBoomerang : State
             UpdateCurve();
         }
     }
-     void UpdateCurve()
+    void UpdateCurve()
     {
             curveTime+=Time.deltaTime*speed;
             if (curveTime>1)
@@ -82,10 +84,5 @@ public class P1DBoomerang : State
         point+=tt*curveEnd;
         return point;
     }
-    public override void End()
-    {
-        boomerangL.SetActive(false);
-        boomerangR.SetActive(false);
-        base.End();
-    }
+
 }

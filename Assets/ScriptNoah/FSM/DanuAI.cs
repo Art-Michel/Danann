@@ -23,7 +23,8 @@ public class DanuAI : MonoBehaviour
     [SerializeField] private float arenaRadius;
     [SerializeField] private Vector3 arenaCenter;
     [SerializeField] private float movementRange;
-
+    [SerializeField] private float maxChain;
+    float chain;
     [SerializeField] private GameObject projectile;
     private bool isPushed;
 
@@ -39,6 +40,7 @@ public class DanuAI : MonoBehaviour
         m_fsm.AddState(new P1Idle());
         m_fsm.AddState(new P1CSlam());
         m_fsm.AddState(new P1DHelicopter());
+        m_fsm.AddState(new P1DBoomerang());
         this.m_fsm.ChangeState( StateNames.P1IDLE);
 
     }
@@ -57,7 +59,7 @@ public class DanuAI : MonoBehaviour
         float mod = distEvaluator.Evaluate(dist);
         if (mod < 0.9f) //short ranged patterns
         {
-            m_fsm.ChangeState(StateNames.P1D_WAVE);
+            m_fsm.ChangeState(StateNames.P1D_SPIN);
             Debug.Log("smol");
         }
         else if (mod > 1.3f) //long ranged patterns
@@ -69,7 +71,7 @@ public class DanuAI : MonoBehaviour
         }
         else //all patterns possible
         {
-            m_fsm.ChangeState(StateNames.P1D_WAVE);
+            m_fsm.ChangeState(StateNames.P1D_SPIN);
             Debug.Log("midwest");
 
         }
