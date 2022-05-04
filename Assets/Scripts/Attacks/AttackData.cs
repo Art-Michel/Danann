@@ -5,21 +5,24 @@ using NaughtyAttributes;
 
 public class AttackData : MonoBehaviour
 {
-    public const string CCL = "Ccl";
-    public const string DANU = "Danu";
-    public const string SPEARL = "SpearL";
-    public const string SPEARR = "SpearR";
-
-    public string AttackId { get; protected set; }
-    public string Sender { get; protected set; }
-    public float DamageValue { get { return damageValue; } private set { damageValue = value; } }
-    [SerializeField] private float damageValue = 0;
-
+    [Dropdown("Name")]
+    [SerializeField]protected string _attackSender;
+    DropdownList<string> Name()
+    {
+        return new DropdownList<string>()
+        {
+        {"Cuchulainn", Characters.CCL},
+        {"Danu", Characters.DANU},
+        {"Left Spear", Characters.SPEARL},
+        {"Right Spear", Characters.SPEARR}
+        };
+    }
+    
     Hitbox[,] _hitboxes;
 
     void Start()
     {
-        _hitboxes = new Hitbox[4,4];
+        _hitboxes = new Hitbox[8,8];
         int index = 0;
         foreach (Transform child in transform)
         {
@@ -27,6 +30,7 @@ public class AttackData : MonoBehaviour
             foreach (Hitbox hitbox in child.GetComponentsInChildren<Hitbox>())
             {
                 _hitboxes[index, childIndex] = hitbox;
+                hitbox.Owner = _attackSender;
                 childIndex++;
             }
             index++;

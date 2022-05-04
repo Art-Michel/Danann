@@ -6,18 +6,16 @@ using System;
 
 public class Hitbox : MonoBehaviour
 {
-    public float Radius;
+    #region debugging
+#if UNITY_EDITOR
     Color _currentColor;
-    [SerializeField] Color _sphereNormalColor;
-    [SerializeField] Color _sphereActiveColor;
-    [SerializeField] Color _sphereWireNormalColor;
-    [SerializeField] Color _sphereWireActiveColor;
+    Color _sphereNormalColor = new Color(1f, 0.1f, 0.1f, 0.1f);
+    Color _sphereActiveColor = new Color(1f, 0f, 0f, 0.8f);
+    Color _sphereWireNormalColor = new Color(0.3f, 0.1f, 0.1f, 0.1f);
+    Color _sphereWireActiveColor = new Color(0.3f, 0.1f, 0.1f, 1f);
     [SerializeField] Mesh _mesh;
-
-    public List<Hurtbox> Hurtboxes;
     private bool _isActive = false;
-
-    void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         if (!_isActive)
         {
@@ -26,39 +24,49 @@ public class Hitbox : MonoBehaviour
             Gizmos.color = _sphereWireNormalColor;
             Gizmos.DrawWireMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
         }
-        else 
+        else
         {
             Gizmos.color = _sphereActiveColor;
             Gizmos.DrawMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
             Gizmos.color = _sphereWireActiveColor;
             Gizmos.DrawWireMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
         }
-
     }
+#endif
+    #endregion
+
+    public float Radius;
+
+    [NonSerialized] public string Owner = "";
+
+    public int HitboxId { get { return _hitboxID; } private set { _hitboxID = value; } }
+    [Tooltip("If hitboxes have the same ID you can't get hit by both (Single Hit), otherwise you can get Multi-Hit")]
+    [SerializeField] private int _hitboxID;
+
+    [SerializeField] private float _damageValue = 0;
+
+    [Tooltip("Lists the hurtboxes this hitbox must check.")]
+    [SerializeField] List<Hurtbox> HurtboxesToFocus;
 
     [Button]
     public bool CheckIntersection()
     {
-        foreach (Hurtbox hurtbox in Hurtboxes)
+#if UNITY_EDITOR
+        StartCoroutine("VisualizeDebug");
+#endif
+
+        foreach (Hurtbox hurtbox in HurtboxesToFocus)
         {
             if (CheckDistance(hurtbox))
             {
-                VerifyHit();
+                if (VerifyHit()) return true;
             }
         }
         return false;
     }
 
-    [Button]
-    public IEnumerator CheckIntersectionDebug()
+    private IEnumerator VisualizeDebug()
     {
-        foreach (Hurtbox hurtbox in Hurtboxes)
-        {
-            if (CheckDistance(hurtbox))
-            {
-                VerifyHit();
-            }
-        }
         _isActive = true;
         yield return new WaitForFixedUpdate();
         yield return new WaitForFixedUpdate();
@@ -70,12 +78,17 @@ public class Hitbox : MonoBehaviour
     private bool CheckDistance(Hurtbox hurtbox)
     {
         float distance = (hurtbox.transform.position - transform.position).sqrMagnitude;
-        if (distance < (Radius / 2 + hurtbox.Radius / 2) * (Radius / 2 + hurtbox.Radius / 2)) return true;
-        else return false;
+        if (distance < (Radius / 2 + hurtbox.Radius / 2) * (Radius / 2 + hurtbox.Radius / 2))
+        {
+            Debug.Log("Hurtbox in Range");
+            return true;
+        }
+        else
+            return false;
     }
 
-    private void VerifyHit()
+    private bool VerifyHit()
     {
-        throw new NotImplementedException();
+        return true;
     }
 }
