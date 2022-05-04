@@ -1049,17 +1049,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1478956194 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1478956194, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
-  m_PrefabInstance: {fileID: 4131936353881019158}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1495285272
 GameObject:
   m_ObjectHideFlags: 0
@@ -2525,74 +2514,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 328378846, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
-      propertyPath: hitboxes.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 328378846, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
-      propertyPath: hitboxes.Array.data[0]
-      value: 
-      objectReference: {fileID: 1478956194}
-    - target: {fileID: 1478956194, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
-      propertyPath: _sphereWireColor.a
-      value: 0.22745098
-      objectReference: {fileID: 0}
-    - target: {fileID: 1478956194, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
-      propertyPath: _sphereWireColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1478956194, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
-      propertyPath: _sphereWireColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1478956194, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
-      propertyPath: _sphereWireColor.r
-      value: 0.553
-      objectReference: {fileID: 0}
-    - target: {fileID: 1478956194, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
-      propertyPath: _sphereActiveColor.a
-      value: 0.8862745
-      objectReference: {fileID: 0}
-    - target: {fileID: 1478956194, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
-      propertyPath: _sphereActiveColor.b
-      value: 0.17699999
-      objectReference: {fileID: 0}
-    - target: {fileID: 1478956194, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
-      propertyPath: _sphereActiveColor.g
-      value: 0.17699999
-      objectReference: {fileID: 0}
-    - target: {fileID: 1478956194, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
-      propertyPath: _sphereActiveColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1478956194, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
-      propertyPath: _sphereNormalColor.a
-      value: 0.13333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 1478956194, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
-      propertyPath: _sphereNormalColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1478956194, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
-      propertyPath: _sphereNormalColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1478956194, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
-      propertyPath: _sphereNormalColor.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1478956194, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
       propertyPath: Hurtboxes.Array.data[0]
       value: 
       objectReference: {fileID: 520852772}
-    - target: {fileID: 1478956194, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
-      propertyPath: _sphereWireNormalColor.a
-      value: 0.14901961
-      objectReference: {fileID: 0}
-    - target: {fileID: 1478956194, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
-      propertyPath: _sphereWireNormalColor.r
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 131555018491406302, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
       propertyPath: _plasmaBar
       value: 
@@ -2601,6 +2526,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cuchulainn
       objectReference: {fileID: 0}
+    - target: {fileID: 2454349930007350368, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
+      propertyPath: Hurtboxes.Array.data[0]
+      value: 
+      objectReference: {fileID: 520852772}
+    - target: {fileID: 4094847144971279191, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
+      propertyPath: Hurtboxes.Array.data[0]
+      value: 
+      objectReference: {fileID: 520852772}
     - target: {fileID: 5582359522104931988, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2653,6 +2586,10 @@ PrefabInstance:
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 2144334036}
+    - target: {fileID: 7545379419459933772, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
+      propertyPath: Hurtboxes.Array.data[0]
+      value: 
+      objectReference: {fileID: 520852772}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
 --- !u!1001 &4873842966995974061

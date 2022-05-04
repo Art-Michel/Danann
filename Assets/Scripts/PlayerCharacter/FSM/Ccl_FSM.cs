@@ -16,7 +16,6 @@ public class Ccl_FSM : MonoBehaviour
 
     void Start()
     {
-        ChangeState(Ccl_StateNames.IDLE);
     }
 
     public void AddState(Ccl_State state)

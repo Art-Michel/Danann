@@ -9,4 +9,5 @@ public class LightAttack1 : AttackData
         AttackId = Ccl_Attacks.LIGHTATTACK1;
         Sender = CCL;
     }
+    
 }
