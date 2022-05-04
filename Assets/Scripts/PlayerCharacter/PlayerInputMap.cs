@@ -25,6 +25,14 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": ""StickDeadzone"",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""CursorMove"",
+                    ""type"": ""Value"",
+                    ""id"": ""b8689c86-84d3-4835-bde6-d6a25af42131"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": ""StickDeadzone"",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -192,6 +200,188 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""99c979c2-36f6-444f-a9bd-ba30b4700962"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CursorMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Actions"",
+            ""id"": ""d334e291-8373-458d-a42b-e586b1fa431b"",
+            ""actions"": [
+                {
+                    ""name"": ""LightAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""0b62a5a4-aa5f-4564-9037-d28dd2d7a7a7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Triangle"",
+                    ""type"": ""Button"",
+                    ""id"": ""6ff9566f-e9da-4a14-a167-19fd2bed5150"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""DashL"",
+                    ""type"": ""Button"",
+                    ""id"": ""ee47d151-dfa2-4d33-835d-6a8d3d4abf03"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""DashR"",
+                    ""type"": ""Button"",
+                    ""id"": ""91d9e291-5c2e-457f-a7bb-aa6df30df41d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Shockwave"",
+                    ""type"": ""Button"",
+                    ""id"": ""189153cf-a92c-42a5-9c0b-8e3444db2a67"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Parry"",
+                    ""type"": ""Button"",
+                    ""id"": ""0fca2a35-73fd-4d1e-9dd9-021d87c43cbb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ThrowR"",
+                    ""type"": ""Button"",
+                    ""id"": ""b91c4f73-72f4-4b61-b5a5-a7f22e17fa00"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ThrowL"",
+                    ""type"": ""Button"",
+                    ""id"": ""4f12486a-1561-4b19-956f-8ade4f9a3c3c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""bc031dd0-1301-4c44-abcf-7ac534c9ae67"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LightAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7c5a118b-2382-4131-b701-8ec1168a68e5"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""LightAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b1f1fe03-522f-495e-8bef-4f9bc54fdf8d"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Triangle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1766bd59-f544-4e68-b82b-c4c3b4aa409d"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""DashL"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1ec95fb8-6afb-4fa4-af0c-4ba411dc465a"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""DashR"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f8bc084-2989-43dc-aaef-7bad94eb5d60"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Shockwave"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""82f1a4c9-0ecb-4c3c-8a93-4da138d31f30"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Parry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c91295b-3e06-4f6c-a07a-b5b8e8a3bd2e"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""ThrowR"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a281e303-a51d-4a54-8a5f-820754afb721"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""ThrowL"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -207,6 +397,17 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         // Movement
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
+        m_Movement_CursorMove = m_Movement.FindAction("CursorMove", throwIfNotFound: true);
+        // Actions
+        m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
+        m_Actions_LightAttack = m_Actions.FindAction("LightAttack", throwIfNotFound: true);
+        m_Actions_Triangle = m_Actions.FindAction("Triangle", throwIfNotFound: true);
+        m_Actions_DashL = m_Actions.FindAction("DashL", throwIfNotFound: true);
+        m_Actions_DashR = m_Actions.FindAction("DashR", throwIfNotFound: true);
+        m_Actions_Shockwave = m_Actions.FindAction("Shockwave", throwIfNotFound: true);
+        m_Actions_Parry = m_Actions.FindAction("Parry", throwIfNotFound: true);
+        m_Actions_ThrowR = m_Actions.FindAction("ThrowR", throwIfNotFound: true);
+        m_Actions_ThrowL = m_Actions.FindAction("ThrowL", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -257,11 +458,13 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Movement;
     private IMovementActions m_MovementActionsCallbackInterface;
     private readonly InputAction m_Movement_Move;
+    private readonly InputAction m_Movement_CursorMove;
     public struct MovementActions
     {
         private @PlayerInputMap m_Wrapper;
         public MovementActions(@PlayerInputMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Movement_Move;
+        public InputAction @CursorMove => m_Wrapper.m_Movement_CursorMove;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -274,6 +477,9 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnMove;
+                @CursorMove.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnCursorMove;
+                @CursorMove.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnCursorMove;
+                @CursorMove.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnCursorMove;
             }
             m_Wrapper.m_MovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -281,10 +487,102 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @CursorMove.started += instance.OnCursorMove;
+                @CursorMove.performed += instance.OnCursorMove;
+                @CursorMove.canceled += instance.OnCursorMove;
             }
         }
     }
     public MovementActions @Movement => new MovementActions(this);
+
+    // Actions
+    private readonly InputActionMap m_Actions;
+    private IActionsActions m_ActionsActionsCallbackInterface;
+    private readonly InputAction m_Actions_LightAttack;
+    private readonly InputAction m_Actions_Triangle;
+    private readonly InputAction m_Actions_DashL;
+    private readonly InputAction m_Actions_DashR;
+    private readonly InputAction m_Actions_Shockwave;
+    private readonly InputAction m_Actions_Parry;
+    private readonly InputAction m_Actions_ThrowR;
+    private readonly InputAction m_Actions_ThrowL;
+    public struct ActionsActions
+    {
+        private @PlayerInputMap m_Wrapper;
+        public ActionsActions(@PlayerInputMap wrapper) { m_Wrapper = wrapper; }
+        public InputAction @LightAttack => m_Wrapper.m_Actions_LightAttack;
+        public InputAction @Triangle => m_Wrapper.m_Actions_Triangle;
+        public InputAction @DashL => m_Wrapper.m_Actions_DashL;
+        public InputAction @DashR => m_Wrapper.m_Actions_DashR;
+        public InputAction @Shockwave => m_Wrapper.m_Actions_Shockwave;
+        public InputAction @Parry => m_Wrapper.m_Actions_Parry;
+        public InputAction @ThrowR => m_Wrapper.m_Actions_ThrowR;
+        public InputAction @ThrowL => m_Wrapper.m_Actions_ThrowL;
+        public InputActionMap Get() { return m_Wrapper.m_Actions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ActionsActions set) { return set.Get(); }
+        public void SetCallbacks(IActionsActions instance)
+        {
+            if (m_Wrapper.m_ActionsActionsCallbackInterface != null)
+            {
+                @LightAttack.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLightAttack;
+                @LightAttack.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLightAttack;
+                @LightAttack.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLightAttack;
+                @Triangle.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnTriangle;
+                @Triangle.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnTriangle;
+                @Triangle.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnTriangle;
+                @DashL.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDashL;
+                @DashL.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDashL;
+                @DashL.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDashL;
+                @DashR.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDashR;
+                @DashR.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDashR;
+                @DashR.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDashR;
+                @Shockwave.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnShockwave;
+                @Shockwave.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnShockwave;
+                @Shockwave.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnShockwave;
+                @Parry.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnParry;
+                @Parry.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnParry;
+                @Parry.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnParry;
+                @ThrowR.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnThrowR;
+                @ThrowR.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnThrowR;
+                @ThrowR.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnThrowR;
+                @ThrowL.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnThrowL;
+                @ThrowL.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnThrowL;
+                @ThrowL.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnThrowL;
+            }
+            m_Wrapper.m_ActionsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @LightAttack.started += instance.OnLightAttack;
+                @LightAttack.performed += instance.OnLightAttack;
+                @LightAttack.canceled += instance.OnLightAttack;
+                @Triangle.started += instance.OnTriangle;
+                @Triangle.performed += instance.OnTriangle;
+                @Triangle.canceled += instance.OnTriangle;
+                @DashL.started += instance.OnDashL;
+                @DashL.performed += instance.OnDashL;
+                @DashL.canceled += instance.OnDashL;
+                @DashR.started += instance.OnDashR;
+                @DashR.performed += instance.OnDashR;
+                @DashR.canceled += instance.OnDashR;
+                @Shockwave.started += instance.OnShockwave;
+                @Shockwave.performed += instance.OnShockwave;
+                @Shockwave.canceled += instance.OnShockwave;
+                @Parry.started += instance.OnParry;
+                @Parry.performed += instance.OnParry;
+                @Parry.canceled += instance.OnParry;
+                @ThrowR.started += instance.OnThrowR;
+                @ThrowR.performed += instance.OnThrowR;
+                @ThrowR.canceled += instance.OnThrowR;
+                @ThrowL.started += instance.OnThrowL;
+                @ThrowL.performed += instance.OnThrowL;
+                @ThrowL.canceled += instance.OnThrowL;
+            }
+        }
+    }
+    public ActionsActions @Actions => new ActionsActions(this);
     private int m_ControllerSchemeIndex = -1;
     public InputControlScheme ControllerScheme
     {
@@ -297,5 +595,17 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
     public interface IMovementActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnCursorMove(InputAction.CallbackContext context);
+    }
+    public interface IActionsActions
+    {
+        void OnLightAttack(InputAction.CallbackContext context);
+        void OnTriangle(InputAction.CallbackContext context);
+        void OnDashL(InputAction.CallbackContext context);
+        void OnDashR(InputAction.CallbackContext context);
+        void OnShockwave(InputAction.CallbackContext context);
+        void OnParry(InputAction.CallbackContext context);
+        void OnThrowR(InputAction.CallbackContext context);
+        void OnThrowL(InputAction.CallbackContext context);
     }
 }

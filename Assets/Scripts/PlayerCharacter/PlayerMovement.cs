@@ -22,15 +22,15 @@ public class PlayerMovement : MonoBehaviour
         _fsm = GetComponent<Ccl_FSM>();
         _inputs = new PlayerInputMap();
 
-        this._fsm.AddState(new Ccl_StateIdle());
-        this._fsm.AddState(new Ccl_StateAiming());
-
         _inputs.Movement.Move.started += ReadMovementInputs;
         _inputs.Movement.Move.canceled += StopReadingMovementInputs;
     }
 
     private void Start()
     {
+        this._fsm.AddState(new Ccl_StateIdle());
+        this._fsm.AddState(new Ccl_StateAiming());
+        
         _charaCon = GetComponent<CharacterController>();
         _isMoving = false;
         _wantedDirection = Vector3.zero;

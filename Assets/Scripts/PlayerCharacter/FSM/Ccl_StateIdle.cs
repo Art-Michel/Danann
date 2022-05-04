@@ -11,12 +11,12 @@ public class Ccl_StateIdle : Ccl_State
 
     public override void Begin()
     {
-        
+
     }
 
     public override void Update()
     {
-        
+
     }
 
     public override void Exit()
