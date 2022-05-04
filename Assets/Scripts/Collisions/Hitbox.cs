@@ -14,10 +14,10 @@ public class Hitbox : MonoBehaviour
     Color _sphereWireNormalColor = new Color(0.3f, 0.1f, 0.1f, 0.1f);
     Color _sphereWireActiveColor = new Color(0.3f, 0.1f, 0.1f, 1f);
     [SerializeField] Mesh _mesh;
-    private bool _isActive = false;
+    private bool _showHitbox = false;
     private void OnDrawGizmosSelected()
     {
-        if (!_isActive)
+        if (!_showHitbox)
         {
             Gizmos.color = _sphereNormalColor;
             Gizmos.DrawMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
@@ -67,11 +67,11 @@ public class Hitbox : MonoBehaviour
 
     private IEnumerator VisualizeDebug()
     {
-        _isActive = true;
+        _showHitbox = true;
         yield return new WaitForFixedUpdate();
         yield return new WaitForFixedUpdate();
         yield return new WaitForFixedUpdate();
-        _isActive = false;
+        _showHitbox = false;
         yield return null;
     }
 

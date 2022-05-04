@@ -18,7 +18,9 @@ public class PlayerActions : MonoBehaviour
     #endregion
 
     #region Attacks Data
-    LightAttack1 _lightAttack1Data;
+    [SerializeField] AttackData _lightAttack1Data;
+    [SerializeField] AttackData _lightAttack2Data;
+    [SerializeField] AttackData _lightAttack3Data;
     #endregion
 
     private void Awake()
@@ -37,7 +39,6 @@ public class PlayerActions : MonoBehaviour
     void Start()
     {
         //States
-        this._fsm.AddState(new Ccl_StateLightAttacking());
     }
 
     private void LightAttackInput()

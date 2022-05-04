@@ -28,11 +28,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        _fsm.AddState(new Ccl_StateIdle());
-        _fsm.AddState(new Ccl_StateAiming());
-
-        _fsm.ChangeState(Ccl_StateNames.IDLE);
-
         _charaCon = GetComponent<CharacterController>();
         _isMoving = false;
         _wantedDirection = Vector3.zero;

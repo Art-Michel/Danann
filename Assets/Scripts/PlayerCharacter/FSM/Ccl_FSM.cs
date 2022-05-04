@@ -16,6 +16,11 @@ public class Ccl_FSM : MonoBehaviour
 
     void Start()
     {
+        AddState(new Ccl_StateLightAttacking());
+        AddState(new Ccl_StateIdle());
+        AddState(new Ccl_StateAiming());
+
+        ChangeState(Ccl_StateNames.IDLE);
     }
 
     public void AddState(Ccl_State state)
