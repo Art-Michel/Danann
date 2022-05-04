@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class State
+public class Danu_State
 {
-    public FSM fsm = null;
+    public Danu_FSM fsm = null;
     public float idleTime;
     public string name { get; private set; }
 
-    public State( string name )
+    public Danu_State( string name )
     {
         this.name = name;
     }

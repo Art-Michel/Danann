@@ -4,9 +4,9 @@ using UnityEngine;
 using NaughtyAttributes;
 using System;
 
-public class FSM : MonoBehaviour
+public class Danu_FSM : MonoBehaviour
 {
-    private Dictionary<string, State> m_states = new Dictionary<string, State>();
+    private Dictionary<string, Danu_State> m_states = new Dictionary<string, Danu_State>();
 
     [HideInInspector] public DanuAI agent = null;
     #region Phase 1
@@ -63,22 +63,22 @@ public class FSM : MonoBehaviour
         #endregion
     #endregion
     int indexx;
-    public State curr { get; private set; }
-    public State prev { get; private set; }
+    public Danu_State curr { get; private set; }
+    public Danu_State prev { get; private set; }
 
-    public void AddState( State state )
+    public void AddState( Danu_State state )
     {
         state.fsm = this;
         this.m_states[state.name] = state;
     }
-    public void RemoveState(State state)
+    public void RemoveState(Danu_State state)
     {
         m_states.Remove(state.name);
     }
 
     public void ChangeState( string nextStateName, float idleTime=0f )
     {
-        State state = null;
+        Danu_State state = null;
         this.m_states.TryGetValue( nextStateName, out state );
         if( state == null )
         {

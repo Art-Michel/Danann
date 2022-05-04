@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P1DHelicopter : State
+public class P1DHelicopter : Danu_State
 {
     public P1DHelicopter() : base(StateNames.P1D_SPIN) { }
     private GameObject globalGO; 

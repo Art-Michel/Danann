@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P1DShoot : State
+public class P1DShoot : Danu_State
 {
     public P1DShoot() : base(StateNames.P1D_SHOOT) { }
     float timer;

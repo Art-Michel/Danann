@@ -6,7 +6,7 @@ using System;
 
 public class DanuAI : MonoBehaviour
 {
-    private FSM m_fsm=null;
+    private Danu_FSM m_fsm=null;
     [Range(1,2),SerializeField]private int phase;
     private int patternIndex;
     private float dist;
@@ -30,7 +30,7 @@ public class DanuAI : MonoBehaviour
 
     private void Awake() {
         if (m_fsm==null)
-            m_fsm=GetComponent<FSM>();
+            m_fsm=GetComponent<Danu_FSM>();
         m_fsm.agent=this;
     }
     // Start is called before the first frame update

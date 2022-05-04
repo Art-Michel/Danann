@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P1CSlam : State
+public class P1CSlam : Danu_State
 {
     public P1CSlam() : base(StateNames.P1C_BOOM) { }
     GameObject boombox;

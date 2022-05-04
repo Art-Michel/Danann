@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P1Idle : State
+public class P1Idle : Danu_State
 {
     public P1Idle () : base(StateNames.P1IDLE) { }
     private Vector3 IdleMovement;

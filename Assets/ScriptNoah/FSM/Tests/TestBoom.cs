@@ -14,6 +14,7 @@ public class TestBoom : MonoBehaviour
     [SerializeField] float delay;
     float delta;
     int index=0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +32,14 @@ public class TestBoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        delta+=Time.deltaTime;
+        Slam();
+    }
+
+    
+
+    private void Slam()
+    {
+       delta+=Time.deltaTime;
         if (delta>delay)
         {
 

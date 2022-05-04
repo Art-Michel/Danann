@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P1DBoomerang : State
+public class P1DBoomerang : Danu_State
 {
     public P1DBoomerang() : base(StateNames.P1D_BOOMERANG) { }
     [SerializeField] private GameObject boomerangL;
