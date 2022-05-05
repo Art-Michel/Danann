@@ -7,11 +7,13 @@ public class Hurtbox : MonoBehaviour
     public Color SphereWireColor;
     [SerializeField] Mesh _mesh;
 
-    void OnDrawGizmos()
+    void OnDrawGizmosSelected()
     {
         Gizmos.color = SphereColor;
         Gizmos.DrawMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
         Gizmos.color = SphereWireColor;
         Gizmos.DrawWireMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
     }
+
+    
 }

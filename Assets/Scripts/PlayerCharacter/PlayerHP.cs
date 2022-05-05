@@ -32,7 +32,8 @@ public class PlayerHP : MonoBehaviour
     {
         if (!_isInvulnerable)
         {
-            HealthPoints= Mathf.Clamp(HealthPoints -= amount, 0, _maxHealthPoints);
+            HealthPoints = Mathf.Clamp(HealthPoints -= amount, 0, _maxHealthPoints);
+            SoundManager.Instance.PlayPlayerHurt();
             UpdateHealthBar();
             StartCoroutine("PostDamage");
             if (HealthPoints <= 0) Die();
@@ -42,7 +43,7 @@ public class PlayerHP : MonoBehaviour
     [Button]
     public void Heal(int amount = 5)
     {
-        HealthPoints=  Mathf.Clamp(HealthPoints += amount, 0, _maxHealthPoints);
+        HealthPoints = Mathf.Clamp(HealthPoints += amount, 0, _maxHealthPoints);
         UpdateHealthBar();
     }
 

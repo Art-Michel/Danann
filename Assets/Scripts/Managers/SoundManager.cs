@@ -5,22 +5,28 @@ using UnityEngine;
 
 public class SoundManager : ProjectManager<SoundManager>
 {
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioClip hit;
-    [SerializeField] AudioClip bong;
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _playerHurt;
+    [SerializeField] AudioClip _bossPunched;
+    [SerializeField] AudioClip _blockedHit;
 
     private void PlaySound(AudioClip clip, float volume)
     {
-        audioSource.PlayOneShot(clip, volume);
+        _audioSource.PlayOneShot(clip, volume);
     }
 
-    public void PlayHit()
+    public void PlayPlayerHurt()
     {
-        PlaySound(hit, 1f);
+        PlaySound(_playerHurt, 1f);
     }
     
-    public void PlayBong()
+    public void PlayBossPunched()
     {
-        PlaySound(bong, 1f);
+        PlaySound(_bossPunched, 1f);
+    }
+
+    public void PlayBlockedHit()
+    {
+        PlaySound(_bossPunched, 1f);
     }
 }

@@ -42,7 +42,7 @@ public class AttackData : MonoBehaviour
     {
         for (int i = 0; i < _hitboxes.GetLength(1); i++)
         {
-            if(_hitboxes[index, i])_hitboxes[index, i].CheckIntersection();
+            if(_hitboxes[index, i])_hitboxes[index, i].CheckForHit();
         }
     }
 }

@@ -48,12 +48,13 @@ public class Hitbox : MonoBehaviour
     [Tooltip("Lists the hurtboxes this hitbox must check.")]
     [SerializeField] List<Hurtbox> HurtboxesToFocus;
 
+
     [Button]
-    public bool CheckIntersection()
+    public bool CheckForHit()
     {
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         StartCoroutine("VisualizeDebug");
-#endif
+        #endif
 
         foreach (Hurtbox hurtbox in HurtboxesToFocus)
         {

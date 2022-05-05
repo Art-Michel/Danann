@@ -10,7 +10,7 @@ public class LingeringHitbox : Hitbox
     {
         if (_isActive)
         {
-            CheckIntersection();
+            CheckForHit();
         }
     }
 }
