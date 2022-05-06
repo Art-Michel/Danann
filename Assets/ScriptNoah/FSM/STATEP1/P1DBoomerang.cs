@@ -22,13 +22,22 @@ public class P1DBoomerang : Danu_State
     // Start is called before the first frame update
     public override void Begin()
     {
+        boomerangL=fsm.GetP1BRL();
+        if (fsm.GetP1BRL()==null)
+            Debug.Log("c'pas normal");
         boomerangL.SetActive(true);
+        boomerangR=fsm.GetP1BRR();
         boomerangR.SetActive(true);
+        curveMidL=fsm.GetP1BoomeRangcurveMidL();
+        curveMidR=fsm.GetP1BoomeRangcurveMidR();
+        MaxCurveTime=fsm.GetP1BoomeRangMaxCurveTime();
+        MaxStraightTime=fsm.GetP1BoomeRangMaxStraightTime();
+        speed=fsm.GetP1BoomeRangSpeed();
         target=fsm.agent.GetPlayer();
         curveEnd=fsm.transform.position;
         fsm.transform.LookAt(target);
-        curveStartL=boomerangL.transform.position+fsm.transform.forward*10;
-        curveStartR=boomerangR.transform.position+fsm.transform.forward*10;
+        curveStartL=boomerangL.transform.position+fsm.transform.forward*(Vector3.Distance(fsm.transform.position,target.position)/ (speed/1.25f))*speed;
+        curveStartR=boomerangR.transform.position+fsm.transform.forward*(Vector3.Distance(fsm.transform.position,target.position)/ (speed/1.25f))*speed;
     }
 
     // Update is called once per frame
@@ -38,18 +47,21 @@ public class P1DBoomerang : Danu_State
         {
             UpdateCurve();
         }
-        else
+        if (!startCurve)
         {
             UpdateStraight();
         }
     }
     void UpdateStraight()
     {
-        straightTime+=Time.deltaTime*speed;
-        boomerangL.transform.position=Vector3.Lerp(boomerangL.transform.position,curveStartL,straightTime);
-        boomerangR.transform.position=Vector3.Lerp(boomerangR.transform.position,curveStartR,straightTime);
+        straightTime+=Time.deltaTime;
+        boomerangL.transform.position=Vector3.Lerp(boomerangL.transform.position,curveStartL,straightTime/MaxStraightTime);
+        boomerangR.transform.position=Vector3.Lerp(boomerangR.transform.position,curveStartR,straightTime/MaxStraightTime);
+        Debug.Log("e");
+
         if (straightTime>=MaxStraightTime-0.18f)
         {
+            Debug.Log("e");
             startCurve=true;
             UpdateCurve();
             UpdateCurve();
@@ -57,27 +69,35 @@ public class P1DBoomerang : Danu_State
     }
      void UpdateCurve()
     {
-            curveTime+=Time.deltaTime*speed;
-            if (curveTime>1)
-                return;
+            curveTime+=Time.deltaTime;
+            Debug.Log(curveTime);
+            if (curveTime>MaxCurveTime)
+            {
+                Debug.Log("eeee");
+                fsm.agent.ToIdle();
+                
+            }
             boomerangL.transform.position=Curve(boomerangL);
             boomerangR.transform.position=Curve(boomerangR);
     }
     private Vector3 Curve(GameObject boom)
     {
-        float u=1-curveTime ;
-        float tt=curveTime*curveTime;
+        float t =curveTime/MaxCurveTime;
+        float u=1-t ;
+        float tt=t*t;
         float uu=u*u;
         Vector3 point;
+        Debug.Log("eee");
         if (boom==boomerangL)
         {
             point=uu*curveStartL;
-            point+=2*u*curveTime*curveMidL.position;
+            Debug.Log(curveMidL);
+            point+=2*u*t*curveMidL.position;
         }
         else
         {
             point=uu*curveStartR;
-            point+=2*u*curveTime*curveMidR.position;
+            point+=2*u*t*curveMidR.position;
         }
         point+=tt*curveEnd;
         return point;

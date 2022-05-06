@@ -7,26 +7,27 @@ public class TpOnPlayer : MonoBehaviour
     [SerializeField]GameObject arrival;
     [SerializeField]GameObject boomBox;
     [SerializeField]Transform target;
-    enum destPoints
-    {
-        FAR,
-        CLOSE
-    }
     [SerializeField]destPoints destination;
     float fadeTime;
     [SerializeField]float MaxFadeTime;
     float startup;
     [SerializeField]float MaxSartup;
     [SerializeField]float offsetValue;
-    float reco;
     [SerializeField]float maxReco;
-    float active;
     [SerializeField]float maxActive;
+    float active;
     [SerializeField] float farDist;
+    enum destPoints
+    {
+        FAR,
+        CLOSE
+    }
+    float reco;
     // Start is called before the first frame update
     void Start()
     {
         arrival.SetActive(false);
+        
         if (destination==destPoints.FAR)
         {
             float dist=Vector3.Distance(transform.position,target.position)*farDist;

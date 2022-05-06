@@ -11,6 +11,8 @@ public class Heli_RoundAbout : MonoBehaviour
     [SerializeField] private Transform  dSphereSW;
     [SerializeField] private Transform  dSphereSE;
     [SerializeField] private GameObject Proj;
+    public float Dist { get { return dist; } private set {  RepositionxDist(dist); }}
+    [SerializeField] private float radius= 0;
     [SerializeField] private float dist;
     [SerializeField]float rotationSpeed;
     [SerializeField]bool turningRight;
@@ -78,11 +80,13 @@ void Reposition()
    sphereSW.localPosition=Vector3.Normalize(sphereSW.localPosition);
 }*/
     [Button]
-    void RepositionxDist()
+    void RepositionxDist(float value=0)
     {
-        dSphereN.localPosition=Vector3.Normalize(dSphereN.localPosition)*dist;
-        dSphereSE.localPosition=Vector3.Normalize(dSphereSE.localPosition)*dist;
-        dSphereSW.localPosition=Vector3.Normalize(dSphereSW.localPosition)*dist;
+        
+        value=dist;
+        dSphereN.localPosition=Vector3.Normalize(dSphereN.localPosition)*value;
+        dSphereSE.localPosition=Vector3.Normalize(dSphereSE.localPosition)*value;
+        dSphereSW.localPosition=Vector3.Normalize(dSphereSW.localPosition)*value;
     }
     [Button]
     void CalculateDist()

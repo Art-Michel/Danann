@@ -13,6 +13,7 @@ public class P1Idle : Danu_State
         Vector2 nextRelativePosition=Random.insideUnitCircle*fsm.agent.GetMovementRange();
         Vector3 nextTargetPos=new Vector3(fsm.transform.position.x+nextRelativePosition.x,fsm.transform.position.y,fsm.transform.position.z+nextRelativePosition.y);
         IdleMovement=nextTargetPos;
+        fsm.agent.RestoreChain();
     }
 
     // Update is called once per frame

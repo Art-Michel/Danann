@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class P1CSlam : Danu_State
 {
-    public P1CSlam() : base(StateNames.P1C_BOOM) { }
+    public P1CSlam() : base(StateNames.P1C_SLAM) { }
     GameObject boombox;
     float[] startup=new float[3];
     float[] active=new float[3];

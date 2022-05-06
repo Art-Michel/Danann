@@ -22,11 +22,12 @@ public class P1DHelicopter : Danu_State
     List<GameObject> eblades=new List<GameObject>();
     private bool wait;
     private float waitTime;
+    bool isSetUp;
     // Start is called before the first frame update
     public override void Begin()
     {
         //setup des variables
-        dist=fsm.agent.GetArenaRadius();
+        dist=fsm.GetP1Sp_Dist();
         globalGO=fsm.GetP1GlobalGO();
         Transform[] nweTrans=fsm.GetP1NWEMax();
         dSphereN=nweTrans[0];
@@ -36,9 +37,9 @@ public class P1DHelicopter : Danu_State
         turningRight=fsm.GetP1TurningRight();
         maxWaitTime=fsm.GetP1MaxWaitTime();
         lifetime=fsm.GetP1SpinLifeTime();
-
+  
         //repositionnement du boss et des helices
-        fsm.transform.position=fsm.agent.GetArenaCenter();
+        //fsm.transform.position=fsm.agent.GetArenaCenter();
         /*n=dSphereN.position;
         w=dSphereSW.position;
         e=dSphereSE.position;*/
@@ -46,7 +47,7 @@ public class P1DHelicopter : Danu_State
         //activation des helices, ou instantiation si c'est la premiere fois
         globalGO.SetActive(true);
         float delta = 1/dist;
-        if (waitTime!=0)
+        if (isSetUp)
         {
             wait=true;
             waitTime=0;
@@ -59,6 +60,11 @@ public class P1DHelicopter : Danu_State
         }
         else
         {
+            /*Vector3 newW=(dSphereSW.position-fsm.transform.position);
+            Vector3 newE=(dSphereSE.position-fsm.transform.position);
+            dSphereN.position=newn*fsm.agent.GetArenaRadius();
+            dSphereSW.position=newW*fsm.agent.GetArenaRadius();
+            dSphereSE.position=newE*fsm.agent.GetArenaRadius();*/
             n=dSphereN.position;
             w=dSphereSW.position;
             e=dSphereSE.position;
@@ -74,7 +80,8 @@ public class P1DHelicopter : Danu_State
                 wblades.Add(fsm.InstantiateStaticProjectile(wPos));
                 eblades.Add(fsm.InstantiateStaticProjectile(ePos));
                 Debug.Log("e");
-                }
+            }
+            isSetUp=true;
         }
         wait=true;
         
@@ -86,6 +93,7 @@ public class P1DHelicopter : Danu_State
         if (wait)
         {
             waitTime+=Time.deltaTime;
+            fsm.transform.position=Vector3.Lerp(fsm.transform.position,fsm.agent.GetArenaCenter(),waitTime/maxWaitTime);
             if (waitTime>=maxWaitTime)
             {
                 wait=false;
@@ -109,18 +117,19 @@ public class P1DHelicopter : Danu_State
     {
         globalGO.SetActive(false);
         lifetime=fsm.GetP1SpinLifeTime();
-        dSphereN.position=n;
-        dSphereSW.position=w;
-        dSphereSE.position=e;
+        /*dSphereN.localPosition=n;
+        dSphereSW.localPosition=w;
+        dSphereSE.localPosition=e;*/
+        globalGO.transform.rotation=Quaternion.identity;
         float delta=1/dist;
         for (int i=0;i<nblades.Count;i++)
         {
             nblades[i].SetActive(false);
-            nblades[i].transform.position=Vector3.Lerp(fsm.transform.position,n,delta*i);
+            //nblades[i].transform.position=Vector3.Lerp(fsm.transform.position,n,delta*i);
             wblades[i].SetActive(false);
-            wblades[i].transform.position=Vector3.Lerp(fsm.transform.position,w,delta*i);
+            //wblades[i].transform.position=Vector3.Lerp(fsm.transform.position,w,delta*i);
             eblades[i].SetActive(false);
-            eblades[i].transform.position=Vector3.Lerp(fsm.transform.position,e,delta*i);
+            //eblades[i].transform.position=Vector3.Lerp(fsm.transform.position,e,delta*i);
         }
     }
 }
