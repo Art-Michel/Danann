@@ -432,6 +432,7 @@ MonoBehaviour:
   Radius: 1.54
   SphereColor: {r: 0.3219337, g: 1, b: 0.2216981, a: 0.56078434}
   SphereWireColor: {r: 0.05853534, g: 0.2924528, b: 0, a: 1}
+  _entityHP: {fileID: 0}
   _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
 --- !u!4 &520852773
 Transform:
@@ -1063,7 +1064,7 @@ MonoBehaviour:
   _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
   Radius: 1
   _hitboxID: 0
-  _damageValue: 3
+  _damageValue: 2
   HurtboxesToFocus:
   - {fileID: 4131936353881019159}
 --- !u!33 &1311834668
@@ -2472,6 +2473,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackSender: Ccl
+--- !u!114 &2125858158 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6675876785804503277, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
+  m_PrefabInstance: {fileID: 4131936353881019158}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fcd4ade5ae595e4aa3e2812dbc37c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2144334034
 GameObject:
   m_ObjectHideFlags: 0
@@ -2635,6 +2647,10 @@ PrefabInstance:
       propertyPath: _lightAttack3Data
       value: 
       objectReference: {fileID: 742724664}
+    - target: {fileID: 836023077, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
+      propertyPath: _entityHP
+      value: 
+      objectReference: {fileID: 2125858158}
     - target: {fileID: 1478956194, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
       propertyPath: HurtboxesToFocus.Array.data[0]
       value: 
@@ -2738,19 +2754,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4873842967060781016, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.775042
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 4873842967060781016, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.212309
+      value: 37.627014
       objectReference: {fileID: 0}
     - target: {fileID: 4873842967060781016, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.024437
+      value: -21.10119
       objectReference: {fileID: 0}
     - target: {fileID: 4873842967060781017, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: field of view
-      value: 60
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 4873842967753727174, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_ZDamping
@@ -2838,15 +2854,15 @@ PrefabInstance:
       objectReference: {fileID: 393987811}
     - target: {fileID: 4873842968632304812, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.775042
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 4873842968632304812, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.212309
+      value: 37.627014
       objectReference: {fileID: 0}
     - target: {fileID: 4873842968632304812, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.024437
+      value: -21.10119
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}

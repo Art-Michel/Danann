@@ -43,7 +43,8 @@ public class Hitbox : MonoBehaviour
     [Tooltip("If hitboxes have the same ID you can't get hit by both (Single Hit), otherwise you can get Multi-Hit")]
     [SerializeField] private int _hitboxID;
 
-    [SerializeField] private float _damageValue = 0;
+    [SerializeField] private int _damageValue = 0;
+    public int DamageValue {get {return _damageValue; } private set {_damageValue = value;}}
 
     [Tooltip("Lists the hurtboxes this hitbox must check.")]
     [SerializeField] List<Hurtbox> HurtboxesToFocus;
@@ -59,9 +60,8 @@ public class Hitbox : MonoBehaviour
         foreach (Hurtbox hurtbox in HurtboxesToFocus)
         {
             if (CheckDistance(hurtbox))
-            {
-                if (VerifyHit()) return true;
-            }
+            hurtbox.TakeAHit(this);
+            return true;
         }
         return false;
     }
@@ -86,10 +86,5 @@ public class Hitbox : MonoBehaviour
         }
         else
             return false;
-    }
-
-    private bool VerifyHit()
-    {
-        return true;
     }
 }
