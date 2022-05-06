@@ -45,7 +45,7 @@ public class DanuAI : MonoBehaviour
         m_fsm.AddState(new P1CDash());
         m_fsm.AddState(new P1CTeleportation());
         m_fsm.AddState(new P1CMixDash());
-        this.m_fsm.ChangeState( StateNames.P1IDLE);
+        this.m_fsm.ChangeState( StateNames.P1C_SLAM);
     }
 
     // Update is called once per frame
@@ -98,12 +98,15 @@ public class DanuAI : MonoBehaviour
         Debug.Log(dist);
         Debug.Log(distEvaluator.Evaluate(dist));
         float mod = distEvaluator.Evaluate(dist);
-        if (mod < 0.9f) //short ranged patterns
+        if (mod <= 1.1f) //short ranged patterns
         {
-            m_fsm.ChangeState(StateNames.P1D_SPIN);
-            Debug.Log("smol");
+            if (m_fsm.prev.name==StateNames.P1C_TELEPORTATION)
+            {
+                m_fsm.ChangeState(StateNames.P1C_DASH);
+                Debug.Log("smol");
+            }
         }
-        else if (mod > 1.3f) //long ranged patterns
+        else if (mod > 1.1f) //long ranged patterns
         {
                         m_fsm.ChangeState(StateNames.P1D_SHOOT);
 

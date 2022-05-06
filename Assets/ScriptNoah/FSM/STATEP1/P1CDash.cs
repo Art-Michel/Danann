@@ -61,9 +61,12 @@ public class P1CDash : Danu_State
             chargingTime+=Time.deltaTime;
             //Vector3 arrival= transform.position+dir*dashSpeed*maxDashTime ;
             //arrival=new Vector3(arrival.x,3.72f,arrival.z);
-            preview.position=startPos+(dir*dashSpeed*maxDashTime)/2;
+            dir=(-fsm.transform.position+target.position).normalized;
+            startPos=fsm.transform.position;
+            maxArrival=fsm.transform.position+dir*dashSpeed*dashTime;
+            preview.position=Vector3.Lerp(preview.position, startPos+(dir*dashSpeed*maxDashTime)/2,0.8f);
             preview.LookAt(target);
-            preview.localScale=new Vector3(1,1,maxDashTime*dashSpeed);
+            preview.localScale=new Vector3(fsm.transform.localScale.x,fsm.transform.localScale.y,maxDashTime*dashSpeed);
             return;
         }
         dashTime+=Time.deltaTime;

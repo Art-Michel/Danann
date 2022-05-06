@@ -27,6 +27,9 @@ public class Danu_FSM : MonoBehaviour
         public float GetP1SlamRecovery(){return P1SlamRecovery;}
         [Foldout("Phase 1 Slam")][SerializeField] private Vector3[] P1slamScales=new Vector3[3];
         public Vector3 GetP1SlamScale(int index) {return P1slamScales[index];}
+        [Foldout("Phase 1 Slam")][SerializeField]private float p1Sl_MaxMoveTime;
+        public float GetP1Sl_MaxMoveTime(){return p1Sl_MaxMoveTime;}
+
         #endregion
         #region Spin
         [Foldout("Phase 1 Spin")][SerializeField] private GameObject staticProj;
@@ -100,9 +103,14 @@ public class Danu_FSM : MonoBehaviour
         #endregion
     #endregion
     int indexx;
+    
     public Danu_State curr { get; private set; }
     public Danu_State prev { get; private set; }
-
+    [Button]
+    public void QuickDebug()
+    {
+       
+    }
     public void AddState( Danu_State state )
     {
         state.fsm = this;

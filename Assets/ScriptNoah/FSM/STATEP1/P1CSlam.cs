@@ -11,14 +11,21 @@ public class P1CSlam : Danu_State
     float[] active=new float[3];
     float[] end=new float[3];
     float timer;
+    float maxDistance;
     Vector3[] scales=new Vector3[3];
     int slamCount;
     int maxSlamCount=3;
     int index=0;
+    private bool canStart;
+    float movetime;
+
+    private float maxMoveTime;
+
     // Start is called before the first frame update
     public override void Begin()
     {
         boombox=fsm.Getp1SlamHitBox();
+        canStart=true;
         Vector3[] frames =new Vector3[3];
         for (int i=0;i<3;i++)
         {
@@ -33,7 +40,12 @@ public class P1CSlam : Danu_State
         scales[0] = fsm.GetP1SlamScale(0);
         scales[1] = fsm.GetP1SlamScale(1);       
         scales[2] = fsm.GetP1SlamScale(2);
-        RescaleBoomBox();        
+        RescaleBoomBox();
+        maxDistance=boombox.transform.localScale.z*2;
+        maxMoveTime=fsm.GetP1Sl_MaxMoveTime();
+        movetime=0;
+        if (maxDistance<=Vector3.Distance(fsm.transform.position,fsm.agent.GetPlayer().position))
+            canStart=false;        
     }
 
     private void RescaleBoomBox()
@@ -50,10 +62,20 @@ public class P1CSlam : Danu_State
             slamCount++;
         }
     }
-
+    
     // Update is called once per frame
     public override void Update()
     {
+        if (!canStart)
+        {
+            float dist=Vector3.Distance(fsm.transform.position,fsm.agent.GetPlayer().position);
+            Vector3 dir=-fsm.transform.position+fsm.agent.GetPlayer().position;
+            dir.Normalize();
+            fsm.transform.position+=dir*dist/maxMoveTime;
+            if (maxDistance<=dist)
+                return;
+            canStart=true;
+        }
             switch(index)
             {
                 case 0:
@@ -67,7 +89,6 @@ public class P1CSlam : Danu_State
                     else if (timer>startup[slamCount-1]/2)
                     {
                         LookTowardPlayer();
-
                     }
                     break;
                 case 1:
@@ -93,8 +114,8 @@ public class P1CSlam : Danu_State
                         RescaleBoomBox();
                     }
                     break;
-                    default:
-                        break;
+                default:
+                    break;
             }
     }
     private void LookTowardPlayer()
@@ -107,6 +128,7 @@ private void ToIdle()
     {
         fsm.agent.SetWaitingTime(1);
         fsm.agent.ToIdle();
+        
     }
 
     private void DesactivateHitBox()

@@ -123,7 +123,7 @@ public class P1CMixDash : Danu_State
             maxArrival=fsm.transform.position+dir*dashSpeed*dashTime;
             preview.position=Vector3.Lerp(preview.position, startPos+(dir*dashSpeed*maxDashTime)/2,0.8f);
             preview.LookAt(target);
-            preview.localScale=new Vector3(1,1,maxDashTime*dashSpeed);
+            preview.localScale=new Vector3(fsm.transform.localScale.x,fsm.transform.localScale.y,maxDashTime*dashSpeed);
             return;
         }
         actual++;
@@ -159,7 +159,7 @@ public class P1CMixDash : Danu_State
             maxArrival=fsm.transform.position+dir*dashSpeed*dashTime;
             preview.position=Vector3.Lerp(preview.position, startPos+(dir*dashSpeed*maxDashTime)/2,1);
             preview.LookAt(target);
-            preview.localScale=new Vector3(1,1,maxDashTime*dashSpeed);
+            preview.localScale=new Vector3(fsm.transform.localScale.x,fsm.transform.localScale.y,maxDashTime*dashSpeed);
             return;
         }
         actual++;
