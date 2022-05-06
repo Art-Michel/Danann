@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +10,8 @@ public class PlayerMovement : MonoBehaviour
 
     bool _isMoving;
     Vector3 _wantedDirection;
-    [SerializeField] float _speed;
+    [SerializeField] float _normalSpeed;
+    [NonSerialized] public float MovementSpeed;
     float _easeInValue;
     [SerializeField] float _easeInSpeed;
     Rigidbody _rb;
@@ -29,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         _charaCon = GetComponent<CharacterController>();
+        ResetMovementSpeed();
         _isMoving = false;
         _wantedDirection = Vector3.zero;
         _easeInValue = 0;
@@ -37,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (_isMoving && (_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.AIMING))
+        if (_isMoving && (_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.AIMING || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING ))
         {
             EaseInMovement();
             Move();
@@ -58,6 +61,11 @@ public class PlayerMovement : MonoBehaviour
         _wantedDirection = Vector3.zero;
     }
 
+    public void ResetMovementSpeed()
+    {
+        MovementSpeed = _normalSpeed;
+    }
+
     private void EaseInMovement()
     {
         if (_easeInValue < 1)
@@ -70,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         _wantedDirection = new Vector3(_inputs.Movement.Move.ReadValue<Vector2>().x, 0, _inputs.Movement.Move.ReadValue<Vector2>().y);
-        _charaCon.Move(_wantedDirection * _speed * _easeInValue * Time.deltaTime);
+        _charaCon.Move(_wantedDirection * MovementSpeed * _easeInValue * Time.deltaTime);
 
         if (_fsm.currentState.Name == Ccl_StateNames.IDLE) RotateBody();
     }

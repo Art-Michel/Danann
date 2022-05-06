@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Hurtbox : MonoBehaviour
@@ -10,6 +11,9 @@ public class Hurtbox : MonoBehaviour
 
     [SerializeField] Mesh _mesh;
 
+    List<int> _hitboxIds = new List<int>();
+    List<string> _hitboxAttackNames = new List<string>();
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = SphereColor;
@@ -20,7 +24,20 @@ public class Hurtbox : MonoBehaviour
 
     public void TakeAHit(Hitbox hitbox)
     {
-        //VerifyHit first
-        HurtboxsEntityHP.TakeDamage(hitbox.DamageValue);
+        if (!_hitboxAttackNames.Contains(hitbox.AttackName))
+        {
+            if(!_hitboxIds.Contains(hitbox.HitboxId))
+            {
+            _hitboxIds.Add(hitbox.HitboxId);
+            _hitboxAttackNames.Add(hitbox.AttackName);
+            HurtboxsEntityHP.TakeDamage(hitbox.DamageValue);
+            }
+        }
+    }
+
+    public void ResetIds()
+    {
+        _hitboxIds.Clear();
+        _hitboxAttackNames.Clear();
     }
 }

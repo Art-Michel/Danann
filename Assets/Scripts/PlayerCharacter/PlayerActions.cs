@@ -9,6 +9,7 @@ public class PlayerActions : MonoBehaviour
     #region Init
     PlayerInputMap _inputs;
     Ccl_FSM _fsm;
+    PlayerMovement _playerMovement;
     #endregion
 
     #region Light Attack
@@ -18,9 +19,9 @@ public class PlayerActions : MonoBehaviour
     #endregion
 
     #region Attacks Data
+    [SerializeField] AttackData _lightAttack0Data;
     [SerializeField] AttackData _lightAttack1Data;
     [SerializeField] AttackData _lightAttack2Data;
-    [SerializeField] AttackData _lightAttack3Data;
     #endregion
 
     private void Awake()
@@ -28,22 +29,15 @@ public class PlayerActions : MonoBehaviour
         //Init
         _fsm = GetComponent<Ccl_FSM>();
         _inputs = new PlayerInputMap();
-
-        //Attacks Data
-        _lightAttack1Data = GetComponentInChildren<LightAttack1>();
+        _playerMovement = GetComponent<PlayerMovement>();
 
         //Inputs
         _inputs.Actions.LightAttack.started += _ => LightAttackInput();
     }
 
-    void Start()
-    {
-        //States
-    }
-
     private void LightAttackInput()
     {
-        if (_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING)
+        if (_fsm.currentState.Name == Ccl_StateNames.IDLE /*|| _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING*/)
         {
             LightAttack();
         }
@@ -51,15 +45,76 @@ public class PlayerActions : MonoBehaviour
 
     private void LightAttack()
     {
-        Debug.Log("Launching Light Attack " + _currentLightAttackIndex);
-        _comboWindow = _comboMaxWindow;
         if (_currentLightAttackIndex < 2) _currentLightAttackIndex++;
         else _currentLightAttackIndex = 0;
+        LaunchLightAttackAnimation();
+        Debug.Log("Launching Light Attack" + _currentLightAttackIndex);
     }
+
+    #region Placeholder coroutines instead of animation keys
+    void LaunchLightAttackAnimation()
+    {
+        switch (_currentLightAttackIndex)
+        {
+            case 0:
+                StartCoroutine("LightAttack0Animation");
+                break;
+            case 1:
+                StartCoroutine("LightAttack1Animation");
+                break;
+            case 2:
+                StartCoroutine("LightAttack2Animation");
+                break;
+        }
+    }
+    IEnumerator LightAttack0Animation()
+    {
+        _fsm.ChangeState(Ccl_StateNames.LIGHTATTACKING);
+        _comboWindow = _comboMaxWindow;
+        _lightAttack0Data.LaunchAttack();
+        SoundManager.Instance.PlayPunch0();
+        _playerMovement.MovementSpeed *= 0.75f;
+        yield return new WaitForSeconds(0.3f);
+        _playerMovement.ResetMovementSpeed();
+        _fsm.ChangeState(Ccl_StateNames.IDLE);
+        _lightAttack2Data.TellHitboxToTellHurtboxesToResetIds();
+        yield return null;
+    }
+    IEnumerator LightAttack1Animation()
+    {
+        _fsm.ChangeState(Ccl_StateNames.LIGHTATTACKING);
+        _playerMovement.MovementSpeed *= 0.25f;
+        yield return new WaitForSeconds(0.1f);
+        _comboWindow = _comboMaxWindow;
+        _lightAttack1Data.LaunchAttack();
+        SoundManager.Instance.PlayPunch1();
+        yield return new WaitForSeconds(0.4f);
+        _playerMovement.ResetMovementSpeed();
+        _fsm.ChangeState(Ccl_StateNames.IDLE);
+        _lightAttack1Data.TellHitboxToTellHurtboxesToResetIds();
+        yield return null;
+    }
+    IEnumerator LightAttack2Animation()
+    {
+        _fsm.ChangeState(Ccl_StateNames.LIGHTATTACKING);
+        _playerMovement.MovementSpeed = 0;
+        yield return new WaitForSeconds(0.4f);
+        _lightAttack2Data.LaunchAttack();
+        SoundManager.Instance.PlayPunch2();
+        yield return new WaitForSeconds(0.2f);
+        _playerMovement.ResetMovementSpeed();
+        _fsm.ChangeState(Ccl_StateNames.IDLE);
+        _lightAttack2Data.TellHitboxToTellHurtboxesToResetIds();
+        yield return null;
+    }
+    #endregion
 
     void Update()
     {
-        _comboWindow -= Time.deltaTime;
+        if (_fsm.currentState.Name != Ccl_StateNames.LIGHTATTACKING)
+        {
+            _comboWindow -= Time.deltaTime;
+        }
         if (_comboWindow <= 0) _currentLightAttackIndex = 0;
     }
 

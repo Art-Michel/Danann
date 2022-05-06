@@ -14,6 +14,7 @@ public class PlayerHP : EntityHP
 
     void Awake()
     {
+        _maxHealthPoints = 100;
         _vcamPerlin = _vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
@@ -22,7 +23,7 @@ public class PlayerHP : EntityHP
         SoundManager.Instance.PlayPlayerHurt();
         _vcamPerlin.m_AmplitudeGain = 1f;
         _isInvulnerable = true;
-        Time.timeScale = 0.2f;
+        Time.timeScale = 0.1f;
         yield return new WaitForSecondsRealtime(0.2f);
 
         _vcamPerlin.m_AmplitudeGain = 0f;

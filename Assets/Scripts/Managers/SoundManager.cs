@@ -9,6 +9,9 @@ public class SoundManager : ProjectManager<SoundManager>
     [SerializeField] AudioClip _playerHurt;
     [SerializeField] AudioClip _bossPunched;
     [SerializeField] AudioClip _blockedHit;
+    [SerializeField] AudioClip _punch0;
+    [SerializeField] AudioClip _punch1;
+    [SerializeField] AudioClip _punch2;
 
     private void PlaySound(AudioClip clip, float volume)
     {
@@ -29,4 +32,21 @@ public class SoundManager : ProjectManager<SoundManager>
     {
         PlaySound(_bossPunched, 1f);
     }
+
+    public void PlayPunch0()
+    {
+        PlaySound(_punch0, 5f);
+    }
+
+    public void PlayPunch1()
+    {
+        PlaySound(_punch1, 8f);
+    }
+
+    public void PlayPunch2()
+    {
+        PlaySound(_punch2, 5f);
+    }
+
+    
 }

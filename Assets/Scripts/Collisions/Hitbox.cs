@@ -38,13 +38,14 @@ public class Hitbox : MonoBehaviour
     public float Radius;
 
     [NonSerialized] public string Owner = "";
+    [NonSerialized] public string AttackName = "";
 
     public int HitboxId { get { return _hitboxID; } private set { _hitboxID = value; } }
     [Tooltip("If hitboxes have the same ID you can't get hit by both (Single Hit), otherwise you can get Multi-Hit")]
     [SerializeField] private int _hitboxID;
 
     [SerializeField] private int _damageValue = 0;
-    public int DamageValue {get {return _damageValue; } private set {_damageValue = value;}}
+    public int DamageValue { get { return _damageValue; } private set { _damageValue = value; } }
 
     [Tooltip("Lists the hurtboxes this hitbox must check.")]
     [SerializeField] List<Hurtbox> HurtboxesToFocus;
@@ -53,14 +54,13 @@ public class Hitbox : MonoBehaviour
     [Button]
     public bool CheckForHit()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         StartCoroutine("VisualizeDebug");
-        #endif
-
+#endif
         foreach (Hurtbox hurtbox in HurtboxesToFocus)
         {
             if (CheckDistance(hurtbox))
-            hurtbox.TakeAHit(this);
+                hurtbox.TakeAHit(this);
             return true;
         }
         return false;
@@ -86,5 +86,10 @@ public class Hitbox : MonoBehaviour
         }
         else
             return false;
+    }
+
+    public void MakeHurtboxResetIds()
+    {
+        foreach(Hurtbox hurtbox in HurtboxesToFocus) hurtbox.ResetIds();
     }
 }

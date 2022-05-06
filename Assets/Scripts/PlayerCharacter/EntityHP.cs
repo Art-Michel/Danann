@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class EntityHP : MonoBehaviour
 {
     public float HealthPoints { get; protected set; }
-    protected const float _maxHealthPoints = 100;
+    protected float _maxHealthPoints = 1;
     protected bool _isInvulnerable = false;
     [SerializeField] Image _healthBar;
 

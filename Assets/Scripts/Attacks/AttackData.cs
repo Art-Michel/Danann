@@ -6,7 +6,7 @@ using NaughtyAttributes;
 public class AttackData : MonoBehaviour
 {
     [Dropdown("Name")]
-    [SerializeField]protected string _attackSender;
+    [SerializeField] protected string _attackSender;
     DropdownList<string> Name()
     {
         return new DropdownList<string>()
@@ -17,12 +17,24 @@ public class AttackData : MonoBehaviour
         {"Right Spear", Characters.SPEARR}
         };
     }
-    
+
+    [Dropdown("attackName")]
+    [SerializeField] protected string _attackName;
+    DropdownList<string> attackName()
+    {
+        return new DropdownList<string>()
+        {
+        {"Light Attack 1", Ccl_Attacks.LIGHTATTACK1},
+        {"Light Attack 2", Ccl_Attacks.LIGHTATTACK2},
+        {"Light Attack 3", Ccl_Attacks.LIGHTATTACK3},
+        };
+    }
+
     Hitbox[,] _hitboxes;
 
     void Start()
     {
-        _hitboxes = new Hitbox[8,8];
+        _hitboxes = new Hitbox[8, 8];
         int index = 0;
         foreach (Transform child in transform)
         {
@@ -31,6 +43,7 @@ public class AttackData : MonoBehaviour
             {
                 _hitboxes[index, childIndex] = hitbox;
                 hitbox.Owner = _attackSender;
+                hitbox.AttackName = _attackName;
                 childIndex++;
             }
             index++;
@@ -42,7 +55,12 @@ public class AttackData : MonoBehaviour
     {
         for (int i = 0; i < _hitboxes.GetLength(1); i++)
         {
-            if(_hitboxes[index, i])_hitboxes[index, i].CheckForHit();
+            if (_hitboxes[index, i]) _hitboxes[index, i].CheckForHit();
         }
+    }
+
+    public void TellHitboxToTellHurtboxesToResetIds()
+    {
+        _hitboxes[0,0].MakeHurtboxResetIds();
     }
 }

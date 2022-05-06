@@ -1,5 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &61639703
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 61639704}
+  - component: {fileID: 61639705}
+  m_Layer: 0
+  m_Name: Hitbox_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &61639704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61639703}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.6, y: 0, z: 1.11}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3641769147652170156}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &61639705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61639703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
+  Radius: 2.9
+  _hitboxID: 0
+  _damageValue: 3
+  HurtboxesToFocus:
+  - {fileID: 0}
 --- !u!1 &328378844
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,6 +82,55 @@ Transform:
   m_Father: {fileID: 1336719607}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &667520835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 667520836}
+  - component: {fileID: 667520837}
+  m_Layer: 0
+  m_Name: Hitbox_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &667520836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667520835}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7, y: 0, z: 1.11}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2172271309403909620}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &667520837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667520835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
+  Radius: 2.4
+  _hitboxID: 0
+  _damageValue: 2
+  HurtboxesToFocus:
+  - {fileID: 0}
 --- !u!1 &836023076
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,6 +177,7 @@ MonoBehaviour:
   Radius: 1
   SphereColor: {r: 0.3219337, g: 1, b: 0.2216981, a: 0.56078434}
   SphereWireColor: {r: 0.05853534, g: 0.2924528, b: 0, a: 1}
+  _entityHP: {fileID: 6675876785804503277}
   _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
 --- !u!1 &1001219999
 GameObject:
@@ -89,7 +188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1001220000}
-  - component: {fileID: 8931993401879054581}
+  - component: {fileID: 341209101}
   m_Layer: 0
   m_Name: LightAttack1
   m_TagString: Untagged
@@ -112,7 +211,7 @@ Transform:
   m_Father: {fileID: 328378845}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8931993401879054581
+--- !u!114 &341209101
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,9 +220,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1001219999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9a0cde57b8d4c949982c4fff772ec71, type: 3}
+  m_Script: {fileID: 11500000, guid: f05e1b371ab0ce74194bd19b8075f6c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackSender: Ccl
 --- !u!1 &1336719606
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +333,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478956192}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.8100004}
+  m_LocalPosition: {x: -0.7, y: 0, z: 1.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 629475138091413048}
@@ -252,11 +352,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
-  Radius: 2
+  Radius: 1.67
+  _hitboxID: 0
+  _damageValue: 1
   HurtboxesToFocus:
   - {fileID: 0}
-  _damageValue: 1
+--- !u!1 &1588115342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1588115343}
+  - component: {fileID: 1588115344}
+  m_Layer: 0
+  m_Name: Hitbox_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1588115343
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588115342}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7, y: 0, z: 1.11}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 629475138091413048}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1588115344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588115342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
+  Radius: 1.67
   _hitboxID: 0
+  _damageValue: 1
+  HurtboxesToFocus:
+  - {fileID: 0}
 --- !u!1 &516392553530621491
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +434,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1478956193}
+  - {fileID: 1588115343}
   m_Father: {fileID: 1001220000}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -508,6 +658,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ee2391777273d49bfce258932e2758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lightAttack1Data: {fileID: 341209101}
+  _lightAttack2Data: {fileID: 2122647074}
+  _lightAttack3Data: {fileID: 742724664}
 --- !u!1 &1079869930131166376
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +686,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1079869930131166376}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.8100004}
+  m_LocalPosition: {x: 0.6, y: 0, z: 1.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3641769147652170156}
@@ -552,11 +705,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
-  Radius: 2
+  Radius: 2.9
+  _hitboxID: 0
+  _damageValue: 3
   HurtboxesToFocus:
   - {fileID: 0}
-  _damageValue: 3
-  _hitboxID: 0
 --- !u!1 &2837512655292362208
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,6 +738,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 449258719936598662}
+  - {fileID: 61639704}
   m_Father: {fileID: 3356029012723695709}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -597,6 +751,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3320035830444649474}
+  - component: {fileID: 2122647074}
   m_Layer: 0
   m_Name: LightAttack2
   m_TagString: Untagged
@@ -619,6 +774,19 @@ Transform:
   m_Father: {fileID: 328378845}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2122647074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3122443667853831353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05e1b371ab0ce74194bd19b8075f6c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackSender: Ccl
 --- !u!1 &3972506123130937991
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,7 +812,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3972506123130937991}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.8100004}
+  m_LocalPosition: {x: -0.7, y: 0, z: 1.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2172271309403909620}
@@ -663,11 +831,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
-  Radius: 2
+  Radius: 2.4
+  _hitboxID: 0
+  _damageValue: 2
   HurtboxesToFocus:
   - {fileID: 0}
-  _damageValue: 2
-  _hitboxID: 0
 --- !u!1 &5037876371750996070
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,6 +845,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3356029012723695709}
+  - component: {fileID: 742724664}
   m_Layer: 0
   m_Name: LightAttack3
   m_TagString: Untagged
@@ -699,6 +868,19 @@ Transform:
   m_Father: {fileID: 328378845}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &742724664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5037876371750996070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05e1b371ab0ce74194bd19b8075f6c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackSender: Ccl
 --- !u!1 &6357105310716151392
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,6 +909,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2662103592246922555}
+  - {fileID: 667520836}
   m_Father: {fileID: 3320035830444649474}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
