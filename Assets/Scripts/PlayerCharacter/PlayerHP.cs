@@ -11,11 +11,13 @@ public class PlayerHP : EntityHP
 
     [SerializeField] CinemachineVirtualCamera _vcam;
     CinemachineBasicMultiChannelPerlin _vcamPerlin;
+    Hurtbox _hurtbox;
 
     void Awake()
     {
         _maxHealthPoints = 100;
         _vcamPerlin = _vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        _hurtbox = GetComponent<Hurtbox>();
     }
 
     override protected IEnumerator PostDamage()
@@ -31,6 +33,7 @@ public class PlayerHP : EntityHP
         yield return new WaitForSecondsRealtime(0.7f);
 
         _isInvulnerable = false;
+        _hurtbox.ResetIds();
         yield return null;
     }
 }

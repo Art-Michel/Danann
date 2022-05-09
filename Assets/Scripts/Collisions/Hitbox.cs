@@ -7,6 +7,7 @@ using System;
 public class Hitbox : MonoBehaviour
 {
     #region debugging
+    private bool _showHitbox = false;
 #if UNITY_EDITOR
     Color _currentColor;
     Color _sphereNormalColor = new Color(1f, 0.1f, 0.1f, 0.1f);
@@ -14,7 +15,6 @@ public class Hitbox : MonoBehaviour
     Color _sphereWireNormalColor = new Color(0.3f, 0.1f, 0.1f, 0.1f);
     Color _sphereWireActiveColor = new Color(0.3f, 0.1f, 0.1f, 1f);
     [SerializeField] Mesh _mesh;
-    private bool _showHitbox = false;
     private void OnDrawGizmosSelected()
     {
         if (!_showHitbox)
@@ -86,6 +86,12 @@ public class Hitbox : MonoBehaviour
         }
         else
             return false;
+    }
+
+    void Awake()
+    {
+        if (HurtboxesToFocus.Count == 0)
+        HurtboxesToFocus.Add(GameObject.Find("Cuchulainn").GetComponent<Hurtbox>());
     }
 
     public void MakeHurtboxResetIds()
