@@ -21,6 +21,8 @@ public class Danu_FSM : MonoBehaviour
         public float GetP1d_ProjLifeTime(){return P1D_ProjLifeTime;}
         [Foldout("Phase 1 Shoot"),SerializeField] private float p1d_ShotSpeed;
         public float GetP1d_ShotSpeed(){return p1d_ShotSpeed;}
+        [Foldout("Phase 1 Shoot"),SerializeField] private Pool pool;
+        public Pool GetPool(){return pool;}
         #endregion
         #region Slam
         [Foldout("Phase 1 Slam")][SerializeField]GameObject p1SlamHitBox;

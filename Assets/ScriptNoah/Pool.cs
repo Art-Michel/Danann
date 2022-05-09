@@ -9,7 +9,8 @@ public class Pool : MonoBehaviour
     [SerializeField] int baseCount;
 
     Queue<GameObject> items = new Queue<GameObject>();
-
+    [SerializeField] DanuAI boss;
+    [SerializeField] Danu_FSM fsm;
     void Start()
     {
         AddCount(baseCount);
@@ -35,10 +36,10 @@ public class Pool : MonoBehaviour
     {
         for (int i = 0; i < nb; i++)
         {
-                GameObject go = Instantiate(prefab, GetComponent<Danu_FSM>().transform);
+                GameObject go = Instantiate(prefab, fsm.transform.position,fsm.transform.rotation,transform);
                 go.GetComponent<Projectiles>().SetOrigin(this);
-                go.GetComponent<Projectiles>().SetTarget(GetComponent<DanuAI>().GetPlayer());
-                go.GetComponent<Projectiles>().SetLifeTime(GetComponent<Danu_FSM>().GetP1d_ProjLifeTime());
+                go.GetComponent<Projectiles>().SetTarget(boss.GetPlayer());
+                go.GetComponent<Projectiles>().SetLifeTime(fsm.GetP1d_ProjLifeTime());
                 go.SetActive(false);
                 items.Enqueue(go);
         }

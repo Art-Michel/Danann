@@ -85,7 +85,7 @@ public class P1CDash : Danu_State
         dir=(-fsm.transform.position+target.position).normalized;
         startPos=fsm.transform.position;
         maxArrival=fsm.transform.position+dir*dashSpeed*dashTime;
-        preview.position=Vector3.Lerp(preview.position, startPos+(dir*dashSpeed*maxDashTime)/2,0.8f);
+        preview.position=startPos+(dir*dashSpeed*maxDashTime)/2;
         preview.LookAt(target);
         preview.localScale=new Vector3(fsm.transform.localScale.x,fsm.transform.localScale.y,maxDashTime*dashSpeed);
     }

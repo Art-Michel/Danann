@@ -304,25 +304,28 @@ PrefabInstance:
       objectReference: {fileID: 566759171}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
---- !u!1 &197884577 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8380206358085701966, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+--- !u!114 &197884579 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3031291097839162625, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
   m_PrefabInstance: {fileID: 8380206358194231571}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &197884585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 197884577}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d6c8d27cfecebe4aa56ab5d0a9ca7ce, type: 3}
+  m_Script: {fileID: 11500000, guid: 77ba99e0ee354c54ab11415cedd30e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3516479995275154835, guid: a802e1e7d87be014ca7ef970427689d4, type: 3}
-  baseCount: 13
+--- !u!114 &197884580 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8380206358085702001, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+  m_PrefabInstance: {fileID: 8380206358194231571}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a851233fff5b21a4ab34b03e4cf8b587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &314661141
 GameObject:
   m_ObjectHideFlags: 0
@@ -2134,6 +2137,27 @@ TrailRenderer:
   m_MinVertexDistance: 0.55
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!1 &1289731445 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1716253134436969643, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+  m_PrefabInstance: {fileID: 8380206358194231571}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1289731447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289731445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d6c8d27cfecebe4aa56ab5d0a9ca7ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 3516479995275154835, guid: a802e1e7d87be014ca7ef970427689d4, type: 3}
+  baseCount: 13
+  boss: {fileID: 197884580}
+  fsm: {fileID: 197884579}
 --- !u!4 &1331327595 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3031291096825126345, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
@@ -3020,7 +3044,7 @@ SphereCollider:
   m_GameObject: {fileID: 1968996585}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -3717,12 +3741,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1968996585}
     - target: {fileID: 3031291097839162625, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: pool
+      value: 
+      objectReference: {fileID: 1289731447}
+    - target: {fileID: 3031291097839162625, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: P1D_delay
       value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 3031291097839162625, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: p1d_ShotSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031291097839162625, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: P1D_ProjLifeTime
-      value: 14
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4112063746909185506, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: m_RootOrder
@@ -3766,6 +3798,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4112063746909185506, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8380206357719403656, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8380206358085701965, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8380206358085702001, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
