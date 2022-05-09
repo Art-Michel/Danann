@@ -46,7 +46,7 @@ MonoBehaviour:
   _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
   Radius: 2.9
   _hitboxID: 0
-  _damageValue: 3
+  _damageValue: 50
   HurtboxesToFocus:
   - {fileID: 0}
 --- !u!1 &328378844
@@ -128,7 +128,7 @@ MonoBehaviour:
   _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
   Radius: 2.4
   _hitboxID: 0
-  _damageValue: 2
+  _damageValue: 25
   HurtboxesToFocus:
   - {fileID: 0}
 --- !u!1 &836023076
@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackSender: Ccl
+  _attackName: 
 --- !u!1 &1336719606
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,7 +355,7 @@ MonoBehaviour:
   _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
   Radius: 1.67
   _hitboxID: 0
-  _damageValue: 1
+  _damageValue: 10
   HurtboxesToFocus:
   - {fileID: 0}
 --- !u!1 &1588115342
@@ -403,7 +404,7 @@ MonoBehaviour:
   _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
   Radius: 1.67
   _hitboxID: 0
-  _damageValue: 1
+  _damageValue: 10
   HurtboxesToFocus:
   - {fileID: 0}
 --- !u!1 &516392553530621491
@@ -570,7 +571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 862f25ca78e24eb41ad4be44f69cd5c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 9.1
+  _normalSpeed: 8
   _easeInSpeed: 15.32
   _playerBody: {fileID: 1336719606}
 --- !u!54 &388534879
@@ -658,9 +659,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ee2391777273d49bfce258932e2758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lightAttack1Data: {fileID: 341209101}
-  _lightAttack2Data: {fileID: 2122647074}
-  _lightAttack3Data: {fileID: 742724664}
+  _lightAttack0Data: {fileID: 341209101}
+  _lightAttack1Data: {fileID: 2122647074}
+  _lightAttack2Data: {fileID: 742724664}
 --- !u!1 &1079869930131166376
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,7 +708,7 @@ MonoBehaviour:
   _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
   Radius: 2.9
   _hitboxID: 0
-  _damageValue: 3
+  _damageValue: 50
   HurtboxesToFocus:
   - {fileID: 0}
 --- !u!1 &2837512655292362208
@@ -787,6 +788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackSender: Ccl
+  _attackName: LightAttack2
 --- !u!1 &3972506123130937991
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,7 +835,7 @@ MonoBehaviour:
   _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
   Radius: 2.4
   _hitboxID: 0
-  _damageValue: 2
+  _damageValue: 25
   HurtboxesToFocus:
   - {fileID: 0}
 --- !u!1 &5037876371750996070
@@ -881,6 +883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackSender: Ccl
+  _attackName: LightAttack3
 --- !u!1 &6357105310716151392
 GameObject:
   m_ObjectHideFlags: 0
