@@ -17,6 +17,10 @@ public class Danu_FSM : MonoBehaviour
         public float GetP1d_delay(){return P1D_delay;}
         [Foldout("Phase 1 Shoot"),SerializeField] private float P1D_wait;
         public float GetP1d_wait(){return P1D_wait;}
+        [Foldout("Phase 1 Shoot"),SerializeField] private float P1D_ProjLifeTime;
+        public float GetP1d_ProjLifeTime(){return P1D_ProjLifeTime;}
+        [Foldout("Phase 1 Shoot"),SerializeField] private float p1d_ShotSpeed;
+        public float GetP1d_ShotSpeed(){return p1d_ShotSpeed;}
         #endregion
         #region Slam
         [Foldout("Phase 1 Slam")][SerializeField]GameObject p1SlamHitBox;
@@ -81,6 +85,7 @@ public class Danu_FSM : MonoBehaviour
         public float GetPMD_dMod(){return p1Dash_dashModifier;}
 
         #endregion
+    
         #region TelePortation
         [Foldout("Phase 1 TP"),SerializeField]GameObject p1TP_arrival;
         public GameObject GetP1TP_Arrival(){return p1TP_arrival;}
@@ -101,6 +106,20 @@ public class Danu_FSM : MonoBehaviour
         [Foldout("Phase 1 TP"),SerializeField] float p1TP_farDist;
         public float GetP1TP_FarDist(){return p1TP_farDist;}
         #endregion
+    private List<GameObject> baseProjectiles = new List<GameObject>();
+    public void AddProjectile()
+    {
+        GameObject go = Instantiate(agent.GetProjectile(),transform.position,transform.rotation);
+        go.GetComponent<Projectiles>().SetTarget(agent.GetPlayer());
+    }
+    public GameObject GetProjectile()
+    {
+        return baseProjectiles[baseProjectiles.Count-1];
+    }
+    public int GetProjectileCount()
+    {
+        return baseProjectiles.Count;
+    }
     #endregion
     int indexx;
     

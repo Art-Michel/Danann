@@ -12,7 +12,7 @@ public class Heli_RoundAbout : MonoBehaviour
     [SerializeField] private Transform  dSphereSE;
     [SerializeField] private GameObject Proj;
     public float Dist { get { return dist; } private set {  RepositionxDist(dist); }}
-    [SerializeField] private float radius= 0;
+    //[SerializeField] private float radius= 0;
     [SerializeField] private float dist;
     [SerializeField]float rotationSpeed;
     [SerializeField]bool turningRight;

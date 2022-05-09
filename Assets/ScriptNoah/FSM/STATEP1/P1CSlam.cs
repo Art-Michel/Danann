@@ -17,7 +17,7 @@ public class P1CSlam : Danu_State
     int maxSlamCount=3;
     int index=0;
     private bool canStart;
-    float movetime;
+   // float movetime;
 
     private float maxMoveTime;
 
@@ -43,7 +43,7 @@ public class P1CSlam : Danu_State
         RescaleBoomBox();
         maxDistance=boombox.transform.localScale.z*2;
         maxMoveTime=fsm.GetP1Sl_MaxMoveTime();
-        movetime=0;
+        //movetime=0;
         if (maxDistance<=Vector3.Distance(fsm.transform.position,fsm.agent.GetPlayer().position))
             canStart=false;        
     }
@@ -127,8 +127,7 @@ public class P1CSlam : Danu_State
 private void ToIdle()
     {
         fsm.agent.SetWaitingTime(1);
-        fsm.agent.ToIdle();
-        
+        fsm.agent.ToIdle();   
     }
 
     private void DesactivateHitBox()
@@ -155,8 +154,8 @@ private void ToIdle()
         timer=0;
         slamCount=0;
         scales[0] = fsm.GetP1SlamScale(0);
-        scales[1] = fsm.GetP1SlamScale(1);       
+        scales[1] = fsm.GetP1SlamScale(1);
         scales[2] = fsm.GetP1SlamScale(2);
-        RescaleBoomBox();       
+        RescaleBoomBox();
     }
 }

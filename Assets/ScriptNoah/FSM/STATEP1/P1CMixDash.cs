@@ -59,9 +59,7 @@ public class P1CMixDash : Danu_State
         dashTime=0;
         chargingTime=0;
         isDashing=true;
-        dir=(-fsm.transform.position+target.position).normalized;
-        startPos=fsm.transform.position;
-        maxArrival=fsm.transform.position+dir*dashSpeed*dashTime;
+        SetTarget();
         actual=state.CHARGING;
     }
     // Update is called once per frame
@@ -79,7 +77,10 @@ public class P1CMixDash : Danu_State
             case state.DASH:
                 Dash();
                 if (actual!=state.DASH)
+                {
+                    SetTarget();
                     StartStrafe();
+                }
                 break;
             case state.STRAFE:
                 Strafe();
@@ -153,8 +154,8 @@ public class P1CMixDash : Danu_State
         {
             preview.gameObject.SetActive(true);
             chargingTime+=Time.deltaTime;
-            dir=(-fsm.transform.position+target.position).normalized;
             fsm.transform.position=Vector3.Lerp(fsm.transform.position,strafeDest,chargingTime/maxChargingTime);
+            dir=(-fsm.transform.position+target.position).normalized;
             startPos=fsm.transform.position;
             maxArrival=fsm.transform.position+dir*dashSpeed*dashTime;
             preview.position=Vector3.Lerp(preview.position, startPos+(dir*dashSpeed*maxDashTime)/2,1);
@@ -184,6 +185,15 @@ public class P1CMixDash : Danu_State
         }
         actual=state.CHARGING;
 
+    }
+    void SetTarget()
+    {
+        dir=(-fsm.transform.position+target.position).normalized;
+        startPos=fsm.transform.position;
+        maxArrival=fsm.transform.position+dir*dashSpeed*dashTime;
+        preview.position=Vector3.Lerp(preview.position, startPos+(dir*dashSpeed*maxDashTime)/2,0.8f);
+        preview.LookAt(target);
+        preview.localScale=new Vector3(fsm.transform.localScale.x,fsm.transform.localScale.y,maxDashTime*dashSpeed);
     }
 
 }

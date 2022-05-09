@@ -9,11 +9,19 @@ public class P1DShoot : Danu_State
     float delay=0.2f;
     int index;
     int nbShot=6;
+    List<GameObject> proj;
+    Pool pool;
+    float maxLifeTime;
+    float speed;
     // Start is called before the first frame update
     public override void Begin()
     {
+        pool=fsm.GetComponent<Pool>();
+        maxLifeTime=fsm.GetP1d_ProjLifeTime();
         delay=fsm.GetP1d_delay();
         nbShot=fsm.GetP1d_nbShot();
+        speed=fsm.GetP1d_ShotSpeed();
+        fsm.transform.LookAt(fsm.agent.GetPlayer());
         index=0;
         timer=0;
     }
@@ -31,9 +39,10 @@ public class P1DShoot : Danu_State
             }
             else
             {
-            fsm.agent.SpawnProjectile();
-            index++;
-
+                GameObject go =pool.Get();
+                go.GetComponent<Projectiles>().SetSpeed(speed);
+                go.SetActive(true);
+                index++;
             }
         }
     }

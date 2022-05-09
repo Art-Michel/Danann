@@ -9,14 +9,22 @@ public class Projectiles : MonoBehaviour
     [SerializeField] float turnRate;
     [SerializeField] float turnTime;
     [SerializeField] int nbTurn;
-    float lifeTime;
+    float lifeTime=0;
     float dist;
-    Vector3 end;
+    Pool origin;
+    [SerializeField] float maxLifeTime;
+
     // Start is called before the first frame update
     void Start()
     {
+        
         transform.LookAt(target);
-        end=target.position;
+        if (maxLifeTime==0)
+            maxLifeTime=12;
+    }
+    private void OnEnable() {
+        transform.LookAt(target);
+        lifeTime=0;
     }
 
     // Update is called once per frame
@@ -31,15 +39,19 @@ public class Projectiles : MonoBehaviour
             Vector3 newTarget=Vector3.Lerp(transform.position+transform.forward,target.position,0.25f);
             transform.LookAt(newTarget);
             nbTurn--;
-           
-
         }
         if (Vector3.Distance(transform.position,target.position)<=2.5f)
             nbTurn=0;
-        if (lifeTime>2) Destroy(gameObject);
+        if (lifeTime>maxLifeTime) { Debug.Log(maxLifeTime); origin.Back(gameObject);}
     }
     public void SetTarget(Transform newTarget)
     {
         target=newTarget;
     }
+    public void SetOrigin(Pool pool)
+    {
+        origin=pool;
+    }
+    public void SetSpeed(float newSpeed){speed=newSpeed;}
+    public void SetLifeTime(float newLT){maxLifeTime=newLT;}
 }

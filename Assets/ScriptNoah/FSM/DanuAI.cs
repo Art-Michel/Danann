@@ -33,6 +33,8 @@ public class DanuAI : MonoBehaviour
     private List<string> lastStates=new List<string>();
     [SerializeField]int maxCap;
     [SerializeField] bool goingRandom;
+    [SerializeField] private int maxProjectilePool;
+
     private void Awake() {
         if (m_fsm==null)
             m_fsm=GetComponent<Danu_FSM>();
@@ -49,7 +51,7 @@ public class DanuAI : MonoBehaviour
         m_fsm.AddState(new P1CDash());
         m_fsm.AddState(new P1CTeleportation());
         m_fsm.AddState(new P1CMixDash());
-        this.m_fsm.ChangeState( StateNames.P1C_SLAM);
+        this.m_fsm.ChangeState( StateNames.P1D_SHOOT);
     }
 
     // Update is called once per frame
@@ -162,7 +164,8 @@ public class DanuAI : MonoBehaviour
     public GameObject GetProjectile(){return projectile;}
     public void SpawnProjectile()
     {
-        Instantiate(projectile,transform.position,transform.rotation).GetComponent<Projectiles>().SetTarget(GetPlayer());
+        m_fsm.AddProjectile();
+        m_fsm.GetProjectile().SetActive(true);
     }
     public void ToIdle()
     {/*

@@ -17,6 +17,7 @@ public class ShootTest : MonoBehaviour
     void Start()
     {
         //remainingShot=nbShot;
+
         index=0;
         timer=0;
     }
@@ -33,7 +34,10 @@ public class ShootTest : MonoBehaviour
             }
             else
             {
-            Instantiate(projectile,transform.position,transform.rotation).GetComponent<Projectiles>().SetTarget(player);
+
+            GameObject go = Instantiate(projectile,transform.position,transform.rotation);
+            go.GetComponent<Projectiles>().SetTarget(player);
+            
             index++;
 
             }
