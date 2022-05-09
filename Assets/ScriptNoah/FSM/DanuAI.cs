@@ -12,6 +12,7 @@ public class DanuAI : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private AnimationCurve distEvaluator;
     [SerializeField] private float revenge;
+    [SerializeField] private float maxRevenge;
 
     public float GetMovementRange()
     {
@@ -19,6 +20,7 @@ public class DanuAI : MonoBehaviour
     }
 
     [SerializeField] private float waitingTime;
+    
     [SerializeField] private float arenaRadius;
     [SerializeField] private Vector3 arenaCenter;
     [SerializeField] private float movementRange;
@@ -28,6 +30,8 @@ public class DanuAI : MonoBehaviour
     private bool isPushed;
     private float hp;
     private float maxHP;
+    private List<string> lastStates=new List<string>();
+    [SerializeField]int maxCap;
     [SerializeField] bool goingRandom;
     private void Awake() {
         if (m_fsm==null)
@@ -58,6 +62,7 @@ public class DanuAI : MonoBehaviour
     [Button]
     public void NextPattern() 
     {
+        float revengePercent=revenge*100/maxRevenge;
         if (goingRandom)
         {
             int chance=Random.Range(1,8);
@@ -100,17 +105,40 @@ public class DanuAI : MonoBehaviour
         float mod = distEvaluator.Evaluate(dist);
         if (mod <= 1.1f) //short ranged patterns
         {
-            if (m_fsm.prev.name==StateNames.P1C_TELEPORTATION)
+            Debug.Log("smol");
+            if (lastStates.Contains(StateNames.P1C_TELEPORTATION))
             {
+                lastStates.Clear();
+                if (revengePercent>70)
+                {
+                    m_fsm.ChangeState(StateNames.P1C_MIXDASH);
+                    return;
+                }
                 m_fsm.ChangeState(StateNames.P1C_DASH);
-                Debug.Log("smol");
+                return;
             }
+            m_fsm.ChangeState(StateNames.P1C_TELEPORTATION);
+            return;
+
         }
         else if (mod > 1.1f) //long ranged patterns
         {
-                        m_fsm.ChangeState(StateNames.P1D_SHOOT);
-
             Debug.Log("loooong");
+            if (lastStates.Contains(StateNames.P1D_SHOOT)||lastStates.Contains(StateNames.P1D_BOOMERANG))
+            {
+                lastStates.Clear();
+                m_fsm.ChangeState(StateNames.P1C_TELEPORTATION);
+                return;
+            }
+            
+                if (revengePercent>70)
+                {
+                    m_fsm.ChangeState(StateNames.P1D_BOOMERANG);
+                    return;
+                }
+                m_fsm.ChangeState(StateNames.P1D_SHOOT);
+                return;
+
 
         }
         else //all patterns possible
@@ -149,6 +177,11 @@ public class DanuAI : MonoBehaviour
         else if (phase==2)
             m_fsm.ChangeState(StateNames.P2IDLE);
     */
+        if (m_fsm.curr.name==StateNames.P1IDLE)
+            return;
+        lastStates.Add(m_fsm.curr.name);
+        if(lastStates.Count>maxCap)
+            lastStates.RemoveAt(0);
          m_fsm.ChangeState(StateNames.P1IDLE,5);
     }
     public float GetWaitingTime()
