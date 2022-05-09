@@ -33,6 +33,11 @@ public class Danu_FSM : MonoBehaviour
         public float GetP1SlamRecovery(){return P1SlamRecovery;}
         [Foldout("Phase 1 Slam")][SerializeField] private Vector3[] P1slamScales=new Vector3[3];
         public Vector3 GetP1SlamScale(int index) {return P1slamScales[index];}
+        [Foldout("Phase 1 Slam")][SerializeField] private float[] p1S_radius=new float[3];
+        public float[] GetP1S_Radius(){return p1S_radius;}
+
+        [Foldout("Phase 1 Slam")][SerializeField] private int[] p1S_Damage;
+        public int[] GetP1S_Damage(){return p1S_Damage;}
         [Foldout("Phase 1 Slam")][SerializeField]private float p1Sl_MaxMoveTime;
         public float GetP1Sl_MaxMoveTime(){return p1Sl_MaxMoveTime;}
 

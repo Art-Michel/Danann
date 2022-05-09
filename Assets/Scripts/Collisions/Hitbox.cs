@@ -34,7 +34,7 @@ public class Hitbox : MonoBehaviour
     }
 #endif
     #endregion
-
+    public void SetDamageValue(int newValue){_damageValue=newValue;}
     public float Radius;
 
     [NonSerialized] public string Owner = "";
