@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackSender: Ccl
+  _attackName: 
 --- !u!4 &359938681 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5669221073195817247, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
@@ -432,6 +433,7 @@ MonoBehaviour:
   Radius: 1
   SphereColor: {r: 0.3219337, g: 1, b: 0.2216981, a: 0.56078434}
   SphereWireColor: {r: 0.05853534, g: 0.2924528, b: 0, a: 1}
+  _entityHP: {fileID: 0}
   _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
 --- !u!4 &520852773
 Transform:
@@ -445,7 +447,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1551412912}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &554261622
 GameObject:
@@ -573,9 +575,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b704ab24b577c284cb3309f2c471bb29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 554261623}
-  hit: {fileID: 0}
-  bong: {fileID: 8300000, guid: be2c24b2ee217254fa7fd3317a88bc9c, type: 3}
+  _audioSource: {fileID: 0}
+  _playerHurt: {fileID: 0}
+  _bossPunched: {fileID: 0}
+  _blockedHit: {fileID: 0}
+  _punch0: {fileID: 0}
+  _punch1: {fileID: 0}
+  _punch2: {fileID: 0}
 --- !u!4 &554261625
 Transform:
   m_ObjectHideFlags: 0
@@ -684,6 +690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackSender: Ccl
+  _attackName: 
 --- !u!1 &763397639
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,7 +772,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh20924
+  m_Name: pb_Mesh20744
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1064,7 +1071,7 @@ MonoBehaviour:
   _hitboxID: 0
   _damageValue: 3
   HurtboxesToFocus:
-  - {fileID: 4131936353881019159}
+  - {fileID: 0}
 --- !u!33 &1311834668
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2471,6 +2478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackSender: Ccl
+  _attackName: 
 --- !u!1 &2144334034
 GameObject:
   m_ObjectHideFlags: 0
@@ -2713,17 +2721,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 8931993401879054581, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
---- !u!114 &4131936353881019159 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 836023077, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
-  m_PrefabInstance: {fileID: 4131936353881019158}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccca9daeec5df04408f7b0c333e173bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4873842966995974061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2733,19 +2730,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4873842967060781016, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.775042
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 4873842967060781016, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.212309
+      value: 37.627014
       objectReference: {fileID: 0}
     - target: {fileID: 4873842967060781016, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.024437
+      value: -21.10119
       objectReference: {fileID: 0}
     - target: {fileID: 4873842967060781017, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: field of view
-      value: 60
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 4873842967753727174, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_ZDamping
@@ -2833,15 +2830,15 @@ PrefabInstance:
       objectReference: {fileID: 393987811}
     - target: {fileID: 4873842968632304812, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.775042
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 4873842968632304812, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.212309
+      value: 37.627014
       objectReference: {fileID: 0}
     - target: {fileID: 4873842968632304812, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.024437
+      value: -21.10119
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
