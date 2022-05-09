@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 bodyRotationOffset = new Vector3(0.01f, 0, 0.01f);
         //Ridiculously small offset to prevent body from looking directly in a cardinal direction
-        //as it takes a long time to go the opposite way afterwards
+        //as it is slooooooooow to RLerp from one rotation to its exact opposite.
 
         _playerBody.transform.forward = Vector3.Lerp(_playerBody.transform.forward, _wantedDirection + bodyRotationOffset, BodyRotatingSpeed * Time.deltaTime);
     }

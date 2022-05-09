@@ -25,8 +25,8 @@ public class EntityHP : MonoBehaviour
         if (!_isInvulnerable)
         {
             HealthPoints = Mathf.Clamp(HealthPoints -= amount, 0, _maxHealthPoints);
-            if (_healthBar)UpdateHealthBar();
-            StartCoroutine("PostDamage");
+            if (_healthBar) UpdateHealthBar();
+            DamageFeedback();
             if (HealthPoints <= 0) Die();
         }
     }
@@ -42,16 +42,16 @@ public class EntityHP : MonoBehaviour
     {
         float value = Mathf.InverseLerp(0, _maxHealthPoints, HealthPoints);
         value = Mathf.Lerp(0, 1, value);
-         _healthBar.fillAmount = value;
+        _healthBar.fillAmount = value;
     }
 
     protected void Die()
     {
-        throw new NotImplementedException();
+        Debug.Log(name + " just died");
     }
 
-    protected virtual IEnumerator PostDamage()
+    protected virtual void DamageFeedback()
     {
-        yield return null;
+
     }
 }

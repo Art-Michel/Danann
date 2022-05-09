@@ -1,11 +1,12 @@
-﻿using Microsoft.Win32.SafeHandles;
+﻿using System;
+using Microsoft.Win32.SafeHandles;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : ProjectManager<SoundManager>
 {
-    [SerializeField] AudioSource _audioSource;
+    [NonSerialized] public AudioSource AudioSource;
     [SerializeField] AudioClip _playerHurt;
     [SerializeField] AudioClip _bossPunched;
     [SerializeField] AudioClip _blockedHit;
@@ -13,9 +14,15 @@ public class SoundManager : ProjectManager<SoundManager>
     [SerializeField] AudioClip _punch1;
     [SerializeField] AudioClip _punch2;
 
+    override protected void Awake()
+    {
+        base.Awake();
+        AudioSource = GetComponent<AudioSource>();
+    }
+
     private void PlaySound(AudioClip clip, float volume)
     {
-        _audioSource.PlayOneShot(clip, volume);
+        AudioSource.PlayOneShot(clip, volume);
     }
 
     public void PlayPlayerHurt()
