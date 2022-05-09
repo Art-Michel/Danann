@@ -104,6 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4112063746909185506}
+  - component: {fileID: 6907635222599691132}
   m_Layer: 0
   m_Name: BossGameObject
   m_TagString: Untagged
@@ -128,6 +129,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6907635222599691132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716253134436969643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d6c8d27cfecebe4aa56ab5d0a9ca7ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 3516479995275154835, guid: a802e1e7d87be014ca7ef970427689d4, type: 3}
+  baseCount: 13
+  boss: {fileID: 8380206358085702001}
+  fsm: {fileID: 3031291097839162625}
 --- !u!1 &8380206358576935220
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,6 +343,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 4112063746909185506}
     m_Modifications:
     - target: {fileID: 197884579, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
+      propertyPath: pool
+      value: 
+      objectReference: {fileID: 6907635222599691132}
+    - target: {fileID: 197884579, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
+      propertyPath: P1D_delay
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 197884579, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
       propertyPath: p1SlamHitBox
       value: 
       objectReference: {fileID: 8380206358576935220}
@@ -334,9 +359,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2114472835}
     - target: {fileID: 197884579, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
+      propertyPath: p1d_ShotSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 197884579, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
       propertyPath: p1sDash_preview
       value: 
       objectReference: {fileID: 8380206358711455303}
+    - target: {fileID: 197884579, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
+      propertyPath: P1D_ProjLifeTime
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1098227162, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
       propertyPath: target
       value: 
@@ -393,6 +426,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 6799650906462863087, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
 --- !u!4 &8380206358085702002 stripped
@@ -400,3 +437,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6799650906462863056, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
   m_PrefabInstance: {fileID: 3031291097718108066}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8380206358085702001 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6799650906462863059, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
+  m_PrefabInstance: {fileID: 3031291097718108066}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a851233fff5b21a4ab34b03e4cf8b587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3031291097839162625 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 197884579, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
+  m_PrefabInstance: {fileID: 3031291097718108066}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77ba99e0ee354c54ab11415cedd30e5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
