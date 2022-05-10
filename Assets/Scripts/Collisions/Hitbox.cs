@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using System;
+using UnityEditor;
 
 public class Hitbox : MonoBehaviour
 {
@@ -12,11 +13,14 @@ public class Hitbox : MonoBehaviour
     Color _currentColor;
     Color _sphereNormalColor = new Color(1f, 0.1f, 0.1f, 0.1f);
     Color _sphereActiveColor = new Color(1f, 0f, 0f, 0.8f);
-    Color _sphereWireNormalColor = new Color(0.3f, 0.1f, 0.1f, 0.1f);
-    Color _sphereWireActiveColor = new Color(0.3f, 0.1f, 0.1f, 1f);
-    [SerializeField] Mesh _mesh;
+    Color _sphereWireNormalColor = new Color(0.1f, 0f, 0f, 0.2f);
+    Color _sphereWireActiveColor = new Color(0.2f, 0f, 0f, 1f);
+    Mesh _mesh;
+
     private void OnDrawGizmosSelected()
     {
+        SOMeshes.Init();
+        _mesh = SOMeshes.Instance.HitboxDebugSphere;
         if (!_showHitbox)
         {
             Gizmos.color = _sphereNormalColor;
@@ -34,6 +38,7 @@ public class Hitbox : MonoBehaviour
     }
 #endif
     #endregion
+
     public void SetDamageValue(int newValue){_damageValue=newValue;}
     public float Radius;
 
