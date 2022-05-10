@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P1DHelicopter : Danu_State
+public class P1DSpin : Danu_State
 {
-    public P1DHelicopter() : base(StateNames.P1D_SPIN) { }
+    public P1DSpin() : base(StateNames.P1D_SPIN) { }
     private GameObject globalGO; 
+    Transform preview;
+    Transform[] bladesPreview= new Transform[3];
     private Transform dSphereN;
     private Transform  dSphereSW;
     private Transform  dSphereSE;
@@ -29,7 +32,9 @@ public class P1DHelicopter : Danu_State
         //setup des variables
         dist=fsm.GetP1Sp_Dist();
         globalGO=fsm.GetP1GlobalGO();
+        preview=fsm.GetP1sD_Preview();
         Transform[] nweTrans=fsm.GetP1NWEMax();
+        bladesPreview=fsm.GetBladesPreview();
         dSphereN=nweTrans[0];
         dSphereSE=nweTrans[1];
         dSphereSW=nweTrans[2];
@@ -46,11 +51,61 @@ public class P1DHelicopter : Danu_State
         
         //activation des helices, ou instantiation si c'est la premiere fois
         globalGO.SetActive(true);
-        float delta = 1/dist;
+        
+        preview.localScale=new Vector3(1,1,Vector3.Distance(fsm.transform.position,fsm.agent.GetArenaCenter()));
+        preview.position=fsm.transform.position+(fsm.agent.GetArenaCenter()-fsm.transform.position)/2;
+        preview.LookAt(fsm.agent.GetArenaCenter());
+        waitTime=0;
+        wait=true;
+        
+    }
+
+    // Update is called once per frame
+    public override void Update()
+    {
+        if (wait)
+        {
+            waitTime+=Time.deltaTime;
+            fsm.transform.position=Vector3.Lerp(fsm.transform.position,fsm.agent.GetArenaCenter(),waitTime/maxWaitTime);
+            if (fsm.transform.position==fsm.agent.GetArenaCenter())
+                SpawnBladesPreview();
+
+            if (waitTime>=maxWaitTime)
+            {
+                wait=false;
+                SpawnBlades();
+            }
+            else
+                return;
+        }
+        lifetime-=Time.deltaTime;
+        if(lifetime<=0)
+            fsm.agent.ToIdle();
+        Rotate();
+    }
+
+    private void SpawnBladesPreview()
+    {
+        Transform[] nweTrans=fsm.GetP1NWEMax();
+        Vector3 center = fsm.agent.GetArenaCenter();
+        Debug.Log(bladesPreview.Length);
+        for (int i=0;i<bladesPreview.Length;i++)
+        {
+            bladesPreview[i].gameObject.SetActive(true);
+            bladesPreview[i].localScale=new Vector3(1,1,Vector3.Distance(center,nweTrans[i].position));
+            bladesPreview[i].position=center+(nweTrans[i].position-center)/2;
+            bladesPreview[i].LookAt(nweTrans[i]);
+
+        }
+        preview.gameObject.SetActive(false);
+    }
+
+    private void SpawnBlades()
+    {
+       float delta = 1/dist;
         if (isSetUp)
         {
-            wait=true;
-            waitTime=0;
+            Debug.Log("eyeye");
             for (int i=0;i<nblades.Count;i++)
             {
                 nblades[i].SetActive(true);
@@ -83,29 +138,12 @@ public class P1DHelicopter : Danu_State
             }
             isSetUp=true;
         }
-        wait=true;
-        
+        bladesPreview[0].gameObject.SetActive(false);
+        bladesPreview[1].gameObject.SetActive(false);
+        bladesPreview[2].gameObject.SetActive(false);
+
     }
 
-    // Update is called once per frame
-    public override void Update()
-    {
-        if (wait)
-        {
-            waitTime+=Time.deltaTime;
-            fsm.transform.position=Vector3.Lerp(fsm.transform.position,fsm.agent.GetArenaCenter(),waitTime/maxWaitTime);
-            if (waitTime>=maxWaitTime)
-            {
-                wait=false;
-            }
-            else
-                return;
-        }
-        lifetime-=Time.deltaTime;
-        if(lifetime<=0)
-            fsm.agent.ToIdle();
-        Rotate();
-    }
     private void Rotate()
     {
         if (turningRight)

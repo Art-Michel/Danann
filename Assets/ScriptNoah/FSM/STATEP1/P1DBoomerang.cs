@@ -8,6 +8,7 @@ public class P1DBoomerang : Danu_State
     [SerializeField] private GameObject boomerangL;
     [SerializeField] private GameObject boomerangR;
     private Transform target;    
+    Transform preview;
     [SerializeField] private float speed;
     [SerializeField] private float MaxStraightTime;
     [SerializeField]Transform curveMidL;
@@ -19,9 +20,14 @@ public class P1DBoomerang : Danu_State
     Vector3 curveEnd;
     float curveTime=0;
     bool startCurve;
+    float waitTime;
+    private bool wait;
+    private float maxWaitTime=1;
+
     // Start is called before the first frame update
     public override void Begin()
     {
+        preview=fsm.GetP1sD_Preview();
         boomerangL=fsm.GetP1BRL();
         if (fsm.GetP1BRL()==null)
             Debug.Log("c'pas normal");
@@ -38,11 +44,25 @@ public class P1DBoomerang : Danu_State
         fsm.transform.LookAt(target);
         curveStartL=boomerangL.transform.position+fsm.transform.forward*(Vector3.Distance(fsm.transform.position,target.position)/ (speed/1.25f))*speed;
         curveStartR=boomerangR.transform.position+fsm.transform.forward*(Vector3.Distance(fsm.transform.position,target.position)/ (speed/1.25f))*speed;
+        Vector3 straightEnd=(curveStartL+curveStartR)/2;
+        preview.position=fsm.transform.position+(straightEnd-fsm.transform.position)/2;
+        preview.localScale=new Vector3(5,1,Vector3.Distance(fsm.transform.position,straightEnd));
+        preview.LookAt(straightEnd);
+        preview.gameObject.SetActive(true);
+        wait=true;
+        maxWaitTime=fsm.GetP1BR_Startup();
     }
 
     // Update is called once per frame
     public override void Update()
     {
+        if (wait)
+        {
+            waitTime+=Time.deltaTime;
+            if (waitTime>=maxWaitTime)
+                wait=false;
+            return;
+        }
         if (startCurve)
         {
             UpdateCurve();
@@ -58,7 +78,8 @@ public class P1DBoomerang : Danu_State
         boomerangL.transform.position=Vector3.Lerp(boomerangL.transform.position,curveStartL,straightTime/MaxStraightTime);
         boomerangR.transform.position=Vector3.Lerp(boomerangR.transform.position,curveStartR,straightTime/MaxStraightTime);
         Debug.Log("e");
-
+        if(boomerangL.transform.position==curveStartL) 
+            preview.gameObject.SetActive(false);
         if (straightTime>=MaxStraightTime-0.18f)
         {
             Debug.Log("e");

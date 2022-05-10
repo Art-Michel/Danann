@@ -46,12 +46,12 @@ public class DanuAI : MonoBehaviour
         m_fsm.AddState(new P1DShoot());
         m_fsm.AddState(new P1Idle());
         m_fsm.AddState(new P1CSlam());
-        m_fsm.AddState(new P1DHelicopter());
+        m_fsm.AddState(new P1DSpin());
         m_fsm.AddState(new P1DBoomerang());
         m_fsm.AddState(new P1CDash());
         m_fsm.AddState(new P1CTeleportation());
         m_fsm.AddState(new P1CMixDash());
-        this.m_fsm.ChangeState( StateNames.P1C_MIXDASH);
+        this.m_fsm.ChangeState( StateNames.P1C_SLAM);
     }
 
     // Update is called once per frame

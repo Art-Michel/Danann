@@ -59,6 +59,8 @@ public class Danu_FSM : MonoBehaviour
         public float GetP1MaxWaitTime(){return P1maxWaitTime;}
         [Foldout("Phase 1 Spin")][SerializeField] private float P1SpinLifeTime;
         public float GetP1SpinLifeTime(){return P1SpinLifeTime;}
+        [Foldout("Phase 1 Spin")][SerializeField] private Transform[] bladesPreview;
+        public Transform[] GetBladesPreview(){return bladesPreview;}
         #endregion
         #region Boomerang
         [Foldout("Phase 1 Boomerang"),SerializeField] private GameObject P1BoomerangboomerangL;
@@ -76,6 +78,8 @@ public class Danu_FSM : MonoBehaviour
         public Transform GetP1BoomeRangcurveMidR(){return P1BoomeRangcurveMidR;}
         [Foldout("Phase 1 Boomerang")][SerializeField] private float P1BoomeRangMaxCurveTime;
         public float GetP1BoomeRangMaxCurveTime(){return P1BoomeRangMaxCurveTime;}
+        [Foldout("Phase 1 Boomerang")][SerializeField] private float p1Br_startup;
+        public float GetP1BR_Startup(){return p1Br_startup;}
         #endregion
         #region Dash
         [Foldout("Phase 1 Dash"),SerializeField] private Transform p1sDash_preview;

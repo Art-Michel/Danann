@@ -7,6 +7,7 @@ public class P1CSlam : Danu_State
 {
     public P1CSlam() : base(StateNames.P1C_SLAM) { }
     GameObject boombox;
+    Transform preview;
     LingeringHitbox boom;
     float[] startup=new float[3];
     float[] active=new float[3];
@@ -21,13 +22,14 @@ public class P1CSlam : Danu_State
     int index=0;
     private bool canStart;
    // float movetime;
-
+    bool bb;
     private float maxMoveTime;
 
     // Start is called before the first frame update
     public override void Begin()
     {
         boombox=fsm.Getp1SlamHitBox();
+        boom=boombox.GetComponent<LingeringHitbox>();
         canStart=true;
         Vector3[] frames =new Vector3[3];
         for (int i=0;i<3;i++)
@@ -37,6 +39,7 @@ public class P1CSlam : Danu_State
             active[i]=frames[i].y;
             end[i]=frames[i].z;
         }
+        preview=fsm.GetBladesPreview()[0];
         index=0;
         timer=0;
         slamCount=0;
@@ -55,11 +58,14 @@ public class P1CSlam : Danu_State
 
     private void RescaleBoomBox()
     {
+
         if (slamCount<maxSlamCount)
         {
+            
             boombox.transform.localScale=scales[slamCount];
             boom.Radius=radius[slamCount];
             boom.SetDamageValue(damages[slamCount]);
+      
             slamCount++;
         }
         else
@@ -90,14 +96,19 @@ public class P1CSlam : Danu_State
             {
                 case 0:
                     timer+=Time.deltaTime;
-                    if (timer>startup[slamCount-1])
+
+                    preview.gameObject.SetActive(true);
+                    if (timer>startup[slamCount-1] )
                     {
                         index++;
                         timer=0;
                         ActivateHitBox();
+                        preview.gameObject.SetActive(false);
+
                     }
-                    else if (timer>startup[slamCount-1]/2)
+                    else if (timer>startup[slamCount-1]/2 && !bb)
                     {
+                        bb=true;
                         LookTowardPlayer();
                     }
                     break;
@@ -108,6 +119,7 @@ public class P1CSlam : Danu_State
                         index++;
                         timer=0;
                         DesactivateHitBox();
+                        bb=false;
                     }
                     break;
                 case 2:
@@ -121,7 +133,10 @@ public class P1CSlam : Danu_State
                             Debug.Log("End");
                             ToIdle();
                         }
+                        
                         RescaleBoomBox();
+                            LookTowardPlayer();
+
                     }
                     break;
                 default:
@@ -133,6 +148,10 @@ public class P1CSlam : Danu_State
         fsm.transform.LookAt(fsm.agent.GetPlayer());
         boombox.transform.rotation=fsm.transform.rotation;
         boombox.transform.position=fsm.transform.position+fsm.transform.forward*boombox.transform.localScale.z/2;
+        preview.localScale=boombox.transform.localScale;
+        preview.position=boombox.transform.position;
+        preview.rotation=boombox.transform.rotation;
+
     }
 private void ToIdle()
     {
