@@ -96,7 +96,7 @@ public class Hitbox : MonoBehaviour
     void Awake()
     {
         if (HurtboxesToFocus.Count == 0)
-        HurtboxesToFocus.Add(GameObject.Find("Cuchulainn").GetComponent<Hurtbox>());
+        HurtboxesToFocus.Add(GameObject.Find("Ccl").GetComponent<Hurtbox>());
     }
 
     public void MakeHurtboxResetIds()

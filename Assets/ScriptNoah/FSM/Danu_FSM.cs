@@ -185,6 +185,4 @@ public class Danu_FSM : MonoBehaviour
     {
         return Instantiate(staticProj,pos,Quaternion.identity,P1globalGO.transform);
     }
-
-
 }
