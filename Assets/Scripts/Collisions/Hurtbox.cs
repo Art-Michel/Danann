@@ -4,40 +4,48 @@ using UnityEngine;
 public class Hurtbox : MonoBehaviour
 {
     public float Radius;
+    #region Hurtbox Visualization
     public Color SphereColor;
     public Color SphereWireColor;
-    [SerializeField] private EntityHP _entityHP;
-    public EntityHP HurtboxsEntityHP { get { return _entityHP; } private set { _entityHP = value; } }
-
-    [SerializeField] Mesh _mesh;
-
-    List<int> _hitboxIds = new List<int>();
-    List<string> _hitboxAttackNames = new List<string>();
-
-    void OnDrawGizmosSelected()
+    Mesh _mesh;
+    void OnDrawGizmos()
     {
+        SOMeshes.Init();
+        _mesh = SOMeshes.Instance.HitboxDebugSphere;
         Gizmos.color = SphereColor;
         Gizmos.DrawMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
         Gizmos.color = SphereWireColor;
         Gizmos.DrawWireMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
     }
+    #endregion
 
-    public void TakeAHit(Hitbox hitbox)
+    [SerializeField] private EntityHP _hurtboxOwnerHP;
+    Dictionary<string, AttackData> _attacksThatHitMe;
+
+    void Awake()
     {
-        if (!_hitboxAttackNames.Contains(hitbox.AttackName))
+        _attacksThatHitMe = new Dictionary<string, AttackData>();
+    }
+
+    public void TakeHit(AttackData attackData)
+    {
+        if (_attacksThatHitMe.ContainsKey(attackData.AttackName))
+            return;
+        else
         {
-            if(!_hitboxIds.Contains(hitbox.HitboxId))
-            {
-            _hitboxIds.Add(hitbox.HitboxId);
-            _hitboxAttackNames.Add(hitbox.AttackName);
-            HurtboxsEntityHP.TakeDamage(hitbox.DamageValue);
-            }
+            _hurtboxOwnerHP.TakeDamage(attackData.AttackDamage);
+            _attacksThatHitMe.Add(attackData.AttackName, attackData);
         }
     }
 
-    public void ResetIds()
+    public void ForgetAttack(AttackData attackData)
     {
-        _hitboxIds.Clear();
-        _hitboxAttackNames.Clear();
+        if (_attacksThatHitMe.ContainsKey(attackData.AttackName))
+        _attacksThatHitMe.Remove(attackData.AttackName);
+    }
+
+    public void ForgetAllAttacks()
+    {
+        _attacksThatHitMe.Clear();
     }
 }

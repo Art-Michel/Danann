@@ -1,106 +1,80 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using NaughtyAttributes;
 using System;
-using UnityEditor;
 
 public class Hitbox : MonoBehaviour
 {
-    #region debugging
-    private bool _showHitbox = false;
+    #region Hitbox Visualization
 #if UNITY_EDITOR
     Color _currentColor;
-    Color _sphereNormalColor = new Color(1f, 0.1f, 0.1f, 0.1f);
-    Color _sphereActiveColor = new Color(1f, 0f, 0f, 0.8f);
-    Color _sphereWireNormalColor = new Color(0.1f, 0f, 0f, 0.2f);
-    Color _sphereWireActiveColor = new Color(0.2f, 0f, 0f, 1f);
+    Color _sphereColor = new Color(1f, 0.1f, 0.1f, 0.6f);
+    Color _sphereWireColor = new Color(0.5f, 0f, 0f, 1f);
     Mesh _mesh;
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         SOMeshes.Init();
         _mesh = SOMeshes.Instance.HitboxDebugSphere;
-        if (!_showHitbox)
-        {
-            Gizmos.color = _sphereNormalColor;
-            Gizmos.DrawMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
-            Gizmos.color = _sphereWireNormalColor;
-            Gizmos.DrawWireMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
-        }
-        else
-        {
-            Gizmos.color = _sphereActiveColor;
-            Gizmos.DrawMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
-            Gizmos.color = _sphereWireActiveColor;
-            Gizmos.DrawWireMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
-        }
+        Gizmos.color = _sphereColor;
+        Gizmos.DrawMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(_baseRadius, _baseRadius, _baseRadius));
+        Gizmos.color = _sphereWireColor;
+        Gizmos.DrawWireMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(_baseRadius, _baseRadius, _baseRadius));
     }
 #endif
     #endregion
 
-    public void SetDamageValue(int newValue){_damageValue=newValue;}
-    public float Radius;
+    [NonSerialized] public float CurrentRadius;
+    [SerializeField] float _baseRadius;
+    Hurtbox[] _hurtboxesToFocus;
+    AttackData _attackData;
 
-    [NonSerialized] public string Owner = "";
-    [NonSerialized] public string AttackName = "";
-
-    public int HitboxId { get { return _hitboxID; } private set { _hitboxID = value; } }
-    [Tooltip("If hitboxes have the same ID you can't get hit by both (Single Hit), otherwise you can get Multi-Hit")]
-    [SerializeField] private int _hitboxID;
-
-    [SerializeField] private int _damageValue = 0;
-    public int DamageValue { get { return _damageValue; } private set { _damageValue = value; } }
-
-    [Tooltip("Lists the hurtboxes this hitbox must check.")]
-    [SerializeField] List<Hurtbox> HurtboxesToFocus;
-
-
-    [Button]
-    public bool CheckForHit()
+    void Awake()
     {
-#if UNITY_EDITOR
-        StartCoroutine("VisualizeDebug");
-#endif
-        foreach (Hurtbox hurtbox in HurtboxesToFocus)
-        {
-            if (CheckDistance(hurtbox))
-                hurtbox.TakeAHit(this);
-            return true;
-        }
-        return false;
+        CurrentRadius = _baseRadius;
     }
 
-    private IEnumerator VisualizeDebug()
+    public void Enable(Hurtbox[] hurtboxesToFocus, AttackData attackData)
     {
-        _showHitbox = true;
-        yield return new WaitForFixedUpdate();
-        yield return new WaitForFixedUpdate();
-        yield return new WaitForFixedUpdate();
-        _showHitbox = false;
-        yield return null;
+        CurrentRadius = _baseRadius;
+        _hurtboxesToFocus = hurtboxesToFocus;
+        _attackData = attackData;
+        gameObject.SetActive(true);
+    }
+
+    public void Enable(Hurtbox[] hurtboxesToFocus, AttackData attackData, float radius)
+    {
+        Enable(hurtboxesToFocus, attackData);
+        CurrentRadius = radius;
+    }
+
+    public void Disable(Hurtbox[] hurtboxesToFocus, AttackData attackData)
+    {
+        foreach (Hurtbox hurtbox in hurtboxesToFocus)
+        {
+            hurtbox.ForgetAttack(attackData);
+            gameObject.SetActive(false);
+        }
+    }
+
+    void Update()
+    {
+        CheckForHit();
     }
 
     private bool CheckDistance(Hurtbox hurtbox)
     {
         float distance = (hurtbox.transform.position - transform.position).sqrMagnitude;
-        if (distance < (Radius / 2 + hurtbox.Radius / 2) * (Radius / 2 + hurtbox.Radius / 2))
-        {
-            Debug.Log("Hurtbox in Range");
+        if (distance < (CurrentRadius / 2 + hurtbox.Radius / 2) * (CurrentRadius / 2 + hurtbox.Radius / 2))
             return true;
+        return false;
+    }
+
+    public void CheckForHit()
+    {
+        foreach (Hurtbox hurtbox in _hurtboxesToFocus)
+        {
+            if (CheckDistance(hurtbox))
+                hurtbox.TakeHit(_attackData);
         }
-        else
-            return false;
-    }
-
-    void Awake()
-    {
-        if (HurtboxesToFocus.Count == 0)
-        HurtboxesToFocus.Add(GameObject.Find("Ccl").GetComponent<Hurtbox>());
-    }
-
-    public void MakeHurtboxResetIds()
-    {
-        foreach(Hurtbox hurtbox in HurtboxesToFocus) hurtbox.ResetIds();
     }
 }

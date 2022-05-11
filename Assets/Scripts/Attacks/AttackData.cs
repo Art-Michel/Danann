@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using System;
 
 public class AttackData : MonoBehaviour
 {
-    [Dropdown("Name")]
+    [SerializeField] bool shouldHitEnemies;
+    [SerializeField] bool shouldHitAllies;
+    public int AttackDamage;
+    [SerializeField] Hitbox[] _hitboxes;
+    /* [Dropdown("Name")]
     [SerializeField] protected string _attackSender;
     DropdownList<string> Name()
     {
@@ -17,9 +22,9 @@ public class AttackData : MonoBehaviour
         {"Right Spear", Characters.SPEARR}
         };
     }
-
+*/
     [Dropdown("attackName")]
-    [SerializeField] protected string _attackName;
+    [SerializeField] public string AttackName;
     DropdownList<string> attackName()
     {
         return new DropdownList<string>()
@@ -30,37 +35,31 @@ public class AttackData : MonoBehaviour
         };
     }
 
-    Hitbox[,] _hitboxes;
-
-    void Start()
-    {
-        _hitboxes = new Hitbox[8, 8];
-        int index = 0;
-        foreach (Transform child in transform)
-        {
-            int childIndex = 0;
-            foreach (Hitbox hitbox in child.GetComponentsInChildren<Hitbox>())
-            {
-                _hitboxes[index, childIndex] = hitbox;
-                hitbox.Owner = _attackSender;
-                hitbox.AttackName = _attackName;
-                childIndex++;
-            }
-            index++;
-        }
-    }
 
     [Button]
-    public void LaunchAttack(int index = 0)
+    public void LaunchAttack()
     {
-        for (int i = 0; i < _hitboxes.GetLength(1); i++)
+        foreach (Hitbox hitbox in _hitboxes)
         {
-            if (_hitboxes[index, i]) _hitboxes[index, i].CheckForHit();
+            if (shouldHitAllies)
+            {
+                if (shouldHitEnemies) hitbox.Enable(GameManager.Instance.Hurtboxes, this);
+                else hitbox.Enable(GameManager.Instance.AllyHurtboxes, this);
+            }
+            else if (shouldHitEnemies) hitbox.Enable(GameManager.Instance.EnemyHurtboxes, this);
         }
     }
 
-    public void TellHitboxToTellHurtboxesToResetIds()
+    public void StopAttack()
     {
-        _hitboxes[0,0].MakeHurtboxResetIds();
+        foreach (Hitbox hitbox in _hitboxes)
+        {
+            if (shouldHitAllies)
+            {
+                if (shouldHitEnemies) hitbox.Disable(GameManager.Instance.Hurtboxes, this);
+                else hitbox.Disable(GameManager.Instance.AllyHurtboxes, this);
+            }
+            else if (shouldHitEnemies) hitbox.Disable(GameManager.Instance.EnemyHurtboxes, this);
+        }
     }
 }

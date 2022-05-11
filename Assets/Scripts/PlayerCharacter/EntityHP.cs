@@ -54,4 +54,9 @@ public class EntityHP : MonoBehaviour
     {
 
     }
+
+    internal void TakeDamage(object attackDamage)
+    {
+        throw new NotImplementedException();
+    }
 }

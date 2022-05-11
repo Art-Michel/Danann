@@ -95,7 +95,7 @@ public class PlayerHP : EntityHP
     private void ResetInvulerability()
     {
         _isInvulnerable = false;
-        _hurtbox.ResetIds();
+        _hurtbox.ForgetAllAttacks();
         ResetBlinking();
     }
 

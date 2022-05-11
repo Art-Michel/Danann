@@ -45,9 +45,9 @@ public class PlayerActions : MonoBehaviour
 
     private void LightAttack()
     {
+        LaunchLightAttackAnimation();
         if (_currentLightAttackIndex < 2) _currentLightAttackIndex++;
         else _currentLightAttackIndex = 0;
-        LaunchLightAttackAnimation();
         Debug.Log("Launching Light Attack" + _currentLightAttackIndex);
     }
 
@@ -75,9 +75,10 @@ public class PlayerActions : MonoBehaviour
         SoundManager.Instance.PlayPunch0();
         _playerMovement.MovementSpeed *= 0.75f;
         yield return new WaitForSeconds(0.3f);
+
+        _lightAttack0Data.StopAttack();
         _playerMovement.ResetMovementSpeed();
         _fsm.ChangeState(Ccl_StateNames.IDLE);
-        _lightAttack2Data.TellHitboxToTellHurtboxesToResetIds();
         yield return null;
     }
     IEnumerator LightAttack1Animation()
@@ -85,13 +86,15 @@ public class PlayerActions : MonoBehaviour
         _fsm.ChangeState(Ccl_StateNames.LIGHTATTACKING);
         _playerMovement.MovementSpeed *= 0.25f;
         yield return new WaitForSeconds(0.1f);
+
         _comboWindow = _comboMaxWindow;
         _lightAttack1Data.LaunchAttack();
         SoundManager.Instance.PlayPunch1();
         yield return new WaitForSeconds(0.4f);
+
+        _lightAttack1Data.StopAttack();
         _playerMovement.ResetMovementSpeed();
         _fsm.ChangeState(Ccl_StateNames.IDLE);
-        _lightAttack1Data.TellHitboxToTellHurtboxesToResetIds();
         yield return null;
     }
     IEnumerator LightAttack2Animation()
@@ -99,12 +102,15 @@ public class PlayerActions : MonoBehaviour
         _fsm.ChangeState(Ccl_StateNames.LIGHTATTACKING);
         _playerMovement.MovementSpeed = 0;
         yield return new WaitForSeconds(0.4f);
+
+        _comboWindow = _comboMaxWindow;
         _lightAttack2Data.LaunchAttack();
         SoundManager.Instance.PlayPunch2();
         yield return new WaitForSeconds(0.2f);
+
+        _lightAttack2Data.StopAttack();
         _playerMovement.ResetMovementSpeed();
         _fsm.ChangeState(Ccl_StateNames.IDLE);
-        _lightAttack2Data.TellHitboxToTellHurtboxesToResetIds();
         yield return null;
     }
     #endregion

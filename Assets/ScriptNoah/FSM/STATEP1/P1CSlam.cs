@@ -8,7 +8,7 @@ public class P1CSlam : Danu_State
     public P1CSlam() : base(StateNames.P1C_SLAM) { }
     GameObject boombox;
     Transform preview;
-    LingeringHitbox boom;
+    Hitbox boom;
     float[] startup=new float[3];
     float[] active=new float[3];
     float[] end=new float[3];
@@ -29,7 +29,7 @@ public class P1CSlam : Danu_State
     public override void Begin()
     {
         boombox=fsm.Getp1SlamHitBox();
-        boom=boombox.GetComponent<LingeringHitbox>();
+        //boom=boombox.GetComponent<LingeringHitbox>();
         canStart=true;
         Vector3[] frames =new Vector3[3];
         for (int i=0;i<3;i++)
@@ -63,8 +63,8 @@ public class P1CSlam : Danu_State
         {
             
             boombox.transform.localScale=scales[slamCount];
-            boom.Radius=radius[slamCount];
-            boom.SetDamageValue(damages[slamCount]);
+            boom.CurrentRadius=radius[slamCount];
+            //boom.SetDamageValue(damages[slamCount]);
       
             slamCount++;
         }
@@ -72,8 +72,8 @@ public class P1CSlam : Danu_State
         {
             slamCount=0;
             boombox.transform.localScale=scales[slamCount];
-            boom.Radius=radius[slamCount];
-            boom.SetDamageValue(damages[slamCount]);
+            boom.CurrentRadius=radius[slamCount];
+            //boom.SetDamageValue(damages[slamCount]);
 
             slamCount++;
         }
