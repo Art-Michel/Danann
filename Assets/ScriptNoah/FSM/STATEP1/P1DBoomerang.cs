@@ -95,7 +95,15 @@ public class P1DBoomerang : Danu_State
             if (curveTime>MaxCurveTime)
             {
                 Debug.Log("eeee");
-                fsm.agent.ToIdle();
+                if (orig==null)
+                {
+                    fsm.agent.ToIdle();
+                }             
+                else
+                {
+                    orig.AddWaitTime(2);
+                    orig.FlowControl();
+                }
                 
             }
             boomerangL.transform.position=Curve(boomerangL);

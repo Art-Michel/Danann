@@ -1,14 +1,12 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
-using System;
-
-public class Danu_FSM : MonoBehaviour
+public class Danu_GlobalFSM : MonoBehaviour
 {
-    private Dictionary<string, Danu_State> m_states = new Dictionary<string, Danu_State>();
-
+    private Dictionary<string, GlobalStates> m_states = new Dictionary<string, GlobalStates>();
     [HideInInspector] public DanuAI agent = null;
+    
     #region Phase 1
         #region Shoot
         [Foldout("Phase 1 Shoot"),SerializeField] private int P1D_nbShot;
@@ -130,29 +128,30 @@ public class Danu_FSM : MonoBehaviour
         return baseProjectiles.Count;
     }
     #endregion
-    int indexx;
-    
-    public Danu_State curr { get; private set; }
-    public Danu_State prev { get; private set; }
+    [Expandable]
+    public PhaseStats stats;
+    public PhaseStats GetPhaseStats(){return stats;}
+    public GlobalStates curr { get; private set; }
+    public GlobalStates prev { get; private set; }
     [Button]
     public void QuickDebug()
     {
 
     }
 
-    public void AddState( Danu_State state )
+    public void AddState( GlobalStates state )
     {
-        state.fsm = this;
+        state.gFSM = this;
         this.m_states[state.name] = state;
     }
-    public void RemoveState(Danu_State state)
+    public void RemoveState(GlobalStates state)
     {
         m_states.Remove(state.name);
     }
 
-    public void ChangeState( string nextStateName, float idleTime=0f )
+    public void ChangeState( string nextStateName)
     {
-        Danu_State state = null;
+        GlobalStates state = null;
         this.m_states.TryGetValue( nextStateName, out state );
         if( state == null )
         {

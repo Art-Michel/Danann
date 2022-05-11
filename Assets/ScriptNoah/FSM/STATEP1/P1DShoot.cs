@@ -16,6 +16,8 @@ public class P1DShoot : Danu_State
     // Start is called before the first frame update
     public override void Begin()
     {
+                        if (fsm==null)
+                    Debug.Log("é");
         pool=fsm.GetPool();
         maxLifeTime=fsm.GetP1d_ProjLifeTime();
         delay=fsm.GetP1d_delay();
@@ -34,11 +36,20 @@ public class P1DShoot : Danu_State
             timer=0;
             if (index>nbShot)
             {
+                if (orig==null)
+                {
                 fsm.agent.SetWaitingTime(2);
                 fsm.agent.ToIdle();
+                }
+                else
+                {
+                    orig.AddWaitTime(2);
+                    orig.FlowControl();
+                }
             }
             else
             {
+
                 GameObject go =pool.Get();
                 go.GetComponent<Projectiles>().SetSpeed(speed);
                 go.transform.position=fsm.transform.position;

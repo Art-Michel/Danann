@@ -4,19 +4,33 @@ using UnityEngine;
 
 public class GP1Shoot : GlobalStates
 {
-    public GP1Shoot() : base(StateNames.P1D_SPIN) { }
-    Danu_State curr;
+    public GP1Shoot() : base(StateNames.P1GSHOOT) { }
+    
     P1CDash dash = new P1CDash();
     P1CMixDash mdash = new P1CMixDash();
     P1DShoot shoot = new P1DShoot();
     P1DBoomerang br = new P1DBoomerang();
-    P1CTeleportation tp= new P1CTeleportation();
+    P1CTeleportation tp= new P1CTeleportation();    
+
+    public PhaseStats GetPhaseStats(){return stats;}
+    List<Danu_State> old;
     // Start is called before the first frame update
 
-    void Start()
+    public override void Begin()
     {
+        progression=0;
+        nextWillEnd=false;
+        fsm=gFSM.GetComponent<Danu_FSM>();
+        fsm.AddState(dash);
+        fsm.AddState(mdash);
+        fsm.AddState(shoot);
+        fsm.AddState(br);
+        fsm.AddState(tp);
         dash.orig=mdash.orig=shoot.orig=br.orig=this;
+        fsm=new Danu_FSM();
+        stats=gFSM.GetPhaseStats();
         FlowControl();
+        
         //playshoot
         //si parry
         //tp in
@@ -27,24 +41,27 @@ public class GP1Shoot : GlobalStates
         //sinon
         //Dash
     }
-    void FlowControl()
+    public override void FlowControl()
     {
         if (nextWillEnd)
         {
             progression=0;
             oldProg=0;
             nextWillEnd=false;
-            //fsm.returntoidle()
+            gFSM.agent.SetWaitingTime(combinedWaitTime);
+            combinedWaitTime=0;
+            Debug.Log("eeee");
+            gFSM.agent.ToIdle();
         }
         switch(progression)
         {
             case 0:
-                curr.End();
+                //curr.End();
                 curr=shoot;
                 curr.Begin();
                 break;
             case 1:
-                if (fsm.agent.wasParried)
+                if (gFSM.agent.wasParried)
                 {   
                     curr.End();
                     curr=tp;
@@ -57,8 +74,8 @@ public class GP1Shoot : GlobalStates
                     curr.Begin();
                 break;
             case 2:
-                float dist=Vector3.Distance(fsm.agent.transform.position,fsm.agent.GetPlayer().position);
-                if (dist>=fsm.agent.distLimit)
+                float dist=Vector3.Distance(gFSM.agent.transform.position,gFSM.agent.GetPlayer().position);
+                if (dist>=gFSM.agent.distLimit)
                 {
                     curr.End();
                     curr=shoot;
@@ -67,7 +84,7 @@ public class GP1Shoot : GlobalStates
                 }
                 else
                 {
-                    if (fsm.agent.isRevengeHigh)
+                    if (gFSM.agent.isRevengeHigh)
                     {
                         curr.End();
                         curr=mdash;
@@ -83,13 +100,12 @@ public class GP1Shoot : GlobalStates
                 }
             break;
         }
+        progression++;
     }
+
     // Update is called once per frame
-    public void GlobalUpdate()
+    public override void Update()
     {
         curr.Update();
-        if (oldProg<progression)
-            FlowControl();
-        oldProg=progression;
     }
 }

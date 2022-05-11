@@ -102,7 +102,15 @@ public class P1CTeleportation : Danu_State
         }
         else
         {
-            fsm.agent.ToIdle();
+            if (orig==null)
+            {
+                fsm.agent.ToIdle();
+            }             
+            else
+            {
+                orig.AddWaitTime(2);
+                orig.FlowControl();
+            }
         }
     }
 }

@@ -6,15 +6,25 @@ using NaughtyAttributes;
 [CreateAssetMenu(fileName = "NewPhaseSats", order = 0)]
 public class PhaseStats : ScriptableObject
 {
-    #region Phase 1
+   #region Phase 1
         #region Shoot
-        [Foldout("Phase 1 Shoot")] [SerializeField] private int P1D_nbShot;
+        [Foldout("Phase 1 Shoot"),SerializeField] private int P1D_nbShot;
         public int GetP1d_nbShot(){return P1D_nbShot;}
-        [Foldout("Phase 1 Shoot")][SerializeField] private float P1D_delay;
+        [Foldout("Phase 1 Shoot"),SerializeField] private float P1D_delay;
         public float GetP1d_delay(){return P1D_delay;}
-        [Foldout("Phase 1 Shoot")][SerializeField] private float P1D_wait;
+        [Foldout("Phase 1 Shoot"),SerializeField] private float P1D_wait;
         public float GetP1d_wait(){return P1D_wait;}
+        [Foldout("Phase 1 Shoot"),SerializeField] private float P1D_ProjLifeTime;
+        public float GetP1d_ProjLifeTime(){return P1D_ProjLifeTime;}
+        [Foldout("Phase 1 Shoot"),SerializeField] private float p1d_ShotSpeed;
+        public float GetP1d_ShotSpeed(){return p1d_ShotSpeed;}
+        [Foldout("Phase 1 Shoot"),SerializeField] private Pool pool;
+        public Pool GetPool(){return pool;}
+        private List<GameObject> baseProjectiles = new List<GameObject>();
+        public GameObject GetProjectile(){return baseProjectiles[baseProjectiles.Count-1];}
+        public int GetProjectileCount(){return baseProjectiles.Count;}
         #endregion
+
         #region Slam
         [Foldout("Phase 1 Slam")][SerializeField]GameObject p1SlamHitBox;
         public GameObject Getp1SlamHitBox(){return p1SlamHitBox;}
@@ -24,7 +34,16 @@ public class PhaseStats : ScriptableObject
         public float GetP1SlamRecovery(){return P1SlamRecovery;}
         [Foldout("Phase 1 Slam")][SerializeField] private Vector3[] P1slamScales=new Vector3[3];
         public Vector3 GetP1SlamScale(int index) {return P1slamScales[index];}
+        [Foldout("Phase 1 Slam")][SerializeField] private float[] p1S_radius=new float[3];
+        public float[] GetP1S_Radius(){return p1S_radius;}
+
+        [Foldout("Phase 1 Slam")][SerializeField] private int[] p1S_Damage;
+        public int[] GetP1S_Damage(){return p1S_Damage;}
+        [Foldout("Phase 1 Slam")][SerializeField]private float p1Sl_MaxMoveTime;
+        public float GetP1Sl_MaxMoveTime(){return p1Sl_MaxMoveTime;}
+
         #endregion
+        
         #region Spin
         [Foldout("Phase 1 Spin")][SerializeField] private GameObject staticProj;
         public GameObject GetStaticProj(){  return staticProj;  }
@@ -32,6 +51,8 @@ public class PhaseStats : ScriptableObject
         public GameObject GetP1GlobalGO(){return P1globalGO;}
         [Foldout("Phase 1 Spin")][SerializeField] private Transform[] P1nweMax=new Transform[3];
         public Transform[] GetP1NWEMax(){return P1nweMax;}
+        [Foldout("Phase 1 Spin")][SerializeField] private float p1sp_dist;
+        public float GetP1Sp_Dist(){return p1sp_dist;}
         [Foldout("Phase 1 Spin")][SerializeField] private float P1rotationSpeed;
         public float GetP1RotationSpeed(){return P1rotationSpeed;}
         [Foldout("Phase 1 Spin")][SerializeField] private bool P1turningRight;
@@ -40,13 +61,15 @@ public class PhaseStats : ScriptableObject
         public float GetP1MaxWaitTime(){return P1maxWaitTime;}
         [Foldout("Phase 1 Spin")][SerializeField] private float P1SpinLifeTime;
         public float GetP1SpinLifeTime(){return P1SpinLifeTime;}
+        [Foldout("Phase 1 Spin")][SerializeField] private Transform[] bladesPreview;
+        public Transform[] GetBladesPreview(){return bladesPreview;}
         #endregion
+        
         #region Boomerang
         [Foldout("Phase 1 Boomerang"),SerializeField] private GameObject P1BoomerangboomerangL;
         public GameObject GetP1BRL(){return P1BoomerangboomerangL;}
         [Foldout("Phase 1 Boomerang")][SerializeField] private GameObject P1BoomerangboomerangR;
         public GameObject GetP1BRR(){return P1BoomerangboomerangR;}
-
         [Foldout("Phase 1 Boomerang")][SerializeField] private float P1BoomeRangSpeed;
         public float GetP1BoomeRangSpeed(){return P1BoomeRangSpeed;}
         [Foldout("Phase 1 Boomerang")][SerializeField] private float P1BoomeRangMaxStraightTime;
@@ -57,7 +80,10 @@ public class PhaseStats : ScriptableObject
         public Transform GetP1BoomeRangcurveMidR(){return P1BoomeRangcurveMidR;}
         [Foldout("Phase 1 Boomerang")][SerializeField] private float P1BoomeRangMaxCurveTime;
         public float GetP1BoomeRangMaxCurveTime(){return P1BoomeRangMaxCurveTime;}
+        [Foldout("Phase 1 Boomerang")][SerializeField] private float p1Br_startup;
+        public float GetP1BR_Startup(){return p1Br_startup;}
         #endregion
+       
         #region Dash
         [Foldout("Phase 1 Dash"),SerializeField] private Transform p1sDash_preview;
         public Transform GetP1sD_Preview(){return p1sDash_preview;}
@@ -69,8 +95,10 @@ public class PhaseStats : ScriptableObject
         public float GetP1sD_DashSpeed(){return p1sDash_DashSpeed;}
         [Foldout("Phase 1 Dash"),SerializeField] private float p1sDash_MaxChargingTime;
         public float GetP1sD_ChargingTime(){return p1sDash_MaxChargingTime;}
-
+        [Foldout("Phase 1 Dash"),SerializeField] private float p1Dash_dashModifier;
+        public float GetPMD_dMod(){return p1Dash_dashModifier;}
         #endregion
+        
         #region TelePortation
         [Foldout("Phase 1 TP"),SerializeField]GameObject p1TP_arrival;
         public GameObject GetP1TP_Arrival(){return p1TP_arrival;}
@@ -91,6 +119,7 @@ public class PhaseStats : ScriptableObject
         [Foldout("Phase 1 TP"),SerializeField] float p1TP_farDist;
         public float GetP1TP_FarDist(){return p1TP_farDist;}
         #endregion
+    
     #endregion
     // Start is called before the first frame update
     void Start()

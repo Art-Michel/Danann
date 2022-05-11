@@ -194,7 +194,15 @@ public class P1CMixDash : Danu_State
             isDashing=false;
             Debug.Log("End");
             actual=state.CHARGING;
-            fsm.ChangeState(StateNames.P1IDLE);
+            if (orig==null)
+            {
+                fsm.agent.ToIdle();
+            }             
+            else
+            {
+                orig.AddWaitTime(2);
+                orig.FlowControl();
+            }
         }
         actual=state.CHARGING;
 

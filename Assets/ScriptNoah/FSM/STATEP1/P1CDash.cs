@@ -72,7 +72,15 @@ public class P1CDash : Danu_State
             dashCount--;
             dashTime=0;
             dir=(-fsm.transform.position+target.position).normalized;
-            fsm.agent.ToIdle();
+            if (orig==null)
+            {
+                fsm.agent.ToIdle();
+            }             
+            else
+            {
+                orig.AddWaitTime(2);
+                orig.FlowControl();
+            }
         }
         
     }
