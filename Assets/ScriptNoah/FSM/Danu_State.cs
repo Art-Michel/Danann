@@ -12,6 +12,7 @@ public class Danu_State
     {
         this.name = name;
     }
+    public GlobalStates orig;
 
     public virtual void Begin()
     {

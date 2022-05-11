@@ -6,6 +6,19 @@ using NaughtyAttributes;
 public class DanuAI : MonoBehaviour
 {
     private Danu_FSM m_fsm=null;
+    enum GlobalPattern
+    {
+        SHOOT,
+        DASH,
+        TP,
+        BR,
+        IDLE
+    }
+    public bool isRevengeHigh{get;private set;}
+    public bool wasParried{get;private set;}
+    public float distLimit{get;private set;}
+    [SerializeField] GlobalPattern globalStates;
+    GlobalPattern actualState;
     [Range(1,2),SerializeField]private int phase;
     private int patternIndex;
     private float dist;
@@ -34,6 +47,9 @@ public class DanuAI : MonoBehaviour
     [SerializeField]int maxCap;
     [SerializeField] bool goingRandom;
     [SerializeField] private int maxProjectilePool;
+    public bool isStun{get;private set;}
+    float stunTime;
+    float maxStunTime;
 
     private void Awake() {
         if (m_fsm==null)
@@ -54,99 +70,133 @@ public class DanuAI : MonoBehaviour
         this.m_fsm.ChangeState( StateNames.P1C_SLAM);
     }
 
+    public void Stun(float sTime)
+    {
+        if (isStun)
+            maxStunTime+= sTime/2;
+        else
+            maxStunTime=sTime;
+        isStun=true;
+    }
     // Update is called once per frame
     void Update()
     {
         float nx=Mathf.Clamp(transform.position.x,arenaCenter.x-arenaRadius,arenaCenter.x+arenaRadius);
         float nz=Mathf.Clamp(transform.position.z,arenaCenter.z-arenaRadius,arenaCenter.z+arenaRadius);
         transform.position=new Vector3(nx,arenaCenter.y,nz);
+        if (isStun)
+        {
+            stunTime+=Time.deltaTime;
+            if (stunTime>=maxStunTime)
+            {
+                stunTime=0;
+                maxStunTime=0;
+                isStun=false;
+            }
+            return;
+        }
+        switch (actualState)
+        {
+            case GlobalPattern.SHOOT :
+                break;
+            case GlobalPattern.BR :
+                break;
+            case GlobalPattern.DASH :
+                break;
+            case GlobalPattern.TP :
+                break;
+        }
     }
     [Button]
     public void NextPattern() 
     {
-        float revengePercent=revenge*100/maxRevenge;
-        if (goingRandom)
+        if (phase==1)
         {
-            int chance=Random.Range(1,8);
-            for (int i=1;i<8;i++)
-                switch (chance)
+            float revengePercent=revenge*100/maxRevenge;
+            if (goingRandom)
+            {
+                int chance=Random.Range(1,8);
+                for (int i=1;i<8;i++)
+                    switch (chance)
+                    {
+                        case 1:
+                            m_fsm.ChangeState(StateNames.P1C_DASH);
+                            break;
+                        case 2:
+                            m_fsm.ChangeState(StateNames.P1C_SLAM);
+                            break;
+                        case 3:
+                            m_fsm.ChangeState(StateNames.P1C_TELEPORTATION);
+                            break;
+                        case 4:
+                            m_fsm.ChangeState(StateNames.P1D_BOOMERANG);
+                            break;
+                        case 5:
+                            m_fsm.ChangeState(StateNames.P1D_SHOOT);
+                            break;
+                        case 6:
+                            m_fsm.ChangeState(StateNames.P1D_SPIN);
+                            break;                    
+                        case 7:
+                            m_fsm.ChangeState(StateNames.P1C_MIXDASH);
+                            break;
+                    }
+                    return;
+            }
+            else
+            {
+                m_fsm.ChangeState(StateNames.P1C_MIXDASH);
+                if (!goingRandom)
+                    return;
+            }
+
+    /*         dist = Vector3.Distance(transform.position, player.position);
+            Debug.Log(dist);
+            Debug.Log(distEvaluator.Evaluate(dist));
+            float mod = distEvaluator.Evaluate(dist);
+            if (mod <= 1.1f) //short ranged patterns
+            {
+                Debug.Log("smol");
+                if (lastStates.Contains(StateNames.P1C_TELEPORTATION))
                 {
-                    case 1:
-                        m_fsm.ChangeState(StateNames.P1C_DASH);
-                        break;
-                    case 2:
-                        m_fsm.ChangeState(StateNames.P1C_SLAM);
-                        break;
-                    case 3:
-                        m_fsm.ChangeState(StateNames.P1C_TELEPORTATION);
-                        break;
-                    case 4:
-                        m_fsm.ChangeState(StateNames.P1D_BOOMERANG);
-                        break;
-                    case 5:
-                        m_fsm.ChangeState(StateNames.P1D_SHOOT);
-                        break;
-                    case 6:
-                        m_fsm.ChangeState(StateNames.P1D_SPIN);
-                        break;                    
-                    case 7:
+                    if (revengePercent>70)
+                    {
                         m_fsm.ChangeState(StateNames.P1C_MIXDASH);
-                        break;
-                }
-                return;
-        }
-        else
-        {
-            m_fsm.ChangeState(StateNames.P1C_MIXDASH);
-            if (!goingRandom)
-                return;
-        }
-        dist = Vector3.Distance(transform.position, player.position);
-        Debug.Log(dist);
-        Debug.Log(distEvaluator.Evaluate(dist));
-        float mod = distEvaluator.Evaluate(dist);
-        if (mod <= 1.1f) //short ranged patterns
-        {
-            Debug.Log("smol");
-            if (lastStates.Contains(StateNames.P1C_TELEPORTATION))
-            {
-                lastStates.Clear();
-                if (revengePercent>70)
-                {
-                    m_fsm.ChangeState(StateNames.P1C_MIXDASH);
+                        return;
+                    }
+                    m_fsm.ChangeState(StateNames.P1C_DASH);
                     return;
                 }
-                m_fsm.ChangeState(StateNames.P1C_DASH);
-                return;
-            }
-            m_fsm.ChangeState(StateNames.P1C_TELEPORTATION);
-            return;
-
-        }
-        else if (mod > 1.1f) //long ranged patterns
-        {
-            Debug.Log("loooong");
-            if (lastStates.Contains(StateNames.P1D_SHOOT)||lastStates.Contains(StateNames.P1D_BOOMERANG))
-            {
-                lastStates.Clear();
                 m_fsm.ChangeState(StateNames.P1C_TELEPORTATION);
+                lastStates.Clear();
                 return;
+
             }
-            
-                if (revengePercent>70)
+            else if (mod > 1.1f) //long ranged patterns
+            {
+                Debug.Log("loooong");
+                if (lastStates.Contains(StateNames.P1D_SHOOT)||lastStates.Contains(StateNames.P1D_BOOMERANG))
                 {
-                    m_fsm.ChangeState(StateNames.P1D_BOOMERANG);
+                    lastStates.Clear();
+                    m_fsm.ChangeState(StateNames.P1C_TELEPORTATION);
                     return;
                 }
-                m_fsm.ChangeState(StateNames.P1D_SHOOT);
-                return;
+                
+                    if (revengePercent>70)
+                    {
+                        m_fsm.ChangeState(StateNames.P1D_BOOMERANG);
+                        return;
+                    }
+                    m_fsm.ChangeState(StateNames.P1D_SHOOT);
+                    return;
 
 
-        }
-        else //all patterns possible
-        {
-            m_fsm.ChangeState(StateNames.P1D_SPIN);
-            Debug.Log("midwest");
+            }
+            else //all patterns possible
+            {
+                m_fsm.ChangeState(StateNames.P1D_SPIN);
+                Debug.Log("midwest");
+            } */
 
         }
     }
@@ -157,7 +207,6 @@ public class DanuAI : MonoBehaviour
         phase++;
         //Add all P2 states and remove all P1 states
         NextPattern();
-        
     }
     public int GetPhase() { return phase; }
     public Transform GetPlayer(){return player;}

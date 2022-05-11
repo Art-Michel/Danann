@@ -51,13 +51,11 @@ public class P1DSpin : Danu_State
         
         //activation des helices, ou instantiation si c'est la premiere fois
         globalGO.SetActive(true);
-        
         preview.localScale=new Vector3(1,1,Vector3.Distance(fsm.transform.position,fsm.agent.GetArenaCenter()));
         preview.position=fsm.transform.position+(fsm.agent.GetArenaCenter()-fsm.transform.position)/2;
         preview.LookAt(fsm.agent.GetArenaCenter());
         waitTime=0;
         wait=true;
-        
     }
 
     // Update is called once per frame
@@ -69,7 +67,6 @@ public class P1DSpin : Danu_State
             fsm.transform.position=Vector3.Lerp(fsm.transform.position,fsm.agent.GetArenaCenter(),waitTime/maxWaitTime);
             if (fsm.transform.position==fsm.agent.GetArenaCenter())
                 SpawnBladesPreview();
-
             if (waitTime>=maxWaitTime)
             {
                 wait=false;
@@ -80,7 +77,13 @@ public class P1DSpin : Danu_State
         }
         lifetime-=Time.deltaTime;
         if(lifetime<=0)
+        {
+            if (orig==null)
             fsm.agent.ToIdle();
+            else
+                orig.progression++;
+
+        }
         Rotate();
     }
 
@@ -95,7 +98,6 @@ public class P1DSpin : Danu_State
             bladesPreview[i].localScale=new Vector3(1,1,Vector3.Distance(center,nweTrans[i].position));
             bladesPreview[i].position=center+(nweTrans[i].position-center)/2;
             bladesPreview[i].LookAt(nweTrans[i]);
-
         }
         preview.gameObject.SetActive(false);
     }
@@ -144,6 +146,30 @@ public class P1DSpin : Danu_State
 
     }
 
+    public void Regenerate(SpinBullet ded)
+    {
+        int newind =ded.GetIndex();
+        SpinBullet.bladeIndex blade = ded.GetBlade();
+        float delta = 1/dist;
+        switch(blade)
+        {
+            case SpinBullet.bladeIndex.NORTH :
+                Vector3 nPos;
+                nPos=Vector3.Lerp(fsm.transform.position,dSphereN.position,delta*newind);
+                nblades.Add(fsm.InstantiateStaticProjectile(nPos,newind,blade));
+                break;
+            case SpinBullet.bladeIndex.WEST :
+                Vector3 wPos;
+                wPos=Vector3.Lerp(fsm.transform.position,dSphereSW.position,delta*newind);
+                wblades.Add(fsm.InstantiateStaticProjectile(wPos,newind,blade));
+                break;
+            case SpinBullet.bladeIndex.EAST :
+                Vector3 ePos;
+                ePos=Vector3.Lerp(fsm.transform.position,dSphereSE.position,delta*newind);
+                eblades.Add(fsm.InstantiateStaticProjectile(ePos,newind,blade));
+                break;
+        }
+    }
     private void Rotate()
     {
         if (turningRight)

@@ -94,9 +94,7 @@ public class Danu_FSM : MonoBehaviour
         public float GetP1sD_ChargingTime(){return p1sDash_MaxChargingTime;}
         [Foldout("Phase 1 Dash"),SerializeField] private float p1Dash_dashModifier;
         public float GetPMD_dMod(){return p1Dash_dashModifier;}
-
         #endregion
-    
         #region TelePortation
         [Foldout("Phase 1 TP"),SerializeField]GameObject p1TP_arrival;
         public GameObject GetP1TP_Arrival(){return p1TP_arrival;}
@@ -141,6 +139,7 @@ public class Danu_FSM : MonoBehaviour
     {
        
     }
+
     public void AddState( Danu_State state )
     {
         state.fsm = this;
@@ -164,9 +163,9 @@ public class Danu_FSM : MonoBehaviour
         if( state == this.curr )
             return; // already in this state
 
-        if( this.curr != null ) {
+        if( this.curr != null ) 
             this.curr.End();
-        }
+
         this.prev = curr;
         this.curr = state;
         this.curr.Begin();
@@ -175,14 +174,20 @@ public class Danu_FSM : MonoBehaviour
 
     void Update()
     {
+        if (agent.isStun)
+        {
+            return;
+        }
         if( this.curr != null ) 
         {
             this.curr.Update();
         }
     }
     
-    public GameObject InstantiateStaticProjectile(Vector3 pos)
+    public GameObject InstantiateStaticProjectile(Vector3 pos,int index=0,SpinBullet.bladeIndex blade=0)
     {
-        return Instantiate(staticProj,pos,Quaternion.identity,P1globalGO.transform);
+        GameObject go= Instantiate(staticProj,pos,Quaternion.identity,P1globalGO.transform);
+        go.GetComponent<SpinBullet>().Initialize(index,blade);
+        return go;
     }
 }
