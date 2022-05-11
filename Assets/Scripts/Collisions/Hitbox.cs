@@ -26,32 +26,34 @@ public class Hitbox : MonoBehaviour
     [NonSerialized] public float CurrentRadius;
     [SerializeField] float _baseRadius;
     Hurtbox[] _hurtboxesToFocus;
-    AttackData _attackData;
+    string _attackName;
+    int _attackDamage;
 
     void Awake()
     {
         CurrentRadius = _baseRadius;
     }
 
-    public void Enable(Hurtbox[] hurtboxesToFocus, AttackData attackData)
+    public void Enable(Hurtbox[] hurtboxesToFocus, string attackName, int attackDamage)
     {
         CurrentRadius = _baseRadius;
         _hurtboxesToFocus = hurtboxesToFocus;
-        _attackData = attackData;
+        _attackDamage = attackDamage;
+        _attackName = attackName;
         gameObject.SetActive(true);
     }
 
-    public void Enable(Hurtbox[] hurtboxesToFocus, AttackData attackData, float radius)
+    public void Enable(Hurtbox[] hurtboxesToFocus, string attackName, int attackDamage, float radius)
     {
-        Enable(hurtboxesToFocus, attackData);
+        Enable(hurtboxesToFocus, attackName, attackDamage);
         CurrentRadius = radius;
     }
 
-    public void Disable(Hurtbox[] hurtboxesToFocus, AttackData attackData)
+    public void Disable(Hurtbox[] hurtboxesToFocus, string attackName)
     {
         foreach (Hurtbox hurtbox in hurtboxesToFocus)
         {
-            hurtbox.ForgetAttack(attackData);
+            hurtbox.ForgetAttack(attackName);
             gameObject.SetActive(false);
         }
     }
@@ -61,20 +63,20 @@ public class Hitbox : MonoBehaviour
         CheckForHit();
     }
 
+    public void CheckForHit()
+    {
+        foreach (Hurtbox hurtbox in _hurtboxesToFocus)
+        {
+            if (CheckDistance(hurtbox))
+                hurtbox.TakeHit(_attackName, _attackDamage);
+        }
+    }
+
     private bool CheckDistance(Hurtbox hurtbox)
     {
         float distance = (hurtbox.transform.position - transform.position).sqrMagnitude;
         if (distance < (CurrentRadius / 2 + hurtbox.Radius / 2) * (CurrentRadius / 2 + hurtbox.Radius / 2))
             return true;
         return false;
-    }
-
-    public void CheckForHit()
-    {
-        foreach (Hurtbox hurtbox in _hurtboxesToFocus)
-        {
-            if (CheckDistance(hurtbox))
-                hurtbox.TakeHit(_attackData);
-        }
     }
 }

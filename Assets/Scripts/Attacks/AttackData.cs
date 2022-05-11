@@ -8,23 +8,11 @@ public class AttackData : MonoBehaviour
 {
     [SerializeField] bool shouldHitEnemies;
     [SerializeField] bool shouldHitAllies;
-    public int AttackDamage;
-    [SerializeField] Hitbox[] _hitboxes;
-    /* [Dropdown("Name")]
-    [SerializeField] protected string _attackSender;
-    DropdownList<string> Name()
-    {
-        return new DropdownList<string>()
-        {
-        {"Cuchulainn", Characters.CCL},
-        {"Danu", Characters.DANU},
-        {"Left Spear", Characters.SPEARL},
-        {"Right Spear", Characters.SPEARR}
-        };
-    }
-*/
+    int _attackDamage;
+    Hitbox[] _hitboxes;
+
     [Dropdown("attackName")]
-    [SerializeField] public string AttackName;
+    [SerializeField] string _attackName;
     DropdownList<string> attackName()
     {
         return new DropdownList<string>()
@@ -35,6 +23,15 @@ public class AttackData : MonoBehaviour
         };
     }
 
+    void Start()
+    {
+        _hitboxes = new Hitbox[transform.childCount];
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            _hitboxes[i] = transform.GetChild(i).GetComponent<Hitbox>();
+            Debug.Log(_hitboxes[i].name);
+        }
+    }
 
     [Button]
     public void LaunchAttack()
@@ -43,10 +40,11 @@ public class AttackData : MonoBehaviour
         {
             if (shouldHitAllies)
             {
-                if (shouldHitEnemies) hitbox.Enable(GameManager.Instance.Hurtboxes, this);
-                else hitbox.Enable(GameManager.Instance.AllyHurtboxes, this);
+                if (shouldHitEnemies) hitbox.Enable(GameManager.Instance.Hurtboxes, _attackName,_attackDamage);
+                else hitbox.Enable(GameManager.Instance.AllyHurtboxes, _attackName, _attackDamage);
             }
-            else if (shouldHitEnemies) hitbox.Enable(GameManager.Instance.EnemyHurtboxes, this);
+            else if (shouldHitEnemies) hitbox.Enable(GameManager.Instance.EnemyHurtboxes,   _attackName, _attackDamage);
+            else Debug.LogError("This hitbox has no hurtbox to check");
         }
     }
 
@@ -56,10 +54,10 @@ public class AttackData : MonoBehaviour
         {
             if (shouldHitAllies)
             {
-                if (shouldHitEnemies) hitbox.Disable(GameManager.Instance.Hurtboxes, this);
-                else hitbox.Disable(GameManager.Instance.AllyHurtboxes, this);
+                if (shouldHitEnemies) hitbox.Disable(GameManager.Instance.Hurtboxes, _attackName);
+                else hitbox.Disable(GameManager.Instance.AllyHurtboxes,  _attackName);
             }
-            else if (shouldHitEnemies) hitbox.Disable(GameManager.Instance.EnemyHurtboxes, this);
+            else if (shouldHitEnemies) hitbox.Disable(GameManager.Instance.EnemyHurtboxes, _attackName);
         }
     }
 }

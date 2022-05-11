@@ -20,28 +20,29 @@ public class Hurtbox : MonoBehaviour
     #endregion
 
     [SerializeField] private EntityHP _hurtboxOwnerHP;
-    Dictionary<string, AttackData> _attacksThatHitMe;
+    List<string> _attacksThatHitMe;
 
     void Awake()
     {
-        _attacksThatHitMe = new Dictionary<string, AttackData>();
+        _attacksThatHitMe = new List<string>();
     }
 
-    public void TakeHit(AttackData attackData)
+    public void TakeHit(string attackName, int attackDamage)
     {
-        if (_attacksThatHitMe.ContainsKey(attackData.AttackName))
+        if (_attacksThatHitMe.Contains(attackName))
             return;
         else
         {
-            _hurtboxOwnerHP.TakeDamage(attackData.AttackDamage);
-            _attacksThatHitMe.Add(attackData.AttackName, attackData);
+            _hurtboxOwnerHP.TakeDamage(attackDamage);
+            Debug.Log("ouchie ouch");
+            _attacksThatHitMe.Add(attackName);
         }
     }
 
-    public void ForgetAttack(AttackData attackData)
+    public void ForgetAttack(string attackName)
     {
-        if (_attacksThatHitMe.ContainsKey(attackData.AttackName))
-        _attacksThatHitMe.Remove(attackData.AttackName);
+        if (_attacksThatHitMe.Contains(attackName))
+        _attacksThatHitMe.Remove(attackName);
     }
 
     public void ForgetAllAttacks()
