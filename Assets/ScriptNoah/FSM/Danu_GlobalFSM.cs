@@ -182,7 +182,10 @@ public class Danu_GlobalFSM : MonoBehaviour
             this.curr.Update();
         }
     }
-    
+    public void SetTPDest(P1CTeleportation.destPoints newDest)
+    {
+        p1TP_destination=newDest;
+    }
     public GameObject InstantiateStaticProjectile(Vector3 pos,int index=0,SpinBullet.bladeIndex blade=0)
     {
         GameObject go= Instantiate(staticProj,pos,Quaternion.identity,P1globalGO.transform);

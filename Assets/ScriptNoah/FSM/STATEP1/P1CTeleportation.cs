@@ -44,11 +44,7 @@ public class P1CTeleportation : Danu_State
             arenaCenter=fsm.agent.GetArenaCenter();
             isSetUp=true;
         }
-        int randc=Random.Range(0,2);
-        if (randc==0)
-            destination=destPoints.FAR;
-        else
-            destination=destPoints.CLOSE;
+        destination=fsm.GetP1TP_Destination();
         arrival.SetActive(false);
         if (destination==destPoints.FAR)
         {

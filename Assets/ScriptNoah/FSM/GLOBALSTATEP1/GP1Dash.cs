@@ -24,26 +24,12 @@ public class GP1Dash : GlobalStates
         fsm.AddState(slam);
         fsm.AddState(tp);
         dash.orig=mdash.orig=shoot.orig=slam.orig=this;
-        fsm=new Danu_FSM();
         stats=gFSM.GetPhaseStats();
+        if (gFSM.agent.isRevengeHigh)
+            isMix=true;
+        else
+            isMix=false;
         FlowControl();
-        
-                //si revenge
-//          oui               non    
-        //mdash                 dash
-        //si parry              si parry
-            //tp in                 si dist>limit
-            //si parry                  in
-                //tp out                si parry
-            //sinon                         out
-                //shoot                 sinon 
-        //sinon                             shoot
-            //slam              si dist<limit
-            //si parry              slam
-            //in                si parry
-            //sinon                 out
-            //out               sinon in
-                     
     }
     // Update is called once per frame
     public override void Update()
@@ -59,7 +45,6 @@ public class GP1Dash : GlobalStates
             nextWillEnd=false;
             gFSM.agent.SetWaitingTime(combinedWaitTime);
             combinedWaitTime=0;
-            Debug.Log("eeee");
             gFSM.agent.ToIdle();
             return;
         }
@@ -68,51 +53,146 @@ public class GP1Dash : GlobalStates
         else
             BaseFlow();
     }
-    void BaseFlow()
-    {
-        /**if (!test[0])
-        {
-            if (test[1])
-                tpout;
-            shoot;
-            return;
-        }
-        if (test[1])
-        slam;
-        if (!test[2])
-            tp;
-        tp;*/
-    }
     void MixFlow()
     {
-        /*if (dash)
+        switch (progression)
         {
-            if (parry)
-            slam
-            else if (dist>0.8f)
-            {
-                tp;
-            }
-            slam
+            case 0 :
+                curr=mdash;
+                curr.Begin();
+                progression++;
+                break;
+            case 1 :
+                if (gFSM.agent.wasParried )
+                {
+                    curr.End();
+                    curr=slam;
+                    curr.Begin();
+                    progression++;
+                }
+                else
+                {
+                    gFSM.SetTPDest(P1CTeleportation.destPoints.CLOSE);    
+                    curr.End();
+                    curr=tp;
+                    curr.Begin();
+                    progression+=3;
+                }
+                break;
+            case 2:
+                if (gFSM.agent.wasParried)
+                {
+                    gFSM.SetTPDest(P1CTeleportation.destPoints.FAR);
+                    curr.End();
+                    curr=tp;
+                    curr.Begin();
+                    progression++;
+                    break;
+                }
+                    curr.End();
+                    curr=shoot;
+                    curr.Begin();
+                    nextWillEnd=true;
+
+                break;
+            case 3:
+                    curr.End();
+                    curr=shoot;
+                    curr.Begin();
+                    nextWillEnd=true;
+                    break;
+            case 4:
+                if (gFSM.agent.wasParried)
+                {
+                    gFSM.SetTPDest(P1CTeleportation.destPoints.FAR);
+                    curr.End();
+                    curr=tp;
+                    curr.Begin();
+                    nextWillEnd=true;
+                    break;
+                }
+                gFSM.SetTPDest(P1CTeleportation.destPoints.CLOSE);
+                curr.End();
+                curr=tp;
+                curr.Begin();
+                nextWillEnd=true;
+                break;  
         }
-        if (mdash)
-        if (slam)
-        {
-            
-        }
-        if (tpin)
-        if (tpout)
-        if (shoot)*/
+    }
+    void BaseFlow()
+    {
+        Vector3 playerPos=gFSM.agent.transform.position;
+        Vector3 agentPos=gFSM.agent.GetPlayer().position;
+        float dist=Vector3.Distance(playerPos,agentPos);
         switch (progression)
         {
             case 0:
+            {
+                curr=dash;
+                curr.Begin();
+                progression++;
                 break;
+            }
             case 1:
+            {
+                if (!gFSM.agent.wasParried &&dist>=gFSM.agent.distLimit )
+                {
+                    gFSM.SetTPDest(P1CTeleportation.destPoints.CLOSE);    
+                    curr.End();
+                    curr=tp;
+                    curr.Begin();
+                    progression++;
+                    break;
+                }
+                curr.End();
+                curr=slam;
+                curr.Begin();
+                progression+=3;
                 break;
+            }
             case 2:
+            {
+                if (gFSM.agent.wasParried)
+                {
+                    gFSM.SetTPDest(P1CTeleportation.destPoints.FAR);
+                    curr.End();
+                    curr=tp;
+                    curr.Begin();
+                    progression++;
+                    break;
+                }
+                curr.End();
+                curr=shoot;
+                curr.Begin();
+                nextWillEnd=true;
                 break;
+            }
             case 3:
+            {
+                curr.End();
+                curr=shoot;
+                curr.Begin();
+                nextWillEnd=true;
                 break;
+            }
+            case 4:
+            {
+                if (gFSM.agent.wasParried)
+                {
+                    gFSM.SetTPDest(P1CTeleportation.destPoints.FAR);
+                    curr.End();
+                    curr=tp;
+                    curr.Begin();
+                    nextWillEnd=true;
+                    break;
+                }
+                gFSM.SetTPDest(P1CTeleportation.destPoints.CLOSE);
+                curr.End();
+                curr=tp;
+                curr.Begin();
+                nextWillEnd=true;
+                break;  
+            }
         }
     }
 }

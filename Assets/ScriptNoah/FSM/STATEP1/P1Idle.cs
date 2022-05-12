@@ -25,6 +25,9 @@ public class P1Idle : Danu_State
         fsm.transform.position=Vector3.Lerp(IdleMovement,fsm.transform.position,idleTime);
         if (idleTime==0f)
         {
+            if (fsm.agent.GetFollowingGlobal())
+            fsm.agent.NextGlobalPattern();
+            else
             fsm.agent.NextPattern();
             
         }

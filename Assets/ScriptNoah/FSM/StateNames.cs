@@ -26,5 +26,7 @@
     #region  global
     public const string P1GSHOOT = "P1gshoot";
     public const string P1GDASH = "P1gdash";
+    public const string P1GTELEPORTATION ="P1gteleportation";
+    public const string P1GBOOMERANG="P1gboomerang";
     #endregion
 }

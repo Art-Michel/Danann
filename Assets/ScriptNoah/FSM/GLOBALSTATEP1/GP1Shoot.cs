@@ -27,7 +27,6 @@ public class GP1Shoot : GlobalStates
         fsm.AddState(br);
         fsm.AddState(tp);
         dash.orig=mdash.orig=shoot.orig=br.orig=this;
-        fsm=new Danu_FSM();
         stats=gFSM.GetPhaseStats();
         FlowControl();
         
@@ -50,7 +49,6 @@ public class GP1Shoot : GlobalStates
             nextWillEnd=false;
             gFSM.agent.SetWaitingTime(combinedWaitTime);
             combinedWaitTime=0;
-            Debug.Log("eeee");
             gFSM.agent.ToIdle();
         }
         switch(progression)

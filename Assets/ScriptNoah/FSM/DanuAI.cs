@@ -51,6 +51,13 @@ public class DanuAI : MonoBehaviour
     float stunTime;
     float maxStunTime;
     Danu_GlobalFSM gfsm;
+    float revengeTime;
+    float revengeMaxTime;
+
+    [SerializeField] bool followsGlobal;
+    private float revengeSpeed;
+
+    public bool GetFollowingGlobal(){return followsGlobal;}
     private void Awake() {
         if (m_fsm==null)
             m_fsm=GetComponent<Danu_FSM>();
@@ -62,18 +69,27 @@ public class DanuAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //gfsm.AddState(new GP1Shoot());
-        gfsm.enabled=false;
-        m_fsm.AddState(new P1DShoot());
-        m_fsm.AddState(new P1Idle());
-        m_fsm.AddState(new P1CSlam());
-        m_fsm.AddState(new P1DSpin());
-        m_fsm.AddState(new P1DBoomerang());
-        m_fsm.AddState(new P1CDash());
-        m_fsm.AddState(new P1CTeleportation());
-        m_fsm.AddState(new P1CMixDash());
-        //gfsm.ChangeState(StateNames.P1GSHOOT);
-        this.m_fsm.ChangeState( StateNames.P1IDLE); 
+        if (followsGlobal)
+        {
+            gfsm.AddState(new GP1Dash());
+            gfsm.AddState(new GP1Boomerang());
+            gfsm.AddState(new GP1Shoot());
+            gfsm.AddState(new GP1Teleportation());
+            gfsm.ChangeState(StateNames.P1IDLE);
+        }
+        else
+        {
+            m_fsm.AddState(new P1DShoot());
+            m_fsm.AddState(new P1Idle());
+            m_fsm.AddState(new P1CSlam());
+            m_fsm.AddState(new P1DSpin());
+            m_fsm.AddState(new P1DBoomerang());
+            m_fsm.AddState(new P1CDash());
+            m_fsm.AddState(new P1CTeleportation());
+            m_fsm.AddState(new P1CMixDash());
+            this.m_fsm.ChangeState( StateNames.P1IDLE); 
+
+        }
     }
 
     public void Stun(float sTime)
@@ -101,17 +117,25 @@ public class DanuAI : MonoBehaviour
             }
             return;
         }
-        switch (actualState)
+        if (revenge>0 && revengeTime>=revengeMaxTime)
         {
-            case GlobalPattern.SHOOT :
-                break;
-            case GlobalPattern.BR :
-                break;
-            case GlobalPattern.DASH :
-                break;
-            case GlobalPattern.TP :
-                break;
+            revenge=Mathf.Clamp(revenge-Time.deltaTime*revengeSpeed,0,maxRevenge);
+            return;
         }
+        if (revenge>0)
+        {
+            revengeTime=Mathf.Clamp( revengeTime+Time.deltaTime,0,revengeMaxTime);
+        }
+
+    }
+    public void BuildUpRevenge(float add)
+    {
+        revenge=Mathf.Clamp(revenge+add,0,maxRevenge);
+        if (revenge>70)
+            isRevengeHigh=true;
+        else
+            isRevengeHigh=false;
+        revengeTime=0;
     }
     [Button]
     public void NextPattern() 
@@ -155,17 +179,19 @@ public class DanuAI : MonoBehaviour
                 if (!goingRandom)
                     return;
             }
-
-    /*         dist = Vector3.Distance(transform.position, player.position);
-            Debug.Log(dist);
-            Debug.Log(distEvaluator.Evaluate(dist));
+        }
+    }
+    public void NextGlobalPattern()
+    {
+            float revengePercent=revenge*100/maxRevenge;
+            dist = Vector3.Distance(transform.position, player.position);
             float mod = distEvaluator.Evaluate(dist);
             if (mod <= 1.1f) //short ranged patterns
             {
                 Debug.Log("smol");
                 if (lastStates.Contains(StateNames.P1C_TELEPORTATION))
                 {
-                    if (revengePercent>70)
+                    if (isRevengeHigh)
                     {
                         m_fsm.ChangeState(StateNames.P1C_MIXDASH);
                         return;
@@ -188,7 +214,7 @@ public class DanuAI : MonoBehaviour
                     return;
                 }
                 
-                    if (revengePercent>70)
+                    if (isRevengeHigh)
                     {
                         m_fsm.ChangeState(StateNames.P1D_BOOMERANG);
                         return;
@@ -202,13 +228,7 @@ public class DanuAI : MonoBehaviour
             {
                 m_fsm.ChangeState(StateNames.P1D_SPIN);
                 Debug.Log("midwest");
-            } */
-
-        }
-    }
-    public void NextGlobalPattern()
-    {
-
+            }
     }
     public void NextPhase()
     {
@@ -239,8 +259,8 @@ public class DanuAI : MonoBehaviour
         else if (phase==2)
             m_fsm.ChangeState(StateNames.P2IDLE);
     */
-        if (m_fsm.curr.name==StateNames.P1IDLE)
-            return;
+        /*if (m_fsm.curr.name==StateNames.P1IDLE)
+            return;*/
         lastStates.Add(m_fsm.curr.name);
         if(lastStates.Count>maxCap)
             lastStates.RemoveAt(0);
