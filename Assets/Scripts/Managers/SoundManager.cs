@@ -13,11 +13,24 @@ public class SoundManager : ProjectManager<SoundManager>
     [SerializeField] AudioClip _punch0;
     [SerializeField] AudioClip _punch1;
     [SerializeField] AudioClip _punch2;
+    [SerializeField] AudioClip _bossPunchedH;
+    Dictionary<string, AudioClip> _attackSoundEffect;
 
     override protected void Awake()
     {
         base.Awake();
         AudioSource = GetComponent<AudioSource>();
+        _attackSoundEffect = new Dictionary<string, AudioClip>
+        {
+        {Ccl_Attacks.LIGHTATTACK1, _bossPunched},
+        {Ccl_Attacks.LIGHTATTACK2, _bossPunched},
+        {Ccl_Attacks.LIGHTATTACK3, _bossPunchedH},
+        };
+    }
+
+    public void PlayHitSound(string attackName)
+    {
+        PlaySound(_attackSoundEffect[attackName], 1);
     }
 
     private void PlaySound(AudioClip clip, float volume)
@@ -29,10 +42,15 @@ public class SoundManager : ProjectManager<SoundManager>
     {
         PlaySound(_playerHurt, 1f);
     }
-    
+
     public void PlayBossPunched()
     {
         PlaySound(_bossPunched, 1f);
+    }
+
+    public void PlayBossPunchedH()
+    {
+        PlaySound(_bossPunchedH, 1f);
     }
 
     public void PlayBlockedHit()
@@ -55,5 +73,5 @@ public class SoundManager : ProjectManager<SoundManager>
         PlaySound(_punch2, 5f);
     }
 
-    
+
 }
