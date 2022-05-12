@@ -16,9 +16,9 @@ public class BossHealth : EntityHP
         _maxHealthPoints = 1000;
     }
     
-    override protected void DamageFeedback()
+    override protected void DamageFeedback(string attackName)
     {
-        SoundManager.Instance.PlayBossPunched();
+        SoundManager.Instance.PlayHitSound(attackName);
         _isBlinking = true;
         _blinkingT = _blinkingDuration;
     }

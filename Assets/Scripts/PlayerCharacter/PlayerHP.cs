@@ -38,7 +38,7 @@ public class PlayerHP : EntityHP
         _hurtbox = GetComponent<Hurtbox>();
     }
 
-    override protected void DamageFeedback()
+    override protected void DamageFeedback(string attackName= "")
     {
         SoundManager.Instance.PlayPlayerHurt();
         SlowDownTime();
