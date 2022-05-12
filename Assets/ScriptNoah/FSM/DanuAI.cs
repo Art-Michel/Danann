@@ -62,17 +62,18 @@ public class DanuAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gfsm.AddState(new GP1Shoot());
-        /*m_fsm.AddState(new P1DShoot());
+        //gfsm.AddState(new GP1Shoot());
+        gfsm.enabled=false;
+        m_fsm.AddState(new P1DShoot());
         m_fsm.AddState(new P1Idle());
         m_fsm.AddState(new P1CSlam());
         m_fsm.AddState(new P1DSpin());
         m_fsm.AddState(new P1DBoomerang());
         m_fsm.AddState(new P1CDash());
         m_fsm.AddState(new P1CTeleportation());
-        m_fsm.AddState(new P1CMixDash());*/
-        gfsm.ChangeState(StateNames.P1GSHOOT);
-        //this.m_fsm.ChangeState( StateNames.P1C_SLAM); 
+        m_fsm.AddState(new P1CMixDash());
+        //gfsm.ChangeState(StateNames.P1GSHOOT);
+        this.m_fsm.ChangeState( StateNames.P1IDLE); 
     }
 
     public void Stun(float sTime)

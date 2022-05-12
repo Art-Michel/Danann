@@ -184,10 +184,9 @@ public class Danu_FSM : MonoBehaviour
         }
     }
     
-    public GameObject InstantiateStaticProjectile(Vector3 pos,int index=0,SpinBullet.bladeIndex blade=0)
+    public GameObject InstantiateStaticProjectile(Vector3 pos)
     {
         GameObject go= Instantiate(staticProj,pos,Quaternion.identity,P1globalGO.transform);
-        go.GetComponent<SpinBullet>().Initialize(index,blade);
         return go;
     }
 }

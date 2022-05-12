@@ -156,17 +156,17 @@ public class P1DSpin : Danu_State
             case SpinBullet.bladeIndex.NORTH :
                 Vector3 nPos;
                 nPos=Vector3.Lerp(fsm.transform.position,dSphereN.position,delta*newind);
-                nblades.Add(fsm.InstantiateStaticProjectile(nPos,newind,blade));
+                nblades.Add(fsm.InstantiateStaticProjectile(nPos));
                 break;
             case SpinBullet.bladeIndex.WEST :
                 Vector3 wPos;
                 wPos=Vector3.Lerp(fsm.transform.position,dSphereSW.position,delta*newind);
-                wblades.Add(fsm.InstantiateStaticProjectile(wPos,newind,blade));
+                wblades.Add(fsm.InstantiateStaticProjectile(wPos));
                 break;
             case SpinBullet.bladeIndex.EAST :
                 Vector3 ePos;
                 ePos=Vector3.Lerp(fsm.transform.position,dSphereSE.position,delta*newind);
-                eblades.Add(fsm.InstantiateStaticProjectile(ePos,newind,blade));
+                eblades.Add(fsm.InstantiateStaticProjectile(ePos));
                 break;
         }
     }
