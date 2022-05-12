@@ -661,82 +661,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
---- !u!1 &465007270 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8380206358085701966, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
-  m_PrefabInstance: {fileID: 8380206358194231571}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &465007272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465007270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18d8153c7ce99f0419c54895375e8ae4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  P1D_nbShot: 0
-  P1D_delay: 0
-  P1D_wait: 0
-  P1D_ProjLifeTime: 0
-  p1d_ShotSpeed: 0
-  pool: {fileID: 0}
-  p1SlamHitBox: {fileID: 0}
-  P1AttackFrames:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  P1SlamRecovery: 0
-  P1slamScales:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  p1S_radius:
-  - 0
-  - 0
-  - 0
-  p1S_Damage: 
-  p1Sl_MaxMoveTime: 0
-  staticProj: {fileID: 0}
-  P1globalGO: {fileID: 0}
-  P1nweMax:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  p1sp_dist: 0
-  P1rotationSpeed: 0
-  P1turningRight: 0
-  P1maxWaitTime: 0
-  P1SpinLifeTime: 0
-  bladesPreview: []
-  P1BoomerangboomerangL: {fileID: 0}
-  P1BoomerangboomerangR: {fileID: 0}
-  P1BoomeRangSpeed: 0
-  P1BoomeRangMaxStraightTime: 0
-  P1BoomeRangcurveMidL: {fileID: 0}
-  P1BoomeRangcurveMidR: {fileID: 0}
-  P1BoomeRangMaxCurveTime: 0
-  p1Br_startup: 0
-  p1sDash_preview: {fileID: 0}
-  p1sDash_MaxDashTime: 0
-  p1sDash_MaxDashCount: 0
-  p1sDash_DashSpeed: 0
-  p1sDash_MaxChargingTime: 0
-  p1Dash_dashModifier: 0
-  p1TP_arrival: {fileID: 0}
-  p1TP_boomBox: {fileID: 0}
-  p1TP_destination: 0
-  p1TP_FadeTime: 0
-  p1TP_Startup: 0
-  p1TP_offsetValue: 0
-  p1TP_Reco: 0
-  p1TP_Active: 0
-  p1TP_farDist: 0
-  stats: {fileID: 11400000, guid: e8e18d354b366244f98ead4bba0ffa0f, type: 2}
 --- !u!114 &566759171 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5200781579213155258, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
@@ -2405,19 +2329,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4873842967060781016, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.3900263
+      value: -2.9795632
       objectReference: {fileID: 0}
     - target: {fileID: 4873842967060781016, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30.940182
+      value: 42.890575
       objectReference: {fileID: 0}
     - target: {fileID: 4873842967060781016, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -28.177227
+      value: -34.376503
       objectReference: {fileID: 0}
     - target: {fileID: 4873842967060781017, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: field of view
-      value: 60
+      value: 49.13074
       objectReference: {fileID: 0}
     - target: {fileID: 4873842968013606824, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_Name
@@ -2493,15 +2417,15 @@ PrefabInstance:
       objectReference: {fileID: 445122657}
     - target: {fileID: 4873842968632304812, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.3900263
+      value: -2.9795632
       objectReference: {fileID: 0}
     - target: {fileID: 4873842968632304812, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30.940182
+      value: 42.890575
       objectReference: {fileID: 0}
     - target: {fileID: 4873842968632304812, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -28.177227
+      value: -34.376503
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
@@ -3758,10 +3682,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1968996585}
-    - target: {fileID: 3031291097839162625, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
-      propertyPath: p1Br_startup
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4112063746909185506, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: m_RootOrder
       value: 11

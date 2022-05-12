@@ -649,6 +649,7 @@ MonoBehaviour:
   _punch0: {fileID: 8300000, guid: 0c2f8eb10536c7a41afba418b4134a4a, type: 3}
   _punch1: {fileID: 8300000, guid: 48b06c9d93bd5064dbdcaedbf4d17003, type: 3}
   _punch2: {fileID: 8300000, guid: 86522244f05eceb4aaf36933fcf0965f, type: 3}
+  _bossPunchedH: {fileID: 8300000, guid: f4189285134eabf45bae326984d3704f, type: 3}
 --- !u!4 &554261625
 Transform:
   m_ObjectHideFlags: 0
@@ -767,6 +768,10 @@ PrefabInstance:
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 1573667171}
+    - target: {fileID: 197884579, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: Radius
+      value: 3.06
+      objectReference: {fileID: 0}
     - target: {fileID: 197884579, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: _hurtboxOwnerHP
       value: 
@@ -1139,7 +1144,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21272
+  m_Name: pb_Mesh20820
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2807,6 +2812,10 @@ PrefabInstance:
       value: Ccl_Attacks
       objectReference: {fileID: 0}
     - target: {fileID: 341209101, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
+      propertyPath: _attackName
+      value: LightAttack1
+      objectReference: {fileID: 0}
+    - target: {fileID: 341209101, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
       propertyPath: _hitboxes.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -2877,6 +2886,14 @@ PrefabInstance:
     - target: {fileID: 341209101, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
       propertyPath: _hitboxes.Array.data[22]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 742724664, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
+      propertyPath: _attackName
+      value: LightAttack3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122647074, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
+      propertyPath: _attackName
+      value: LightAttack2
       objectReference: {fileID: 0}
     - target: {fileID: 131555018491406302, guid: df160ea61cbe5f0448c39fca7144f6b0, type: 3}
       propertyPath: _plasmaBar
@@ -2949,7 +2966,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4873842967060781016, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.692363
+      value: -9.692362
       objectReference: {fileID: 0}
     - target: {fileID: 4873842967060781016, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3057,7 +3074,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4873842968632304812, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.692363
+      value: -9.692362
       objectReference: {fileID: 0}
     - target: {fileID: 4873842968632304812, guid: 6d9f59cf7aee9974d8c95c94bbd6d78f, type: 3}
       propertyPath: m_LocalPosition.y

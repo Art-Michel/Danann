@@ -33,7 +33,7 @@ public class Hurtbox : MonoBehaviour
             return;
         else
         {
-            _hurtboxOwnerHP.TakeDamage(attackDamage);
+            _hurtboxOwnerHP.TakeDamage(attackDamage, attackName);
             Debug.Log("ouchie ouch");
             _attacksThatHitMe.Add(attackName);
         }

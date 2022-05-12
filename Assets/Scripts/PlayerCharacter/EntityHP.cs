@@ -20,13 +20,13 @@ public class EntityHP : MonoBehaviour
     }
 
     [Button]
-    public void TakeDamage(int amount = 30)
+    public void TakeDamage(int amount = 30, string attackName = "")
     {
         if (!_isInvulnerable)
         {
             HealthPoints = Mathf.Clamp(HealthPoints -= amount, 0, _maxHealthPoints);
             if (_healthBar) UpdateHealthBar();
-            DamageFeedback();
+            DamageFeedback(attackName);
             if (HealthPoints <= 0) Die();
         }
     }
@@ -50,9 +50,9 @@ public class EntityHP : MonoBehaviour
         Debug.Log(name + " just died");
     }
 
-    protected virtual void DamageFeedback()
+    protected virtual void DamageFeedback(string attackName = "")
     {
-
+        
     }
 
     internal void TakeDamage(object attackDamage)
