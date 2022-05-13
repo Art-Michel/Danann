@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 7809920641002653358}
   - component: {fileID: 7809920641002653329}
   - component: {fileID: 7809920641002653328}
-  - component: {fileID: 7809920641002653331}
-  - component: {fileID: 1879402630038225450}
+  - component: {fileID: 9113305946027431530}
   m_Layer: 0
   m_Name: StaticProjectile
   m_TagString: Untagged
@@ -83,20 +82,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7809920641002653331
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7809920641002653330}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1879402630038225450
+--- !u!114 &9113305946027431530
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,11 +91,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7809920641002653330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f45d0b1fc7209e4595ffa5fef8480c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mesh: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
-  Radius: 0.91
-  _hitboxID: 0
-  _damageValue: 5
-  HurtboxesToFocus: []
+  _baseRadius: 3

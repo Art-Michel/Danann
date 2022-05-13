@@ -32,13 +32,9 @@ public class Boomerang : MonoBehaviour
     void Update()
     {
         if (startCurve)
-        {
             UpdateCurve();
-        }
         else
-        {
             UpdateStraight();
-        }
         /*Vector3 bL = boomerangL.transform.position;
         Vector3 bR = boomerangR.transform.position;
         boomerangL.transform.position= new Vector3(bL.x,transform.position.y,bL.z);

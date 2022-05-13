@@ -6,13 +6,14 @@ using UnityEngine;
 public class P1DSpin : Danu_State
 {
     public P1DSpin() : base(StateNames.P1D_SPIN) { }
-    private GameObject globalGO; 
+    private GameObject globalGO;
     Transform preview;
-    Transform[] bladesPreview= new Transform[3];
+    Transform[] bladesPreview = new Transform[3];
+    AttackData bladesParentAttackData;
     private Transform dSphereN;
-    private Transform  dSphereSW;
-    private Transform  dSphereSE;
-    private float dist; 
+    private Transform dSphereSW;
+    private Transform dSphereSE;
+    private float dist;
     private float rotationSpeed;
     private bool turningRight;
     private float maxWaitTime;
@@ -20,9 +21,9 @@ public class P1DSpin : Danu_State
     Vector3 n;
     Vector3 w;
     Vector3 e;
-    List<GameObject> nblades=new List<GameObject>();
-    List<GameObject> wblades=new List<GameObject>();
-    List<GameObject> eblades=new List<GameObject>();
+    List<GameObject> nblades = new List<GameObject>();
+    List<GameObject> wblades = new List<GameObject>();
+    List<GameObject> eblades = new List<GameObject>();
     private bool wait;
     private float waitTime;
     bool isSetUp;
@@ -30,32 +31,33 @@ public class P1DSpin : Danu_State
     public override void Begin()
     {
         //setup des variables
-        dist=fsm.GetP1Sp_Dist();
-        globalGO=fsm.GetP1GlobalGO();
-        preview=fsm.GetP1sD_Preview();
-        Transform[] nweTrans=fsm.GetP1NWEMax();
-        bladesPreview=fsm.GetBladesPreview();
-        dSphereN=nweTrans[0];
-        dSphereSE=nweTrans[1];
-        dSphereSW=nweTrans[2];
-        rotationSpeed=fsm.GetP1RotationSpeed();
-        turningRight=fsm.GetP1TurningRight();
-        maxWaitTime=fsm.GetP1MaxWaitTime();
-        lifetime=fsm.GetP1SpinLifeTime();
-  
+        dist = fsm.GetP1Sp_Dist();
+        globalGO = fsm.GetP1GlobalGO();
+        bladesParentAttackData = globalGO.GetComponent<AttackData>();
+        preview = fsm.GetP1sD_Preview();
+        Transform[] nweTrans = fsm.GetP1NWEMax();
+        bladesPreview = fsm.GetBladesPreview();
+        dSphereN = nweTrans[0];
+        dSphereSE = nweTrans[1];
+        dSphereSW = nweTrans[2];
+        rotationSpeed = fsm.GetP1RotationSpeed();
+        turningRight = fsm.GetP1TurningRight();
+        maxWaitTime = fsm.GetP1MaxWaitTime();
+        lifetime = fsm.GetP1SpinLifeTime();
+
         //repositionnement du boss et des helices
         //fsm.transform.position=fsm.agent.GetArenaCenter();
         /*n=dSphereN.position;
         w=dSphereSW.position;
         e=dSphereSE.position;*/
-        
+
         //activation des helices, ou instantiation si c'est la premiere fois
         globalGO.SetActive(true);
-        preview.localScale=new Vector3(1,1,Vector3.Distance(fsm.transform.position,fsm.agent.GetArenaCenter()));
-        preview.position=fsm.transform.position+(fsm.agent.GetArenaCenter()-fsm.transform.position)/2;
+        preview.localScale = new Vector3(1, 1, Vector3.Distance(fsm.transform.position, fsm.agent.GetArenaCenter()));
+        preview.position = fsm.transform.position + (fsm.agent.GetArenaCenter() - fsm.transform.position) / 2;
         preview.LookAt(fsm.agent.GetArenaCenter());
-        waitTime=0;
-        wait=true;
+        waitTime = 0;
+        wait = true;
     }
 
     // Update is called once per frame
@@ -63,23 +65,23 @@ public class P1DSpin : Danu_State
     {
         if (wait)
         {
-            waitTime+=Time.deltaTime;
-            fsm.transform.position=Vector3.Lerp(fsm.transform.position,fsm.agent.GetArenaCenter(),waitTime/maxWaitTime);
-            if (fsm.transform.position==fsm.agent.GetArenaCenter())
+            waitTime += Time.deltaTime;
+            fsm.transform.position = Vector3.Lerp(fsm.transform.position, fsm.agent.GetArenaCenter(), waitTime / maxWaitTime);
+            if (fsm.transform.position == fsm.agent.GetArenaCenter())
                 SpawnBladesPreview();
-            if (waitTime>=maxWaitTime)
+            if (waitTime >= maxWaitTime)
             {
-                wait=false;
+                wait = false;
                 SpawnBlades();
             }
             else
                 return;
         }
-        lifetime-=Time.deltaTime;
-        if(lifetime<=0)
+        lifetime -= Time.deltaTime;
+        if (lifetime <= 0)
         {
-            if (orig==null)
-            fsm.agent.ToIdle();
+            if (orig == null)
+                fsm.agent.ToIdle();
             else
                 orig.progression++;
 
@@ -89,14 +91,14 @@ public class P1DSpin : Danu_State
 
     private void SpawnBladesPreview()
     {
-        Transform[] nweTrans=fsm.GetP1NWEMax();
+        Transform[] nweTrans = fsm.GetP1NWEMax();
         Vector3 center = fsm.agent.GetArenaCenter();
         Debug.Log(bladesPreview.Length);
-        for (int i=0;i<bladesPreview.Length;i++)
+        for (int i = 0; i < bladesPreview.Length; i++)
         {
             bladesPreview[i].gameObject.SetActive(true);
-            bladesPreview[i].localScale=new Vector3(1,1,Vector3.Distance(center,nweTrans[i].position));
-            bladesPreview[i].position=center+(nweTrans[i].position-center)/2;
+            bladesPreview[i].localScale = new Vector3(1, 1, Vector3.Distance(center, nweTrans[i].position));
+            bladesPreview[i].position = center + (nweTrans[i].position - center) / 2;
             bladesPreview[i].LookAt(nweTrans[i]);
         }
         preview.gameObject.SetActive(false);
@@ -104,11 +106,13 @@ public class P1DSpin : Danu_State
 
     private void SpawnBlades()
     {
-       float delta = 1/dist;
+        float delta = 1 / dist;
+        bladesPreview[0].gameObject.SetActive(false);
+        bladesPreview[1].gameObject.SetActive(false);
+        bladesPreview[2].gameObject.SetActive(false);
         if (isSetUp)
         {
-            Debug.Log("eyeye");
-            for (int i=0;i<nblades.Count;i++)
+            for (int i = 0; i < nblades.Count; i++)
             {
                 nblades[i].SetActive(true);
                 wblades[i].SetActive(true);
@@ -122,50 +126,48 @@ public class P1DSpin : Danu_State
             dSphereN.position=newn*fsm.agent.GetArenaRadius();
             dSphereSW.position=newW*fsm.agent.GetArenaRadius();
             dSphereSE.position=newE*fsm.agent.GetArenaRadius();*/
-            n=dSphereN.position;
-            w=dSphereSW.position;
-            e=dSphereSE.position;
-            for (int i =0;i<dist;i++)
+            n = dSphereN.position;
+            w = dSphereSW.position;
+            e = dSphereSE.position;
+            for (int i = 0; i < dist; i++)
             {
                 Vector3 nPos;
                 Vector3 wPos;
                 Vector3 ePos;
-                nPos=Vector3.Lerp(fsm.transform.position,dSphereN.position,delta*i);
-                wPos=Vector3.Lerp(fsm.transform.position,dSphereSW.position,delta*i);
-                ePos=Vector3.Lerp(fsm.transform.position,dSphereSE.position,delta*i);
+                nPos = Vector3.Lerp(fsm.transform.position, dSphereN.position, delta * i);
+                wPos = Vector3.Lerp(fsm.transform.position, dSphereSW.position, delta * i);
+                ePos = Vector3.Lerp(fsm.transform.position, dSphereSE.position, delta * i);
                 nblades.Add(fsm.InstantiateStaticProjectile(nPos));
                 wblades.Add(fsm.InstantiateStaticProjectile(wPos));
                 eblades.Add(fsm.InstantiateStaticProjectile(ePos));
                 Debug.Log("e");
             }
-            isSetUp=true;
+            bladesParentAttackData.LaunchAttack();
+            isSetUp = true;
         }
-        bladesPreview[0].gameObject.SetActive(false);
-        bladesPreview[1].gameObject.SetActive(false);
-        bladesPreview[2].gameObject.SetActive(false);
 
     }
 
     public void Regenerate(SpinBullet ded)
     {
-        int newind =ded.GetIndex();
+        int newind = ded.GetIndex();
         SpinBullet.bladeIndex blade = ded.GetBlade();
-        float delta = 1/dist;
-        switch(blade)
+        float delta = 1 / dist;
+        switch (blade)
         {
-            case SpinBullet.bladeIndex.NORTH :
+            case SpinBullet.bladeIndex.NORTH:
                 Vector3 nPos;
-                nPos=Vector3.Lerp(fsm.transform.position,dSphereN.position,delta*newind);
+                nPos = Vector3.Lerp(fsm.transform.position, dSphereN.position, delta * newind);
                 nblades.Add(fsm.InstantiateStaticProjectile(nPos));
                 break;
-            case SpinBullet.bladeIndex.WEST :
+            case SpinBullet.bladeIndex.WEST:
                 Vector3 wPos;
-                wPos=Vector3.Lerp(fsm.transform.position,dSphereSW.position,delta*newind);
+                wPos = Vector3.Lerp(fsm.transform.position, dSphereSW.position, delta * newind);
                 wblades.Add(fsm.InstantiateStaticProjectile(wPos));
                 break;
-            case SpinBullet.bladeIndex.EAST :
+            case SpinBullet.bladeIndex.EAST:
                 Vector3 ePos;
-                ePos=Vector3.Lerp(fsm.transform.position,dSphereSE.position,delta*newind);
+                ePos = Vector3.Lerp(fsm.transform.position, dSphereSE.position, delta * newind);
                 eblades.Add(fsm.InstantiateStaticProjectile(ePos));
                 break;
         }
@@ -173,20 +175,20 @@ public class P1DSpin : Danu_State
     private void Rotate()
     {
         if (turningRight)
-            globalGO.transform.Rotate(new Vector3(0,rotationSpeed*Time.deltaTime,0));
+            globalGO.transform.Rotate(new Vector3(0, rotationSpeed * Time.deltaTime, 0));
         else
-            globalGO.transform.Rotate(new Vector3(0,-rotationSpeed*Time.deltaTime,0));    
+            globalGO.transform.Rotate(new Vector3(0, -rotationSpeed * Time.deltaTime, 0));
     }
     public override void End()
     {
         globalGO.SetActive(false);
-        lifetime=fsm.GetP1SpinLifeTime();
+        lifetime = fsm.GetP1SpinLifeTime();
         /*dSphereN.localPosition=n;
         dSphereSW.localPosition=w;
         dSphereSE.localPosition=e;*/
-        globalGO.transform.rotation=Quaternion.identity;
-        float delta=1/dist;
-        for (int i=0;i<nblades.Count;i++)
+        globalGO.transform.rotation = Quaternion.identity;
+        float delta = 1 / dist;
+        for (int i = 0; i < nblades.Count; i++)
         {
             nblades[i].SetActive(false);
             //nblades[i].transform.position=Vector3.Lerp(fsm.transform.position,n,delta*i);

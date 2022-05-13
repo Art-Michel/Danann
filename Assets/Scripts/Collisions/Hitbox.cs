@@ -65,6 +65,11 @@ public class Hitbox : MonoBehaviour
 
     public void CheckForHit()
     {
+        if (_hurtboxesToFocus.Length == 0)
+        {
+            Debug.LogError("Initialized incorrectly: no hurtboxes");
+            return;
+        }
         foreach (Hurtbox hurtbox in _hurtboxesToFocus)
         {
             if (CheckDistance(hurtbox))

@@ -411,6 +411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 1
   shouldHitAllies: 0
+  _attackDamage: 5
   _attackName: LightAttack1
 --- !u!1 &1336719606
 GameObject:
@@ -997,6 +998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 1
   shouldHitAllies: 0
+  _attackDamage: 10
   _attackName: LightAttack2
 --- !u!1 &3972506123130937991
 GameObject:
@@ -1089,6 +1091,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 1
   shouldHitAllies: 0
+  _attackDamage: 20
   _attackName: LightAttack3
 --- !u!1 &8220464650845092523
 GameObject:

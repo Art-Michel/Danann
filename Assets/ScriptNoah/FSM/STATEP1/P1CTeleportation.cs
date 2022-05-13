@@ -5,15 +5,16 @@ using UnityEngine;
 public class P1CTeleportation : Danu_State
 {
     public P1CTeleportation() : base(StateNames.P1C_TELEPORTATION) { }
-    [SerializeField]GameObject arrival;
-    [SerializeField]GameObject boomBox;
-    [SerializeField]Transform target;
-    [SerializeField]destPoints destination;
-    [SerializeField]float MaxFadeTime;
-    [SerializeField]float MaxSartup;
-    [SerializeField]float offsetValue;
-    [SerializeField]float maxReco;
-    [SerializeField]float maxActive;
+    [SerializeField] GameObject arrival;
+    [SerializeField] GameObject boomBox;
+    [SerializeField] AttackData boomBoxAttackData;
+    [SerializeField] Transform target;
+    [SerializeField] destPoints destination;
+    [SerializeField] float MaxFadeTime;
+    [SerializeField] float MaxSartup;
+    [SerializeField] float offsetValue;
+    [SerializeField] float maxReco;
+    [SerializeField] float maxActive;
     [SerializeField] float farDist;
     float fadeTime;
     float startup;
@@ -29,42 +30,43 @@ public class P1CTeleportation : Danu_State
     // Start is called before the first frame update
     public override void Begin()
     {
-        if(!isSetUp)
+        if (!isSetUp)
         {
-            arrival=fsm.GetP1TP_Arrival();
-            boomBox=fsm.GetP1TP_Boombox();
+            arrival = fsm.GetP1TP_Arrival();
+            boomBox = fsm.GetP1TP_Boombox();
+            boomBoxAttackData = boomBox.GetComponent<AttackData>();
             destination = fsm.GetP1TP_Destination();
-            MaxFadeTime=fsm.GetP1TP_Fadetime();
-            MaxSartup=fsm.GetP1TP_Startup();
-            offsetValue=fsm.GetP1TP_Offset();
-            maxReco=fsm.GetP1TP_Recovery();
-            maxActive=fsm.GetP1TP_Active();
-            farDist=fsm.GetP1TP_FarDist();
-            target=fsm.agent.GetPlayer();
-            arenaCenter=fsm.agent.GetArenaCenter();
-            isSetUp=true;
+            MaxFadeTime = fsm.GetP1TP_Fadetime();
+            MaxSartup = fsm.GetP1TP_Startup();
+            offsetValue = fsm.GetP1TP_Offset();
+            maxReco = fsm.GetP1TP_Recovery();
+            maxActive = fsm.GetP1TP_Active();
+            farDist = fsm.GetP1TP_FarDist();
+            target = fsm.agent.GetPlayer();
+            arenaCenter = fsm.agent.GetArenaCenter();
+            isSetUp = true;
         }
         destination=fsm.GetP1TP_Destination();
         arrival.SetActive(false);
-        if (destination==destPoints.FAR)
+        if (destination == destPoints.FAR)
         {
-            float dist=farDist/Vector3.Distance(fsm.transform.position,target.position);
-            Vector3 dir=fsm.transform.position-target.position;
+            float dist = farDist / Vector3.Distance(fsm.transform.position, target.position);
+            Vector3 dir = fsm.transform.position - target.position;
             dir.Normalize();
-            dir*=dist;
-            arrival.transform.position=fsm.transform.position+dir;
-            if (Vector3.Distance(arrival.transform.position, arenaCenter)>=fsm.agent.GetArenaRadius())
+            dir *= dist;
+            arrival.transform.position = fsm.transform.position + dir;
+            if (Vector3.Distance(arrival.transform.position, arenaCenter) >= fsm.agent.GetArenaRadius())
             {
-                dir=fsm.transform.position-target.position;
+                dir = fsm.transform.position - target.position;
                 dir.Normalize();
-                arrival.transform.position=fsm.agent.GetArenaRadius()*dir;
+                arrival.transform.position = fsm.agent.GetArenaRadius() * dir;
             }
         }
         else
         {
-            Vector2 rand=Random.insideUnitCircle;
-            Vector3 offset=new Vector3(rand.x,0,rand.y)*offsetValue;
-            arrival.transform.position=target.position+offset;
+            Vector2 rand = Random.insideUnitCircle;
+            Vector3 offset = new Vector3(rand.x, 0, rand.y) * offsetValue;
+            arrival.transform.position = target.position + offset;
         }
     }
 
@@ -75,33 +77,35 @@ public class P1CTeleportation : Danu_State
     }
     void TP()
     {
-        if (startup<=MaxSartup)
+        if (startup <= MaxSartup)
         {
-            startup+=Time.deltaTime;
+            startup += Time.deltaTime;
         }
-        else if (fadeTime<=MaxFadeTime)
+        else if (fadeTime <= MaxFadeTime)
         {
             arrival.SetActive(true);
-            fadeTime+=Time.deltaTime;
+            fadeTime += Time.deltaTime;
         }
-        else if (active<=maxActive)
+        else if (active <= maxActive)
         {
-            boomBox.SetActive(true);
-            fsm.transform.position=arrival.transform.position;
-            active+=Time.deltaTime;
+            //boomBox.SetActive(true);
+            boomBoxAttackData.LaunchAttack();
+            fsm.transform.position = arrival.transform.position;
+            active += Time.deltaTime;
         }
-        else if (reco<=maxReco)
+        else if (reco <= maxReco)
         {
-            boomBox.SetActive(false);
+            boomBoxAttackData.StopAttack();
+            //boomBox.SetActive(false);
             arrival.SetActive(false);
-            reco+=Time.deltaTime;
+            reco += Time.deltaTime;
         }
         else
         {
-            if (orig==null)
+            if (orig == null)
             {
                 fsm.agent.ToIdle();
-            }             
+            }
             else
             {
                 orig.AddWaitTime(2);
