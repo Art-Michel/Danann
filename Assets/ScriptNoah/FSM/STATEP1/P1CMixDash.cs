@@ -21,10 +21,11 @@ public class P1CMixDash : Danu_State
     [SerializeField] float maxDashTime;
     [SerializeField] float dashSpeed;
     [SerializeField] float dashMod;
-    [SerializeField]float maxChargingTime;
+    [SerializeField] float maxChargingTime;
+    AttackData dashAttackData;
     float altDSpeed;
     int dashCount;
-    int maxDashCount=2;
+    int maxDashCount = 2;
     Vector3 dir;
     float dashTime;
     float chargingTime;
@@ -46,24 +47,26 @@ public class P1CMixDash : Danu_State
 
     private void SetUp()
     {
-        isSetup=true;
-        maxChargingTime= fsm.GetP1sD_ChargingTime();
-        dashSpeed= fsm.GetP1sD_DashSpeed();
-        maxDashTime= fsm.GetP1sD_MDashT();
-        preview= fsm.GetP1sD_Preview();
-        target= fsm.agent.GetPlayer();
-        dashMod=fsm.GetPMD_dMod();
-        mafs=0.8f;
+        isSetup = true;
+        maxChargingTime = fsm.GetP1sD_ChargingTime();
+        dashSpeed = fsm.GetP1sD_DashSpeed();
+        maxDashTime = fsm.GetP1sD_MDashT();
+        preview = fsm.GetP1sD_Preview();
+        target = fsm.agent.GetPlayer();
+        dashMod = fsm.GetPMD_dMod();
+        dashAttackData = fsm.GetP1DashAttackData();
+        mafs = 0.8f;
     }
     void StartDash()
-    {        
-        altDSpeed=dashSpeed;
-        dashCount=maxDashCount;
-        dashTime=0;
-        chargingTime=0;
-        isDashing=true;
+    {
+        altDSpeed = dashSpeed;
+        dashCount = maxDashCount;
+        dashTime = 0;
+        chargingTime = 0;
+        isDashing = true;
+        dashAttackData.LaunchAttack();
         SetTarget();
-        actual=state.CHARGING;
+        actual = state.CHARGING;
     }
     // Update is called once per frame
     public override void Update()
@@ -74,51 +77,52 @@ public class P1CMixDash : Danu_State
         {
             case state.CHARGING:
                 ChargeDash();
-                if (actual!=state.CHARGING)
+                if (actual != state.CHARGING)
                     preview.gameObject.SetActive(false);
                 break;
             case state.DASH:
                 Dash();
-                if (actual!=state.DASH)
+                if (actual != state.DASH)
                 {
+                    dashAttackData.StopAttack();
                     StartStrafe();
                 }
                 break;
             case state.STRAFE:
                 Strafe();
-                if (actual!=state.STRAFE)
+                if (actual != state.STRAFE)
                     preview.gameObject.SetActive(false);
                 break;
             case state.RETURNDASH:
                 ReturnDash();
                 break;
-                
+
         }
 
     }
 
     private void StartStrafe()
     {
-        Vector3 dir = target.position-fsm.transform.position ;
+        Vector3 dir = target.position - fsm.transform.position;
         dir.Normalize();
         Vector3 left = Vector3.Cross(dir, Vector3.up).normalized;
-        Vector3 offset =left*Random.Range(-15,15);
-        offset= new Vector3(offset.x,0,offset.z);
-        strafeDest=fsm.transform.position+offset;
+        Vector3 offset = left * Random.Range(-15, 15);
+        offset = new Vector3(offset.x, 0, offset.z);
+        strafeDest = fsm.transform.position + offset;
     }
 
     private bool CanDash()
     {
-        if (!isDashing || dashCount==0)
+        if (!isDashing || dashCount == 0)
             return false;
         return true;
     }
     private void ChargeDash()
     {
-        if (chargingTime<=maxChargingTime)
+        if (chargingTime <= maxChargingTime)
         {
             preview.gameObject.SetActive(true);
-            chargingTime+=Time.deltaTime;
+            chargingTime += Time.deltaTime;
             //Vector3 arrival= transform.position+dir*dashSpeed*maxDashTime ;
             //arrival=new Vector3(arrival.x,3.72f,arrival.z);
             /*dir=(-fsm.transform.position+target.position).normalized;
@@ -133,30 +137,30 @@ public class P1CMixDash : Danu_State
     }
     private void Dash()
     {
-        
-        if (dashTime<=maxDashTime)
+
+        if (dashTime <= maxDashTime)
         {
-            dashTime+=Time.deltaTime;
-            fsm.transform.position+=dir*dashSpeed*Time.deltaTime;
+            dashTime += Time.deltaTime;
+            fsm.transform.position += dir * dashSpeed * Time.deltaTime;
             return;
         }
         dashCount--;
-        dashTime=0;
-        dir=(-fsm.transform.position+target.position).normalized;
-        chargingTime=0;
+        dashTime = 0;
+        dir = (-fsm.transform.position + target.position).normalized;
+        chargingTime = 0;
         if (getFar)
-            altDSpeed*=dashMod;
+            altDSpeed *= dashMod;
         else
-            altDSpeed/=dashMod;
+            altDSpeed /= dashMod;
         actual++;
     }
     private void Strafe()
     {
-        if (chargingTime<=maxChargingTime)
+        if (chargingTime <= maxChargingTime)
         {
-            chargingTime+=Time.deltaTime;
-            fsm.transform.position=Vector3.Lerp(fsm.transform.position,strafeDest,chargingTime/(maxChargingTime*0.95f));
-            if (chargingTime>=maxChargingTime*0.95f)
+            chargingTime += Time.deltaTime;
+            fsm.transform.position = Vector3.Lerp(fsm.transform.position, strafeDest, chargingTime / (maxChargingTime * 0.95f));
+            if (chargingTime >= maxChargingTime * 0.95f)
             {
                 SetTarget();
                 preview.gameObject.SetActive(true);
@@ -170,51 +174,52 @@ public class P1CMixDash : Danu_State
             preview.localScale=new Vector3(fsm.transform.localScale.x,fsm.transform.localScale.y,maxDashTime*dashSpeed);*/
             return;
         }
-        if (afterStrafe<=mafs)
+        if (afterStrafe <= mafs)
         {
-            afterStrafe+=Time.deltaTime;
+            afterStrafe += Time.deltaTime;
             return;
         }
-        
+
         actual++;
     }
     private void ReturnDash()
     {
-        if (dashTime<=maxDashTime)
+        if (dashTime <= maxDashTime)
         {
-            dashTime+=Time.deltaTime;
-            fsm.transform.position+=dir*dashSpeed*Time.deltaTime;
+            dashTime += Time.deltaTime;
+            fsm.transform.position += dir * dashSpeed * Time.deltaTime;
             return;
         }
         dashCount--;
-        dashTime=0;
-        dir=(-fsm.transform.position+target.position).normalized;
-        if (dashCount==0)
+        dashTime = 0;
+        dashAttackData.LaunchAttack();
+        dir = (-fsm.transform.position + target.position).normalized;
+        if (dashCount == 0)
         {
-            isDashing=false;
+            isDashing = false;
             Debug.Log("End");
-            actual=state.CHARGING;
-            if (orig==null)
+            actual = state.CHARGING;
+            if (orig == null)
             {
                 fsm.agent.ToIdle();
-            }             
+            }
             else
             {
                 orig.AddWaitTime(2);
                 orig.FlowControl();
             }
         }
-        actual=state.CHARGING;
+        actual = state.CHARGING;
 
     }
     void SetTarget()
     {
-        dir=(-fsm.transform.position+target.position).normalized;
-        startPos=fsm.transform.position;
-        maxArrival=fsm.transform.position+dir*dashSpeed*dashTime;
-        preview.position=startPos+(dir*dashSpeed*maxDashTime)/2;
+        dir = (-fsm.transform.position + target.position).normalized;
+        startPos = fsm.transform.position;
+        maxArrival = fsm.transform.position + dir * dashSpeed * dashTime;
+        preview.position = startPos + (dir * dashSpeed * maxDashTime) / 2;
         preview.LookAt(target);
-        preview.localScale=new Vector3(fsm.transform.localScale.x,fsm.transform.localScale.y,maxDashTime*dashSpeed);
+        preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, maxDashTime * dashSpeed);
     }
 
 }

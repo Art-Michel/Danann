@@ -97,6 +97,8 @@ public class Danu_FSM : MonoBehaviour
     public float GetP1sD_ChargingTime() { return p1sDash_MaxChargingTime; }
     [Foldout("Phase 1 Dash"), SerializeField] private float p1Dash_dashModifier;
     public float GetPMD_dMod() { return p1Dash_dashModifier; }
+    [Foldout("Phase 1 Dash"), SerializeField] private AttackData p1Dash_AttackData;
+    public AttackData GetP1DashAttackData() { return p1Dash_AttackData; }
     #endregion
     #region TelePortation
     [Foldout("Phase 1 TP"), SerializeField] GameObject p1TP_arrival;

@@ -15,7 +15,8 @@ public class P1CDash : Danu_State
     [SerializeField] int dashCount;
     [SerializeField] int maxDashCount;
     [SerializeField] float dashSpeed;
-    [SerializeField]float maxChargingTime;
+    [SerializeField] float maxChargingTime;
+    [SerializeField] AttackData dashAttackData;
     Vector3 dir;
     float dashTime;
     float chargingTime;
@@ -25,19 +26,20 @@ public class P1CDash : Danu_State
     // Start is called before the first frame update
     public override void Begin()
     {
-        if (target==null)
+        if (target == null)
             SetUp();
         StartDash();
     }
 
     private void SetUp()
     {
-        maxChargingTime= fsm.GetP1sD_ChargingTime();
-        dashSpeed= fsm.GetP1sD_DashSpeed();
-        maxDashTime= fsm.GetP1sD_MDashT();
-        maxDashCount= 1;
-        preview= fsm.GetP1sD_Preview();
-        target= fsm.agent.GetPlayer();
+        maxChargingTime = fsm.GetP1sD_ChargingTime();
+        dashSpeed = fsm.GetP1sD_DashSpeed();
+        maxDashTime = fsm.GetP1sD_MDashT();
+        maxDashCount = 1;
+        dashAttackData = fsm.GetP1DashAttackData();
+        preview = fsm.GetP1sD_Preview();
+        target = fsm.agent.GetPlayer();
     }
 
     // Update is called once per frame
@@ -51,50 +53,54 @@ public class P1CDash : Danu_State
         {
             return;
         }
-        if (dashCount==0)
+        if (dashCount == 0)
         {
             return;
         }
-        if (chargingTime<=maxChargingTime)
+        if (chargingTime <= maxChargingTime)
         {
             preview.gameObject.SetActive(true);
-            chargingTime+=Time.deltaTime;
+            chargingTime += Time.deltaTime;
             //Vector3 arrival= transform.position+dir*dashSpeed*maxDashTime ;
             //arrival=new Vector3(arrival.x,3.72f,arrival.z);
-            
+
             return;
         }
-        dashTime+=Time.deltaTime;
-        fsm.transform.position+=dir*dashSpeed*Time.deltaTime;
-        if (dashTime>=maxDashTime)
+        dashTime += Time.deltaTime;
+        fsm.transform.position += dir * dashSpeed * Time.deltaTime;
+        if (dashTime >= maxDashTime)
         {
             preview.gameObject.SetActive(false);
             dashCount--;
-            dashTime=0;
-            dir=(-fsm.transform.position+target.position).normalized;
-            if (orig==null)
+            dashTime = 0;
+            dir = (-fsm.transform.position + target.position).normalized;
+            if (orig == null)
             {
                 fsm.agent.ToIdle();
-            }             
+                dashAttackData.StopAttack();
+            }
             else
             {
                 orig.AddWaitTime(2);
                 orig.FlowControl();
+                dashAttackData.StopAttack();
             }
         }
-        
+
     }
     void StartDash()
     {
-        dashCount=maxDashCount;
-        dashTime=0;
-        chargingTime=0;
-        isDashing=true;
-        dir=(-fsm.transform.position+target.position).normalized;
-        startPos=fsm.transform.position;
-        maxArrival=fsm.transform.position+dir*dashSpeed*dashTime;
-        preview.position=startPos+(dir*dashSpeed*maxDashTime)/2;
+        dashCount = maxDashCount;
+        dashTime = 0;
+        chargingTime = 0;
+        isDashing = true;
+        dir = (-fsm.transform.position + target.position).normalized;
+        startPos = fsm.transform.position;
+        maxArrival = fsm.transform.position + dir * dashSpeed * dashTime;
+        preview.position = startPos + (dir * dashSpeed * maxDashTime) / 2;
         preview.LookAt(target);
-        preview.localScale=new Vector3(fsm.transform.localScale.x,fsm.transform.localScale.y,maxDashTime*dashSpeed);
+        preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, maxDashTime * dashSpeed);
+        dashAttackData.LaunchAttack();
+        Debug.Log("mario");
     }
 }

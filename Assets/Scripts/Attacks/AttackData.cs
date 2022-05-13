@@ -37,7 +37,6 @@ public class AttackData : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             _hitboxes[i] = transform.GetChild(i).GetComponent<Hitbox>();
-            Debug.Log(_hitboxes[i].name);
         }
     }
 
