@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,39 +7,49 @@ using UnityEngine;
 public class P1CSlam : Danu_State
 {
     public P1CSlam() : base(StateNames.P1C_SLAM) { }
-    GameObject boombox;
+    AttackData[] _slamAttackDatas = new AttackData[3];
+    /*GameObject boombox;
     Transform preview;
-    Hitbox boom;
-    float[] startup=new float[3];
-    float[] active=new float[3];
-    float[] end=new float[3];
-    float timer;
-    float maxDistance;
+    Hitbox boom;*/
+    int _state = 0;
+    //0= _isPreviewing 
+    //1= _isAttacking 
+    //2= _isRecovering 
+    float[] _startup = new float[3];
+    float[] _active = new float[3];
+    float[] _recovery = new float[3];
+    float _timer;
+    /*float maxDistance;
     float[] radius=new float[3];
     int[] damages=new int[3];
-    Vector3[] scales=new Vector3[3];
-    int slamCount;
-    int maxSlamCount=3;
-    int index=0;
-    private bool canStart;
-   // float movetime;
-    bool bb;
-    private float maxMoveTime;
+    Vector3[] scales=new Vector3[3];*/
+    int _slamCount;
+    int _maxSlamCount = 3;
+    int _index = 0;
+    //private bool _canStart;
+    // float movetime;
+    //bool _bb;
+    //private float _maxMoveTime;
 
-    // Start is called before the first frame update
     public override void Begin()
     {
-        boombox=fsm.Getp1SlamHitBox();
-        //boom=boombox.GetComponent<LingeringHitbox>();
-        canStart=true;
-        Vector3[] frames =new Vector3[3];
-        for (int i=0;i<3;i++)
+        _slamAttackDatas[0] = fsm.GetP1Slam1AttackData();
+        _slamAttackDatas[1] = fsm.GetP1Slam2AttackData();
+        _slamAttackDatas[2] = fsm.GetP1Slam3AttackData();
+        _index = 0;
+        Vector3[] frames = new Vector3[3];
+        for (int i = 0; i < 3; i++)
         {
-            frames[i]=fsm.GetAttackFrames(i);
-            startup[i]=frames[i].x;
-            active[i]=frames[i].y;
-            end[i]=frames[i].z;
+            frames[i] = fsm.GetAttackFrames(i);
+            _startup[i] = frames[i].x;
+            _active[i] = frames[i].y;
+            _recovery[i] = frames[i].z;
         }
+        StartPreview();
+        /*
+        boombox=fsm.Getp1SlamHitBox();
+        boom=boombox.GetComponent<LingeringHitbox>();
+        canStart=true;
         preview=fsm.GetBladesPreview()[0];
         index=0;
         timer=0;
@@ -48,15 +59,15 @@ public class P1CSlam : Danu_State
         scales[0] = fsm.GetP1SlamScale(0);
         scales[1] = fsm.GetP1SlamScale(1);       
         scales[2] = fsm.GetP1SlamScale(2);
-        RescaleBoomBox();
+        //RescaleBoomBox();
         maxDistance=boombox.transform.localScale.z*2;
         maxMoveTime=fsm.GetP1Sl_MaxMoveTime();
         //movetime=0;
         if (maxDistance<=Vector3.Distance(fsm.transform.position,fsm.agent.GetPlayer().position))
-            canStart=false;        
+            canStart=false;        */
     }
 
-    private void RescaleBoomBox()
+    /*private void RescaleBoomBox()
     {
 
         if (slamCount<maxSlamCount)
@@ -77,12 +88,28 @@ public class P1CSlam : Danu_State
 
             slamCount++;
         }
-    }
-    
+    }*/
+
+
     // Update is called once per frame
     public override void Update()
     {
-        if (!canStart)
+        _timer += Time.deltaTime;
+        if (_state == 0 && _timer > _startup[_index])
+            StartAttack();
+        if (_state == 1 && _timer > _active[_index])
+            StartRecovery();
+        if (_state == 2 && _timer > _recovery[_index])
+        {
+            _index++;
+            if (_index == _maxSlamCount)
+                Exit();
+            else
+                StartPreview();
+        }
+
+        #region old slam
+        /*if (!canStart)
         {
             float dist=Vector3.Distance(fsm.transform.position,fsm.agent.GetPlayer().position);
             Vector3 dir=-fsm.transform.position+fsm.agent.GetPlayer().position;
@@ -141,8 +168,56 @@ public class P1CSlam : Danu_State
                     break;
                 default:
                     break;
+            }*/
+        #endregion
+    }
+    
+    /*if (orig == null)
+            {
+                fsm.agent.ToIdle();
+            }
+            else
+            {
+                orig.AddWaitTime(2);
+                orig.FlowControl();
+            }*/
+
+    private void StartPreview()
+    {
+        _timer = 0;
+        _state = 0;
+        fsm.transform.LookAt(fsm.agent.GetPlayer());
+        _slamAttackDatas[_index].gameObject.SetActive(true);
+    }
+
+    private void StartAttack()
+    {
+        _timer = 0;
+        _state = 1;
+        _slamAttackDatas[_index].LaunchAttack();
+    }
+
+    private void StartRecovery()
+    {
+        _timer = 0;
+        _state = 2;
+        _slamAttackDatas[_index].StopAttack();
+        _slamAttackDatas[_index].gameObject.SetActive(false);
+    }
+
+    void Exit()
+    {
+        if (orig == null)
+            {
+                fsm.agent.ToIdle();
+            }
+            else
+            {
+                orig.AddWaitTime(2);
+                orig.FlowControl();
             }
     }
+    /*
     private void LookTowardPlayer()
     {
         fsm.transform.LookAt(fsm.agent.GetPlayer());
@@ -186,5 +261,5 @@ private void ToIdle()
         scales[1] = fsm.GetP1SlamScale(1);
         scales[2] = fsm.GetP1SlamScale(2);
         RescaleBoomBox();
-    }
+    }*/
 }

@@ -25,19 +25,26 @@ public class Danu_FSM : MonoBehaviour
     public Pool GetPool() { return pool; }
     #endregion
     #region Slam
-    [Foldout("Phase 1 Slam")][SerializeField] GameObject p1SlamHitBox;
-    public GameObject Getp1SlamHitBox() { return p1SlamHitBox; }
+    [Foldout("Phase 1 Slam")][SerializeField] AttackData P1Slam1AttackData;
+    public AttackData GetP1Slam1AttackData() { return P1Slam1AttackData; }
+    [Foldout("Phase 1 Slam")][SerializeField] AttackData P1Slam2AttackData;
+    public AttackData GetP1Slam2AttackData() { return P1Slam2AttackData; }
+    [Foldout("Phase 1 Slam")][SerializeField] AttackData P1Slam3AttackData;
+    public AttackData GetP1Slam3AttackData() { return P1Slam3AttackData; }
+
+    /*[Foldout("Phase 1 Slam")][SerializeField] GameObject p1SlamHitBox;
+    public GameObject Getp1SlamHitBox() { return p1SlamHitBox; }*/
     [Foldout("Phase 1 Slam")][SerializeField] Vector3[] P1AttackFrames = new Vector3[3];
     public Vector3 GetAttackFrames(int index) { return P1AttackFrames[index]; }
     [Foldout("Phase 1 Slam")][SerializeField] private float P1SlamRecovery;
     public float GetP1SlamRecovery() { return P1SlamRecovery; }
-    [Foldout("Phase 1 Slam")][SerializeField] private Vector3[] P1slamScales = new Vector3[3];
-    public Vector3 GetP1SlamScale(int index) { return P1slamScales[index]; }
-    [Foldout("Phase 1 Slam")][SerializeField] private float[] p1S_radius = new float[3];
-    public float[] GetP1S_Radius() { return p1S_radius; }
+    /*[Foldout("Phase 1 Slam")][SerializeField] private Vector3[] P1slamScales = new Vector3[3];
+    public Vector3 GetP1SlamScale(int index) { return P1slamScales[index]; }*/
+    /*[Foldout("Phase 1 Slam")][SerializeField] private float[] p1S_radius = new float[3];
+    public float[] GetP1S_Radius() { return p1S_radius; }*/
 
-    [Foldout("Phase 1 Slam")][SerializeField] private int[] p1S_Damage;
-    public int[] GetP1S_Damage() { return p1S_Damage; }
+    /*[Foldout("Phase 1 Slam")][SerializeField] private int[] p1S_Damage;
+    public int[] GetP1S_Damage() { return p1S_Damage; }*/
     [Foldout("Phase 1 Slam")][SerializeField] private float p1Sl_MaxMoveTime;
     public float GetP1Sl_MaxMoveTime() { return p1Sl_MaxMoveTime; }
 
@@ -67,7 +74,7 @@ public class Danu_FSM : MonoBehaviour
     public GameObject GetP1BRL() { return P1BoomerangboomerangL; }
     [Foldout("Phase 1 Boomerang")][SerializeField] private GameObject P1BoomerangboomerangR;
     public GameObject GetP1BRR() { return P1BoomerangboomerangR; }
-    
+
     [Foldout("Phase 1 Boomerang")][SerializeField] private AttackData boomerangAttackData;
     public AttackData GetBoomerangAttackData() { return boomerangAttackData; }
 
@@ -107,7 +114,7 @@ public class Danu_FSM : MonoBehaviour
     public GameObject GetP1TP_Boombox() { return p1TP_boomBox; }
     [Foldout("Phase 1 TP"), SerializeField] P1CTeleportation.destPoints p1TP_destination;
     public P1CTeleportation.destPoints GetP1TP_Destination() { return p1TP_destination; }
-        public void SetTPDest(P1CTeleportation.destPoints newDest){p1TP_destination=newDest;}
+    public void SetTPDest(P1CTeleportation.destPoints newDest) { p1TP_destination = newDest; }
     [Foldout("Phase 1 TP"), SerializeField] float p1TP_FadeTime;
     public float GetP1TP_Fadetime() { return p1TP_FadeTime; }
     [Foldout("Phase 1 TP"), SerializeField] float p1TP_Startup;

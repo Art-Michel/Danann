@@ -507,7 +507,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8380206358085702002}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &8786416037019639580
 SpriteRenderer:
@@ -801,25 +801,25 @@ PrefabInstance:
       propertyPath: bladesPreview.Array.data[2]
       value: 
       objectReference: {fileID: 30027824}
-    - target: {fileID: 868634315, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
+    - target: {fileID: 868634318, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4711208715938537054, guid: 316464b63cf28044ab47d752e7bc2d3a, type: 3}
+    - target: {fileID: 1599504540, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5.2
+      value: 16
       objectReference: {fileID: 0}
-    - target: {fileID: 868634315, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
+    - target: {fileID: 1599504540, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5.2
+      value: 16
       objectReference: {fileID: 0}
-    - target: {fileID: 868634315, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
+    - target: {fileID: 1599504540, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5.2
+      value: 16
       objectReference: {fileID: 0}
-    - target: {fileID: 868634315, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 30.312113
-      objectReference: {fileID: 0}
-    - target: {fileID: 868634315, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -17.497883
+    - target: {fileID: 734846959447378763, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 868634318, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
       propertyPath: m_Mesh
@@ -883,7 +883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6681568230715042302, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6799650906462863056, guid: abf5b8bb838a90e49ad5427e7292ccbf, type: 3}
       propertyPath: m_RootOrder
