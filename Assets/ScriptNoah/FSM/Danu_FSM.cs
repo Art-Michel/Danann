@@ -102,6 +102,7 @@ public class Danu_FSM : MonoBehaviour
         public GameObject GetP1TP_Boombox(){return p1TP_boomBox;}
         [Foldout("Phase 1 TP"),SerializeField]P1CTeleportation.destPoints p1TP_destination;
         public P1CTeleportation.destPoints GetP1TP_Destination(){return p1TP_destination;}
+        public void SetTPDest(P1CTeleportation.destPoints newDest){p1TP_destination=newDest;}
         [Foldout("Phase 1 TP"),SerializeField]float p1TP_FadeTime;
         public float GetP1TP_Fadetime(){return p1TP_FadeTime;}
         [Foldout("Phase 1 TP"),SerializeField]float p1TP_Startup;

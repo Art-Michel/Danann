@@ -156,6 +156,19 @@ public class DanuAI : MonoBehaviour
                             m_fsm.ChangeState(StateNames.P1C_SLAM);
                             break;
                         case 3:
+                            Vector3 playerPos=player.position;
+                            Vector3 agentPos=transform.position;
+                            float dist=Vector3.Distance(playerPos,agentPos);
+                            if (dist>distLimit)
+                            {
+                                gfsm.SetTPDest(P1CTeleportation.destPoints.FAR);    
+                                m_fsm.SetTPDest(P1CTeleportation.destPoints.FAR);  
+                            }
+                            else
+                            {
+                                gfsm.SetTPDest(P1CTeleportation.destPoints.CLOSE);    
+                                m_fsm.SetTPDest(P1CTeleportation.destPoints.CLOSE);  
+                            }
                             m_fsm.ChangeState(StateNames.P1C_TELEPORTATION);
                             break;
                         case 4:

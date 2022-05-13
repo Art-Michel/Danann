@@ -47,10 +47,10 @@ public class Boomerang : MonoBehaviour
     }
     void UpdateStraight()
     {
-        straightTime+=Time.deltaTime*speed;
-        boomerangL.transform.position=Vector3.Lerp(boomerangL.transform.position,curveStartL,straightTime);
-        boomerangR.transform.position=Vector3.Lerp(boomerangR.transform.position,curveStartR,straightTime);
-        if (straightTime>=MaxStraightTime-0.18f)
+        straightTime+=Time.deltaTime;
+        boomerangL.transform.position=Vector3.Lerp(boomerangL.transform.position,curveStartL,straightTime/MaxStraightTime);
+        boomerangR.transform.position=Vector3.Lerp(boomerangR.transform.position,curveStartR,straightTime/MaxStraightTime);
+        if(boomerangL.transform.position==curveStartL) 
         {
             startCurve=true;
             UpdateCurve();
@@ -60,26 +60,26 @@ public class Boomerang : MonoBehaviour
     void UpdateCurve()
     {
             curveTime+=Time.deltaTime*speed;
-            if (curveTime>1)
+            if (curveTime>MaxCurveTime)
                 return;
             boomerangL.transform.position=Curve(boomerangL);
             boomerangR.transform.position=Curve(boomerangR);
     }
     private Vector3 Curve(GameObject boom)
     {
-        float u=1-curveTime ;
-        float tt=curveTime*curveTime;
+        float u=1-(curveTime/MaxCurveTime) ;
+        float tt=(curveTime/MaxCurveTime)*(curveTime/MaxCurveTime);
         float uu=u*u;
         Vector3 point;
         if (boom==boomerangL)
         {
             point=uu*curveStartL;
-            point+=2*u*curveTime*curveMidL.position;
+            point+=2*u*(curveTime/MaxCurveTime)*curveMidL.position;
         }
         else
         {
             point=uu*curveStartR;
-            point+=2*u*curveTime*curveMidR.position;
+            point+=2*u*(curveTime/MaxCurveTime)*curveMidR.position;
         }
         point+=tt*curveEnd;
         return point;
