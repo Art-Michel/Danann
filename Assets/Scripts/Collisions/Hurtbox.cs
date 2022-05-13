@@ -10,12 +10,14 @@ public class Hurtbox : MonoBehaviour
     Mesh _mesh;
     void OnDrawGizmos()
     {
+        #if UNITY_EDITOR
         SOMeshes.Init();
         _mesh = SOMeshes.Instance.HitboxDebugSphere;
         Gizmos.color = SphereColor;
         Gizmos.DrawMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
         Gizmos.color = SphereWireColor;
         Gizmos.DrawWireMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
+        #endif
     }
     #endregion
 

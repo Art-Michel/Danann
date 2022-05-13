@@ -1120,26 +1120,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossGameObject
       objectReference: {fileID: 0}
-    - target: {fileID: 3031291097171739625, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3031291097585045318, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 1573667171}
-    - target: {fileID: 3031291097839162625, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
-      propertyPath: p1TP_Startup
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3031291097839162625, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
-      propertyPath: p1TP_FadeTime
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3031291098178440007, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4112063746909185506, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1192,10 +1176,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 388534876}
-    - target: {fileID: 8380206358085702001, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
-      propertyPath: maxProjectilePool
-      value: 13
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
 --- !u!1 &763397639
@@ -13833,12 +13813,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1388482880}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.82, y: 0.90245736, z: -6.13}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -24.82, y: 521.3025, z: -135.23001}
   m_LocalScale: {x: 47.491, y: 47.491, z: 47.491}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_Father: {fileID: 1985527854}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1394341871
 PrefabInstance:
@@ -14318,7 +14298,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-39234
+  m_Name: pb_Mesh26586
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14718,6 +14698,7 @@ Transform:
   - {fileID: 852504530}
   - {fileID: 434055500}
   - {fileID: 1095655747}
+  - {fileID: 1388482885}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

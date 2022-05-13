@@ -212,7 +212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &535848169
 Transform:
   m_ObjectHideFlags: 0
@@ -356,7 +356,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &603155535
 Transform:
   m_ObjectHideFlags: 0
@@ -3560,6 +3560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a851233fff5b21a4ab34b03e4cf8b587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}
   globalStates: 0
   phase: 1
   player: {fileID: 0}
@@ -3633,7 +3634,7 @@ MonoBehaviour:
   projectile: {fileID: 3516479995275154835, guid: a802e1e7d87be014ca7ef970427689d4, type: 3}
   maxCap: 0
   goingRandom: 1
-  maxProjectilePool: 0
+  maxProjectilePool: 13
 --- !u!114 &197884578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3716,8 +3717,8 @@ MonoBehaviour:
   p1TP_arrival: {fileID: 0}
   p1TP_boomBox: {fileID: 6464444217353293959}
   p1TP_destination: 0
-  p1TP_FadeTime: 2
-  p1TP_Startup: 1.6
+  p1TP_FadeTime: 1.5
+  p1TP_Startup: 1
   p1TP_offsetValue: 1
   p1TP_Reco: 2
   p1TP_Active: 0.8
