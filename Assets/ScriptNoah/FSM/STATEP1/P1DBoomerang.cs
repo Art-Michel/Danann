@@ -17,7 +17,9 @@ public class P1DBoomerang : Danu_State
     [SerializeField] private float MaxCurveTime;
     float straightTime;
     Vector3 curveStartL;
-    Vector3 curveStartR;
+    Vector3 curveStartR;    
+    Vector3 startL;
+    Vector3 startR;
     Vector3 curveEnd;
     float curveTime = 0;
     bool startCurve;
@@ -51,6 +53,8 @@ public class P1DBoomerang : Danu_State
         preview.LookAt(straightEnd);
         preview.gameObject.SetActive(true);
         wait = true;
+        startL=boomerangL.transform.position;
+        startR=boomerangR.transform.position;
         maxWaitTime = fsm.GetP1BR_Startup();
     }
 
@@ -94,7 +98,12 @@ public class P1DBoomerang : Danu_State
         Debug.Log(curveTime);
         if (curveTime > MaxCurveTime)
         {
+            boomerangL.transform.position = startL;
+            boomerangR.transform.position = startR;
             Debug.Log("eeee");
+            curveTime=0;
+            straightTime=0;
+            startCurve=false;
             if (orig == null)
             {
                 fsm.agent.ToIdle();

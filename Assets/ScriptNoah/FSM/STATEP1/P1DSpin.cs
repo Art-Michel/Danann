@@ -56,6 +56,7 @@ public class P1DSpin : Danu_State
         preview.localScale = new Vector3(1, 1, Vector3.Distance(fsm.transform.position, fsm.agent.GetArenaCenter()));
         preview.position = fsm.transform.position + (fsm.agent.GetArenaCenter() - fsm.transform.position) / 2;
         preview.LookAt(fsm.agent.GetArenaCenter());
+        preview.gameObject.SetActive(true);
         waitTime = 0;
         wait = true;
     }
@@ -68,7 +69,10 @@ public class P1DSpin : Danu_State
             waitTime += Time.deltaTime;
             fsm.transform.position = Vector3.Lerp(fsm.transform.position, fsm.agent.GetArenaCenter(), waitTime / maxWaitTime);
             if (fsm.transform.position == fsm.agent.GetArenaCenter())
+            {
                 SpawnBladesPreview();
+
+            }
             if (waitTime >= maxWaitTime)
             {
                 wait = false;
@@ -94,6 +98,7 @@ public class P1DSpin : Danu_State
         Transform[] nweTrans = fsm.GetP1NWEMax();
         Vector3 center = fsm.agent.GetArenaCenter();
         Debug.Log(bladesPreview.Length);
+        preview.gameObject.SetActive(false);
         for (int i = 0; i < bladesPreview.Length; i++)
         {
             bladesPreview[i].gameObject.SetActive(true);
@@ -101,7 +106,6 @@ public class P1DSpin : Danu_State
             bladesPreview[i].position = center + (nweTrans[i].position - center) / 2;
             bladesPreview[i].LookAt(nweTrans[i]);
         }
-        preview.gameObject.SetActive(false);
     }
 
     private void SpawnBlades()

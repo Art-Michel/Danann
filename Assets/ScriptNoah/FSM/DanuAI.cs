@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
-
+using Cinemachine;
 public class DanuAI : MonoBehaviour
 {
     private Danu_FSM m_fsm=null;
@@ -13,6 +13,8 @@ public class DanuAI : MonoBehaviour
         BR,
         IDLE
     }
+    [SerializeField] CinemachineTargetGroup cam;
+    public CinemachineTargetGroup GetCam(){return cam;}
     public bool isRevengeHigh{get;private set;}
     public bool wasParried{get;private set;}
     public float distLimit{get;private set;}

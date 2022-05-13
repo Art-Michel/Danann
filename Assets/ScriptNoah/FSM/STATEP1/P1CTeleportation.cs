@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 public class P1CTeleportation : Danu_State
 {
     public P1CTeleportation() : base(StateNames.P1C_TELEPORTATION) { }
-    [SerializeField] GameObject arrival;
-    [SerializeField] GameObject boomBox;
-    [SerializeField] AttackData boomBoxAttackData;
+    GameObject arrival;
+    GameObject boomBox;
+    AttackData boomBoxAttackData;
     [SerializeField] Transform target;
     [SerializeField] destPoints destination;
     [SerializeField] float MaxFadeTime;
@@ -21,6 +21,7 @@ public class P1CTeleportation : Danu_State
     float active;
     bool isSetUp;
     Vector3 arenaCenter;
+    CinemachineTargetGroup cam;
     public enum destPoints
     {
         FAR,
@@ -32,6 +33,7 @@ public class P1CTeleportation : Danu_State
     {
         if (!isSetUp)
         {
+            cam=fsm.agent.GetCam();
             arrival = fsm.GetP1TP_Arrival();
             boomBox = fsm.GetP1TP_Boombox();
             boomBoxAttackData = boomBox.GetComponent<AttackData>();
@@ -50,6 +52,7 @@ public class P1CTeleportation : Danu_State
         arrival.SetActive(false);
         if (destination == destPoints.FAR)
         {
+            cam.m_Targets[cam.m_Targets.Length-1].weight=1;
             float dist = farDist / Vector3.Distance(fsm.transform.position, target.position);
             Vector3 dir = fsm.transform.position - target.position;
             dir.Normalize();
@@ -97,6 +100,7 @@ public class P1CTeleportation : Danu_State
         {
             boomBoxAttackData.StopAttack();
             //boomBox.SetActive(false);
+            cam.m_Targets[cam.m_Targets.Length-1].weight=0;
             arrival.SetActive(false);
             reco += Time.deltaTime;
         }

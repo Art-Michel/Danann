@@ -54,9 +54,9 @@ public class P1DShoot : Danu_State
                 index++;
                 GameObject go = pool.Get();
                 go.GetComponent<Projectiles>().SetSpeed(speed);
-                go.GetComponent<AttackData>().LaunchAttack();
                 go.transform.position = fsm.transform.position;
                 go.SetActive(true);
+                go.GetComponent<AttackData>().LaunchAttack();
             }
         }
     }
