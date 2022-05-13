@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
@@ -31,7 +30,6 @@ public class DanuAI : MonoBehaviour
     {
         return movementRange;
     }
-
     [SerializeField] private float waitingTime;
     
     [SerializeField] private float arenaRadius;
