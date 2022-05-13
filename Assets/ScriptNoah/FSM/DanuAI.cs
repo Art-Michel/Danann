@@ -54,7 +54,7 @@ public class DanuAI : MonoBehaviour
     float revengeTime;
     float revengeMaxTime;
 
-    [SerializeField] bool followsGlobal;
+    [SerializeField] public bool followsGlobal{get;private set;}
     private float revengeSpeed;
 
     public bool GetFollowingGlobal(){return followsGlobal;}

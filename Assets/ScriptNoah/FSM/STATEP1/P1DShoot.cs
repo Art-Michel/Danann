@@ -37,7 +37,7 @@ public class P1DShoot : Danu_State
             timer = 0;
             if (index > nbShot)
             {
-                if (orig == null)
+                if (!fsm.agent.followsGlobal)
                 {
                     fsm.agent.SetWaitingTime(2);
                     fsm.agent.ToIdle();
@@ -47,16 +47,17 @@ public class P1DShoot : Danu_State
                     orig.AddWaitTime(2);
                     orig.FlowControl();
                 }
+                return;
             }
             else
             {
 
+                index++;
                 GameObject go = pool.Get();
                 go.GetComponent<Projectiles>().SetSpeed(speed);
                 go.GetComponent<AttackData>().LaunchAttack();
                 go.transform.position = fsm.transform.position;
                 go.SetActive(true);
-                index++;
             }
         }
     }
