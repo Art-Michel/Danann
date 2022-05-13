@@ -7,8 +7,8 @@ public class Hitbox : MonoBehaviour
     #region Hitbox Visualization
 #if UNITY_EDITOR
     Color _currentColor;
-    Color _sphereColor = new Color(1f, 0.1f, 0.1f, 0.6f);
-    Color _sphereWireColor = new Color(0.5f, 0f, 0f, 1f);
+    Color _sphereColor = new Color(1f, 0.1f, 0.1f, 0.2f);
+    Color _sphereWireColor = new Color(0.5f, 0f, 0f, 0.5f);
     Mesh _mesh;
 
     private void OnDrawGizmos()
