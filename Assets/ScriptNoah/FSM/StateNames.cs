@@ -1,4 +1,4 @@
-﻿public class StateNames
+public class StateNames
 {
     #region  p1
     public const string P1IDLE = "P1Idle";
@@ -14,13 +14,14 @@
 
     #region  p2
     public const string P2IDLE = "P2Idle";
-    public const string P2D_METEOR="P2DMeteor";
-    public const string P2D_CONESHOOT="P2DMeteor";
-    public const string P2D_WAVES="P2DMeteor";
-    public const string P2C_SWEEP="P2DMeteor";
-    public const string P2C_BOOM="P2DMeteor";
-    public const string P2C_TELEPORTATION="P2DMeteor";
-    public const string P2R_SPIRALE="P2DMeteor";
+    public const string P2D_SHOOT = "P2DShoot";
+    public const string P2D_BOOMERANG = "P2DBoomerang";
+    public const string P2D_SPIN = "P2DSpin";
+    public const string P2C_DASH = "P2CDash";
+    public const string P2C_MIXDASH = "P2CMixDash";
+    public const string P2C_SLAM = "P2CSlam";
+    public const string P2C_TELEPORTATION = "P2CTeleportation";
+    public const string P2R_SPIRALE = "P2RSPIRALE";
     #endregion
     
     #region  global

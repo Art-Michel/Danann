@@ -27,9 +27,11 @@ public class P1DSpin : Danu_State
     private bool wait;
     private float waitTime;
     bool isSetUp;
+    Pool pool;
     // Start is called before the first frame update
     public override void Begin()
     {
+        pool=fsm.GetPool();
         //setup des variables
         dist = fsm.GetP1Sp_Dist();
         globalGO = fsm.GetP1GlobalGO();
@@ -52,7 +54,6 @@ public class P1DSpin : Danu_State
         e=dSphereSE.position;*/
 
         //activation des helices, ou instantiation si c'est la premiere fois
-        globalGO.SetActive(true);
         preview.localScale = new Vector3(1, 1, Vector3.Distance(fsm.transform.position, fsm.agent.GetArenaCenter()));
         preview.position = fsm.transform.position + (fsm.agent.GetArenaCenter() - fsm.transform.position) / 2;
         preview.LookAt(fsm.agent.GetArenaCenter());
@@ -97,7 +98,6 @@ public class P1DSpin : Danu_State
     {
         Transform[] nweTrans = fsm.GetP1NWEMax();
         Vector3 center = fsm.agent.GetArenaCenter();
-        Debug.Log(bladesPreview.Length);
         preview.gameObject.SetActive(false);
         for (int i = 0; i < bladesPreview.Length; i++)
         {
@@ -121,6 +121,9 @@ public class P1DSpin : Danu_State
                 nblades[i].SetActive(true);
                 wblades[i].SetActive(true);
                 eblades[i].SetActive(true);
+                nblades[i].GetComponent<AttackData>().LaunchAttack();
+                wblades[i].GetComponent<AttackData>().LaunchAttack();
+                eblades[i].GetComponent<AttackData>().LaunchAttack();
             }
         }
         else
@@ -141,11 +144,24 @@ public class P1DSpin : Danu_State
                 nPos = Vector3.Lerp(fsm.transform.position, dSphereN.position, delta * i);
                 wPos = Vector3.Lerp(fsm.transform.position, dSphereSW.position, delta * i);
                 ePos = Vector3.Lerp(fsm.transform.position, dSphereSE.position, delta * i);
-                nblades.Add(fsm.InstantiateStaticProjectile(nPos));
-                wblades.Add(fsm.InstantiateStaticProjectile(wPos));
-                eblades.Add(fsm.InstantiateStaticProjectile(ePos));
-                Debug.Log("e");
+                GameObject ngo = pool.SecondGet();
+                ngo.transform.position=nPos;
+                ngo.transform.parent=globalGO.transform;
+                nblades.Add(ngo);
+                GameObject wgo =  pool.SecondGet();
+                wgo.transform.position=wPos;
+                wgo.transform.parent=globalGO.transform;
+                wblades.Add(wgo);
+                GameObject ego = pool.SecondGet();
+                ego.transform.position=ePos;
+                ego.transform.parent=globalGO.transform;
+                eblades.Add(ego);
+                ego.SetActive(true);
+                wgo.SetActive(true);
+                ngo.SetActive(true);
             }
+            globalGO.SetActive(true);
+            bladesParentAttackData.Setup();
             bladesParentAttackData.LaunchAttack();
             isSetUp = true;
         }
@@ -187,6 +203,7 @@ public class P1DSpin : Danu_State
     {
         globalGO.SetActive(false);
         lifetime = fsm.GetP1SpinLifeTime();
+        bladesParentAttackData.StopAttack();
         /*dSphereN.localPosition=n;
         dSphereSW.localPosition=w;
         dSphereSE.localPosition=e;*/

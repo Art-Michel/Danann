@@ -39,10 +39,23 @@ public class AttackData : MonoBehaviour
             _hitboxes[i] = transform.GetChild(i).GetComponent<Hitbox>();
         }
     }
-
+    public void Setup()
+    {
+        _hitboxes = new Hitbox[transform.childCount-1];
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            _hitboxes[i] = transform.GetChild(i).GetComponent<Hitbox>();
+        }
+    }
     [Button]
     public void LaunchAttack()
     {
+        int i=0;
+        foreach (Hitbox hitbox in _hitboxes)
+        {
+            i++;
+        }
+        Debug.Log(i);
         foreach (Hitbox hitbox in _hitboxes)
         {
             if (shouldHitAllies)

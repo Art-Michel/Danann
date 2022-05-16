@@ -87,7 +87,7 @@ public class DanuAI : MonoBehaviour
             m_fsm.AddState(new P1CDash());
             m_fsm.AddState(new P1CTeleportation());
             m_fsm.AddState(new P1CMixDash());
-            this.m_fsm.ChangeState( StateNames.P1IDLE); 
+            this.m_fsm.ChangeState( StateNames.P1D_SPIN); 
 
         }
     }
@@ -140,17 +140,23 @@ public class DanuAI : MonoBehaviour
     [Button]
     public void NextPattern() 
     {
+                    this.m_fsm.ChangeState( StateNames.P1D_BOOMERANG); 
+                        return;
         if (phase==1)
         {
             float revengePercent=revenge*100/maxRevenge;
             if (goingRandom)
             {
-                int chance=Random.Range(1,8);
-                for (int i=1;i<8;i++)
+                int chance=Random.Range(1,7);
                     switch (chance)
                     {
                         case 1:
-                            m_fsm.ChangeState(StateNames.P1C_DASH);
+                        
+                            int rand=Random.Range(0,2);
+                            if (rand==1)
+                                m_fsm.ChangeState(StateNames.P1C_MIXDASH);
+                            else
+                                m_fsm.ChangeState(StateNames.P1C_DASH);
                             break;
                         case 2:
                             m_fsm.ChangeState(StateNames.P1C_SLAM);
@@ -180,9 +186,7 @@ public class DanuAI : MonoBehaviour
                         case 6:
                             m_fsm.ChangeState(StateNames.P1D_SPIN);
                             break;                    
-                        case 7:
-                            m_fsm.ChangeState(StateNames.P1C_MIXDASH);
-                            break;
+
                     }
                     return;
             }
