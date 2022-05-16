@@ -212,7 +212,7 @@ Material:
     - _DstBlend: 0
     - _EmissiveColorMode: 1
     - _EmissiveExposureWeight: 1
-    - _EmissiveIntensity: 1.47
+    - _EmissiveIntensity: 5
     - _EmissiveIntensityUnit: 0
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
@@ -299,14 +299,14 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0, g: 1, b: 0.6795902, a: 0.77254903}
+    - _BaseColor: {r: 0, g: 1, b: 0.6795902, a: 0.43137255}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0, g: 1, b: 0.6795902, a: 0.77254903}
+    - _Color: {r: 0, g: 1, b: 0.6795902, a: 0.43137255}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissiveColor: {r: 0.94995284, g: 1.47, b: 1.2725812, a: 1.47}
-    - _EmissiveColorLDR: {r: 0.8245207, g: 1, b: 0.9384725, a: 1}
+    - _EmissiveColor: {r: 0.8080378, g: 5, b: 3.0226912, a: 3.8039217}
+    - _EmissiveColorLDR: {r: 0.4386792, g: 1, b: 0.8004193, a: 0.7607843}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
