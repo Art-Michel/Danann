@@ -10,7 +10,7 @@ public class Danu_FSM : MonoBehaviour
 
     [HideInInspector] public DanuAI agent = null;
     #region Phase 1
-    #region Shoot
+        #region Shoot
     [Foldout("Phase 1 Shoot"), SerializeField] private int P1D_nbShot;
     public int GetP1d_nbShot() { return P1D_nbShot; }
     [Foldout("Phase 1 Shoot"), SerializeField] private float P1D_delay;
@@ -24,7 +24,7 @@ public class Danu_FSM : MonoBehaviour
     [Foldout("Phase 1 Shoot"), SerializeField] private Pool pool;
     public Pool GetPool() { return pool; }
     #endregion
-    #region Slam
+        #region Slam
     [Foldout("Phase 1 Slam")][SerializeField] AttackData P1Slam1AttackData;
     public AttackData GetP1Slam1AttackData() { return P1Slam1AttackData; }
     [Foldout("Phase 1 Slam")][SerializeField] AttackData P1Slam2AttackData;
@@ -49,7 +49,7 @@ public class Danu_FSM : MonoBehaviour
     public float GetP1Sl_MaxMoveTime() { return p1Sl_MaxMoveTime; }
 
     #endregion
-    #region Spin
+        #region Spin
     [Foldout("Phase 1 Spin")][SerializeField] private GameObject staticProj;
     public GameObject GetStaticProj() { return staticProj; }
     [Foldout("Phase 1 Spin")][SerializeField] private GameObject P1globalGO;
@@ -69,45 +69,46 @@ public class Danu_FSM : MonoBehaviour
     [Foldout("Phase 1 Spin")][SerializeField] private Transform[] bladesPreview;
     public Transform[] GetBladesPreview() { return bladesPreview; }
     #endregion
-    #region Boomerang
+        #region Boomerang
     [Foldout("Phase 1 Boomerang"), SerializeField] private GameObject P1BoomerangboomerangL;
     public GameObject GetP1BRL() { return P1BoomerangboomerangL; }
     [Foldout("Phase 1 Boomerang")][SerializeField] private GameObject P1BoomerangboomerangR;
     public GameObject GetP1BRR() { return P1BoomerangboomerangR; }
-
-    [Foldout("Phase 1 Boomerang")][SerializeField] private AttackData boomerangAttackData;
+    [Foldout("Phase 1 Boomerang")][SerializeField] AttackData boomerangAttackData;
     public AttackData GetBoomerangAttackData() { return boomerangAttackData; }
 
-    [Foldout("Phase 1 Boomerang")][SerializeField] private float P1BoomeRangSpeed;
+    [Foldout("Phase 1 Boomerang")][SerializeField] float P1BoomeRangSpeed;
     public float GetP1BoomeRangSpeed() { return P1BoomeRangSpeed; }
-    [Foldout("Phase 1 Boomerang")][SerializeField] private float P1BoomeRangMaxStraightTime;
+    [Foldout("Phase 1 Boomerang")][SerializeField] float p1br_MaxDist;
+    public float GetP1BR_MaxDist() { return p1br_MaxDist; }
+    [Foldout("Phase 1 Boomerang")][SerializeField] float P1BoomeRangMaxStraightTime;
     public float GetP1BoomeRangMaxStraightTime() { return P1BoomeRangMaxStraightTime; }
     [Foldout("Phase 1 Boomerang")][SerializeField] Transform P1BoomeRangcurveMidL;
     public Transform GetP1BoomeRangcurveMidL() { return P1BoomeRangcurveMidL; }
     [Foldout("Phase 1 Boomerang")][SerializeField] Transform P1BoomeRangcurveMidR;
     public Transform GetP1BoomeRangcurveMidR() { return P1BoomeRangcurveMidR; }
-    [Foldout("Phase 1 Boomerang")][SerializeField] private float P1BoomeRangMaxCurveTime;
+    [Foldout("Phase 1 Boomerang")][SerializeField] float P1BoomeRangMaxCurveTime;
     public float GetP1BoomeRangMaxCurveTime() { return P1BoomeRangMaxCurveTime; }
-    [Foldout("Phase 1 Boomerang")][SerializeField] private float p1Br_startup;
+    [Foldout("Phase 1 Boomerang")][SerializeField] float p1Br_startup;
     public float GetP1BR_Startup() { return p1Br_startup; }
     #endregion
-    #region Dash
-    [Foldout("Phase 1 Dash"), SerializeField] private Transform p1sDash_preview;
+        #region Dash
+    [Foldout("Phase 1 Dash"), SerializeField] Transform p1sDash_preview;
     public Transform GetP1sD_Preview() { return p1sDash_preview; }
-    [Foldout("Phase 1 Dash"), SerializeField] private float p1sDash_MaxDashTime;
+    [Foldout("Phase 1 Dash"), SerializeField] float p1sDash_MaxDashTime;
     public float GetP1sD_MDashT() { return p1sDash_MaxDashTime; }
-    [Foldout("Phase 1 Dash"), SerializeField] private int p1sDash_MaxDashCount;
+    [Foldout("Phase 1 Dash"), SerializeField] int p1sDash_MaxDashCount;
     public int GetP1sD_MDCount() { return p1sDash_MaxDashCount; }
-    [Foldout("Phase 1 Dash"), SerializeField] private float p1sDash_DashSpeed;
+    [Foldout("Phase 1 Dash"), SerializeField] float p1sDash_DashSpeed;
     public float GetP1sD_DashSpeed() { return p1sDash_DashSpeed; }
-    [Foldout("Phase 1 Dash"), SerializeField] private float p1sDash_MaxChargingTime;
+    [Foldout("Phase 1 Dash"), SerializeField] float p1sDash_MaxChargingTime;
     public float GetP1sD_ChargingTime() { return p1sDash_MaxChargingTime; }
-    [Foldout("Phase 1 Dash"), SerializeField] private float p1Dash_dashModifier;
+    [Foldout("Phase 1 Dash"), SerializeField] float p1Dash_dashModifier;
     public float GetPMD_dMod() { return p1Dash_dashModifier; }
-    [Foldout("Phase 1 Dash"), SerializeField] private AttackData p1Dash_AttackData;
+    [Foldout("Phase 1 Dash"), SerializeField] AttackData p1Dash_AttackData;
     public AttackData GetP1DashAttackData() { return p1Dash_AttackData; }
     #endregion
-    #region TelePortation
+        #region TelePortation
     [Foldout("Phase 1 TP"), SerializeField] GameObject p1TP_arrival;
     public GameObject GetP1TP_Arrival() { return p1TP_arrival; }
     [Foldout("Phase 1 TP"), SerializeField] GameObject p1TP_boomBox;
@@ -128,6 +129,7 @@ public class Danu_FSM : MonoBehaviour
     [Foldout("Phase 1 TP"), SerializeField] float p1TP_farDist;
     public float GetP1TP_FarDist() { return p1TP_farDist; }
     #endregion
+        #region ProjectilesInit
     private List<GameObject> baseProjectiles = new List<GameObject>();
     public void AddProjectile()
     {
@@ -142,6 +144,7 @@ public class Danu_FSM : MonoBehaviour
     {
         return baseProjectiles.Count;
     }
+    #endregion
     #endregion
     int indexx;
 
@@ -173,8 +176,8 @@ public class Danu_FSM : MonoBehaviour
             return;
         }
 
-        if (state == this.curr)
-            return; // already in this state
+        /*if (state == this.curr)
+            return; // already in this state*/
 
         if (this.curr != null)
             this.curr.End();
