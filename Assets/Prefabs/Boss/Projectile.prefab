@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRadius: 1.4
+  _radius: 1.2
 --- !u!1 &3516479995275154835
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,6 +175,7 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 5
+  _hitboxes: []
   _attackName: LightAttack1
 --- !u!114 &3439834310549936267
 MonoBehaviour:

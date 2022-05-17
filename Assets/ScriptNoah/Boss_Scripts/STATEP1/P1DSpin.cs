@@ -31,7 +31,7 @@ public class P1DSpin : Danu_State
     // Start is called before the first frame update
     public override void Begin()
     {
-        pool=fsm.GetPool();
+        pool = fsm.GetPool();
         //setup des variables
         dist = fsm.GetP1Sp_Dist();
         globalGO = fsm.GetP1GlobalGO();
@@ -138,10 +138,14 @@ public class P1DSpin : Danu_State
             e = dSphereSE.position;
             for (int i = 0; i < dist; i++)
             {
-                Vector3 nPos;
-                Vector3 wPos;
-                Vector3 ePos;
-                nPos = Vector3.Lerp(fsm.transform.position, dSphereN.position, delta * i);
+                /*Vector3 nPos = Vector3.Lerp(fsm.transform.position, dSphereN.position, delta * i);
+                Vector3 wPos = Vector3.Lerp(fsm.transform.position, dSphereSW.position, delta * i);
+                Vector3 ePos = Vector3.Lerp(fsm.transform.position, dSphereSE.position, delta * i);*/
+                SetupBall(pool.SecondGet(), Vector3.Lerp(fsm.transform.position, dSphereN.position, delta * i), nblades);
+                SetupBall(pool.SecondGet(), Vector3.Lerp(fsm.transform.position, dSphereSW.position, delta * i), wblades);
+                SetupBall(pool.SecondGet(), Vector3.Lerp(fsm.transform.position, dSphereSE.position, delta * i), eblades);
+
+                /*nPos = Vector3.Lerp(fsm.transform.position, dSphereN.position, delta * i);
                 wPos = Vector3.Lerp(fsm.transform.position, dSphereSW.position, delta * i);
                 ePos = Vector3.Lerp(fsm.transform.position, dSphereSE.position, delta * i);
                 GameObject ngo = pool.SecondGet();
@@ -158,14 +162,22 @@ public class P1DSpin : Danu_State
                 eblades.Add(ego);
                 ego.SetActive(true);
                 wgo.SetActive(true);
-                ngo.SetActive(true);
+                ngo.SetActive(true);*/
             }
             globalGO.SetActive(true);
-            bladesParentAttackData.Setup();
+            bladesParentAttackData.GetChildrenHitboxes();
+            bladesParentAttackData.SetupHitboxes();
             bladesParentAttackData.LaunchAttack();
             isSetUp = true;
         }
+    }
 
+    void SetupBall(GameObject ball, Vector3 position, List<GameObject> blades)
+    {
+        ball.transform.position = position;
+        ball.transform.parent = bladesParentAttackData.transform;
+        blades.Add(ball);
+        ball.SetActive(true);
     }
 
     public void Regenerate(SpinBullet ded)

@@ -16,46 +16,32 @@ public class Hitbox : MonoBehaviour
         SOMeshes.Init();
         _mesh = SOMeshes.Instance.HitboxDebugSphere;
         Gizmos.color = _sphereColor;
-        Gizmos.DrawMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(_baseRadius, _baseRadius, _baseRadius));
+        Gizmos.DrawMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(_radius, _radius, _radius));
         Gizmos.color = _sphereWireColor;
-        Gizmos.DrawWireMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(_baseRadius, _baseRadius, _baseRadius));
+        Gizmos.DrawWireMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(_radius, _radius, _radius));
     }
 #endif
     #endregion
-
-    [NonSerialized] public float CurrentRadius;
-    [SerializeField] float _baseRadius;
+    [SerializeField] float _radius;
     Hurtbox[] _hurtboxesToFocus;
     string _attackName;
     int _attackDamage;
 
-    void Awake()
+    public void Setup(Hurtbox[] hurtboxesToFocus, string attackName, int attackDamage)
     {
-        CurrentRadius = _baseRadius;
-    }
-
-    public void Enable(Hurtbox[] hurtboxesToFocus, string attackName, int attackDamage)
-    {
-        CurrentRadius = _baseRadius;
         _hurtboxesToFocus = hurtboxesToFocus;
         _attackDamage = attackDamage;
         _attackName = attackName;
+    }
+
+    public void Enable()
+    {
         gameObject.SetActive(true);
     }
 
-    public void Enable(Hurtbox[] hurtboxesToFocus, string attackName, int attackDamage, float radius)
+    public void Disable()
     {
-        Enable(hurtboxesToFocus, attackName, attackDamage);
-        CurrentRadius = radius;
-    }
-
-    public void Disable(Hurtbox[] hurtboxesToFocus, string attackName)
-    {
-        foreach (Hurtbox hurtbox in hurtboxesToFocus)
-        {
-            hurtbox.ForgetAttack(attackName);
-            gameObject.SetActive(false);
-        }
+        gameObject.SetActive(false);
     }
 
     void Update()
@@ -80,7 +66,7 @@ public class Hitbox : MonoBehaviour
     private bool CheckDistance(Hurtbox hurtbox)
     {
         float distance = (hurtbox.transform.position - transform.position).sqrMagnitude;
-        if (distance < (CurrentRadius / 2 + hurtbox.Radius / 2) * (CurrentRadius / 2 + hurtbox.Radius / 2))
+        if (distance < (_radius / 2 + hurtbox.Radius / 2) * (_radius / 2 + hurtbox.Radius / 2))
             return true;
         return false;
     }

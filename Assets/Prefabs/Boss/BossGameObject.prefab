@@ -630,6 +630,7 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 30
+  _hitboxes: []
   _attackName: Slam3
 --- !u!33 &851397940007138338
 MeshFilter:
@@ -774,7 +775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRadius: 3
+  _radius: 0
 --- !u!1 &404993181200612345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,7 +1144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRadius: 2.5
+  _radius: 0
 --- !u!1 &739658935104320377
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,7 +1320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRadius: 3
+  _radius: 0
 --- !u!1 &823556921784003239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1638,63 +1639,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
-  P1D_nbShot: 0
-  P1D_delay: 0
-  P1D_wait: 0
-  P1D_ProjLifeTime: 0
-  p1d_ShotSpeed: 0
-  pool: {fileID: 0}
-  p1SlamHitBox: {fileID: 0}
-  P1AttackFrames:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  P1SlamRecovery: 0
-  P1slamScales:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  p1S_radius:
-  - 0
-  - 0
-  - 0
-  p1S_Damage: 
-  p1Sl_MaxMoveTime: 0
-  staticProj: {fileID: 0}
-  P1globalGO: {fileID: 0}
-  P1nweMax:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  p1sp_dist: 0
-  P1rotationSpeed: 0
-  P1turningRight: 0
-  P1maxWaitTime: 0
-  P1SpinLifeTime: 0
-  bladesPreview: []
-  P1BoomerangboomerangL: {fileID: 0}
-  P1BoomerangboomerangR: {fileID: 0}
-  P1BoomeRangSpeed: 0
-  P1BoomeRangMaxStraightTime: 0
-  P1BoomeRangcurveMidL: {fileID: 0}
-  P1BoomeRangcurveMidR: {fileID: 0}
-  P1BoomeRangMaxCurveTime: 0
-  p1Br_startup: 0
-  p1sDash_preview: {fileID: 0}
-  p1sDash_MaxDashTime: 0
-  p1sDash_MaxDashCount: 0
-  p1sDash_DashSpeed: 0
-  p1sDash_MaxChargingTime: 0
-  p1Dash_dashModifier: 0
-  p1TP_arrival: {fileID: 0}
-  p1TP_boomBox: {fileID: 0}
-  p1TP_destination: 0
-  p1TP_FadeTime: 0
-  p1TP_Startup: 0
-  p1TP_offsetValue: 0
-  p1TP_Reco: 0
-  p1TP_Active: 0
-  p1TP_farDist: 0
   stats: {fileID: 11400000, guid: e8e18d354b366244f98ead4bba0ffa0f, type: 2}
 --- !u!114 &2577399527204082855
 MonoBehaviour:
@@ -1920,6 +1864,7 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 10
+  _hitboxes: []
   _attackName: Projectile
 --- !u!1 &1210865159871464707
 GameObject:
@@ -2248,7 +2193,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 3516479995275154835, guid: a802e1e7d87be014ca7ef970427689d4, type: 3}
+  secondPrefab: {fileID: 0}
   baseCount: 13
+  secondBaseCount: 0
   boss: {fileID: 0}
   fsm: {fileID: 0}
 --- !u!1 &1735166383116545002
@@ -3186,7 +3133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRadius: 3
+  _radius: 0
 --- !u!1 &4147753507406272158
 GameObject:
   m_ObjectHideFlags: 0
@@ -3411,7 +3358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRadius: 1.5
+  _radius: 0
 --- !u!1 &4360616385036578290
 GameObject:
   m_ObjectHideFlags: 0
@@ -3542,6 +3489,7 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 20
+  _hitboxes: []
   _attackName: Slam2
 --- !u!33 &7264632484205218265
 MeshFilter:
@@ -3797,7 +3745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRadius: 10
+  _radius: 0
 --- !u!1 &5064636964378688237
 GameObject:
   m_ObjectHideFlags: 0
@@ -3892,7 +3840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRadius: 16
+  _radius: 0
 --- !u!1 &5649906036745639777
 GameObject:
   m_ObjectHideFlags: 0
@@ -4328,7 +4276,6 @@ Transform:
   - {fileID: 6559570251691565978}
   - {fileID: 806965304004443652}
   - {fileID: 1886362870033785846}
-  - {fileID: 1752569637654958984}
   m_Father: {fileID: 5178821271800415685}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4375,7 +4322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRadius: 16
+  _radius: 0
 --- !u!1 &6449382685127030378
 GameObject:
   m_ObjectHideFlags: 0
@@ -4587,6 +4534,7 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 15
+  _hitboxes: []
   _attackName: Slam1
 --- !u!23 &4505081341401572346
 MeshRenderer:
@@ -4684,6 +4632,7 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 10
+  _hitboxes: []
   _attackName: Dash
 --- !u!1 &7789278482900235650
 GameObject:
@@ -4809,7 +4758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRadius: 25
+  _radius: 0
 --- !u!1 &7815357275278180337
 GameObject:
   m_ObjectHideFlags: 0
@@ -4871,7 +4820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRadius: 1.5
+  _radius: 0
 --- !u!1 &7854865245083620599
 GameObject:
   m_ObjectHideFlags: 0
@@ -4919,6 +4868,7 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 15
+  _hitboxes: []
   _attackName: Tp
 --- !u!1 &7909210114334988544
 GameObject:
@@ -5166,53 +5116,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &8206553585497170343
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1752569637654958984}
-  - component: {fileID: 2722742743538250846}
-  m_Layer: 0
-  m_Name: SpinAttackdata
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1752569637654958984
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8206553585497170343}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5035920663089386917}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2722742743538250846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8206553585497170343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f05e1b371ab0ce74194bd19b8075f6c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shouldHitEnemies: 0
-  shouldHitAllies: 1
-  _attackDamage: 15
-  _attackName: Projectile
 --- !u!1 &8210296156699734019
 GameObject:
   m_ObjectHideFlags: 0
@@ -5388,7 +5291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRadius: 4.99
+  _radius: 0
 --- !u!1 &8380206358711455299
 GameObject:
   m_ObjectHideFlags: 0
