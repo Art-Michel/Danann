@@ -72,7 +72,7 @@ public class GP1Dash : GlobalStates
                 }
                 else
                 {
-                    gFSM.SetTPDest(P1CTeleportation.destPoints.CLOSE);    
+                    fsm.SetTPDest(P1CTeleportation.destPoints.CLOSE);    
                     curr.End();
                     curr=tp;
                     curr.Begin();
@@ -82,7 +82,7 @@ public class GP1Dash : GlobalStates
             case 2:
                 if (gFSM.agent.wasParried)
                 {
-                    gFSM.SetTPDest(P1CTeleportation.destPoints.FAR);
+                    fsm.SetTPDest(P1CTeleportation.destPoints.FAR);
                     curr.End();
                     curr=tp;
                     curr.Begin();
@@ -104,14 +104,14 @@ public class GP1Dash : GlobalStates
             case 4:
                 if (gFSM.agent.wasParried)
                 {
-                    gFSM.SetTPDest(P1CTeleportation.destPoints.FAR);
+                    fsm.SetTPDest(P1CTeleportation.destPoints.FAR);
                     curr.End();
                     curr=tp;
                     curr.Begin();
                     nextWillEnd=true;
                     break;
                 }
-                gFSM.SetTPDest(P1CTeleportation.destPoints.CLOSE);
+                fsm.SetTPDest(P1CTeleportation.destPoints.CLOSE);
                 curr.End();
                 curr=tp;
                 curr.Begin();
@@ -137,7 +137,7 @@ public class GP1Dash : GlobalStates
             {
                 if (!gFSM.agent.wasParried &&dist>=gFSM.agent.distLimit )
                 {
-                    gFSM.SetTPDest(P1CTeleportation.destPoints.CLOSE);    
+                    fsm.SetTPDest(P1CTeleportation.destPoints.CLOSE);    
                     curr.End();
                     curr=tp;
                     curr.Begin();
@@ -154,7 +154,7 @@ public class GP1Dash : GlobalStates
             {
                 if (gFSM.agent.wasParried)
                 {
-                    gFSM.SetTPDest(P1CTeleportation.destPoints.FAR);
+                    fsm.SetTPDest(P1CTeleportation.destPoints.FAR);
                     curr.End();
                     curr=tp;
                     curr.Begin();
@@ -179,14 +179,14 @@ public class GP1Dash : GlobalStates
             {
                 if (gFSM.agent.wasParried)
                 {
-                    gFSM.SetTPDest(P1CTeleportation.destPoints.FAR);
+                    fsm.SetTPDest(P1CTeleportation.destPoints.FAR);
                     curr.End();
                     curr=tp;
                     curr.Begin();
                     nextWillEnd=true;
                     break;
                 }
-                gFSM.SetTPDest(P1CTeleportation.destPoints.CLOSE);
+                fsm.SetTPDest(P1CTeleportation.destPoints.CLOSE);
                 curr.End();
                 curr=tp;
                 curr.Begin();
