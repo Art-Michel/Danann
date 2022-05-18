@@ -32,8 +32,8 @@ public class Danu_FSM : MonoBehaviour
     [Foldout("Phase 1 Slam")][SerializeField] AttackData P1Slam3AttackData;
     public AttackData GetP1Slam3AttackData() { return P1Slam3AttackData; }
 
-    /*[Foldout("Phase 1 Slam")][SerializeField] GameObject p1SlamHitBox;
-    public GameObject Getp1SlamHitBox() { return p1SlamHitBox; }*/
+    [Foldout("Phase 1 Slam")][SerializeField] GameObject[] p1SlamHitBox;
+    public GameObject[] GetP1SlamHitBox() { return p1SlamHitBox; }
     [Foldout("Phase 1 Slam")][SerializeField] Vector3[] P1AttackFrames = new Vector3[3];
     public Vector3 GetAttackFrames(int index) { return P1AttackFrames[index]; }
     [Foldout("Phase 1 Slam")][SerializeField] private float P1SlamRecovery;

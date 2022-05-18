@@ -140,7 +140,7 @@ public class DanuAI : MonoBehaviour
     [Button]
     public void NextPattern() 
     {
-                    this.m_fsm.ChangeState( StateNames.P1D_BOOMERANG); 
+                    this.m_fsm.ChangeState( StateNames.P1C_SLAM); 
                         return;
         if (phase==1)
         {

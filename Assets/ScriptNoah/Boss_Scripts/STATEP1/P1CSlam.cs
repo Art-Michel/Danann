@@ -8,6 +8,7 @@ public class P1CSlam : Danu_State
 {
     public P1CSlam() : base(StateNames.P1C_SLAM) { }
     AttackData[] _slamAttackDatas = new AttackData[3];
+    GameObject[] _slamHitbox=new GameObject[3];
     int _state = 0;
     float[] _startup = new float[3];
     float[] _active = new float[3];
@@ -32,6 +33,7 @@ public class P1CSlam : Danu_State
             _recovery[i] = frames[i].z;
         }
         StartPreview();
+        _slamHitbox=fsm.GetP1SlamHitBox();
         
     }
 
@@ -65,6 +67,8 @@ public class P1CSlam : Danu_State
         _timer = 0;
         _state = 1;
         _slamAttackDatas[_index].LaunchAttack();
+        _slamHitbox[_index].SetActive(true);
+
     }
 
     private void StartRecovery()
@@ -73,6 +77,7 @@ public class P1CSlam : Danu_State
         _state = 2;
         _slamAttackDatas[_index].StopAttack();
         _slamAttackDatas[_index].gameObject.SetActive(false);
+        _slamHitbox[_index].SetActive(false);
     }
 
     void Exit()
