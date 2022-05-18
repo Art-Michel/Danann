@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRadius: 3.12
+  _radius: 0
 --- !u!1 &328378844
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRadius: 2.5
+  _radius: 0
 --- !u!1 &972369672
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,6 +412,9 @@ MonoBehaviour:
   shouldHitEnemies: 1
   shouldHitAllies: 0
   _attackDamage: 5
+  _hitboxes:
+  - {fileID: 1478956194}
+  - {fileID: 1588115344}
   _attackName: LightAttack1
 --- !u!1 &1336719606
 GameObject:
@@ -542,7 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRadius: 2
+  _radius: 0
 --- !u!1 &1588115342
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,7 +589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRadius: 2
+  _radius: 0
 --- !u!1 &1593402930
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,7 +954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRadius: 3.12
+  _radius: 0
 --- !u!1 &2236824047964534009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,6 +1219,9 @@ MonoBehaviour:
   shouldHitEnemies: 1
   shouldHitAllies: 0
   _attackDamage: 10
+  _hitboxes:
+  - {fileID: 7304302163605766824}
+  - {fileID: 667520837}
   _attackName: LightAttack2
 --- !u!1 &3972506123130937991
 GameObject:
@@ -1260,7 +1266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdfec3dfed78224eb3eab1390eeb4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRadius: 2.5
+  _radius: 0
 --- !u!1 &5037876371750996070
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,6 +1315,9 @@ MonoBehaviour:
   shouldHitEnemies: 1
   shouldHitAllies: 0
   _attackDamage: 20
+  _hitboxes:
+  - {fileID: 270122627168158354}
+  - {fileID: 61639705}
   _attackName: LightAttack3
 --- !u!1 &6503884025547406627
 GameObject:
