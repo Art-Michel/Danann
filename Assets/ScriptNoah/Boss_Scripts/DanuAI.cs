@@ -17,12 +17,13 @@ public class DanuAI : MonoBehaviour
     public CinemachineTargetGroup GetCam(){return cam;}
     public bool isRevengeHigh{get;private set;}
     public bool wasParried{get;private set;}
-    public float distLimit{get;private set;}
+    [SerializeField] private float distLimit;
+    public float GetDistLimit(){return distLimit;}
     [SerializeField] GlobalPattern globalStates;
     GlobalPattern actualState;
     [Range(1,2),SerializeField]private int phase;
     private int patternIndex;
-    private float dist;
+    [SerializeField] private float dist;
     [SerializeField] private Transform player;
     [SerializeField] private AnimationCurve distEvaluator;
     [SerializeField] private float revenge;
@@ -87,8 +88,8 @@ public class DanuAI : MonoBehaviour
             m_fsm.AddState(new P1CDash());
             m_fsm.AddState(new P1CTeleportation());
             m_fsm.AddState(new P1CMixDash());
-            this.m_fsm.ChangeState( StateNames.P1D_SPIN); 
-
+            
+            m_fsm.ChangeState(StateNames.P1IDLE);
         }
     }
 
@@ -138,10 +139,14 @@ public class DanuAI : MonoBehaviour
         revengeTime=0;
     }
     [Button]
+    void ShowDist()
+    {
+        float distance=Vector3.Distance(transform.position,player.position);
+        Debug.Log(distance);
+    }
+    [Button]
     public void NextPattern() 
     {
-                    this.m_fsm.ChangeState( StateNames.P1C_SLAM); 
-                        return;
         if (phase==1)
         {
             float revengePercent=revenge*100/maxRevenge;

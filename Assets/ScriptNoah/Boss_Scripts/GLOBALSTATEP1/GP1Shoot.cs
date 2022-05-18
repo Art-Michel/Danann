@@ -73,7 +73,7 @@ public class GP1Shoot : GlobalStates
                 break;
             case 2:
                 float dist=Vector3.Distance(gFSM.agent.transform.position,gFSM.agent.GetPlayer().position);
-                if (dist>=gFSM.agent.distLimit)
+                if (dist>=gFSM.agent.GetDistLimit())
                 {
                     curr.End();
                     curr=shoot;

@@ -22,10 +22,9 @@ public class Pool : MonoBehaviour
 
     public GameObject Get()
     {
-        Debug.Log(items.Count);
+//        Debug.Log(items.Count);
         if (items.Count == 0)
             AddCount(1);
-       
         return items.Dequeue();
         
     }
@@ -40,11 +39,21 @@ public class Pool : MonoBehaviour
     {
         for (int i = 0; i < nb; i++)
         {
-                GameObject go = Instantiate(prefab, fsm.transform.position,fsm.transform.rotation,transform);
-                go.GetComponent<Projectiles>().SetOrigin(this);
-                go.GetComponent<Projectiles>().SetTarget(boss.GetPlayer());
-                go.GetComponent<Projectiles>().SetLifeTime(fsm.GetP1d_ProjLifeTime());
-                go.SetActive(false);
+                GameObject go; 
+                if (fsm!=null)
+                go= Instantiate(prefab, fsm.transform.position,fsm.transform.rotation,transform);
+                else
+                go= Instantiate(prefab, transform.position,transform.rotation,transform);
+                Projectiles proj=go.GetComponent<Projectiles>();
+                if (proj!=null)
+                {
+                    go.GetComponent<Projectiles>().SetOrigin(this);
+                    go.GetComponent<Projectiles>().SetTarget(boss.GetPlayer());
+                    go.GetComponent<Projectiles>().SetLifeTime(fsm.GetP1d_ProjLifeTime());
+                    go.SetActive(false);
+                    items.Enqueue(go);
+                    return;
+                }
                 items.Enqueue(go);
         }
     }    

@@ -135,7 +135,7 @@ public class GP1Dash : GlobalStates
             }
             case 1:
             {
-                if (!gFSM.agent.wasParried &&dist>=gFSM.agent.distLimit )
+                if (!gFSM.agent.wasParried &&dist>=gFSM.agent.GetDistLimit() )
                 {
                     fsm.SetTPDest(P1CTeleportation.destPoints.CLOSE);    
                     curr.End();

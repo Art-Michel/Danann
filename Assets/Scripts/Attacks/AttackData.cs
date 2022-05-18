@@ -8,7 +8,8 @@ public class AttackData : MonoBehaviour
 {
     [SerializeField] bool shouldHitEnemies;
     [SerializeField] bool shouldHitAllies;
-    [SerializeField] int _attackDamage;
+    [SerializeField] int _attackDamage;    
+    public void SetDamage(int newDamage){_attackDamage=newDamage;}
     [SerializeField] Hitbox[] _hitboxes;
 
     [Dropdown("attackName")]
@@ -51,7 +52,6 @@ public class AttackData : MonoBehaviour
             }
         }
     }
-
     public void SetupHitboxes()
     {
         foreach (Hitbox hitbox in _hitboxes)

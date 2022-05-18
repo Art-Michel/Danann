@@ -71,6 +71,10 @@ public class P1CTeleportation : Danu_State
             Vector3 offset = new Vector3(rand.x, 0, rand.y) * offsetValue;
             arrival.transform.position = target.position + offset;
         }
+        startup=0;
+        fadeTime=0;
+        active=0;
+        reco=0;
     }
 
     // Update is called once per frame
@@ -117,4 +121,10 @@ public class P1CTeleportation : Danu_State
             }
         }
     }
+    public override void End()
+    {
+
+    }
+
+    
 }

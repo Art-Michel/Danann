@@ -114,20 +114,6 @@ public class P1DSpin : Danu_State
         bladesPreview[0].gameObject.SetActive(false);
         bladesPreview[1].gameObject.SetActive(false);
         bladesPreview[2].gameObject.SetActive(false);
-        if (isSetUp)
-        {
-            for (int i = 0; i < nblades.Count; i++)
-            {
-                nblades[i].SetActive(true);
-                wblades[i].SetActive(true);
-                eblades[i].SetActive(true);
-                nblades[i].GetComponent<AttackData>().LaunchAttack();
-                wblades[i].GetComponent<AttackData>().LaunchAttack();
-                eblades[i].GetComponent<AttackData>().LaunchAttack();
-            }
-        }
-        else
-        {
             /*Vector3 newW=(dSphereSW.position-fsm.transform.position);
             Vector3 newE=(dSphereSE.position-fsm.transform.position);
             dSphereN.position=newn*fsm.agent.GetArenaRadius();
@@ -169,7 +155,7 @@ public class P1DSpin : Danu_State
             bladesParentAttackData.SetupHitboxes();
             bladesParentAttackData.LaunchAttack();
             isSetUp = true;
-        }
+        
     }
 
     void SetupBall(GameObject ball, Vector3 position, List<GameObject> blades)

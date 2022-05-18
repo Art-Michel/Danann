@@ -30,7 +30,7 @@ public class GP1Teleportation : GlobalStates
         Vector3 playerPos=gFSM.agent.transform.position;
         Vector3 agentPos=gFSM.agent.GetPlayer().position;
         float dist=Vector3.Distance(playerPos,agentPos);
-        if (dist>gFSM.agent.distLimit)
+        if (dist>gFSM.agent.GetDistLimit())
             fsm.SetTPDest(P1CTeleportation.destPoints.FAR);    
         else
             fsm.SetTPDest(P1CTeleportation.destPoints.CLOSE);    
