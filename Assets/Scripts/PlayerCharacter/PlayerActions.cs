@@ -55,6 +55,10 @@ public class PlayerActions : MonoBehaviour
             spear.ChangeState(Spear_StateNames.AIMING);
             _currentlyHeldSpear = spear;
         }
+        else if(_fsm.currentState.Name == Ccl_StateNames.IDLE && (spear.currentState.Name == Spear_StateNames.IDLE ||spear.currentState.Name == Spear_StateNames.ATTACKING ||spear.currentState.Name == Spear_StateNames.TRIANGLING))
+        {
+            spear.ChangeState(Spear_StateNames.RECALLED);
+        }
     }
 
     private void ThrowInput()

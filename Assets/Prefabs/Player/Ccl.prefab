@@ -228,6 +228,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isLeft: 1
+  CclBody: {fileID: 7240768677224004046}
+  TargetGroup: {fileID: 0}
   Cursor: {fileID: 372751712}
   TravelingAttackData: {fileID: 7048939714463668740}
   TravelSpeed: 50
@@ -1427,6 +1429,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isLeft: 0
+  CclBody: {fileID: 7240768677224004046}
+  TargetGroup: {fileID: 0}
   Cursor: {fileID: 372751712}
   TravelingAttackData: {fileID: 930289206680551558}
   TravelSpeed: 50
@@ -1533,9 +1537,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7240768677224004046}
     m_Modifications:
+    - target: {fileID: 2381953594989876474, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: _attackDamage
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5165120295596512482, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_Name
       value: Right Spear
+      objectReference: {fileID: 0}
+    - target: {fileID: 5237691569127688310, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].time
+      value: 0.55826
       objectReference: {fileID: 0}
     - target: {fileID: 7856483930303422563, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_Enabled
@@ -1638,9 +1650,49 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7240768677224004046}
     m_Modifications:
+    - target: {fileID: 1822012524500443884, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d5e566ccaf7f3ea48adfcf1ec1e545cf, type: 2}
+    - target: {fileID: 2381953594989876474, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: _attackDamage
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5165120295596512482, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_Name
       value: Left Spear
+      objectReference: {fileID: 0}
+    - target: {fileID: 5237691569127688310, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9d59ae74b97da41489346f5d9de5621e, type: 2}
+    - target: {fileID: 5237691569127688310, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5237691569127688310, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0.9534545
+      objectReference: {fileID: 0}
+    - target: {fileID: 5237691569127688310, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5237691569127688310, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].time
+      value: 0.55826
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695931434931743382, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695931434931743382, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: m_Color.g
+      value: 0.84622765
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695931434931743382, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: m_Color.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7856483930303422563, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_Enabled

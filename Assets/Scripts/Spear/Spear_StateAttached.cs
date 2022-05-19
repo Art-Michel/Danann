@@ -12,6 +12,7 @@ public class Spear_StateAttached : Spear_State
     public override void Begin()
     {
         _ai.ResetPositionAndRotation();
+        _ai.SetSpearWeight(0);
     }
 
     public override void Update()
@@ -22,5 +23,6 @@ public class Spear_StateAttached : Spear_State
     public override void Exit()
     {
 
+        _ai.SetSpearWeight(1);
     }
 }

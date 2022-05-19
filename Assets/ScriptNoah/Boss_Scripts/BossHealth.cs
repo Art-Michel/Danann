@@ -13,7 +13,7 @@ public class BossHealth : EntityHP
 
     void Awake()
     {
-        _maxHealthPoints = 1000;
+        _maxHealthPoints = 500;
     }
     
     override protected void DamageFeedback(string attackName)
