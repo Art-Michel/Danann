@@ -90,11 +90,9 @@ public class P1DBoomerang : Danu_State
         boomerangL.transform.position = Vector3.Lerp(startL, curveStartL, straightTime / MaxStraightTime);
         boomerangR.transform.position = Vector3.Lerp(startR, curveStartR, straightTime / MaxStraightTime);
         straightTime += Time.deltaTime;
-        Debug.Log("e");
         if (boomerangL.transform.position == curveStartL)
         {    
             preview.gameObject.SetActive(false);
-            Debug.Log("e");
             startCurve = true;
             UpdateCurve();
         }
@@ -102,11 +100,9 @@ public class P1DBoomerang : Danu_State
     void UpdateCurve()
     {
         curveTime += Time.deltaTime;
-        Debug.Log(curveTime);
         if (curveTime > MaxCurveTime)
         {
             
-            Debug.Log("eeee");
             curveTime=0;
             straightTime=0;
             startCurve=false;
@@ -131,11 +127,9 @@ public class P1DBoomerang : Danu_State
         float tt = t * t;
         float uu = u * u;
         Vector3 point;
-        Debug.Log("eee");
         if (boom == boomerangL)
         {
             point = uu * curveStartL;
-            Debug.Log(curveMidL);
             point += 2 * u * t * curveMidL.position;
         }
         else

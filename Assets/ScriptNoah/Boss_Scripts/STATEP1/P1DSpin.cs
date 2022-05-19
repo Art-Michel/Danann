@@ -114,48 +114,21 @@ public class P1DSpin : Danu_State
         bladesPreview[0].gameObject.SetActive(false);
         bladesPreview[1].gameObject.SetActive(false);
         bladesPreview[2].gameObject.SetActive(false);
-            /*Vector3 newW=(dSphereSW.position-fsm.transform.position);
-            Vector3 newE=(dSphereSE.position-fsm.transform.position);
-            dSphereN.position=newn*fsm.agent.GetArenaRadius();
-            dSphereSW.position=newW*fsm.agent.GetArenaRadius();
-            dSphereSE.position=newE*fsm.agent.GetArenaRadius();*/
-            n = dSphereN.position;
-            w = dSphereSW.position;
-            e = dSphereSE.position;
-            for (int i = 0; i < dist; i++)
-            {
-                /*Vector3 nPos = Vector3.Lerp(fsm.transform.position, dSphereN.position, delta * i);
-                Vector3 wPos = Vector3.Lerp(fsm.transform.position, dSphereSW.position, delta * i);
-                Vector3 ePos = Vector3.Lerp(fsm.transform.position, dSphereSE.position, delta * i);*/
-                SetupBall(pool.SecondGet(), Vector3.Lerp(fsm.transform.position, dSphereN.position, delta * i), nblades);
-                SetupBall(pool.SecondGet(), Vector3.Lerp(fsm.transform.position, dSphereSW.position, delta * i), wblades);
-                SetupBall(pool.SecondGet(), Vector3.Lerp(fsm.transform.position, dSphereSE.position, delta * i), eblades);
-
-                /*nPos = Vector3.Lerp(fsm.transform.position, dSphereN.position, delta * i);
-                wPos = Vector3.Lerp(fsm.transform.position, dSphereSW.position, delta * i);
-                ePos = Vector3.Lerp(fsm.transform.position, dSphereSE.position, delta * i);
-                GameObject ngo = pool.SecondGet();
-                ngo.transform.position=nPos;
-                ngo.transform.parent=globalGO.transform;
-                nblades.Add(ngo);
-                GameObject wgo =  pool.SecondGet();
-                wgo.transform.position=wPos;
-                wgo.transform.parent=globalGO.transform;
-                wblades.Add(wgo);
-                GameObject ego = pool.SecondGet();
-                ego.transform.position=ePos;
-                ego.transform.parent=globalGO.transform;
-                eblades.Add(ego);
-                ego.SetActive(true);
-                wgo.SetActive(true);
-                ngo.SetActive(true);*/
-            }
-            globalGO.SetActive(true);
-            bladesParentAttackData.GetChildrenHitboxes();
-            bladesParentAttackData.SetupHitboxes();
-            bladesParentAttackData.LaunchAttack();
-            isSetUp = true;
-        
+        n = dSphereN.position;
+        w = dSphereSW.position;
+        e = dSphereSE.position;
+        for (int i = 0; i < dist; i++)
+        {
+            SetupBall(pool.SecondGet(), Vector3.Lerp(fsm.transform.position, dSphereN.position, delta * i), nblades);
+            SetupBall(pool.SecondGet(), Vector3.Lerp(fsm.transform.position, dSphereSW.position, delta * i), wblades);
+            SetupBall(pool.SecondGet(), Vector3.Lerp(fsm.transform.position, dSphereSE.position, delta * i), eblades);
+        }
+        globalGO.SetActive(true);
+        bladesParentAttackData.GetChildrenHitboxes();
+        bladesParentAttackData.SetupHitboxes();
+        bladesParentAttackData.LaunchAttack();
+        isSetUp = true;
+    
     }
 
     void SetupBall(GameObject ball, Vector3 position, List<GameObject> blades)
@@ -202,19 +175,13 @@ public class P1DSpin : Danu_State
         globalGO.SetActive(false);
         lifetime = fsm.GetP1SpinLifeTime();
         bladesParentAttackData.StopAttack();
-        /*dSphereN.localPosition=n;
-        dSphereSW.localPosition=w;
-        dSphereSE.localPosition=e;*/
         globalGO.transform.rotation = Quaternion.identity;
         float delta = 1 / dist;
         for (int i = 0; i < nblades.Count; i++)
         {
             nblades[i].SetActive(false);
-            //nblades[i].transform.position=Vector3.Lerp(fsm.transform.position,n,delta*i);
             wblades[i].SetActive(false);
-            //wblades[i].transform.position=Vector3.Lerp(fsm.transform.position,w,delta*i);
             eblades[i].SetActive(false);
-            //eblades[i].transform.position=Vector3.Lerp(fsm.transform.position,e,delta*i);
         }
     }
 }

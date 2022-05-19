@@ -101,6 +101,5 @@ public class P1CDash : Danu_State
         preview.LookAt(target);
         preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, maxDashTime * dashSpeed);
         dashAttackData.LaunchAttack();
-        Debug.Log("mario");
     }
 }

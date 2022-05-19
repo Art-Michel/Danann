@@ -89,7 +89,7 @@ public class DanuAI : MonoBehaviour
             m_fsm.AddState(new P1CTeleportation());
             m_fsm.AddState(new P1CMixDash());
             
-            m_fsm.ChangeState(StateNames.P1IDLE);
+            m_fsm.ChangeState(StateNames.P1D_SHOOT);
         }
     }
 
@@ -222,7 +222,6 @@ public class DanuAI : MonoBehaviour
                 m_fsm.ChangeState(StateNames.P1C_TELEPORTATION);
                 lastStates.Clear();
                 return;
-
             }
             else if (mod > 1.1f) //long ranged patterns
             {
@@ -233,7 +232,6 @@ public class DanuAI : MonoBehaviour
                     m_fsm.ChangeState(StateNames.P1C_TELEPORTATION);
                     return;
                 }
-                
                     if (isRevengeHigh)
                     {
                         m_fsm.ChangeState(StateNames.P1D_BOOMERANG);
@@ -241,8 +239,6 @@ public class DanuAI : MonoBehaviour
                     }
                     m_fsm.ChangeState(StateNames.P1D_SHOOT);
                     return;
-
-
             }
             else //all patterns possible
             {

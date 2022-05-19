@@ -164,7 +164,6 @@ public class P1CMixDash : Danu_State
             {
                 SetTarget();
                 preview.gameObject.SetActive(true);
-                Debug.Log("e");
             }
             /*dir=(-fsm.transform.position+target.position).normalized;
             startPos=fsm.transform.position;
@@ -199,6 +198,7 @@ public class P1CMixDash : Danu_State
             isDashing = false;
             Debug.Log("End");
             actual = state.CHARGING;
+            dashAttackData.StopAttack();
             if (orig == null)
             {
                 fsm.agent.ToIdle();
