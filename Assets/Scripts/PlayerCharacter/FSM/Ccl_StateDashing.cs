@@ -14,7 +14,7 @@ public class Ccl_StateDashing : Ccl_State
         
     }
 
-    public override void Update()
+    public override void StateUpdate()
     {
         
     }

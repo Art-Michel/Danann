@@ -259,7 +259,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Parry"",
+                    ""name"": ""Dodge"",
                     ""type"": ""Button"",
                     ""id"": ""0fca2a35-73fd-4d1e-9dd9-021d87c43cbb"",
                     ""expectedControlType"": ""Button"",
@@ -357,7 +357,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Parry"",
+                    ""action"": ""Dodge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -405,7 +405,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         m_Actions_DashL = m_Actions.FindAction("DashL", throwIfNotFound: true);
         m_Actions_DashR = m_Actions.FindAction("DashR", throwIfNotFound: true);
         m_Actions_Shockwave = m_Actions.FindAction("Shockwave", throwIfNotFound: true);
-        m_Actions_Parry = m_Actions.FindAction("Parry", throwIfNotFound: true);
+        m_Actions_Dodge = m_Actions.FindAction("Dodge", throwIfNotFound: true);
         m_Actions_ThrowR = m_Actions.FindAction("ThrowR", throwIfNotFound: true);
         m_Actions_ThrowL = m_Actions.FindAction("ThrowL", throwIfNotFound: true);
     }
@@ -503,7 +503,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
     private readonly InputAction m_Actions_DashL;
     private readonly InputAction m_Actions_DashR;
     private readonly InputAction m_Actions_Shockwave;
-    private readonly InputAction m_Actions_Parry;
+    private readonly InputAction m_Actions_Dodge;
     private readonly InputAction m_Actions_ThrowR;
     private readonly InputAction m_Actions_ThrowL;
     public struct ActionsActions
@@ -515,7 +515,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         public InputAction @DashL => m_Wrapper.m_Actions_DashL;
         public InputAction @DashR => m_Wrapper.m_Actions_DashR;
         public InputAction @Shockwave => m_Wrapper.m_Actions_Shockwave;
-        public InputAction @Parry => m_Wrapper.m_Actions_Parry;
+        public InputAction @Dodge => m_Wrapper.m_Actions_Dodge;
         public InputAction @ThrowR => m_Wrapper.m_Actions_ThrowR;
         public InputAction @ThrowL => m_Wrapper.m_Actions_ThrowL;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
@@ -542,9 +542,9 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 @Shockwave.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnShockwave;
                 @Shockwave.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnShockwave;
                 @Shockwave.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnShockwave;
-                @Parry.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnParry;
-                @Parry.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnParry;
-                @Parry.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnParry;
+                @Dodge.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDodge;
+                @Dodge.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDodge;
+                @Dodge.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDodge;
                 @ThrowR.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnThrowR;
                 @ThrowR.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnThrowR;
                 @ThrowR.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnThrowR;
@@ -570,9 +570,9 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 @Shockwave.started += instance.OnShockwave;
                 @Shockwave.performed += instance.OnShockwave;
                 @Shockwave.canceled += instance.OnShockwave;
-                @Parry.started += instance.OnParry;
-                @Parry.performed += instance.OnParry;
-                @Parry.canceled += instance.OnParry;
+                @Dodge.started += instance.OnDodge;
+                @Dodge.performed += instance.OnDodge;
+                @Dodge.canceled += instance.OnDodge;
                 @ThrowR.started += instance.OnThrowR;
                 @ThrowR.performed += instance.OnThrowR;
                 @ThrowR.canceled += instance.OnThrowR;
@@ -604,7 +604,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         void OnDashL(InputAction.CallbackContext context);
         void OnDashR(InputAction.CallbackContext context);
         void OnShockwave(InputAction.CallbackContext context);
-        void OnParry(InputAction.CallbackContext context);
+        void OnDodge(InputAction.CallbackContext context);
         void OnThrowR(InputAction.CallbackContext context);
         void OnThrowL(InputAction.CallbackContext context);
     }

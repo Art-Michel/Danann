@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Ccl_FSM : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class Ccl_FSM : MonoBehaviour
 
     public Ccl_State currentState { get; private set; }
     public Ccl_State previousState { get; private set; }
+
+    public GameObject Cursor;
+    public Transform Body;
+    public CinemachineTargetGroup TargetGroup;
 
     void Awake()
     {
@@ -19,13 +24,17 @@ public class Ccl_FSM : MonoBehaviour
         AddState(new Ccl_StateLightAttacking());
         AddState(new Ccl_StateIdle());
         AddState(new Ccl_StateAiming());
+        AddState(new Ccl_StateThrowing());
+        AddState(new Ccl_StateDashing());
+        AddState(new Ccl_StateParrying());
+        AddState(new Ccl_StateRecalling());
 
         ChangeState(Ccl_StateNames.IDLE);
     }
 
     public void AddState(Ccl_State state)
     {
-        state.fsm = this;
+        state._fsm = this;
         states[state.Name] = state;
     }
 
@@ -56,6 +65,6 @@ public class Ccl_FSM : MonoBehaviour
     private void Update()
     {
         if (currentState != null)
-            currentState.Update();
+            currentState.StateUpdate();
     }
 }

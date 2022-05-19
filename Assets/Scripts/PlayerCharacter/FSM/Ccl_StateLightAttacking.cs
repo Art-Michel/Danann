@@ -14,7 +14,7 @@ public class Ccl_StateLightAttacking : Ccl_State
         
     }
 
-    public override void Update()
+    public override void StateUpdate()
     {
         
     }
