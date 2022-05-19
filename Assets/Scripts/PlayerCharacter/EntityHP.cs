@@ -47,6 +47,7 @@ public class EntityHP : MonoBehaviour
 
     protected void Die()
     {
+                Time.timeScale=1;
         if (_maxHealthPoints>100)
             Application.Quit();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
