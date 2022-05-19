@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class EntityHP : MonoBehaviour
 {
     public float HealthPoints { get; protected set; }
@@ -47,6 +47,9 @@ public class EntityHP : MonoBehaviour
 
     protected void Die()
     {
+        if (_maxHealthPoints>100)
+            Application.Quit();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Debug.Log(name + " just died");
     }
 

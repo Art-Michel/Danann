@@ -31,6 +31,18 @@ public class P1DSpin : Danu_State
     // Start is called before the first frame update
     public override void Begin()
     {
+        if (!isInit)
+            Init();
+        //activation des helices, ou instantiation si c'est la premiere fois
+        preview.localScale = new Vector3(1, 1, Vector3.Distance(fsm.transform.position, fsm.agent.GetArenaCenter()));
+        preview.position = fsm.transform.position + (fsm.agent.GetArenaCenter() - fsm.transform.position) / 2;
+        preview.LookAt(fsm.agent.GetArenaCenter());
+        preview.gameObject.SetActive(true);
+        waitTime = 0;
+        wait = true;
+    }
+    public override void Init()
+    {
         pool = fsm.GetPool();
         //setup des variables
         dist = fsm.GetP1Sp_Dist();
@@ -46,22 +58,8 @@ public class P1DSpin : Danu_State
         turningRight = fsm.GetP1TurningRight();
         maxWaitTime = fsm.GetP1MaxWaitTime();
         lifetime = fsm.GetP1SpinLifeTime();
-
-        //repositionnement du boss et des helices
-        //fsm.transform.position=fsm.agent.GetArenaCenter();
-        /*n=dSphereN.position;
-        w=dSphereSW.position;
-        e=dSphereSE.position;*/
-
-        //activation des helices, ou instantiation si c'est la premiere fois
-        preview.localScale = new Vector3(1, 1, Vector3.Distance(fsm.transform.position, fsm.agent.GetArenaCenter()));
-        preview.position = fsm.transform.position + (fsm.agent.GetArenaCenter() - fsm.transform.position) / 2;
-        preview.LookAt(fsm.agent.GetArenaCenter());
-        preview.gameObject.SetActive(true);
-        waitTime = 0;
-        wait = true;
+        base.Init();
     }
-
     // Update is called once per frame
     public override void Update()
     {
@@ -72,7 +70,6 @@ public class P1DSpin : Danu_State
             if (fsm.transform.position == fsm.agent.GetArenaCenter())
             {
                 SpawnBladesPreview();
-
             }
             if (waitTime >= maxWaitTime)
             {
@@ -89,7 +86,6 @@ public class P1DSpin : Danu_State
                 fsm.agent.ToIdle();
             else
                 orig.progression++;
-
         }
         Rotate();
     }
@@ -128,7 +124,6 @@ public class P1DSpin : Danu_State
         bladesParentAttackData.SetupHitboxes();
         bladesParentAttackData.LaunchAttack();
         isSetUp = true;
-    
     }
 
     void SetupBall(GameObject ball, Vector3 position, List<GameObject> blades)

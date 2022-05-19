@@ -26,12 +26,11 @@ public class P1CDash : Danu_State
     // Start is called before the first frame update
     public override void Begin()
     {
-        if (target == null)
-            SetUp();
+        if (!isInit)
+            Init();
         StartDash();
     }
-
-    private void SetUp()
+    public override void Init()
     {
         maxChargingTime = fsm.GetP1sD_ChargingTime();
         dashSpeed = fsm.GetP1sD_DashSpeed();
@@ -40,6 +39,8 @@ public class P1CDash : Danu_State
         dashAttackData = fsm.GetP1DashAttackData();
         preview = fsm.GetP1sD_Preview();
         target = fsm.agent.GetPlayer();
+        base.Init();
+
     }
 
     // Update is called once per frame

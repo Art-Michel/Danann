@@ -13617,7 +13617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1215718884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13648,12 +13648,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b724b9391b6e84341b0c71ca56c7b93f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meteorCount: 30
-  _maxInterval: 0.2
-  _minInterval: 0.1
+  _meteorCount: 60
+  _maxInterval: 0.4
+  _minInterval: 0
   _nextTarget: {x: 0, y: 0, z: 0}
   _arenaCenter: {x: -10.901655, y: 0, z: -3.6676483}
-  _meteorFrames: {x: 1.4, y: 0.7, z: 0.2}
+  _meteorFrames: {x: 2, y: 0.8, z: 0.2}
   _arenaRadius: 19.5
   _damage: 10
 --- !u!4 &1215718886

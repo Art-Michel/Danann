@@ -19,6 +19,7 @@ public class GameManager : LocalManager<GameManager>
         SOMeshes.Init(_configSOMeshes);
         #endif
 
+        Time.timeScale=1;
         Hurtboxes = new Hurtbox[EnemyHurtboxes.Length + AllyHurtboxes.Length];
         EnemyHurtboxes.CopyTo(Hurtboxes, 0);
         AllyHurtboxes.CopyTo(Hurtboxes, EnemyHurtboxes.Length);

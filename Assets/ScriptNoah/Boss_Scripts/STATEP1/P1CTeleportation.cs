@@ -19,7 +19,6 @@ public class P1CTeleportation : Danu_State
     float fadeTime;
     float startup;
     float active;
-    bool isSetUp;
     Vector3 arenaCenter;
     CinemachineTargetGroup cam;
     public enum destPoints
@@ -30,24 +29,9 @@ public class P1CTeleportation : Danu_State
     float reco;
     // Start is called before the first frame update
     public override void Begin()
-    {
-        if (!isSetUp)
-        {
-            cam=fsm.agent.GetCam();
-            arrival = fsm.GetP1TP_Arrival();
-            boomBox = fsm.GetP1TP_Boombox();
-            boomBoxAttackData = boomBox.GetComponent<AttackData>();
-            destination = fsm.GetP1TP_Destination();
-            MaxFadeTime = fsm.GetP1TP_Fadetime();
-            MaxSartup = fsm.GetP1TP_Startup();
-            offsetValue = fsm.GetP1TP_Offset();
-            maxReco = fsm.GetP1TP_Recovery();
-            maxActive = fsm.GetP1TP_Active();
-            farDist = fsm.GetP1TP_FarDist();
-            target = fsm.agent.GetPlayer();
-            arenaCenter = fsm.agent.GetArenaCenter();
-            isSetUp = true;
-        }
+    {        
+        if (!isInit)
+            Init();
         destination=fsm.GetP1TP_Destination();
         arrival.SetActive(false);
         if (destination == destPoints.FAR)
@@ -76,7 +60,23 @@ public class P1CTeleportation : Danu_State
         active=0;
         reco=0;
     }
-
+    public override void Init()
+    {
+            cam=fsm.agent.GetCam();
+            arrival = fsm.GetP1TP_Arrival();
+            boomBox = fsm.GetP1TP_Boombox();
+            boomBoxAttackData = boomBox.GetComponent<AttackData>();
+            destination = fsm.GetP1TP_Destination();
+            MaxFadeTime = fsm.GetP1TP_Fadetime();
+            MaxSartup = fsm.GetP1TP_Startup();
+            offsetValue = fsm.GetP1TP_Offset();
+            maxReco = fsm.GetP1TP_Recovery();
+            maxActive = fsm.GetP1TP_Active();
+            farDist = fsm.GetP1TP_FarDist();
+            target = fsm.agent.GetPlayer();
+            arenaCenter = fsm.agent.GetArenaCenter();
+            base.Init();
+    }
     // Update is called once per frame
     public override void Update()
     {

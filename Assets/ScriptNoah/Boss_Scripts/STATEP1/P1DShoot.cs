@@ -21,18 +21,13 @@ public class P1DShoot : Danu_State
     // Start is called before the first frame update
     public override void Begin()
     {
-        pool = fsm.GetPool();
-        maxLifeTime = fsm.GetP1d_ProjLifeTime();
-        delay = fsm.GetP1d_delay();
-        nbShot = fsm.GetP1d_nbShot();
-        speed = fsm.GetP1d_ShotSpeed();
-        fsm.transform.LookAt(fsm.agent.GetPlayer());
-        preview=fsm.GetP1sD_Preview();
+        if (!isInit)
+            Init();
+
         index = 0;
         timer = 0;
         waitTime=0;
         wait=true;
-        target=fsm.agent.GetPlayer();
         Vector3 dir = (-fsm.transform.position + target.position).normalized;
         preview.position = fsm.transform.position + (dir * 10)/2;
         preview.LookAt(target);
@@ -40,7 +35,18 @@ public class P1DShoot : Danu_State
         preview.gameObject.SetActive(true);
 
     }
-
+    public override void Init()
+    {
+        pool = fsm.GetPool();
+        maxLifeTime = fsm.GetP1d_ProjLifeTime();
+        delay = fsm.GetP1d_delay();
+        nbShot = fsm.GetP1d_nbShot();
+        speed = fsm.GetP1d_ShotSpeed();
+        fsm.transform.LookAt(fsm.agent.GetPlayer());
+        preview=fsm.GetP1sD_Preview();
+        target=fsm.agent.GetPlayer();
+        base.Init();
+    }
     // Update is called once per frame
     public override void Update()
     {

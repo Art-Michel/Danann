@@ -32,7 +32,6 @@ public class P1CMixDash : Danu_State
     bool isDashing;
     Vector3 maxArrival;
     bool getFar;
-    bool isSetup;
     private Vector3 startPos;
     Vector3 strafeDest;
     float afterStrafe;
@@ -40,14 +39,13 @@ public class P1CMixDash : Danu_State
     // Start is called before the first frame update
     public override void Begin()
     {
-        if (!isSetup)
-            SetUp();
+        if (!isInit)
+            Init();
         StartDash();
     }
-
-    private void SetUp()
+    public override void Init()
     {
-        isSetup = true;
+        base.Init();
         maxChargingTime = fsm.GetP1sD_ChargingTime();
         dashSpeed = fsm.GetP1sD_DashSpeed();
         maxDashTime = fsm.GetP1sD_MDashT();

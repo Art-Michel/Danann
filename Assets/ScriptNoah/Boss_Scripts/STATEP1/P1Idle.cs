@@ -15,7 +15,7 @@ public class P1Idle : Danu_State
         IdleMovement=nextTargetPos;
         fsm.agent.RestoreChain();
     }
-
+    
     // Update is called once per frame
     public override void Update()
     {

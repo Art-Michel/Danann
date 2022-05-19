@@ -147,7 +147,6 @@ public class Danu_FSM : MonoBehaviour
     #endregion
     #endregion
     int indexx;
-
     public Danu_State curr { get; private set; }
     public Danu_State prev { get; private set; }
     [Button]
@@ -160,6 +159,7 @@ public class Danu_FSM : MonoBehaviour
     {
         state.fsm = this;
         this.m_states[state.name] = state;
+        state.Init();
     }
     public void RemoveState(Danu_State state)
     {

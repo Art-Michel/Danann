@@ -17,13 +17,21 @@ public class P1CSlam : Danu_State
     int _slamCount;
     int _maxSlamCount = 3;
     int _index = 0;
-
     public override void Begin()
     {
+        if (!isInit)
+            Init();
+        _index = 0;
+        StartPreview();
+
+    }
+    public override void Init()
+    {
+        base.Init();
+        _slamHitbox=fsm.GetP1SlamHitBox();
         _slamAttackDatas[0] = fsm.GetP1Slam1AttackData();
         _slamAttackDatas[1] = fsm.GetP1Slam2AttackData();
         _slamAttackDatas[2] = fsm.GetP1Slam3AttackData();
-        _index = 0;
         Vector3[] frames = new Vector3[3];
         for (int i = 0; i < 3; i++)
         {
@@ -32,11 +40,7 @@ public class P1CSlam : Danu_State
             _active[i] = frames[i].y;
             _recovery[i] = frames[i].z;
         }
-        StartPreview();
-        _slamHitbox=fsm.GetP1SlamHitBox();
-        
     }
-
     public override void Update()
     {
         _timer += Time.deltaTime;

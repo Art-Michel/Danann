@@ -31,23 +31,12 @@ public class P1DBoomerang : Danu_State
     // Start is called before the first frame update
     public override void Begin()
     {
-        boomerangAttackData = fsm.GetBoomerangAttackData();
-        boomerangAttackData.LaunchAttack();
-        target = fsm.agent.GetPlayer();
-        fsm.transform.LookAt(target);
-
-        preview = fsm.GetP1sD_Preview();
-        boomerangL = fsm.GetP1BRL();
-        boomerangR = fsm.GetP1BRR();
-        curveMidL = fsm.GetP1BoomeRangcurveMidL();
-        curveMidR = fsm.GetP1BoomeRangcurveMidR();
-
-        speed = fsm.GetP1BoomeRangSpeed();
-        maxDistance=fsm.GetP1BR_MaxDist();
-        MaxCurveTime = fsm.GetP1BoomeRangMaxCurveTime();
+        if (!isInit)
+            Init();
         curveTime=0;
-        MaxStraightTime = fsm.GetP1BoomeRangMaxStraightTime();
         straightTime=0;
+        boomerangAttackData.LaunchAttack();
+        fsm.transform.LookAt(target);
         curveEnd = fsm.transform.position;
         curveStartL = boomerangL.transform.position + fsm.transform.forward * maxDistance ;
         curveStartR = boomerangR.transform.position + fsm.transform.forward * maxDistance;
@@ -58,13 +47,29 @@ public class P1DBoomerang : Danu_State
         preview.LookAt(straightEnd);
         preview.gameObject.SetActive(true);
         
-        maxWaitTime = fsm.GetP1BR_Startup();
         wait = true;
         startL=boomerangL.transform.position;
         startR=boomerangR.transform.position;        
         waitTime=0;
     }
+    public override void Init()
+    {
+        boomerangAttackData = fsm.GetBoomerangAttackData();
+        target = fsm.agent.GetPlayer();
 
+        preview = fsm.GetP1sD_Preview();
+        boomerangL = fsm.GetP1BRL();
+        boomerangR = fsm.GetP1BRR();
+        curveMidL = fsm.GetP1BoomeRangcurveMidL();
+        curveMidR = fsm.GetP1BoomeRangcurveMidR();
+
+        speed = fsm.GetP1BoomeRangSpeed();
+        maxDistance=fsm.GetP1BR_MaxDist();
+        MaxCurveTime = fsm.GetP1BoomeRangMaxCurveTime();
+        MaxStraightTime = fsm.GetP1BoomeRangMaxStraightTime();
+        maxWaitTime = fsm.GetP1BR_Startup();
+        base.Init();
+    }
     // Update is called once per frame
     public override void Update()
     {
