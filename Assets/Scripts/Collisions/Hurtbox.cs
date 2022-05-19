@@ -10,14 +10,14 @@ public class Hurtbox : MonoBehaviour
     Mesh _mesh;
     void OnDrawGizmos()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         SOMeshes.Init();
         _mesh = SOMeshes.Instance.HitboxDebugSphere;
         Gizmos.color = SphereColor;
         Gizmos.DrawMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
         Gizmos.color = SphereWireColor;
         Gizmos.DrawWireMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
-        #endif
+#endif
     }
     #endregion
 
@@ -43,12 +43,13 @@ public class Hurtbox : MonoBehaviour
 
     public void ForgetAttack(string attackName)
     {
-        if (_attacksThatHitMe.Contains(attackName))
-        _attacksThatHitMe.Remove(attackName);
+        if (_attacksThatHitMe != null && _attacksThatHitMe.Contains(attackName))
+            _attacksThatHitMe.Remove(attackName);
     }
 
     public void ForgetAllAttacks()
     {
-        _attacksThatHitMe.Clear();
+        if (_attacksThatHitMe != null)
+            _attacksThatHitMe.Clear();
     }
 }

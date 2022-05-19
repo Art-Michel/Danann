@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Spear_State
 {
-    public Spear_FSM fsm = null;
+    public Spear_FSM _fsm = null;
 
-    public string StateName { get; private set; }
+    public string Name { get; private set; }
 
     public Spear_State(string name)
     {
-        this.StateName = name;
+        this.Name = name;
     }
 
     public virtual void Begin()

@@ -11,10 +11,10 @@ public class Ccl_StateThrowing : Ccl_State
 
     public override void Begin()
     {
-        
+        _fsm.ChangeState(Ccl_StateNames.IDLE);
     }
 
-    public override void Update()
+    public override void StateUpdate()
     {
         
     }

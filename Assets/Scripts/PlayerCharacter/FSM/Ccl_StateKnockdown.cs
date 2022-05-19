@@ -14,7 +14,7 @@ public class Ccl_StateKnockdown : Ccl_State
         
     }
 
-    public override void Update()
+    public override void StateUpdate()
     {
         
     }

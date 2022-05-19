@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ccl_StateParrying : Ccl_State
+public class Spear_StateIdle : Spear_State
 {
-    public Ccl_StateParrying() : base(Ccl_StateNames.PARRYING)
+    public Spear_StateIdle() : base(Spear_StateNames.IDLE)
     {
 
     }
@@ -14,7 +14,7 @@ public class Ccl_StateParrying : Ccl_State
         
     }
 
-    public override void StateUpdate()
+    public override void Update()
     {
         
     }

@@ -14,4 +14,5 @@ public class Ccl_Attacks
     public const string SHOCKWAVE_L = "Shocwave_L";
     public const string SHOCKWAVE_R = "Shocwave_R";
     public const string SHOCKWAVE_CCL = "Shocwave_Ccl";
+    public const string TRAVELINGSPEAR = "TravelingSpear";
 }

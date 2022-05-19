@@ -21,6 +21,7 @@ public class AttackData : MonoBehaviour
         {"Light Attack 1", Ccl_Attacks.LIGHTATTACK1},
         {"Light Attack 2", Ccl_Attacks.LIGHTATTACK2},
         {"Light Attack 3", Ccl_Attacks.LIGHTATTACK3},
+        {"Traveling Spear", Ccl_Attacks.TRAVELINGSPEAR},
         {"Energy Ball", Danu_Attacks.PROJECTILE},
         {"Dash 1", Danu_Attacks.DASH},
         {"Dash 2", Danu_Attacks.DASH2},

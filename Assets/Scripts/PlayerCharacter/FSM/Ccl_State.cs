@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ccl_State
 {
-    public Ccl_FSM fsm = null;
+    public Ccl_FSM _fsm = null;
 
     public string Name { get; private set; }
 
@@ -18,7 +18,7 @@ public class Ccl_State
 
     }
 
-    public virtual void Update()
+    public virtual void StateUpdate()
     {
 
     }

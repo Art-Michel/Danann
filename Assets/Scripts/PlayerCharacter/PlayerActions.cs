@@ -10,12 +10,18 @@ public class PlayerActions : MonoBehaviour
     PlayerInputMap _inputs;
     Ccl_FSM _fsm;
     PlayerMovement _playerMovement;
+    [SerializeField] Spear_FSM _leftSpear;
+    [SerializeField] Spear_FSM _rightSpear;
     #endregion
 
     #region Light Attack
     int _currentLightAttackIndex = 0;
     float _comboWindow = 0f;
     float _comboMaxWindow = 0.5f;
+    #endregion
+
+    #region Aiming
+    Spear_FSM _currentlyHeldSpear;
     #endregion
 
     #region Attacks Data
@@ -33,14 +39,61 @@ public class PlayerActions : MonoBehaviour
 
         //Inputs
         _inputs.Actions.LightAttack.started += _ => LightAttackInput();
+        _inputs.Actions.Dodge.started += _ => DodgeInput();
+        _inputs.Actions.ThrowL.started += _ => AimInput(_leftSpear);
+        _inputs.Actions.ThrowR.started += _ => AimInput(_rightSpear);
+        _inputs.Actions.ThrowL.canceled += _ => ThrowInput();
+        _inputs.Actions.ThrowR.canceled += _ => ThrowInput();
     }
 
+    #region Aiming and Throwing
+    private void AimInput(Spear_FSM spear)
+    {
+        if (_fsm.currentState.Name == Ccl_StateNames.IDLE && spear.currentState.Name == Spear_StateNames.ATTACHED)
+        {
+            _fsm.ChangeState(Ccl_StateNames.AIMING);
+            spear.ChangeState(Spear_StateNames.AIMING);
+            _currentlyHeldSpear = spear;
+        }
+    }
+
+    private void ThrowInput()
+    {
+        if (_fsm.currentState.Name == Ccl_StateNames.AIMING)
+            Throw();
+    }
+
+    private void Throw()
+    {
+        _fsm.ChangeState(Ccl_StateNames.THROWING);
+        _currentlyHeldSpear.ChangeState(Spear_StateNames.THROWN);
+    }
+
+    private void CancelAim()
+    {
+        {   
+        _fsm.ChangeState(Ccl_StateNames.IDLE);
+        _currentlyHeldSpear.ChangeState(Spear_StateNames.ATTACHED);
+        _currentlyHeldSpear = null;
+        }
+    }
+    #endregion
+
+    #region DodgeRoll
+    private void DodgeInput()
+    {
+        if (_fsm.currentState.Name == Ccl_StateNames.AIMING)
+            CancelAim();
+    }
+    #endregion
+
+    #region Light Attack
     private void LightAttackInput()
     {
         if (_fsm.currentState.Name == Ccl_StateNames.IDLE /*|| _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING*/)
-        {
             LightAttack();
-        }
+        else if (_fsm.currentState.Name == Ccl_StateNames.AIMING)
+            CancelAim();
     }
 
     private void LightAttack()
@@ -48,8 +101,9 @@ public class PlayerActions : MonoBehaviour
         LaunchLightAttackAnimation();
         if (_currentLightAttackIndex < 2) _currentLightAttackIndex++;
         else _currentLightAttackIndex = 0;
-        Debug.Log("Launching Light Attack" + _currentLightAttackIndex);
+        //Debug.Log("Launching Light Attack" + _currentLightAttackIndex);
     }
+    #endregion
 
     #region Placeholder coroutines instead of animation keys
     void LaunchLightAttackAnimation()
