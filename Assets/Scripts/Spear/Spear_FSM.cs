@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +6,12 @@ using UnityEngine;
 public class Spear_FSM : MonoBehaviour
 {
     private Dictionary<string, Spear_State> states;
+    [SerializeField] SpearAI _spearAi;
 
     public Spear_State currentState { get; private set; }
+
     public Spear_State previousState { get; private set; }
 
-    public GameObject Cursor;
-    public AttackData TravelingAttackData;
-    public float TravelSpeed = 5;
 
     void Awake()
     {
@@ -34,6 +34,7 @@ public class Spear_FSM : MonoBehaviour
     public void AddState(Spear_State state)
     {
         state._fsm = this;
+        state._ai = _spearAi;
         states[state.Name] = state;
     }
 

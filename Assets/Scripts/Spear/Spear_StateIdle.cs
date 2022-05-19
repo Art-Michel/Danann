@@ -11,7 +11,8 @@ public class Spear_StateIdle : Spear_State
 
     public override void Begin()
     {
-        
+        _ai.transform.forward = Vector3.up;
+        _ai.Trigger.enabled = true;
     }
 
     public override void Update()
@@ -21,6 +22,7 @@ public class Spear_StateIdle : Spear_State
 
     public override void Exit()
     {
+        _ai.Trigger.enabled = false;
 
     }
 }

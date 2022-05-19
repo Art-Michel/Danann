@@ -25,6 +25,7 @@ public class SoundManager : ProjectManager<SoundManager>
         {Ccl_Attacks.LIGHTATTACK1, _bossPunched},
         {Ccl_Attacks.LIGHTATTACK2, _bossPunched},
         {Ccl_Attacks.LIGHTATTACK3, _bossPunchedH},
+        {Ccl_Attacks.TRAVELINGSPEAR, _bossPunched}
         };
     }
 
