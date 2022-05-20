@@ -13,8 +13,8 @@ public class Ccl_StateAiming : Ccl_State
 
     public override void Begin()
     {
+        _fsm.Cursor.transform.position = _fsm.transform.position;
         _fsm.Cursor.SetActive(true);
-        _fsm.Cursor.transform.position = (_fsm.transform.position + _fsm.Body.transform.forward * 2);
         _fsm.TargetGroup.m_Targets[4].weight = 1;
     }
 

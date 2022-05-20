@@ -224,6 +224,17 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6461297695846733525, guid: b10f85958c2dea746b6ee95a0099d2e9, type: 3}
+--- !u!114 &10154397 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 372751717, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+  m_PrefabInstance: {fileID: 902433836}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d563abbb271064469c78d0096f8bec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &111871742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1768,10 +1779,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 372751716, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 372751716, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: m_StepOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 372751717, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _normalSpeed
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 20423502006755893, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _vcam
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 323480814}
     - target: {fileID: 20423502006755893, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _healthBar
       value: 
@@ -1779,7 +1802,7 @@ PrefabInstance:
     - target: {fileID: 1012520703114616240, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: TargetGroup
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 761610233}
     - target: {fileID: 1267046315873582156, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1824,6 +1847,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5806273709077237411, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _normalSpeed
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5806273709077237411, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _cursorMovement
+      value: 
+      objectReference: {fileID: 10154397}
     - target: {fileID: 5854148910218927426, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: m_Name
       value: Ccl
@@ -1831,6 +1862,14 @@ PrefabInstance:
     - target: {fileID: 6696278159164135568, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: TargetGroup
       value: 
+      objectReference: {fileID: 761610233}
+    - target: {fileID: 6696278159515539590, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696278159515539590, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: m_StepOffset
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6718971616905161990, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _plasmaBar
@@ -1839,7 +1878,7 @@ PrefabInstance:
     - target: {fileID: 7221218678443527596, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: TargetGroup
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 761610233}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
 --- !u!4 &902433837 stripped
@@ -15516,7 +15555,7 @@ PrefabInstance:
     - target: {fileID: 8289406093843463521, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: cam
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 761610233}
     - target: {fileID: 8289406093843463521, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: player
       value: 
