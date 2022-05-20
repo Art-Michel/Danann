@@ -14,8 +14,8 @@ public class CursorMovement : MonoBehaviour
     [SerializeField] float _normalSpeed;
     const float _rightStickMultiplier = 4;
     [NonSerialized] public float MovementSpeed;
-    /*float _easeInValue;
-    [SerializeField] float _easeInSpeed;*/
+    public float EaseInValue;
+    [SerializeField] float _easeInSpeed;
     Rigidbody _rb;
 
     private void Awake()
@@ -33,7 +33,7 @@ public class CursorMovement : MonoBehaviour
         ResetMovementSpeed();
         _isMoving = false;
         WantedDirection = Vector3.zero;
-        /*_easeInValue = 0;*/
+        EaseInValue = 0;
         _rb = GetComponent<Rigidbody>();
     }
 
@@ -41,6 +41,7 @@ public class CursorMovement : MonoBehaviour
     {
         if (_isMoving)
             CalculateWantedDirection();
+        EaseInMovement();
         Move();
 
         if (_rb.IsSleeping())
@@ -50,7 +51,7 @@ public class CursorMovement : MonoBehaviour
     private void ReadMovementInputs()
     {
         _isMoving = true;
-        //_easeInValue = 0;
+        EaseInValue = 0;
     }
 
     private void StopReadingMovementInputs()
@@ -64,14 +65,14 @@ public class CursorMovement : MonoBehaviour
         MovementSpeed = _normalSpeed;
     }
 
-    /*private void EaseInMovement()
+    private void EaseInMovement()
     {
-        if (_easeInValue < 1)
+        if (EaseInValue < 1)
         {
-            _easeInValue += Time.deltaTime * _easeInSpeed;
-            _easeInValue = Mathf.Clamp(_easeInValue, 0, 1);
+            EaseInValue += Time.deltaTime * _easeInSpeed;
+            EaseInValue = Mathf.Clamp(EaseInValue, 0, 1);
         }
-    }*/
+    }
 
     void CalculateWantedDirection()
     {
@@ -80,8 +81,8 @@ public class CursorMovement : MonoBehaviour
 
     private void Move()
     {
-        _charaCon.Move(WantedDirection * MovementSpeed /* * _easeInValue*/ * Time.deltaTime);
-        if(_isMoving) WantedDirection = Vector3.zero;
+        _charaCon.Move(WantedDirection * MovementSpeed * EaseInValue * Time.deltaTime);
+        if (_isMoving) WantedDirection = Vector3.zero;
     }
 
     #region disable inputs on Player disable to avoid weird inputs

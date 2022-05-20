@@ -28,6 +28,7 @@ public class PlayerHP : EntityHP
     //invul
     const float _invulerabilityLength = 0.7f;
     float _invulerabilityT;
+    float _tookAHit;
 
     Hurtbox _hurtbox;
 
@@ -47,7 +48,7 @@ public class PlayerHP : EntityHP
 
     void Update()
     {
-        if (_isInvulnerable) HandlePostDamageInvul();
+        if (_invulerabilityT > 0) HandlePostDamageInvul();
         if (_timeIsSlow) HandlePostDamageTimeSlow();
     }
 

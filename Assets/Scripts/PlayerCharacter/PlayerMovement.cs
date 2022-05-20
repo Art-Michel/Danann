@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float _easeInSpeed;
     Rigidbody _rb;
 
-    [SerializeField] GameObject _playerBody;
+    public GameObject PlayerBody;
     private const int BodyRotatingSpeed = 50;
 
     private void Awake()
@@ -76,11 +76,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void Move()
+    public void Move()
     {
         _wantedDirection = new Vector3(_inputs.Movement.Move.ReadValue<Vector2>().x, 0, _inputs.Movement.Move.ReadValue<Vector2>().y);
         _charaCon.Move(_wantedDirection * MovementSpeed * _easeInValue * Time.deltaTime);
         _cursorMovement.WantedDirection = _wantedDirection;
+        _cursorMovement.EaseInValue = 1;
 
         if (_fsm.currentState.Name == Ccl_StateNames.IDLE) RotateBody();
     }
@@ -91,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
         //Ridiculously small offset to prevent body from looking directly in a cardinal direction
         //as it is slooooooooow to RLerp from one rotation to its exact opposite.
 
-        _playerBody.transform.forward = Vector3.Lerp(_playerBody.transform.forward, _wantedDirection + bodyRotationOffset, BodyRotatingSpeed * Time.deltaTime);
+        PlayerBody.transform.forward = Vector3.Lerp(PlayerBody.transform.forward, _wantedDirection + bodyRotationOffset, BodyRotatingSpeed * Time.deltaTime);
     }
 
     #region disable inputs on Player disable to avoid weird inputs

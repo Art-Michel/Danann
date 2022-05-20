@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ccl_State
 {
     public Ccl_FSM _fsm = null;
+    public PlayerActions _pa = null;
 
     public string Name { get; private set; }
 

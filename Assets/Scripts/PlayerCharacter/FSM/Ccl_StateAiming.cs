@@ -27,6 +27,5 @@ public class Ccl_StateAiming : Ccl_State
     public override void Exit()
     {
         _fsm.Cursor.SetActive(false);
-        _fsm.TargetGroup.m_Targets[4].weight = 0;
     }
 }

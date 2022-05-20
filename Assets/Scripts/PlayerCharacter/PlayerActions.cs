@@ -9,7 +9,7 @@ public class PlayerActions : MonoBehaviour
     #region Init
     PlayerInputMap _inputs;
     Ccl_FSM _fsm;
-    PlayerMovement _playerMovement;
+    public PlayerMovement PlayerMovement { get; private set; }
     [SerializeField] Spear_FSM _leftSpear;
     [SerializeField] Spear_FSM _rightSpear;
     #endregion
@@ -24,6 +24,13 @@ public class PlayerActions : MonoBehaviour
     Spear_FSM _currentlyHeldSpear;
     #endregion
 
+    #region Dodge Rolling
+    public CharacterController Characon { get; private set; }
+    //public Hurtbox Hurtbox { get; private set; }
+    public PlayerHP PlayerHP {get; private set;}
+    public TrailRenderer BodyTrailRenderer;
+    #endregion
+
     #region Attacks Data
     [SerializeField] AttackData _lightAttack0Data;
     [SerializeField] AttackData _lightAttack1Data;
@@ -35,7 +42,10 @@ public class PlayerActions : MonoBehaviour
         //Init
         _fsm = GetComponent<Ccl_FSM>();
         _inputs = new PlayerInputMap();
-        _playerMovement = GetComponent<PlayerMovement>();
+        this.PlayerMovement = GetComponent<PlayerMovement>();
+        Characon = GetComponent<CharacterController>();
+        this.PlayerHP = GetComponent<PlayerHP>();
+        //Hurtbox = GetComponent<Hurtbox>();
 
         //Inputs
         _inputs.Actions.LightAttack.started += _ => LightAttackInput();
@@ -55,7 +65,7 @@ public class PlayerActions : MonoBehaviour
             spear.ChangeState(Spear_StateNames.AIMING);
             _currentlyHeldSpear = spear;
         }
-        else if(_fsm.currentState.Name == Ccl_StateNames.IDLE && (spear.currentState.Name == Spear_StateNames.IDLE ||spear.currentState.Name == Spear_StateNames.ATTACKING ||spear.currentState.Name == Spear_StateNames.TRIANGLING))
+        else if (_fsm.currentState.Name == Ccl_StateNames.IDLE && (spear.currentState.Name == Spear_StateNames.IDLE || spear.currentState.Name == Spear_StateNames.ATTACKING || spear.currentState.Name == Spear_StateNames.TRIANGLING))
         {
             spear.ChangeState(Spear_StateNames.RECALLED);
         }
@@ -75,10 +85,11 @@ public class PlayerActions : MonoBehaviour
 
     private void CancelAim()
     {
-        {   
-        _fsm.ChangeState(Ccl_StateNames.IDLE);
-        _currentlyHeldSpear.ChangeState(Spear_StateNames.ATTACHED);
-        _currentlyHeldSpear = null;
+        {
+            _fsm.ChangeState(Ccl_StateNames.IDLE);
+            _currentlyHeldSpear.ChangeState(Spear_StateNames.ATTACHED);
+            _currentlyHeldSpear = null;
+            _fsm.TargetGroup.m_Targets[4].weight = 0;
         }
     }
     #endregion
@@ -86,8 +97,16 @@ public class PlayerActions : MonoBehaviour
     #region DodgeRoll
     private void DodgeInput()
     {
-        if (_fsm.currentState.Name == Ccl_StateNames.AIMING)
+        if (_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING)
+            DodgeRoll();
+
+        else if (_fsm.currentState.Name == Ccl_StateNames.AIMING)
             CancelAim();
+    }
+
+    private void DodgeRoll()
+    {
+        _fsm.ChangeState(Ccl_StateNames.DODGING);
     }
     #endregion
 
@@ -131,18 +150,18 @@ public class PlayerActions : MonoBehaviour
         _comboWindow = _comboMaxWindow;
         _lightAttack0Data.LaunchAttack();
         SoundManager.Instance.PlayPunch0();
-        _playerMovement.MovementSpeed *= 0.75f;
+        PlayerMovement.MovementSpeed *= 0.75f;
         yield return new WaitForSeconds(0.3f);
 
         _lightAttack0Data.StopAttack();
-        _playerMovement.ResetMovementSpeed();
+        PlayerMovement.ResetMovementSpeed();
         _fsm.ChangeState(Ccl_StateNames.IDLE);
         yield return null;
     }
     IEnumerator LightAttack1Animation()
     {
         _fsm.ChangeState(Ccl_StateNames.LIGHTATTACKING);
-        _playerMovement.MovementSpeed *= 0.25f;
+        PlayerMovement.MovementSpeed *= 0.25f;
         yield return new WaitForSeconds(0.1f);
 
         _comboWindow = _comboMaxWindow;
@@ -151,14 +170,14 @@ public class PlayerActions : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
 
         _lightAttack1Data.StopAttack();
-        _playerMovement.ResetMovementSpeed();
+        PlayerMovement.ResetMovementSpeed();
         _fsm.ChangeState(Ccl_StateNames.IDLE);
         yield return null;
     }
     IEnumerator LightAttack2Animation()
     {
         _fsm.ChangeState(Ccl_StateNames.LIGHTATTACKING);
-        _playerMovement.MovementSpeed = 0;
+        PlayerMovement.MovementSpeed = 0;
         yield return new WaitForSeconds(0.4f);
 
         _comboWindow = _comboMaxWindow;
@@ -167,7 +186,7 @@ public class PlayerActions : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         _lightAttack2Data.StopAttack();
-        _playerMovement.ResetMovementSpeed();
+        PlayerMovement.ResetMovementSpeed();
         _fsm.ChangeState(Ccl_StateNames.IDLE);
         yield return null;
     }

@@ -14,6 +14,7 @@ public class SoundManager : ProjectManager<SoundManager>
     [SerializeField] AudioClip _punch1;
     [SerializeField] AudioClip _punch2;
     [SerializeField] AudioClip _bossPunchedH;
+    [SerializeField] AudioClip _dash;
     Dictionary<string, AudioClip> _attackSoundEffect;
 
     override protected void Awake()
@@ -42,6 +43,11 @@ public class SoundManager : ProjectManager<SoundManager>
     public void PlayPlayerHurt()
     {
         PlaySound(_playerHurt, 1f);
+    }
+
+    public void PlayDash()
+    {
+        PlaySound(_dash, 1f);
     }
 
     public void PlayBossPunched()

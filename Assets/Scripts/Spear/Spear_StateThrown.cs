@@ -38,6 +38,6 @@ public class Spear_StateThrown : Spear_State
     public override void Exit()
     {
         _ai.TravelingAttackData.StopAttack();
-
+        _ai.TargetGroup.m_Targets[4].weight = 0;
     }
 }
