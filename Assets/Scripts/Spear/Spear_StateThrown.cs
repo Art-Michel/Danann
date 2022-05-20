@@ -24,6 +24,8 @@ public class Spear_StateThrown : Spear_State
 
         _t = 0;
 
+        SoundManager.Instance.PlayThrow();
+
         _ai.TravelingAttackData.LaunchAttack();
     }
 

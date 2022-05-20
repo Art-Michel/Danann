@@ -23,6 +23,8 @@ public class Spear_StateRecalled : Spear_State
 
         _t = 0;
         _ai.TravelingAttackData.LaunchAttack();
+
+        SoundManager.Instance.PlayRecall();
     }
 
     public override void Update()

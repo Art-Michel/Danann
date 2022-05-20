@@ -16,6 +16,8 @@ public class Ccl_StateAiming : Ccl_State
         _fsm.Cursor.transform.position = _fsm.transform.position;
         _fsm.Cursor.SetActive(true);
         _fsm.TargetGroup.m_Targets[4].weight = 1;
+        SoundManager.Instance.PlayZoomIn();
+        _pa.ZoomCamera();
     }
 
     public override void StateUpdate()
@@ -27,5 +29,7 @@ public class Ccl_StateAiming : Ccl_State
     public override void Exit()
     {
         _fsm.Cursor.SetActive(false);
+        SoundManager.Instance.PlayZoomOut();
+        _pa.UnzoomCamera();
     }
 }

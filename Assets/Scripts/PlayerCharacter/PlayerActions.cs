@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
+using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.Rendering;
 
 public class PlayerActions : MonoBehaviour
 {
@@ -22,6 +25,8 @@ public class PlayerActions : MonoBehaviour
 
     #region Aiming
     Spear_FSM _currentlyHeldSpear;
+    [SerializeField] Volume _volume;
+    Vignette _vignette;
     #endregion
 
     #region Dodge Rolling
@@ -48,6 +53,7 @@ public class PlayerActions : MonoBehaviour
         this.PlayerMovement = GetComponent<PlayerMovement>();
         Characon = GetComponent<CharacterController>();
         this.PlayerHP = GetComponent<PlayerHP>();
+        _volume.profile.TryGet<Vignette>(out _vignette);
         //Hurtbox = GetComponent<Hurtbox>();
 
         //Inputs
@@ -97,6 +103,16 @@ public class PlayerActions : MonoBehaviour
             _currentlyHeldSpear = null;
             _fsm.TargetGroup.m_Targets[4].weight = 0;
         }
+    }
+
+    public void ZoomCamera()
+    {
+        _vignette.intensity.Override(0.6f);
+    }
+
+    public void UnzoomCamera()
+    {
+        _vignette.intensity.Override(0f);
     }
     #endregion
 

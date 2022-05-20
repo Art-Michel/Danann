@@ -361,11 +361,33 @@
                 },
                 {
                     "name": "",
+                    "id": "d75cd486-9ebf-4fe7-9639-2cd8898d795b",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ThrowR",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a281e303-a51d-4a54-8a5f-820754afb721",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
+                    "action": "ThrowL",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea686eef-32af-4c83-b361-cf87f6dcd86c",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "ThrowL",
                     "isComposite": false,
                     "isPartOfComposite": false

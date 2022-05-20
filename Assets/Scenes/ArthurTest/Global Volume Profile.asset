@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Global Volume Profile
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 4849630577016655812}
---- !u!114 &4849630577016655812
+  - {fileID: 7211402627040401393}
+--- !u!114 &7211402627040401393
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -23,116 +23,46 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 953beb541740ddc499d005ee80c9ff29, type: 3}
-  m_Name: Fog
+  m_Script: {fileID: 11500000, guid: 2c1be1b6c95cd2e41b27903b9270817f, type: 3}
+  m_Name: Vignette
   m_EditorClassIdentifier: 
   active: 1
   m_AdvancedMode: 0
-  quality:
-    m_OverrideState: 0
-    m_Value: 1
-  enabled:
+  mode:
     m_OverrideState: 1
-    m_Value: 1
-  colorMode:
-    m_OverrideState: 0
     m_Value: 0
   color:
-    m_OverrideState: 0
-    m_Value: {r: 1, g: 0.71341777, b: 0, a: 1}
-    hdr: 1
-    showAlpha: 0
-    showEyeDropper: 1
-  tint:
-    m_OverrideState: 0
-    m_Value: {r: 3.031433, g: 1.9123144, b: 0, a: 1}
-    hdr: 1
-    showAlpha: 0
-    showEyeDropper: 1
-  maxFogDistance:
-    m_OverrideState: 0
-    m_Value: 200
-    min: 0
-  mipFogMaxMip:
-    m_OverrideState: 0
-    m_Value: 0.5
-    min: 0
-    max: 1
-  mipFogNear:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-  mipFogFar:
-    m_OverrideState: 0
-    m_Value: 1000
-    min: 0
-  baseHeight:
-    m_OverrideState: 0
-    m_Value: 2.5
-  maximumHeight:
     m_OverrideState: 1
-    m_Value: 50.9
-  meanFreePath:
-    m_OverrideState: 1
-    m_Value: 27
-    min: 1
-  enableVolumetricFog:
-    m_OverrideState: 1
-    m_Value: 1
-  albedo:
-    m_OverrideState: 1
-    m_Value: {r: 0.6916062, g: 0.8679245, b: 0.39711642, a: 1}
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
     hdr: 0
-    showAlpha: 1
+    showAlpha: 0
     showEyeDropper: 1
-  globalLightProbeDimmer:
+  center:
+    m_OverrideState: 0
+    m_Value: {x: 0.5, y: 0.5}
+  intensity:
     m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  smoothness:
+    m_OverrideState: 1
+    m_Value: 1
+    min: 0.01
+    max: 1
+  roundness:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  rounded:
+    m_OverrideState: 0
+    m_Value: 0
+  mask:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+  opacity:
+    m_OverrideState: 0
     m_Value: 1
     min: 0
     max: 1
-  depthExtent:
-    m_OverrideState: 0
-    m_Value: 64
-    min: 0.1
-  denoisingMode:
-    m_OverrideState: 1
-    m_Value: 3
-  anisotropy:
-    m_OverrideState: 0
-    m_Value: 0
-    min: -1
-    max: 1
-  sliceDistributionUniformity:
-    m_OverrideState: 0
-    m_Value: 0.75
-    min: 0
-    max: 1
-  m_FogControlMode:
-    m_OverrideState: 0
-    m_Value: 0
-  screenResolutionPercentage:
-    m_OverrideState: 0
-    m_Value: 12.5
-    min: 6.25
-    max: 50
-  volumeSliceCount:
-    m_OverrideState: 0
-    m_Value: 64
-    min: 1
-    max: 512
-  m_VolumetricFogBudget:
-    m_OverrideState: 0
-    m_Value: 0.33
-    min: 0
-    max: 1
-  m_ResolutionDepthRatio:
-    m_OverrideState: 0
-    m_Value: 0.666
-    min: 0
-    max: 1
-  directionalLightsOnly:
-    m_OverrideState: 0
-    m_Value: 0
-  filter:
-    m_OverrideState: 0
-    m_Value: 0

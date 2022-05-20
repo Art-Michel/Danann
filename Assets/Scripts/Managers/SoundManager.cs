@@ -15,6 +15,10 @@ public class SoundManager : ProjectManager<SoundManager>
     [SerializeField] AudioClip _punch2;
     [SerializeField] AudioClip _bossPunchedH;
     [SerializeField] AudioClip _dash;
+    [SerializeField] AudioClip _zoomin;
+    [SerializeField] AudioClip _zoomout;
+    [SerializeField] AudioClip _throw;
+    [SerializeField] AudioClip _recall;
     Dictionary<string, AudioClip> _attackSoundEffect;
 
     override protected void Awake()
@@ -80,5 +84,23 @@ public class SoundManager : ProjectManager<SoundManager>
         PlaySound(_punch2, 5f);
     }
 
+    public void PlayZoomIn()
+    {
+        PlaySound(_zoomin, 5f);
+    }
 
+    public void PlayZoomOut()
+    {
+        PlaySound(_zoomout, 5f);
+    }
+
+    public void PlayThrow()
+    {
+        PlaySound(_throw, 0.8f);
+    }
+
+    public void PlayRecall()
+    {
+        PlaySound(_recall, 2f);
+    }
 }
