@@ -62,13 +62,16 @@ public class PlayerActions : MonoBehaviour
     #region Aiming and Throwing
     private void AimInput(Spear_FSM spear)
     {
+        bool canBeRecalled=spear.currentState.Name == Spear_StateNames.IDLE;
+        canBeRecalled=canBeRecalled|| spear.currentState.Name == Spear_StateNames.ATTACKING;
+        canBeRecalled=canBeRecalled|| spear.currentState.Name == Spear_StateNames.TRIANGLING;
         if (_fsm.currentState.Name == Ccl_StateNames.IDLE && spear.currentState.Name == Spear_StateNames.ATTACHED)
         {
             _fsm.ChangeState(Ccl_StateNames.AIMING);
             spear.ChangeState(Spear_StateNames.AIMING);
             _currentlyHeldSpear = spear;
         }
-        else if (_fsm.currentState.Name == Ccl_StateNames.IDLE && (spear.currentState.Name == Spear_StateNames.IDLE || spear.currentState.Name == Spear_StateNames.ATTACKING || spear.currentState.Name == Spear_StateNames.TRIANGLING))
+        else if (_fsm.currentState.Name == Ccl_StateNames.IDLE && canBeRecalled)
         {
             spear.ChangeState(Spear_StateNames.RECALLED);
         }
