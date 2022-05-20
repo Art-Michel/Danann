@@ -27,14 +27,17 @@ public class PlayerActions : MonoBehaviour
     #region Dodge Rolling
     public CharacterController Characon { get; private set; }
     //public Hurtbox Hurtbox { get; private set; }
-    public PlayerHP PlayerHP {get; private set;}
-    public TrailRenderer BodyTrailRenderer;
+    public PlayerHP PlayerHP { get; private set; }
+    [SerializeField] TrailRenderer _bodyTrailRenderer;
+    float _dodgeCooldown = 0;
+    const float _dodgeMaxCooldown = 0.4f;
     #endregion
 
     #region Attacks Data
     [SerializeField] AttackData _lightAttack0Data;
     [SerializeField] AttackData _lightAttack1Data;
     [SerializeField] AttackData _lightAttack2Data;
+    private bool _canDash;
     #endregion
 
     private void Awake()
@@ -97,7 +100,7 @@ public class PlayerActions : MonoBehaviour
     #region DodgeRoll
     private void DodgeInput()
     {
-        if (_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING)
+        if ((_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING) && _dodgeCooldown <= 0)
             DodgeRoll();
 
         else if (_fsm.currentState.Name == Ccl_StateNames.AIMING)
@@ -107,6 +110,25 @@ public class PlayerActions : MonoBehaviour
     private void DodgeRoll()
     {
         _fsm.ChangeState(Ccl_StateNames.DODGING);
+    }
+
+    public void StartDodgeCooldown()
+    {
+        _dodgeCooldown = _dodgeMaxCooldown;
+        _bodyTrailRenderer.emitting = false;
+        _canDash = false;
+    }
+
+    private void CanDashAgain()
+    {
+        SetTrailRenderer(false);
+        _canDash = true;
+    }
+
+    public void SetTrailRenderer(bool boolean)
+    {
+        _bodyTrailRenderer.enabled = boolean;
+        _bodyTrailRenderer.emitting = boolean;
     }
     #endregion
 
@@ -199,6 +221,12 @@ public class PlayerActions : MonoBehaviour
             _comboWindow -= Time.deltaTime;
         }
         if (_comboWindow <= 0) _currentLightAttackIndex = 0;
+
+        if (!_canDash)
+        {
+            _dodgeCooldown -= Time.deltaTime;
+            if (_dodgeCooldown <= 0) CanDashAgain();
+        }
     }
 
     #region disable inputs on Player disable to avoid weird inputs
