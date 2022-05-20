@@ -20,6 +20,7 @@ public class SpearAI : MonoBehaviour
     void Awake()
     {
         Trigger = GetComponent<SphereCollider>();
+        _spearFeedbacks = GetComponent<SpearFeedbacks>();
     }
 
     public void SetSpearWeight(int weight)

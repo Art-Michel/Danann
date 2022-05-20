@@ -43,7 +43,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 0.9753065, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.93772507, b: 1, a: 1}
   m_Intensity: 300000
   m_Range: 1
   m_SpotAngle: 30
@@ -266,6 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02a293fab80c464ea582cead4aaa355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsLeft: 1
 --- !u!114 &2381953594989876474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,7 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ec8b0afa1efeb4e909ec5a78622f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isLeft: 0
+  _isLeft: 1
   CclBody: {fileID: 0}
   Cursor: {fileID: 0}
   TravelingAttackData: {fileID: 2381953594989876474}
@@ -326,6 +327,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5d23f836c8e924bba86f7696246eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioSource: {fileID: 0}
+  _reattach: {fileID: 8300000, guid: ce04db3e2e8a8b041a121ca4761d9117, type: 3}
   _spearTransformWhenAttached: {fileID: 0}
   _targetGroup: {fileID: 0}
 --- !u!1 &5493423371716959303
@@ -424,7 +427,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9a5ccda3c9c559f4a9faf83b0dddfc4f, type: 2}
+  - {fileID: 2100000, guid: d5e566ccaf7f3ea48adfcf1ec1e545cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -474,7 +477,7 @@ TrailRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ce044945bce4f2242a4c8de3b1eaac28, type: 2}
+  - {fileID: 2100000, guid: e240ae88f3d200d4fa986762bd09fdf5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

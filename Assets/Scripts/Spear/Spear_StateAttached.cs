@@ -13,6 +13,7 @@ public class Spear_StateAttached : Spear_State
     {
         _ai.ResetTransform();
         _ai.SetSpearWeight(0);
+        _feedbacks.PlayReattach();
     }
 
     public override void Update()

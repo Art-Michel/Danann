@@ -185,7 +185,7 @@ public class Danu_FSM : MonoBehaviour
         this.prev = curr;
         this.curr = state;
         this.curr.Begin();
-        Debug.Log($"[FSM] Started state {this.curr.name}");
+        //Debug.Log($"[FSM] Started state {this.curr.name}");
     }
 
     void Update()

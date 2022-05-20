@@ -9,6 +9,7 @@ public class Spear_FSM : MonoBehaviour
     SpearAI _spearAi;
     SpearFeedbacks _spearFeedbacks;
 
+    public bool IsLeft;
     public Spear_State currentState { get; private set; }
     public Spear_State previousState { get; private set; }
 
@@ -62,7 +63,7 @@ public class Spear_FSM : MonoBehaviour
         currentState = nextState;
         currentState.Begin();
 
-        Debug.Log(currentState.Name + " started");
+        //Debug.Log(currentState.Name + " started");
     }
 
     private void Update()

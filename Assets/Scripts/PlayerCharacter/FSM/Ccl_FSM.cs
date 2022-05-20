@@ -14,7 +14,6 @@ public class Ccl_FSM : MonoBehaviour
     PlayerActions _playerActions;
     PlayerFeedbacks _playerFeedbacks;
 
-    public GameObject Cursor;
     public Transform Body;
 
     void Awake()
@@ -67,7 +66,7 @@ public class Ccl_FSM : MonoBehaviour
         currentState = nextState;
         currentState.Begin();
 
-        Debug.Log(currentState.Name + " started");
+        //Debug.Log(currentState.Name + " started");
     }
 
     private void Update()

@@ -15,7 +15,9 @@ public class PlayerActions : MonoBehaviour
     Ccl_FSM _fsm;
     public PlayerMovement PlayerMovement { get; private set; }
     [Required][SerializeField] Spear_FSM _leftSpear;
+
     [Required][SerializeField] Spear_FSM _rightSpear;
+
     #endregion
 
     //Feedbacks
@@ -28,7 +30,9 @@ public class PlayerActions : MonoBehaviour
     #endregion
 
     #region Aiming
+    [SerializeField] Transform _body;
     Spear_FSM _currentlyHeldSpear;
+    [SerializeField] GameObject _cursor;
     #endregion
 
     #region Dodge Rolling
@@ -72,15 +76,33 @@ public class PlayerActions : MonoBehaviour
         canBeRecalled = canBeRecalled || spear.currentState.Name == Spear_StateNames.TRIANGLING;
         if (_fsm.currentState.Name == Ccl_StateNames.IDLE && spear.currentState.Name == Spear_StateNames.ATTACHED)
         {
+            _currentlyHeldSpear = spear;
             _fsm.ChangeState(Ccl_StateNames.AIMING);
             spear.ChangeState(Spear_StateNames.AIMING);
-            _currentlyHeldSpear = spear;
         }
         else if (_fsm.currentState.Name == Ccl_StateNames.IDLE && canBeRecalled)
         {
             _fsm.ChangeState(Ccl_StateNames.RECALLING);
             spear.ChangeState(Spear_StateNames.RECALLED);
         }
+    }
+
+    public void EnableCursor()
+    {
+        _cursor.transform.position = transform.position;
+        _cursor.SetActive(true);
+        _playerFeedbacks.ChangeCursorColor(_currentlyHeldSpear.IsLeft);
+    }
+
+    public void DisableCursor()
+    {
+        _cursor.SetActive(false);
+    }
+
+    internal void OrientateBody()
+    {
+        _body.transform.forward =
+        new Vector3(_cursor.transform.position.x, transform.position.y, _cursor.transform.position.z) - transform.position;
     }
 
     private void ThrowInput()

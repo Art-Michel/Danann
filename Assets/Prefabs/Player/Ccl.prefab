@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 005888ede18a58e4db8d069cfa3007cb, type: 3}
-  m_Color: {r: 0.9747988, g: 1, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -703,11 +703,11 @@ GameObject:
   - component: {fileID: 6696278159515539590}
   - component: {fileID: 5806273709077237411}
   - component: {fileID: 6696278159164135574}
-  - component: {fileID: 495705224}
   - component: {fileID: 6696278159164135568}
   - component: {fileID: 20423502006755893}
   - component: {fileID: 6718971616905161990}
   - component: {fileID: 6696278157733249431}
+  - component: {fileID: 6351119601355520869}
   m_Layer: 0
   m_Name: Ccl
   m_TagString: Untagged
@@ -795,34 +795,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _leftSpear: {fileID: 3459590204732892884}
   _rightSpear: {fileID: 6717469305649593430}
+  _body: {fileID: 7240768677224004046}
+  _cursor: {fileID: 372751712}
   _lightAttack0Data: {fileID: 6696278159469296341}
   _lightAttack1Data: {fileID: 6696278158029409530}
   _lightAttack2Data: {fileID: 6696278158796971744}
---- !u!114 &495705224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5854148910218927426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3f1eaae904650a4d88b6a390dc33917, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerHurt: {fileID: 8300000, guid: ccac04d1d2bc0d64f9c2ee53763ca179, type: 3}
-  _volume: {fileID: 0}
-  _zoomin: {fileID: 8300000, guid: f3b0c0fad8ebbac458dc9fde9391ac69, type: 3}
-  _zoomout: {fileID: 8300000, guid: 52325725b0f8ce745bb4bc332e004026, type: 3}
-  _throw: {fileID: 8300000, guid: 108a993aec5663f48868fc1003f9fc4e, type: 3}
-  _recall: {fileID: 8300000, guid: a531983aa0b438c46bcc80b641743ffa, type: 3}
-  _bodyTrailRenderer: {fileID: 1512190303}
-  _dodge: {fileID: 8300000, guid: 7eca6ab425eee8247988fbb4097a4850, type: 3}
-  _punch0: {fileID: 8300000, guid: 0c2f8eb10536c7a41afba418b4134a4a, type: 3}
-  _punch1: {fileID: 8300000, guid: 48b06c9d93bd5064dbdcaedbf4d17003, type: 3}
-  _punch2: {fileID: 8300000, guid: 86522244f05eceb4aaf36933fcf0965f, type: 3}
-  _audioSource: {fileID: 0}
-  _targetGroup: {fileID: 0}
 --- !u!114 &6696278159164135568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -835,7 +812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ff5095828cb1274ba6591c68890174a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cursor: {fileID: 372751712}
   Body: {fileID: 7240768677224004046}
 --- !u!114 &20423502006755893
 MonoBehaviour:
@@ -882,6 +858,32 @@ MonoBehaviour:
   SphereColor: {r: 0, g: 1, b: 0.0666666, a: 0.49019608}
   SphereWireColor: {r: 0, g: 1, b: 0.038960934, a: 0.7607843}
   _hurtboxOwnerHP: {fileID: 20423502006755893}
+--- !u!114 &6351119601355520869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854148910218927426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235a486073ac2f74484e6e08c0ccec80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHurt: {fileID: 8300000, guid: ccac04d1d2bc0d64f9c2ee53763ca179, type: 3}
+  _volume: {fileID: 0}
+  _cursor: {fileID: 372751712}
+  _zoomin: {fileID: 8300000, guid: f3b0c0fad8ebbac458dc9fde9391ac69, type: 3}
+  _zoomout: {fileID: 8300000, guid: 52325725b0f8ce745bb4bc332e004026, type: 3}
+  _throw: {fileID: 8300000, guid: 108a993aec5663f48868fc1003f9fc4e, type: 3}
+  _recall: {fileID: 8300000, guid: a531983aa0b438c46bcc80b641743ffa, type: 3}
+  _bodyTrailRenderer: {fileID: 1512190303}
+  _dodge: {fileID: 8300000, guid: 7eca6ab425eee8247988fbb4097a4850, type: 3}
+  _punch0: {fileID: 8300000, guid: 0c2f8eb10536c7a41afba418b4134a4a, type: 3}
+  _punch1: {fileID: 8300000, guid: 48b06c9d93bd5064dbdcaedbf4d17003, type: 3}
+  _punch2: {fileID: 8300000, guid: 86522244f05eceb4aaf36933fcf0965f, type: 3}
+  _audioSource: {fileID: 0}
+  _targetGroup: {fileID: 0}
 --- !u!1 &5913651250591817328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,14 +1795,6 @@ PrefabInstance:
       propertyPath: CclBody
       value: 
       objectReference: {fileID: 7240768677224004046}
-    - target: {fileID: 3434749978275472625, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
-      propertyPath: _isLeft
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3434749978275472625, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
-      propertyPath: _spearTransformWhenAttached
-      value: 
-      objectReference: {fileID: 8517587590999825569}
     - target: {fileID: 5165120295596512482, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_Name
       value: Left Spear

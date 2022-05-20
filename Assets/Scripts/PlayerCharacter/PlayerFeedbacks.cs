@@ -6,15 +6,21 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
 using NaughtyAttributes;
 using Cinemachine;
+using System;
 
 public class PlayerFeedbacks : MonoBehaviour
 {
+    PlayerActions _playerActions;
+
     #region Health
     [SerializeField] AudioClip _playerHurt;
     #endregion
 
     #region Aiming
     [SerializeField] Volume _volume;
+    [SerializeField] GameObject _cursor;
+    SpriteRenderer _cursorSprite;
+
     Vignette _vignette;
 
     [SerializeField] AudioClip _zoomin;
@@ -36,16 +42,18 @@ public class PlayerFeedbacks : MonoBehaviour
     [SerializeField] AudioClip _punch1;
     [SerializeField] AudioClip _punch2;
     #endregion
-  
+
     #region Audio
     [Required][SerializeField] AudioSource _audioSource;
     #endregion
-    
+
     [Required][SerializeField] CinemachineTargetGroup _targetGroup;
-    
+
     void Awake()
     {
         //aiming
+        _cursorSprite = _cursor.GetComponent<SpriteRenderer>();
+        _playerActions = GetComponent<PlayerActions>();
         if (_volume) _volume.profile.TryGet<Vignette>(out _vignette);
     }
 
@@ -58,6 +66,14 @@ public class PlayerFeedbacks : MonoBehaviour
     public void UnzoomCamera()
     {
         _vignette.intensity.Override(0f);
+    }
+    
+    public void ChangeCursorColor(bool isLeft)
+    {
+        if (isLeft)
+            _cursorSprite.color = Color.cyan;
+        else
+            _cursorSprite.color = Color.yellow;
     }
     #endregion
 
@@ -74,7 +90,7 @@ public class PlayerFeedbacks : MonoBehaviour
     {
         _audioSource.PlayOneShot(clip, volume);
     }
-    
+
     public void PlayPunch0()
     {
         PlaySound(_punch0, 5f);
