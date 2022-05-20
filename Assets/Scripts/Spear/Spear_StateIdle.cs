@@ -23,6 +23,5 @@ public class Spear_StateIdle : Spear_State
     public override void Exit()
     {
         _ai.Trigger.enabled = false;
-
     }
 }

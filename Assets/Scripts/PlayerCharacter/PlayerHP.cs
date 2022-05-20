@@ -30,6 +30,8 @@ public class PlayerHP : EntityHP
     float _invulerabilityT;
     float _tookAHit;
 
+    PlayerFeedbacks _playerFeedbacks;
+
     Hurtbox _hurtbox;
 
     void Awake()
@@ -37,11 +39,12 @@ public class PlayerHP : EntityHP
         _maxHealthPoints = 100;
         _vcamPerlin = _vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         _hurtbox = GetComponent<Hurtbox>();
+        _playerFeedbacks = GetComponent<PlayerFeedbacks>();
     }
 
     override protected void DamageFeedback(string attackName= "")
     {
-        SoundManager.Instance.PlayPlayerHurt();
+        _playerFeedbacks.PlayPlayerHurt();
         SlowDownTime();
         StartInvul();
     }

@@ -12,15 +12,16 @@ public class Ccl_FSM : MonoBehaviour
     public Ccl_State previousState { get; private set; }
 
     PlayerActions _playerActions;
+    PlayerFeedbacks _playerFeedbacks;
 
     public GameObject Cursor;
     public Transform Body;
-    public CinemachineTargetGroup TargetGroup;
 
     void Awake()
     {
         states = new Dictionary<string, Ccl_State>();
         _playerActions = GetComponent<PlayerActions>();
+        _playerFeedbacks = GetComponent<PlayerFeedbacks>();
     }
 
     void Start()
@@ -40,7 +41,8 @@ public class Ccl_FSM : MonoBehaviour
     public void AddState(Ccl_State state)
     {
         state._fsm = this;
-        state._pa = _playerActions;
+        state._actions = _playerActions;
+        state._feedbacks = _playerFeedbacks;
         states[state.Name] = state;
     }
 

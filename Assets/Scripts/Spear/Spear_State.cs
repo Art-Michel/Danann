@@ -6,6 +6,7 @@ public class Spear_State
 {
     public Spear_FSM _fsm = null;
     public SpearAI _ai = null;
+    public SpearFeedbacks _feedbacks = null;
 
     public string Name { get; private set; }
 

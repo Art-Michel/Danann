@@ -2,18 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using NaughtyAttributes;
 
 public class SpearAI : MonoBehaviour
 {
     [SerializeField] bool _isLeft;
-
-    Vector3 LeftSpearAttachedPosition;
-    Vector3 LeftSpearAttachedRotation;
-    Vector3 RightSpearAttachedPosition;
-    Vector3 RightSpearAttachedRotation;
-
+    [Required] SpearFeedbacks _spearFeedbacks;
+    
     public Transform CclBody;
-    public CinemachineTargetGroup TargetGroup;
 
     public GameObject Cursor;
     public AttackData TravelingAttackData;
@@ -24,45 +20,20 @@ public class SpearAI : MonoBehaviour
     void Awake()
     {
         Trigger = GetComponent<SphereCollider>();
-        if (_isLeft)
-        {
-            LeftSpearAttachedPosition = transform.localPosition;
-            LeftSpearAttachedRotation = transform.localRotation.eulerAngles;
-        }
-        else
-        {
-            RightSpearAttachedPosition = transform.localPosition;
-            RightSpearAttachedRotation = transform.localRotation.eulerAngles;
-        }
     }
 
     public void SetSpearWeight(int weight)
     {
         if (_isLeft)
-            TargetGroup.m_Targets[2].weight = weight;
+            _spearFeedbacks.SetCameraTargetWeight(2, weight);
         else
-            TargetGroup.m_Targets[3].weight = weight;
-
+            _spearFeedbacks.SetCameraTargetWeight(3, weight);
     }
 
-    void Start()
-    {
-
-    }
-
-    public void ResetPositionAndRotation()
+    public void ResetTransform()
     {
         transform.parent = CclBody;
-        if (_isLeft)
-        {
-            transform.localPosition = LeftSpearAttachedPosition;
-            transform.localEulerAngles = LeftSpearAttachedRotation;
-        }
-        else
-        {
-            transform.localPosition = RightSpearAttachedPosition;
-            transform.localEulerAngles = RightSpearAttachedRotation;
-        }
+        _spearFeedbacks.ResetPositionAndRotation();
     }
 
     void OnTriggerEnter(Collider other)

@@ -1,13 +1,14 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using NaughtyAttributes;
 
 public class PlayerMovement : MonoBehaviour
 {
     PlayerInputMap _inputs;
     CharacterController _charaCon;
     Ccl_FSM _fsm;
-    [SerializeField]CursorMovement _cursorMovement;
+    [SerializeField] CursorMovement _cursorMovement;
 
     bool _isMoving;
     Vector3 _wantedDirection;
@@ -17,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float _easeInSpeed;
     Rigidbody _rb;
 
-    public GameObject PlayerBody;
+    [Required] public GameObject PlayerBody;
     private const int BodyRotatingSpeed = 50;
 
     private void Awake()
@@ -41,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (_isMoving && (_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.AIMING || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING ))
+        if (_isMoving && (_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.AIMING || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING))
         {
             EaseInMovement();
             Move();
@@ -80,8 +81,11 @@ public class PlayerMovement : MonoBehaviour
     {
         _wantedDirection = new Vector3(_inputs.Movement.Move.ReadValue<Vector2>().x, 0, _inputs.Movement.Move.ReadValue<Vector2>().y);
         _charaCon.Move(_wantedDirection * MovementSpeed * _easeInValue * Time.deltaTime);
-        _cursorMovement.WantedDirection = _wantedDirection;
-        _cursorMovement.EaseInValue = 1;
+        if (_cursorMovement)
+        {
+            _cursorMovement.WantedDirection = _wantedDirection;
+            _cursorMovement.EaseInValue = 1;
+        }
 
         if (_fsm.currentState.Name == Ccl_StateNames.IDLE) RotateBody();
     }

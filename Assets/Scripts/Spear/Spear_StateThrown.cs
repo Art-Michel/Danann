@@ -23,9 +23,6 @@ public class Spear_StateThrown : Spear_State
         _fsm.transform.forward = (_destination - _startingPosition).normalized;
 
         _t = 0;
-
-        SoundManager.Instance.PlayThrow();
-
         _ai.TravelingAttackData.LaunchAttack();
     }
 
@@ -40,6 +37,6 @@ public class Spear_StateThrown : Spear_State
     public override void Exit()
     {
         _ai.TravelingAttackData.StopAttack();
-        _ai.TargetGroup.m_Targets[4].weight = 0;
+        _feedbacks.SetCameraTargetWeight(4, 0);
     }
 }

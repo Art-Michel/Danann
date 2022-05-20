@@ -15,30 +15,31 @@ public class Ccl_StateDodging : Ccl_State
     //private const float _dashLength = 8f;
     private const float _dashDuration = 0.1f;
     private const float _dashSpeed = 70f;
-    float _t = 0;
+    float _dashT = 0;
 
     public override void Begin()
     {
-        _pa.PlayerMovement.enabled = false;
-        _wantedDirection = (_pa.transform.position + _pa.PlayerMovement.PlayerBody.transform.forward) - _pa.transform.position;
-        _pa.PlayerHP._isInvulnerable = true;
-        _t = 0;
-        SoundManager.Instance.PlayDash();
-        _pa.SetTrailRenderer(true);
+        _actions.PlayerMovement.enabled = false;
+        _wantedDirection = (_actions.transform.position + _actions.PlayerMovement.PlayerBody.transform.forward) - _actions.transform.position;
+        _actions.PlayerHP._isInvulnerable = true;
+        _dashT = 0;
+
+        _feedbacks.PlayDodge();
+        _feedbacks.SetTrailRenderer(true, true);
     }
 
     public override void StateUpdate()
     {
-        _t += Time.deltaTime;
-        _pa.Characon.Move(_wantedDirection * _dashSpeed * Time.deltaTime);
-        if (_t >= _dashDuration)
+        _dashT += Time.deltaTime;
+        _actions.Characon.Move(_wantedDirection * _dashSpeed * Time.deltaTime);
+        if (_dashT >= _dashDuration)
             _fsm.ChangeState(Spear_StateNames.IDLE);
     }
 
     public override void Exit()
     {
-        _pa.PlayerMovement.enabled = true;
-        _pa.PlayerHP._isInvulnerable = false;
-        _pa.StartDodgeCooldown();
+        _actions.PlayerMovement.enabled = true;
+        _actions.PlayerHP._isInvulnerable = false;
+        _actions.StartDodgeCooldown();
     }
 }

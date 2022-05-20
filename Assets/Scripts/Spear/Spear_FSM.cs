@@ -6,16 +6,18 @@ using UnityEngine;
 public class Spear_FSM : MonoBehaviour
 {
     private Dictionary<string, Spear_State> states;
-    [SerializeField] SpearAI _spearAi;
+    SpearAI _spearAi;
+    SpearFeedbacks _spearFeedbacks;
 
     public Spear_State currentState { get; private set; }
-
     public Spear_State previousState { get; private set; }
 
 
     void Awake()
     {
         states = new Dictionary<string, Spear_State>();
+        _spearAi = GetComponent<SpearAI>();
+        _spearFeedbacks = GetComponent<SpearFeedbacks>();
     }
 
     void Start()
@@ -35,6 +37,7 @@ public class Spear_FSM : MonoBehaviour
     {
         state._fsm = this;
         state._ai = _spearAi;
+        state._feedbacks = _spearFeedbacks;
         states[state.Name] = state;
     }
 

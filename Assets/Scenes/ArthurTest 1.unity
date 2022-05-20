@@ -1055,6 +1055,11 @@ Transform:
   m_Father: {fileID: 112427345}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &522277582 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5687422708530208712, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
+  m_PrefabInstance: {fileID: 546641020}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &546641020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1836,22 +1841,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1512190303, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: m_Time
-      value: 0.48
-      objectReference: {fileID: 0}
-    - target: {fileID: 1512190303, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1512190303, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+    - target: {fileID: 495705224, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _volume
       value: 
-      objectReference: {fileID: 2100000, guid: f961335da797b7c41a28abf4c7698288, type: 2}
-    - target: {fileID: 1512190303, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: m_Parameters.colorGradient.atime1
-      value: 18697
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 301105354}
+    - target: {fileID: 495705224, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _audioSource
+      value: 
+      objectReference: {fileID: 522277582}
+    - target: {fileID: 495705224, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _targetGroup
+      value: 
+      objectReference: {fileID: 761610233}
     - target: {fileID: 20423502006755893, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _vcam
       value: 
@@ -1860,10 +1861,6 @@ PrefabInstance:
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 1133639718}
-    - target: {fileID: 1012520703114616240, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: TargetGroup
-      value: 
-      objectReference: {fileID: 761610233}
     - target: {fileID: 1267046315873582156, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1908,30 +1905,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3410175772069140196, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _targetGroup
+      value: 
+      objectReference: {fileID: 761610233}
+    - target: {fileID: 4785268684903943270, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _targetGroup
+      value: 
+      objectReference: {fileID: 761610233}
     - target: {fileID: 5854148910218927426, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: m_Name
       value: Ccl
       objectReference: {fileID: 0}
-    - target: {fileID: 6696278159164135568, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: TargetGroup
-      value: 
-      objectReference: {fileID: 761610233}
-    - target: {fileID: 6696278159164135574, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: _vcam
-      value: 
-      objectReference: {fileID: 323480814}
-    - target: {fileID: 6696278159164135574, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: _volume
-      value: 
-      objectReference: {fileID: 301105354}
     - target: {fileID: 6718971616905161990, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _plasmaBar
       value: 
       objectReference: {fileID: 1133639717}
-    - target: {fileID: 7221218678443527596, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: TargetGroup
-      value: 
-      objectReference: {fileID: 761610233}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
 --- !u!4 &902433837 stripped

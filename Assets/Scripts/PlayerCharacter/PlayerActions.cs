@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using Cinemachine;
 using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.Rendering;
+using NaughtyAttributes;
 
 public class PlayerActions : MonoBehaviour
 {
@@ -13,9 +14,12 @@ public class PlayerActions : MonoBehaviour
     PlayerInputMap _inputs;
     Ccl_FSM _fsm;
     public PlayerMovement PlayerMovement { get; private set; }
-    [SerializeField] Spear_FSM _leftSpear;
-    [SerializeField] Spear_FSM _rightSpear;
+    [Required][SerializeField] Spear_FSM _leftSpear;
+    [Required][SerializeField] Spear_FSM _rightSpear;
     #endregion
+
+    //Feedbacks
+    [Required] PlayerFeedbacks _playerFeedbacks;
 
     #region Light Attack
     int _currentLightAttackIndex = 0;
@@ -25,24 +29,20 @@ public class PlayerActions : MonoBehaviour
 
     #region Aiming
     Spear_FSM _currentlyHeldSpear;
-    [SerializeField] Volume _volume;
-    Vignette _vignette;
     #endregion
 
     #region Dodge Rolling
     public CharacterController Characon { get; private set; }
-    //public Hurtbox Hurtbox { get; private set; }
     public PlayerHP PlayerHP { get; private set; }
-    [SerializeField] TrailRenderer _bodyTrailRenderer;
+    bool _canDodge;
     float _dodgeCooldown = 0;
     const float _dodgeMaxCooldown = 0.4f;
     #endregion
 
     #region Attacks Data
-    [SerializeField] AttackData _lightAttack0Data;
-    [SerializeField] AttackData _lightAttack1Data;
-    [SerializeField] AttackData _lightAttack2Data;
-    private bool _canDash;
+    [Required][SerializeField] AttackData _lightAttack0Data;
+    [Required][SerializeField] AttackData _lightAttack1Data;
+    [Required][SerializeField] AttackData _lightAttack2Data;
     #endregion
 
     private void Awake()
@@ -53,8 +53,7 @@ public class PlayerActions : MonoBehaviour
         this.PlayerMovement = GetComponent<PlayerMovement>();
         Characon = GetComponent<CharacterController>();
         this.PlayerHP = GetComponent<PlayerHP>();
-        _volume.profile.TryGet<Vignette>(out _vignette);
-        //Hurtbox = GetComponent<Hurtbox>();
+        this._playerFeedbacks = GetComponent<PlayerFeedbacks>();
 
         //Inputs
         _inputs.Actions.LightAttack.started += _ => LightAttackInput();
@@ -68,9 +67,9 @@ public class PlayerActions : MonoBehaviour
     #region Aiming and Throwing
     private void AimInput(Spear_FSM spear)
     {
-        bool canBeRecalled=spear.currentState.Name == Spear_StateNames.IDLE;
-        canBeRecalled=canBeRecalled|| spear.currentState.Name == Spear_StateNames.ATTACKING;
-        canBeRecalled=canBeRecalled|| spear.currentState.Name == Spear_StateNames.TRIANGLING;
+        bool canBeRecalled = spear.currentState.Name == Spear_StateNames.IDLE;
+        canBeRecalled = canBeRecalled || spear.currentState.Name == Spear_StateNames.ATTACKING;
+        canBeRecalled = canBeRecalled || spear.currentState.Name == Spear_StateNames.TRIANGLING;
         if (_fsm.currentState.Name == Ccl_StateNames.IDLE && spear.currentState.Name == Spear_StateNames.ATTACHED)
         {
             _fsm.ChangeState(Ccl_StateNames.AIMING);
@@ -79,6 +78,7 @@ public class PlayerActions : MonoBehaviour
         }
         else if (_fsm.currentState.Name == Ccl_StateNames.IDLE && canBeRecalled)
         {
+            _fsm.ChangeState(Ccl_StateNames.RECALLING);
             spear.ChangeState(Spear_StateNames.RECALLED);
         }
     }
@@ -101,19 +101,11 @@ public class PlayerActions : MonoBehaviour
             _fsm.ChangeState(Ccl_StateNames.IDLE);
             _currentlyHeldSpear.ChangeState(Spear_StateNames.ATTACHED);
             _currentlyHeldSpear = null;
-            _fsm.TargetGroup.m_Targets[4].weight = 0;
+            _playerFeedbacks.SetCameraTargetWeight(4, 0);
         }
     }
 
-    public void ZoomCamera()
-    {
-        _vignette.intensity.Override(0.6f);
-    }
 
-    public void UnzoomCamera()
-    {
-        _vignette.intensity.Override(0f);
-    }
     #endregion
 
     #region DodgeRoll
@@ -134,20 +126,14 @@ public class PlayerActions : MonoBehaviour
     public void StartDodgeCooldown()
     {
         _dodgeCooldown = _dodgeMaxCooldown;
-        _bodyTrailRenderer.emitting = false;
-        _canDash = false;
+        this._playerFeedbacks.SetTrailRenderer(false, true);
+        _canDodge = false;
     }
 
     private void CanDashAgain()
     {
-        SetTrailRenderer(false);
-        _canDash = true;
-    }
-
-    public void SetTrailRenderer(bool boolean)
-    {
-        _bodyTrailRenderer.enabled = boolean;
-        _bodyTrailRenderer.emitting = boolean;
+        this._playerFeedbacks.SetTrailRenderer(false, false);
+        _canDodge = true;
     }
     #endregion
 
@@ -165,7 +151,6 @@ public class PlayerActions : MonoBehaviour
         LaunchLightAttackAnimation();
         if (_currentLightAttackIndex < 2) _currentLightAttackIndex++;
         else _currentLightAttackIndex = 0;
-        //Debug.Log("Launching Light Attack" + _currentLightAttackIndex);
     }
     #endregion
 
@@ -190,7 +175,7 @@ public class PlayerActions : MonoBehaviour
         _fsm.ChangeState(Ccl_StateNames.LIGHTATTACKING);
         _comboWindow = _comboMaxWindow;
         _lightAttack0Data.LaunchAttack();
-        SoundManager.Instance.PlayPunch0();
+        _playerFeedbacks.PlayPunch0();
         PlayerMovement.MovementSpeed *= 0.75f;
         yield return new WaitForSeconds(0.3f);
 
@@ -207,7 +192,7 @@ public class PlayerActions : MonoBehaviour
 
         _comboWindow = _comboMaxWindow;
         _lightAttack1Data.LaunchAttack();
-        SoundManager.Instance.PlayPunch1();
+        _playerFeedbacks.PlayPunch1();
         yield return new WaitForSeconds(0.4f);
 
         _lightAttack1Data.StopAttack();
@@ -223,7 +208,7 @@ public class PlayerActions : MonoBehaviour
 
         _comboWindow = _comboMaxWindow;
         _lightAttack2Data.LaunchAttack();
-        SoundManager.Instance.PlayPunch2();
+        _playerFeedbacks.PlayPunch2();
         yield return new WaitForSeconds(0.2f);
 
         _lightAttack2Data.StopAttack();
@@ -241,7 +226,7 @@ public class PlayerActions : MonoBehaviour
         }
         if (_comboWindow <= 0) _currentLightAttackIndex = 0;
 
-        if (!_canDash)
+        if (!_canDodge)
         {
             _dodgeCooldown -= Time.deltaTime;
             if (_dodgeCooldown <= 0) CanDashAgain();
