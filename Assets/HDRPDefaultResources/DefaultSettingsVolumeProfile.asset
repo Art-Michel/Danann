@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcf384b154398e341b6b29969c078198, type: 3}
   m_Name: MotionBlur
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   quality:
     m_OverrideState: 1
@@ -143,7 +143,7 @@ MonoBehaviour:
     min: 0.1
   denoisingMode:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 1
   anisotropy:
     m_OverrideState: 0
     m_Value: 0
@@ -795,7 +795,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   maxShadowDistance:
     m_OverrideState: 1
-    m_Value: 115
+    m_Value: 79.9
     min: 0
   directionalTransmissionMultiplier:
     m_OverrideState: 0
@@ -809,7 +809,7 @@ MonoBehaviour:
     max: 4
   cascadeShadowSplit0:
     m_OverrideState: 1
-    m_Value: 0.5826087
+    m_Value: 0.4033632
   cascadeShadowSplit1:
     m_OverrideState: 0
     m_Value: 0.5826087
