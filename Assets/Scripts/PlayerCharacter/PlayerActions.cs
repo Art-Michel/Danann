@@ -142,7 +142,7 @@ public class PlayerActions : MonoBehaviour
     #region DodgeRoll
     private void DodgeInput()
     {
-        if ((_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKRECOVERY) && _dodgeCooldown <= 0)
+        if ((_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKRECOVERY || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKSTARTUP) && _dodgeCooldown <= 0)
             DodgeRoll();
 
         else if (_fsm.currentState.Name == Ccl_StateNames.AIMING)
@@ -151,7 +151,7 @@ public class PlayerActions : MonoBehaviour
 
     private void DodgeRoll()
     {
-        PlayerMovement.ReorientateBodyImmediately();
+        if (_fsm.currentState.Name != Ccl_StateNames.LIGHTATTACKING) PlayerMovement.ReorientateBodyImmediately();
         _fsm.ChangeState(Ccl_StateNames.DODGING);
     }
 

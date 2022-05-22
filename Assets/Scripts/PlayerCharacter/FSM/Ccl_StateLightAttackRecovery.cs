@@ -18,6 +18,7 @@ public class Ccl_StateLightAttackRecovery : Ccl_State
         _actions.ResetComboWindow();
         _t = 0;
         _max = _actions.GetRecoveryTime();
+        _actions.SlowDownDuringAttack();
     }
 
     public override void StateUpdate()

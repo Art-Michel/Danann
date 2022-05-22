@@ -19,6 +19,7 @@ public class Ccl_StateLightAttacking : Ccl_State
         _t = 0;
         _max = _actions.GetActiveTime();
         _actions.EnableHitbox();
+        _actions.SlowDownDuringAttack();
     }
 
     public override void StateUpdate()
@@ -31,5 +32,6 @@ public class Ccl_StateLightAttacking : Ccl_State
     public override void Exit()
     {
         _actions.DisableHitbox();
+        _actions.ResetMovementSpeed();
     }
 }

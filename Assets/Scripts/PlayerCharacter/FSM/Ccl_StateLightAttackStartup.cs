@@ -29,6 +29,6 @@ public class Ccl_StateLightAttackStartup : Ccl_State
 
     public override void Exit()
     {
-
+        _actions.ResetMovementSpeed();
     }
 }

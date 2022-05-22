@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] CursorMovement _cursorMovement;
 
     bool _isMoving;
-    Vector3 _wantedDirection;
+    public bool CanWalk;
+    public Vector3 _wantedDirection;
     public float _normalSpeed;
     [NonSerialized] public float MovementSpeed;
     float _easeInValue;
@@ -100,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 bodyRotationOffset = new Vector3(0.01f, 0, 0.01f);
         //Ridiculously small offset to prevent body from looking directly in a cardinal direction
-        //as it is slooooooooow to RLerp from one rotation to its exact opposite.
+        //as it is very slow to RLerp from one rotation to its exact opposite.
 
         PlayerBody.transform.forward = Vector3.Lerp(PlayerBody.transform.forward, _wantedDirection + bodyRotationOffset, BodyRotatingSpeed * Time.deltaTime);
     }
@@ -108,6 +109,13 @@ public class PlayerMovement : MonoBehaviour
     public void ReorientateBodyImmediately()
     {
         if(_wantedDirection != Vector3.zero) PlayerBody.transform.forward = _wantedDirection;
+    }
+
+    public Vector3 GetOrientation()
+    {
+        Debug.Log(_wantedDirection);
+        if(_wantedDirection == Vector3.zero) return PlayerBody.transform.forward;
+        else return _wantedDirection;
     }
 
     #region disable inputs on Player disable to avoid weird inputs

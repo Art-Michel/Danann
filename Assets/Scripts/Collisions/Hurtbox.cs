@@ -36,7 +36,6 @@ public class Hurtbox : MonoBehaviour
         else
         {
             _hurtboxOwnerHP.TakeDamage(attackDamage, attackName, plasmaRegainValue);
-            Debug.Log("ouchie ouch");
             _attacksThatHitMe.Add(attackName);
         }
     }

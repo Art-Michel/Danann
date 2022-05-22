@@ -19,8 +19,8 @@ public class Ccl_StateDodging : Ccl_State
 
     public override void Begin()
     {
-        _actions.PlayerMovement.enabled = false;
-        _wantedDirection = (_actions.transform.position + _actions.PlayerMovement.PlayerBody.transform.forward) - _actions.transform.position;
+        _actions.PlayerMovement.CanWalk = false;
+        _wantedDirection = _actions.PlayerMovement.GetOrientation();
         _actions.PlayerHP._isInvulnerable = true;
         _dashT = 0;
 
