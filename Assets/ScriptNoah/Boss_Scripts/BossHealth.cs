@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class BossHealth : EntityHP
@@ -9,13 +10,13 @@ public class BossHealth : EntityHP
     const float _blinkingDuration = 0.3f;
     float _blinkingT = 0;
 
-    [SerializeField] GameObject _body;
+    [Required][SerializeField] GameObject _body;
 
     void Awake()
     {
         _maxHealthPoints = 500;
     }
-    
+
     override protected void DamageFeedback(string attackName)
     {
         SoundManager.Instance.PlayHitSound(attackName);
@@ -26,7 +27,7 @@ public class BossHealth : EntityHP
     private void HandlePostDamageBlinking()
     {
         _blinkingT -= Time.unscaledDeltaTime;
-        if(_blinkingT <= 0) ResetBlinking();
+        if (_blinkingT <= 0) ResetBlinking();
     }
 
     private void ResetBlinking()
@@ -37,11 +38,11 @@ public class BossHealth : EntityHP
 
     void Update()
     {
-        if(_isBlinking) HandlePostDamageBlinking();
+        if (_isBlinking) HandlePostDamageBlinking();
     }
 
     void FixedUpdate()
     {
-        if(_isBlinking) _body.SetActive(!_body.activeSelf);
+        if (_isBlinking) _body.SetActive(!_body.activeSelf);
     }
 }

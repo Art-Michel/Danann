@@ -8,8 +8,9 @@ public class AttackData : MonoBehaviour
 {
     [SerializeField] bool shouldHitEnemies;
     [SerializeField] bool shouldHitAllies;
-    [SerializeField] int _attackDamage;    
-    public void SetDamage(int newDamage){_attackDamage=newDamage;}
+    [SerializeField] int _attackDamage;
+    [SerializeField] int _plasmaRegainValue;
+    public void SetDamage(int newDamage) { _attackDamage = newDamage; }
     [SerializeField] Hitbox[] _hitboxes;
 
     [Dropdown("attackName")]
@@ -35,14 +36,18 @@ public class AttackData : MonoBehaviour
 
     void Start()
     {
-        if (_hitboxes.Length > 0) SetupHitboxes();
+        if (_hitboxes.Length > 0)
+        {
+            if (_plasmaRegainValue > 0) SetupHitboxesWithPlasma();
+            else SetupHitboxes();
+        }
     }
 
     public void GetChildrenHitboxes()
     {
         _hitboxes = new Hitbox[transform.childCount];
         int j = 0;
-        for(int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             Hitbox hitbox;
             transform.GetChild(i).TryGetComponent<Hitbox>(out hitbox);
@@ -53,6 +58,7 @@ public class AttackData : MonoBehaviour
             }
         }
     }
+
     public void SetupHitboxes()
     {
         foreach (Hitbox hitbox in _hitboxes)
@@ -63,6 +69,20 @@ public class AttackData : MonoBehaviour
                 else hitbox.Setup(GameManager.Instance.AllyHurtboxes, _attackName, _attackDamage);
             }
             else if (shouldHitEnemies) hitbox.Setup(GameManager.Instance.EnemyHurtboxes, _attackName, _attackDamage);
+            else Debug.LogError("Forgot to tell if hitboxes should hit allies and/or enemies.");
+        }
+    }
+
+    public void SetupHitboxesWithPlasma()
+    {
+        foreach (Hitbox hitbox in _hitboxes)
+        {
+            if (shouldHitAllies)
+            {
+                if (shouldHitEnemies) hitbox.Setup(GameManager.Instance.Hurtboxes, _attackName, _attackDamage, _plasmaRegainValue);
+                else hitbox.Setup(GameManager.Instance.AllyHurtboxes, _attackName, _attackDamage, _plasmaRegainValue);
+            }
+            else if (shouldHitEnemies) hitbox.Setup(GameManager.Instance.EnemyHurtboxes, _attackName, _attackDamage, _plasmaRegainValue);
             else Debug.LogError("Forgot to tell if hitboxes should hit allies and/or enemies.");
         }
     }

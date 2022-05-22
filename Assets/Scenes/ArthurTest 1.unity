@@ -434,7 +434,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323480812}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -10.080844, y: 12.287283, z: -12.216317}
+  m_LocalPosition: {x: -9.854453, y: 18.366968, z: -16.969913}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2028546034}
@@ -1299,7 +1299,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834729807}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -10.080844, y: 12.287283, z: -12.216317}
+  m_LocalPosition: {x: -9.854453, y: 18.366968, z: -16.969913}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 384871587}
@@ -1600,7 +1600,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 47.757282
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1633,6 +1633,10 @@ PrefabInstance:
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 1133639718}
+    - target: {fileID: 20423502006755893, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _playerplasma
+      value: 
+      objectReference: {fileID: 1313315587}
     - target: {fileID: 166006319917494413, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _isLeft
       value: 0
@@ -1717,6 +1721,14 @@ PrefabInstance:
       propertyPath: _targetGroup
       value: 
       objectReference: {fileID: 761610233}
+    - target: {fileID: 6696278158029409530, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _plasmaRegainValue
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696278158796971744, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _plasmaRegainValue
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6696278159164135574, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _leftSpear
       value: 
@@ -1744,6 +1756,10 @@ PrefabInstance:
     - target: {fileID: 6696278159164135574, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _moveSpeedWhileAttacking.Array.data[1]
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696278159469296341, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _plasmaRegainValue
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6717469305649593430, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: IsLeft
@@ -14531,6 +14547,17 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6461297695846733525, guid: b10f85958c2dea746b6ee95a0099d2e9, type: 3}
+--- !u!114 &1313315587 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6718971616905161990, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+  m_PrefabInstance: {fileID: 902433836}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59a17dd61c226014a8c01164b8f945ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1402779225
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15487,6 +15514,10 @@ PrefabInstance:
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 1466187236}
+    - target: {fileID: 2577399527204082855, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: _playerplasma
+      value: 
+      objectReference: {fileID: 1313315587}
     - target: {fileID: 4112063746909185506, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: m_RootOrder
       value: 2

@@ -151,6 +151,7 @@ public class PlayerActions : MonoBehaviour
 
     private void DodgeRoll()
     {
+        PlayerMovement.ReorientateBodyImmediately();
         _fsm.ChangeState(Ccl_StateNames.DODGING);
     }
 
@@ -179,6 +180,7 @@ public class PlayerActions : MonoBehaviour
 
     private void LightAttack()
     {
+        PlayerMovement.ReorientateBodyImmediately();
         _fsm.ChangeState(Ccl_StateNames.LIGHTATTACKSTARTUP);
     }
 

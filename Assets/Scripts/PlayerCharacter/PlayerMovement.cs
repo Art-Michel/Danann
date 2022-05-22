@@ -105,6 +105,11 @@ public class PlayerMovement : MonoBehaviour
         PlayerBody.transform.forward = Vector3.Lerp(PlayerBody.transform.forward, _wantedDirection + bodyRotationOffset, BodyRotatingSpeed * Time.deltaTime);
     }
 
+    public void ReorientateBodyImmediately()
+    {
+        if(_wantedDirection != Vector3.zero) PlayerBody.transform.forward = _wantedDirection;
+    }
+
     #region disable inputs on Player disable to avoid weird inputs
     private void OnEnable()
     {

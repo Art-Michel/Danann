@@ -10,7 +10,8 @@ public class EntityHP : MonoBehaviour
     public float HealthPoints { get; protected set; }
     protected float _maxHealthPoints = 1;
     public bool _isInvulnerable = false;
-    [SerializeField] Image _healthBar;
+    [Required][SerializeField] PlayerPlasma _playerplasma;
+    [Required][SerializeField] Image _healthBar;
 
 
     void Start()
@@ -20,7 +21,7 @@ public class EntityHP : MonoBehaviour
     }
 
     [Button]
-    public void TakeDamage(int amount = 30, string attackName = "")
+    public void TakeDamage(int amount, string attackName, int plasmaRegainValue)
     {
         if (!_isInvulnerable)
         {
@@ -28,6 +29,7 @@ public class EntityHP : MonoBehaviour
             if (_healthBar) UpdateHealthBar();
             DamageFeedback(attackName);
             if (HealthPoints <= 0) Die();
+            if (plasmaRegainValue > 0) _playerplasma.IncreasePlasma(plasmaRegainValue);
         }
     }
 
@@ -47,8 +49,8 @@ public class EntityHP : MonoBehaviour
 
     protected void Die()
     {
-                Time.timeScale=1;
-        if (_maxHealthPoints>100)
+        Time.timeScale = 1;
+        if (_maxHealthPoints > 100)
             Application.Quit();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Debug.Log(name + " just died");
@@ -56,7 +58,6 @@ public class EntityHP : MonoBehaviour
 
     protected virtual void DamageFeedback(string attackName = "")
     {
-        
     }
 
     internal void TakeDamage(object attackDamage)

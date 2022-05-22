@@ -29,13 +29,13 @@ public class Hurtbox : MonoBehaviour
         _attacksThatHitMe = new List<string>();
     }
 
-    public void TakeHit(string attackName, int attackDamage)
+    public void TakeHit(string attackName, int attackDamage, int plasmaRegainValue)
     {
         if (_attacksThatHitMe.Contains(attackName))
             return;
         else
         {
-            _hurtboxOwnerHP.TakeDamage(attackDamage, attackName);
+            _hurtboxOwnerHP.TakeDamage(attackDamage, attackName, plasmaRegainValue);
             Debug.Log("ouchie ouch");
             _attacksThatHitMe.Add(attackName);
         }

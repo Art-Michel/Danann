@@ -26,12 +26,19 @@ public class Hitbox : MonoBehaviour
     Hurtbox[] _hurtboxesToFocus;
     string _attackName;
     int _attackDamage;
+    int _plasmaRegainValue;
 
     public void Setup(Hurtbox[] hurtboxesToFocus, string attackName, int attackDamage)
     {
         _hurtboxesToFocus = hurtboxesToFocus;
         _attackDamage = attackDamage;
         _attackName = attackName;
+    }
+
+    public void Setup(Hurtbox[] hurtboxesToFocus, string attackName, int attackDamage, int plasmaRegainValue)
+    {
+        Setup(hurtboxesToFocus, attackName, attackDamage);
+        _plasmaRegainValue = plasmaRegainValue;
     }
 
     public void Enable()
@@ -59,7 +66,7 @@ public class Hitbox : MonoBehaviour
         foreach (Hurtbox hurtbox in _hurtboxesToFocus)
         {
             if (CheckDistance(hurtbox))
-                hurtbox.TakeHit(_attackName, _attackDamage);
+                hurtbox.TakeHit(_attackName, _attackDamage, _plasmaRegainValue);
         }
     }
 
