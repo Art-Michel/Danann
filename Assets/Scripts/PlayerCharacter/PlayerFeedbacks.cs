@@ -67,7 +67,7 @@ public class PlayerFeedbacks : MonoBehaviour
     {
         _vignette.intensity.Override(0f);
     }
-    
+
     public void ChangeCursorColor(bool isLeft)
     {
         if (isLeft)
@@ -91,47 +91,63 @@ public class PlayerFeedbacks : MonoBehaviour
         _audioSource.PlayOneShot(clip, volume);
     }
 
-    public void PlayPunch0()
+    public void PlayPunchSfx()
+    {
+        switch (_playerActions._currentLightAttackIndex)
+        {
+            case 0:
+                PlayPunch0();
+                break;
+            case 1:
+                PlayPunch1();
+                break;
+            case 2:
+                PlayPunch2();
+                break;
+        }
+    }
+
+    void PlayPunch0()
     {
         PlaySound(_punch0, 5f);
     }
 
-    public void PlayPunch1()
+    void PlayPunch1()
     {
         PlaySound(_punch1, 8f);
     }
 
-    public void PlayPunch2()
+    void PlayPunch2()
     {
         PlaySound(_punch2, 5f);
     }
 
-    public void PlayZoomIn()
+    public void PlayZoomInSfx()
     {
         PlaySound(_zoomin, 5f);
     }
 
-    public void PlayZoomOut()
+    public void PlayZoomOutSfx()
     {
         PlaySound(_zoomout, 5f);
     }
 
-    public void PlayThrow()
+    public void PlayThrowSfx()
     {
         PlaySound(_throw, 0.8f);
     }
 
-    public void PlayRecall()
+    public void PlayRecallSfx()
     {
         PlaySound(_recall, 2f);
     }
 
-    public void PlayDodge()
+    public void PlayDodgeSfx()
     {
         PlaySound(_dodge, 2f);
     }
 
-    public void PlayPlayerHurt()
+    public void PlayPlayerHurtSfx()
     {
         PlaySound(_playerHurt, 2f);
     }

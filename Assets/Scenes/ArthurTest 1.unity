@@ -434,7 +434,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323480812}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -9.854453, y: 18.366968, z: -16.969913}
+  m_LocalPosition: {x: -10.080844, y: 12.287283, z: -12.216317}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2028546034}
@@ -1299,7 +1299,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834729807}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -9.854453, y: 18.366968, z: -16.969913}
+  m_LocalPosition: {x: -10.080844, y: 12.287283, z: -12.216317}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 384871587}
@@ -1600,7 +1600,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 47.757282
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1721,6 +1721,30 @@ PrefabInstance:
       propertyPath: _leftSpear
       value: 
       objectReference: {fileID: 1123902538}
+    - target: {fileID: 6696278159164135574, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _lightActive.Array.data[0]
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696278159164135574, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _lightActive.Array.data[1]
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696278159164135574, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _lightActive.Array.data[2]
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696278159164135574, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _moveSpeedWhileAttacking.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696278159164135574, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _moveSpeedWhileAttacking.Array.data[0]
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696278159164135574, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _moveSpeedWhileAttacking.Array.data[1]
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6717469305649593430, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: IsLeft
       value: 0
@@ -14178,7 +14202,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22832
+  m_Name: pb_Mesh24502
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15289,7 +15313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 0b2d2e1d36531934290012c1d366454c, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 1
+  m_AmplitudeGain: 0
   m_FrequencyGain: 1
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &2028546036

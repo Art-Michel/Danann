@@ -11,7 +11,7 @@ public class Ccl_StateThrowing : Ccl_State
 
     public override void Begin()
     {
-        _feedbacks.PlayThrow();
+        _feedbacks.PlayThrowSfx();
         _fsm.ChangeState(Ccl_StateNames.IDLE);
     }
 

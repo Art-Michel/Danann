@@ -26,6 +26,8 @@ public class Ccl_FSM : MonoBehaviour
     void Start()
     {
         AddState(new Ccl_StateLightAttacking());
+        AddState(new Ccl_StateLightAttackStartup());
+        AddState(new Ccl_StateLightAttackRecovery());
         AddState(new Ccl_StateIdle());
         AddState(new Ccl_StateAiming());
         AddState(new Ccl_StateThrowing());
@@ -66,7 +68,7 @@ public class Ccl_FSM : MonoBehaviour
         currentState = nextState;
         currentState.Begin();
 
-        //Debug.Log(currentState.Name + " started");
+        Debug.Log(currentState.Name + " started");
     }
 
     private void Update()

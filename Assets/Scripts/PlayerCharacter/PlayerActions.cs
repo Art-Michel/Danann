@@ -24,9 +24,18 @@ public class PlayerActions : MonoBehaviour
     [Required] PlayerFeedbacks _playerFeedbacks;
 
     #region Light Attack
-    int _currentLightAttackIndex = 0;
+    [Foldout("LightAttackFrameData"), SerializeField] float[] _lightStartup;
+    public float GetStartupTime() { return _lightStartup[_currentLightAttackIndex]; }
+    [Foldout("LightAttackFrameData"), SerializeField] float[] _lightActive;
+    public float GetActiveTime() { return _lightActive[_currentLightAttackIndex]; }
+    [Foldout("LightAttackFrameData"), SerializeField] float[] _lightRecovery;
+    public float GetRecoveryTime() { return _lightRecovery[_currentLightAttackIndex]; }
+    [Foldout("LightAttackFrameData"), SerializeField] float[] _moveSpeedWhileAttacking;
+    public float GetAttackingMoveSpeed() { return _moveSpeedWhileAttacking[_currentLightAttackIndex]; }
+
+
+    public int _currentLightAttackIndex { get; private set; } = 0;
     float _comboWindow = 0f;
-    float _comboMaxWindow = 0.5f;
     #endregion
 
     #region Aiming
@@ -133,7 +142,7 @@ public class PlayerActions : MonoBehaviour
     #region DodgeRoll
     private void DodgeInput()
     {
-        if ((_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING) && _dodgeCooldown <= 0)
+        if ((_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKRECOVERY) && _dodgeCooldown <= 0)
             DodgeRoll();
 
         else if (_fsm.currentState.Name == Ccl_StateNames.AIMING)
@@ -162,7 +171,7 @@ public class PlayerActions : MonoBehaviour
     #region Light Attack
     private void LightAttackInput()
     {
-        if (_fsm.currentState.Name == Ccl_StateNames.IDLE /*|| _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING*/)
+        if (_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKRECOVERY)
             LightAttack();
         else if (_fsm.currentState.Name == Ccl_StateNames.AIMING)
             CancelAim();
@@ -170,14 +179,78 @@ public class PlayerActions : MonoBehaviour
 
     private void LightAttack()
     {
-        LaunchLightAttackAnimation();
-        if (_currentLightAttackIndex < 2) _currentLightAttackIndex++;
-        else _currentLightAttackIndex = 0;
+        _fsm.ChangeState(Ccl_StateNames.LIGHTATTACKSTARTUP);
+    }
+
+    public void IncreaseLightAttackIndex()
+    {
+        if (_currentLightAttackIndex < 2)
+            _currentLightAttackIndex++;
+        else
+            _currentLightAttackIndex = 0;
+    }
+
+    public void EnableHitbox()
+    {
+        switch (_currentLightAttackIndex)
+        {
+            case 0:
+                _lightAttack0Data.LaunchAttack();
+                break;
+            case 1:
+                _lightAttack1Data.LaunchAttack();
+                break;
+            case 2:
+                _lightAttack2Data.LaunchAttack();
+                break;
+        }
+    }
+
+    public void SlowDownDuringAttack()
+    {
+        switch (_currentLightAttackIndex)
+        {
+            case 0:
+                this.PlayerMovement.MovementSpeed = this.PlayerMovement._normalSpeed * _moveSpeedWhileAttacking[0];
+                break;
+            case 1:
+                this.PlayerMovement.MovementSpeed = this.PlayerMovement._normalSpeed * _moveSpeedWhileAttacking[1];
+                break;
+            case 2:
+                this.PlayerMovement.MovementSpeed = this.PlayerMovement._normalSpeed * _moveSpeedWhileAttacking[2];
+                break;
+        }
+    }
+
+    public void ResetMovementSpeed()
+    {
+        this.PlayerMovement.MovementSpeed = this.PlayerMovement._normalSpeed;
+    }
+
+    public void DisableHitbox()
+    {
+        switch (_currentLightAttackIndex)
+        {
+            case 0:
+                _lightAttack0Data.StopAttack();
+                break;
+            case 1:
+                _lightAttack1Data.StopAttack();
+                break;
+            case 2:
+                _lightAttack2Data.StopAttack();
+                break;
+        }
+    }
+
+    public void ResetComboWindow()
+    {
+        _comboWindow = GetRecoveryTime() + 0.4f;
     }
     #endregion
 
     #region Placeholder coroutines instead of animation keys
-    void LaunchLightAttackAnimation()
+    /*void LaunchLightAttack()
     {
         switch (_currentLightAttackIndex)
         {
@@ -192,7 +265,8 @@ public class PlayerActions : MonoBehaviour
                 break;
         }
     }
-    IEnumerator LightAttack0Animation()
+    
+    Enumerator LightAttack0Animation()
     {
         _fsm.ChangeState(Ccl_StateNames.LIGHTATTACKING);
         _comboWindow = _comboMaxWindow;
@@ -237,7 +311,7 @@ public class PlayerActions : MonoBehaviour
         PlayerMovement.ResetMovementSpeed();
         _fsm.ChangeState(Ccl_StateNames.IDLE);
         yield return null;
-    }
+    }*/
     #endregion
 
     void Update()

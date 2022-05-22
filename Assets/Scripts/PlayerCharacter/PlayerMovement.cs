@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool _isMoving;
     Vector3 _wantedDirection;
-    [SerializeField] float _normalSpeed;
+    public float _normalSpeed;
     [NonSerialized] public float MovementSpeed;
     float _easeInValue;
     [SerializeField] float _easeInSpeed;
@@ -42,11 +42,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (_isMoving && (_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.AIMING || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING))
+        bool canMove = _isMoving && _fsm.currentState.Name == Ccl_StateNames.IDLE;
+        canMove = canMove || _fsm.currentState.Name == Ccl_StateNames.AIMING;
+        canMove = canMove || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING;
+        canMove = canMove || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKSTARTUP;
+        canMove = canMove || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKRECOVERY;
+        if (canMove)
         {
             EaseInMovement();
             Move();
         }
+
         if (_rb.IsSleeping())
             _rb.WakeUp();
     }

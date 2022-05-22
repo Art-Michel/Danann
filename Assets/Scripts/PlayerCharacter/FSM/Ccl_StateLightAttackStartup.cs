@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ccl_StateLightAttacking : Ccl_State
+public class Ccl_StateLightAttackStartup : Ccl_State
 {
-    public Ccl_StateLightAttacking() : base(Ccl_StateNames.LIGHTATTACKING)
+    public Ccl_StateLightAttackStartup() : base(Ccl_StateNames.LIGHTATTACKSTARTUP)
     {
 
     }
@@ -15,21 +15,20 @@ public class Ccl_StateLightAttacking : Ccl_State
     public override void Begin()
     {
         //_feedbacks. Lancer l'animation
-        _feedbacks.PlayPunchSfx();
         _t = 0;
-        _max = _actions.GetActiveTime();
-        _actions.EnableHitbox();
+        _max = _actions.GetStartupTime();
+        _actions.SlowDownDuringAttack();
     }
 
     public override void StateUpdate()
     {
         _t+= Time.deltaTime;
         if (_t >= _max)
-            _fsm.ChangeState(Ccl_StateNames.LIGHTATTACKRECOVERY);
+            _fsm.ChangeState(Ccl_StateNames.LIGHTATTACKING);
     }
 
     public override void Exit()
     {
-        _actions.DisableHitbox();
+
     }
 }

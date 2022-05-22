@@ -44,7 +44,7 @@ public class PlayerHP : EntityHP
 
     override protected void DamageFeedback(string attackName= "")
     {
-        _playerFeedbacks.PlayPlayerHurt();
+        _playerFeedbacks.PlayPlayerHurtSfx();
         SlowDownTime();
         StartInvul();
     }

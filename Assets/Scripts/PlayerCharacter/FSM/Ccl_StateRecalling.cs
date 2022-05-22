@@ -11,7 +11,7 @@ public class Ccl_StateRecalling : Ccl_State
 
     public override void Begin()
     {
-        _feedbacks.PlayRecall();
+        _feedbacks.PlayRecallSfx();
         _fsm.ChangeState(Ccl_StateNames.IDLE);
     }
 

@@ -13,8 +13,8 @@ public class Ccl_StateDodging : Ccl_State
     Vector3 _wantedDirection;
 
     //private const float _dashLength = 8f;
-    private const float _dashDuration = 0.1f;
-    private const float _dashSpeed = 70f;
+    private const float _dashDuration = 0.15f;
+    private const float _dashSpeed = 40f;
     float _dashT = 0;
 
     public override void Begin()
@@ -24,7 +24,7 @@ public class Ccl_StateDodging : Ccl_State
         _actions.PlayerHP._isInvulnerable = true;
         _dashT = 0;
 
-        _feedbacks.PlayDodge();
+        _feedbacks.PlayDodgeSfx();
         _feedbacks.SetTrailRenderer(true, true);
     }
 
