@@ -12,19 +12,26 @@ public class Ccl_StateDashing : Ccl_State
     Vector3 _startingPosition;
     Vector3 _wantedPosition;
 
-    private const float _dashSpeed = 4f;
-    float _dashT = 0;
+    const float _dashBaseSpeed = 80f;
+    float _dashSpeed = 0f;
+    float _dashT = 0f;
 
     public override void Begin()
     {
         _startingPosition = _actions.transform.position;
         _wantedPosition = new Vector3(_actions.spearDashedOn.transform.position.x, _actions.transform.position.y, _actions.spearDashedOn.transform.position.z);
+
+        Vector3 trajectory = _startingPosition - _wantedPosition;
+        _actions.PlayerMovement.OrientateBodyTowards(trajectory);
+        _dashSpeed = _dashBaseSpeed / trajectory.magnitude;
+
         _actions.PlayerHP._isInvulnerable = true;
         _dashT = 0;
 
         _feedbacks.PlayDashingShoutSfx();
         _actions.EnableDashHitbox();
         _feedbacks.SetTrailRenderer(true, true);
+        
     }
 
     public override void StateUpdate()

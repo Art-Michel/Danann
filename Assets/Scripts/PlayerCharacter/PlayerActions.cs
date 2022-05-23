@@ -162,7 +162,7 @@ public class PlayerActions : MonoBehaviour
 
     private void DodgeRoll()
     {
-        if (_fsm.currentState.Name != Ccl_StateNames.LIGHTATTACKING) PlayerMovement.ReorientateBodyImmediately();
+        if (_fsm.currentState.Name != Ccl_StateNames.LIGHTATTACKING) PlayerMovement.OrientateBodyTowardsStickDirection();
         _fsm.ChangeState(Ccl_StateNames.DODGING);
     }
 
@@ -191,7 +191,7 @@ public class PlayerActions : MonoBehaviour
 
     private void LightAttack()
     {
-        PlayerMovement.ReorientateBodyImmediately();
+        PlayerMovement.OrientateBodyTowardsStickDirection();
         _fsm.ChangeState(Ccl_StateNames.LIGHTATTACKSTARTUP);
     }
 

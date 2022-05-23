@@ -106,9 +106,13 @@ public class PlayerMovement : MonoBehaviour
         PlayerBody.transform.forward = Vector3.Lerp(PlayerBody.transform.forward, _wantedDirection + bodyRotationOffset, BodyRotatingSpeed * Time.deltaTime);
     }
 
-    public void ReorientateBodyImmediately()
+    public void OrientateBodyTowardsStickDirection()
     {
         if(_wantedDirection != Vector3.zero) PlayerBody.transform.forward = _wantedDirection;
+    }
+    public void OrientateBodyTowards(Vector3 direction)
+    {
+
     }
 
     public Vector3 GetOrientation()
