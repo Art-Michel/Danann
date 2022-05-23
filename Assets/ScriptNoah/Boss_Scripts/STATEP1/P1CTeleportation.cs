@@ -27,6 +27,9 @@ public class P1CTeleportation : Danu_State
         CLOSE
     }
     float reco;
+    private bool _lerpOut;
+    private bool _lerpIn;
+    float camWeight;
     // Start is called before the first frame update
     public override void Begin()
     {        
@@ -36,11 +39,10 @@ public class P1CTeleportation : Danu_State
         arrival.SetActive(false);
         if (destination == destPoints.FAR)
         {
-            cam.m_Targets[cam.m_Targets.Length-1].weight=1;
             float dist = farDist / Vector3.Distance(fsm.transform.position, target.position);
             Vector3 dir = fsm.transform.position - target.position;
             dir.Normalize();
-            dir *= dist;
+            dir *= farDist;
             arrival.transform.position = fsm.transform.position + dir;
             if (Vector3.Distance(arrival.transform.position, arenaCenter) >= fsm.agent.GetArenaRadius())
             {
@@ -55,6 +57,7 @@ public class P1CTeleportation : Danu_State
             Vector3 offset = new Vector3(rand.x, 0, rand.y) * offsetValue;
             arrival.transform.position = target.position + offset;
         }
+        _lerpIn=true;
         startup=0;
         fadeTime=0;
         active=0;
@@ -81,7 +84,39 @@ public class P1CTeleportation : Danu_State
     public override void Update()
     {
         TP();
+        LerpIn();
+        LerpOut();
     }
+
+    private void LerpIn()
+    {
+        if (!_lerpIn)
+            return;
+        float realtime=startup+fadeTime;
+        float lerpValue=Mathf.Clamp(realtime,0,1);
+        
+        cam.m_Targets[cam.m_Targets.Length-1].weight=lerpValue;
+        if (lerpValue>=camWeight)
+        {
+            _lerpIn=false;
+        }
+
+
+    }
+
+    private void LerpOut()
+    {
+        if (!_lerpOut)
+            return;
+        float lerpValue=Mathf.Lerp(0,maxReco,(maxReco-reco)*camWeight);
+        
+        cam.m_Targets[cam.m_Targets.Length-1].weight=lerpValue;
+        if (lerpValue==0)
+        {
+            _lerpOut=false;
+        }
+    }
+
     void TP()
     {
         if (startup <= MaxSartup)
@@ -104,7 +139,8 @@ public class P1CTeleportation : Danu_State
         {
             boomBoxAttackData.StopAttack();
             //boomBox.SetActive(false);
-            cam.m_Targets[cam.m_Targets.Length-1].weight=0;
+
+            _lerpOut=true;
             arrival.SetActive(false);
             reco += Time.deltaTime;
         }

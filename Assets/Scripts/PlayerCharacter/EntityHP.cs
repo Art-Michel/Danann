@@ -21,11 +21,13 @@ public class EntityHP : MonoBehaviour
     }
 
     [Button]
-    public void TakeDamage(int amount, string attackName, int plasmaRegainValue)
+    public void TakeDamage(int amount, string attackName, int plasmaRegainValue,int revengeGain=0)
     {
         if (!_isInvulnerable)
         {
             HealthPoints = Mathf.Clamp(HealthPoints -= amount, 0, _maxHealthPoints);
+            bool isBoss = _maxHealthPoints>100;
+            if (isBoss) GetComponent<DanuAI>().BuildUpRevenge(revengeGain);
             if (_healthBar) UpdateHealthBar();
             DamageFeedback(attackName);
             if (HealthPoints <= 0) Die();

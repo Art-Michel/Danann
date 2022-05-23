@@ -7,7 +7,8 @@ public class SpinBullet : MonoBehaviour
     public enum bladeIndex{
         NORTH,
         WEST,
-        EAST
+        EAST,
+        SOUTH
     }
     P1DSpin state;
     int index;

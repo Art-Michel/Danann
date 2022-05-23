@@ -5,21 +5,18 @@ using UnityEngine;
 public class P1DBoomerang : Danu_State
 {
     public P1DBoomerang() : base(StateNames.P1D_BOOMERANG) { }
-    GameObject boomerangL;
-    GameObject boomerangR;
+    GameObject boomerangL, boomerangR;
     AttackData boomerangAttackData;
     Transform target;
     Transform preview;
     float speed;
     float MaxStraightTime;
-    Transform curveMidL;
-    Transform curveMidR;
+    Transform curveMidL, curveMidR;
     float MaxCurveTime;
     float straightTime;
-    Vector3 curveStartL;
-    Vector3 curveStartR;    
-    Vector3 startL;
-    Vector3 startR;
+    Vector3 curveStartL,curveStartR;
+    Vector3 baseStartL,baseStartR;
+    Vector3 startL,startR;
     Vector3 curveEnd;
     float curveTime = 0;
     bool startCurve;
@@ -37,19 +34,21 @@ public class P1DBoomerang : Danu_State
         straightTime=0;
         boomerangAttackData.LaunchAttack();
         fsm.transform.LookAt(target);
-        curveEnd = fsm.transform.position;
+        boomerangR.transform.localPosition=baseStartR;
+        boomerangL.transform.localPosition=baseStartL;
+        startL=boomerangL.transform.position;
+        startR=boomerangR.transform.position;
         curveStartL = boomerangL.transform.position + fsm.transform.forward * maxDistance ;
         curveStartR = boomerangR.transform.position + fsm.transform.forward * maxDistance;
+        curveEnd = fsm.transform.position;
         Vector3 straightEnd = (curveStartL + curveStartR) / 2;
-        
         preview.position = fsm.transform.position + (straightEnd - fsm.transform.position) / 2;
         preview.localScale = new Vector3(5, 1, Vector3.Distance(fsm.transform.position, straightEnd));
         preview.LookAt(straightEnd);
         preview.gameObject.SetActive(true);
         
         wait = true;
-        startL=boomerangL.transform.position;
-        startR=boomerangR.transform.position;        
+     
         waitTime=0;
     }
     public override void Init()
@@ -68,6 +67,8 @@ public class P1DBoomerang : Danu_State
         MaxCurveTime = fsm.GetP1BoomeRangMaxCurveTime();
         MaxStraightTime = fsm.GetP1BoomeRangMaxStraightTime();
         maxWaitTime = fsm.GetP1BR_Startup();
+        baseStartL=boomerangL.transform.localPosition;
+        baseStartR=boomerangR.transform.localPosition;   
         base.Init();
     }
     // Update is called once per frame
@@ -95,7 +96,7 @@ public class P1DBoomerang : Danu_State
         boomerangL.transform.position = Vector3.Lerp(startL, curveStartL, straightTime / MaxStraightTime);
         boomerangR.transform.position = Vector3.Lerp(startR, curveStartR, straightTime / MaxStraightTime);
         straightTime += Time.deltaTime;
-        if (boomerangL.transform.position == curveStartL)
+        if (boomerangL.transform.position == curveStartL||boomerangR.transform.position==curveStartR)
         {    
             preview.gameObject.SetActive(false);
             startCurve = true;
@@ -149,8 +150,8 @@ public class P1DBoomerang : Danu_State
     {
         boomerangL.SetActive(false);
         boomerangR.SetActive(false);
-        boomerangR.transform.position=startR;
-        boomerangL.transform.position=startL;
+        boomerangR.transform.localPosition=baseStartR;
+        boomerangL.transform.localPosition=baseStartL;
         base.End();
     }
 }

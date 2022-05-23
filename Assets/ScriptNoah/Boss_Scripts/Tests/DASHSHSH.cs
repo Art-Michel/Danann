@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P2CDash : Danu_State
+public class DASHSHSH : MonoBehaviour
 {
-    public P2CDash() : base(StateNames.P2C_DASH){}
 [SerializeField] Transform target;
     [SerializeField] Transform preview;
     [SerializeField] float maxDashTime;
@@ -20,27 +19,15 @@ public class P2CDash : Danu_State
     Vector3 maxArrival;
     private Vector3 startPos;
     // Start is called before the first frame update
-    public override void Begin()
-    {
-        if (!isInit)
-            Init();
+    private void Start() 
+    {            
+        dashCount = maxDashCount;
         StartDash();
     }
-    public override void Init()
-    {
-        maxChargingTime = fsm.GetP2sD_ChargingTime();
-        dashSpeed = fsm.GetP2sD_DashSpeed();
-        maxDashTime = fsm.GetP2sD_MDashT();
-        maxDashCount = 3;
-        dashAttackData = fsm.GetP2DashAttackData();
-        preview = fsm.GetP2sD_Preview();
-        target = fsm.agent.GetPlayer();
-        base.Init();
 
-    }
 
     // Update is called once per frame
-    public override void Update()
+    void Update()
     {
         Dash();
     }
@@ -64,40 +51,34 @@ public class P2CDash : Danu_State
             return;
         }
         dashTime += Time.deltaTime;
-        fsm.transform.position += dir * dashSpeed * Time.deltaTime;
+        transform.position += dir * dashSpeed * Time.deltaTime;
         if (dashTime >= maxDashTime)
         {
             preview.gameObject.SetActive(false);
             dashCount--;
             dashTime = 0;
-            dir = (-fsm.transform.position + target.position).normalized;
-            if (orig == null)
+            dir = (-transform.position + target.position).normalized;
+            if (dashCount==0)
             {
-                fsm.agent.ToIdle();
-                dashAttackData.StopAttack();
+            Debug.Log("over");
+            enabled=false;
+            return;
             }
-            else
-            {
-                orig.AddWaitTime(2);
-                orig.FlowControl();
-                dashAttackData.StopAttack();
-            }
+
         }
 
     }
     void StartDash()
     {
-        dashCount = maxDashCount;
         dashTime = 0;
         chargingTime = 0;
         isDashing = true;
-        dir = (-fsm.transform.position + target.position).normalized;
-        startPos = fsm.transform.position;
-        maxArrival = fsm.transform.position + dir * dashSpeed * dashTime;
+        dir = (-transform.position + target.position).normalized;
+        startPos = transform.position;
+        maxArrival = transform.position + dir * dashSpeed * dashTime;
         preview.position = startPos + (dir * dashSpeed * maxDashTime) / 2;
         preview.LookAt(target);
-        preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, maxDashTime * dashSpeed);
+        preview.localScale = new Vector3(transform.localScale.x, transform.localScale.y, maxDashTime * dashSpeed);
         dashAttackData.LaunchAttack();
     }
-
 }

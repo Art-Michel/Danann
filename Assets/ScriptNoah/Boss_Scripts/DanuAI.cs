@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using NaughtyAttributes;
 using Cinemachine;
@@ -54,10 +55,11 @@ public class DanuAI : MonoBehaviour
     Danu_GlobalFSM gfsm;
     float revengeTime;
     float revengeMaxTime;
-
+    [SerializeField,Dropdown("testValues")] string testState;
+    List<string> testValues{get {return StateNames.e.ToList();}}
     [SerializeField] public bool followsGlobal{get;private set;}
     private float revengeSpeed;
-
+    [SerializeField] bool isDebug;
     public bool GetFollowingGlobal(){return followsGlobal;}
     private void Awake() {
         if (m_fsm==null)
@@ -88,8 +90,10 @@ public class DanuAI : MonoBehaviour
             m_fsm.AddState(new P1CDash());
             m_fsm.AddState(new P1CTeleportation());
             m_fsm.AddState(new P1CMixDash());
-            
-            m_fsm.ChangeState(StateNames.P1D_SHOOT);
+            if (isDebug)
+                m_fsm.ChangeState(testState);
+            else
+                m_fsm.ChangeState(StateNames.P1IDLE);
         }
     }
 
@@ -137,6 +141,7 @@ public class DanuAI : MonoBehaviour
         else
             isRevengeHigh=false;
         revengeTime=0;
+        Debug.Log("e");
     }
     [Button]
     void ShowDist()
@@ -147,6 +152,23 @@ public class DanuAI : MonoBehaviour
     [Button]
     public void NextPattern() 
     {
+        if (isDebug)
+        {
+            Vector3 playerPos=player.position;
+            Vector3 agentPos=transform.position;
+            float dist=Vector3.Distance(playerPos,agentPos);
+            if (dist>distLimit)
+            {
+                m_fsm.SetTPDest(P1CTeleportation.destPoints.CLOSE);  
+            }
+            else
+            {
+                m_fsm.SetTPDest(P1CTeleportation.destPoints.FAR);  
+            }
+            m_fsm.ChangeState(testState);
+            return;
+            
+        }
         if (phase==1)
         {
             float revengePercent=revenge*100/maxRevenge;

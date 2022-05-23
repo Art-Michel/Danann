@@ -128,8 +128,124 @@ public class Danu_FSM : MonoBehaviour
     public float GetP1TP_Active() { return p1TP_Active; }
     [Foldout("Phase 1 TP"), SerializeField] float p1TP_farDist;
     public float GetP1TP_FarDist() { return p1TP_farDist; }
+    #endregion    
     #endregion
-        #region ProjectilesInit
+    #region Phase 2
+        #region Shoot
+    [Foldout("Phase 2 Shoot"), SerializeField] private int P2D_nbShot;
+    public int GetP2d_nbShot() { return P2D_nbShot; }
+    [Foldout("Phase 2 Shoot"), SerializeField] private float P2D_delay;
+    public float GetP2d_delay() { return P2D_delay; }
+    [Foldout("Phase 2 Shoot"), SerializeField] private float P2D_wait;
+    public float GetP2d_wait() { return P2D_wait; }
+    [Foldout("Phase 2 Shoot"), SerializeField] private float P2D_ProjLifeTime;
+    public float GetP2d_ProjLifeTime() { return P2D_ProjLifeTime; }
+    [Foldout("Phase 2 Shoot"), SerializeField] private float p2d_ShotSpeed;
+    public float GetP2d_ShotSpeed() { return p2d_ShotSpeed; }
+    #endregion
+        #region Slam
+    [Foldout("Phase 2 Slam")][SerializeField] AttackData P2Slam1AttackData;
+    public AttackData GetP2Slam1AttackData() { return P2Slam1AttackData; }
+    [Foldout("Phase 2 Slam")][SerializeField] AttackData P2Slam2AttackData;
+    public AttackData GetP2Slam2AttackData() { return P2Slam2AttackData; }
+    [Foldout("Phase 2 Slam")][SerializeField] AttackData P2Slam3AttackData;
+    public AttackData GetP2Slam3AttackData() { return P2Slam3AttackData; }
+
+    [Foldout("Phase 2 Slam")][SerializeField] GameObject[] p2SlamHitBox;
+    public GameObject[] GetP2SlamHitBox() { return p2SlamHitBox; }
+    [Foldout("Phase 2 Slam")][SerializeField] Vector3[] P2AttackFrames = new Vector3[3];
+    public Vector3 GetP2AttackFrames(int index) { return P2AttackFrames[index]; }
+    [Foldout("Phase 2 Slam")][SerializeField] private float P2SlamRecovery;
+    public float GetP2SlamRecovery() { return P2SlamRecovery; }
+    [Foldout("Phase 2 Slam")][SerializeField] private float p2Sl_MaxMoveTime;
+    public float GetP2Sl_MaxMoveTime() { return p2Sl_MaxMoveTime; }
+
+    #endregion
+        #region Spin
+    [Foldout("Phase 2 Spin")][SerializeField] private GameObject P2globalGO;
+    public GameObject GetP2GlobalGO() { return P2globalGO; }
+    [Foldout("Phase 2 Spin")][SerializeField] private Transform[] P2nwesMax = new Transform[4];
+    public Transform[] Get2NWESMax() { return P2nwesMax; }
+    [Foldout("Phase 2 Spin")][SerializeField] private float p2sp_dist;
+    public float GetP2Sp_Dist() { return p2sp_dist; }
+    [Foldout("Phase 2 Spin")][SerializeField] private float P2rotationSpeed;
+    public float GetP2RotationSpeed() { return P2rotationSpeed; }
+    [Foldout("Phase 2 Spin")][SerializeField] private bool P2turningRight;
+    public bool GetP2TurningRight() { return P2turningRight; }
+    [Foldout("Phase 2 Spin")][SerializeField] private float P2maxWaitTime;
+    public float GetP2MaxWaitTime() { return P2maxWaitTime; }
+    [Foldout("Phase 2 Spin")][SerializeField] private float P2SpinLifeTime;
+    public float GetP2SpinLifeTime() { return P2SpinLifeTime; }
+    [Foldout("Phase 2 Spin")][SerializeField] private Transform[] p2bladesPreview;
+    public Transform[] Getp2BladesPreview() { return p2bladesPreview; }
+    #endregion
+        #region Boomerang
+    [Foldout("Phase 2 Boomerang"), SerializeField] private GameObject P2BoomerangboomerangL1;
+    [Foldout("Phase 2 Boomerang"), SerializeField] private GameObject P2BoomerangboomerangL2;
+    public GameObject GetP2BRL1() { return P2BoomerangboomerangL1; }
+    public GameObject GetP2BRL2() { return P2BoomerangboomerangL2; }
+    [Foldout("Phase 2 Boomerang")][SerializeField] private GameObject P2BoomerangR1;
+    [Foldout("Phase 2 Boomerang")][SerializeField] private GameObject P2BoomerangR2;
+    public GameObject GetP2BRR1() { return P2BoomerangR1; }
+    public GameObject GetP2BRR2() { return P2BoomerangR2; }
+    [Foldout("Phase 2 Boomerang")][SerializeField] AttackData p2boomerangAttackData;
+    public AttackData Getp2BoomerangAttackData() { return p2boomerangAttackData; }
+
+    [Foldout("Phase 2 Boomerang")][SerializeField] float P2BoomeRangSpeed;
+    public float GetP2BoomeRangSpeed() { return P2BoomeRangSpeed; }
+    [Foldout("Phase 2 Boomerang")][SerializeField] float p2br_MaxDist;
+    public float GetP2BR_MaxDist() { return p2br_MaxDist; }
+    [Foldout("Phase 2 Boomerang")][SerializeField] float P2BoomeRangMaxStraightTime;
+    public float GetP2BoomeRangMaxStraightTime() { return P2BoomeRangMaxStraightTime; }
+    [Foldout("Phase 2 Boomerang")][SerializeField] Transform P2BoomeRangcurveMidL;
+    public Transform GetP2BoomeRangcurveMidL() { return P2BoomeRangcurveMidL; }
+    [Foldout("Phase 2 Boomerang")][SerializeField] Transform P2BoomeRangcurveMidR;
+    public Transform GetP2BoomeRangcurveMidR() { return P2BoomeRangcurveMidR; }
+    [Foldout("Phase 2 Boomerang")][SerializeField] float P2BoomeRangMaxCurveTime;
+    public float GetP2BoomeRangMaxCurveTime() { return P2BoomeRangMaxCurveTime; }
+    [Foldout("Phase 2 Boomerang")][SerializeField] float p2Br_startup;
+    public float GetP2BR_Startup() { return p2Br_startup; }
+    #endregion
+        #region Dash
+    [Foldout("Phase 2 Dash"), SerializeField] Transform p2sDash_preview;
+    public Transform GetP2sD_Preview() { return p2sDash_preview; }
+    [Foldout("Phase 2 Dash"), SerializeField] float p2sDash_MaxDashTime;
+    public float GetP2sD_MDashT() { return p2sDash_MaxDashTime; }
+    [Foldout("Phase 2 Dash"), SerializeField] int p2sDash_MaxDashCount;
+    public int GetP2sD_MDCount() { return p2sDash_MaxDashCount; }
+    [Foldout("Phase 2 Dash"), SerializeField] float p2sDash_DashSpeed;
+    public float GetP2sD_DashSpeed() { return p2sDash_DashSpeed; }
+    [Foldout("Phase 2 Dash"), SerializeField] float p2sDash_MaxChargingTime;
+    public float GetP2sD_ChargingTime() { return p2sDash_MaxChargingTime; }
+    [Foldout("Phase 2 Dash"), SerializeField] float p2Dash_dashModifier;
+    public float GetP2MD_dMod() { return p2Dash_dashModifier; }
+    [Foldout("Phase 2 Dash"), SerializeField] AttackData p2Dash_AttackData;
+    public AttackData GetP2DashAttackData() { return p2Dash_AttackData; }
+    #endregion
+        #region TelePortation
+    [Foldout("Phase 2 TP"), SerializeField] GameObject p2TP_arrival;
+    public GameObject GetP2TP_Arrival() { return p2TP_arrival; }
+    [Foldout("Phase 2 TP"), SerializeField] GameObject p2TP_fakeArrival;
+    public GameObject GetP2TP_FakeArrival() { return p2TP_fakeArrival; }
+    [Foldout("Phase 2 TP"), SerializeField] GameObject p2TP_boomBox;
+    public GameObject GetP2TP_Boombox() { return p2TP_boomBox; }
+    [Foldout("Phase 2 TP"), SerializeField] GameObject p2TP_fakeBoomBox;
+    public GameObject GetP2TP_FakeBoombox() { return p2TP_fakeBoomBox; }
+    [Foldout("Phase 2 TP"), SerializeField] float p2TP_FadeTime;
+    public float GetP2TP_Fadetime() { return p2TP_FadeTime; }
+    [Foldout("Phase 2 TP"), SerializeField] float p2TP_Startup;
+    public float GetP2TP_Startup() { return p2TP_Startup; }
+    [Foldout("Phase 2 TP"), SerializeField] float p2TP_offsetValue;
+    public float GetP2TP_Offset() { return p2TP_offsetValue; }
+    [Foldout("Phase 2 TP"), SerializeField] float p2TP_Reco;
+    public float GetP2TP_Recovery() { return p2TP_Reco; }
+    [Foldout("Phase 2 TP"), SerializeField] float p2TP_Active;
+    public float GetP2TP_Active() { return p2TP_Active; }
+    [Foldout("Phase 2 TP"), SerializeField] float p2TP_farDist;
+    public float GetP2TP_FarDist() { return p2TP_farDist; }
+    #endregion
+    #endregion
+    #region ProjectilesInit
     private List<GameObject> baseProjectiles = new List<GameObject>();
     public void AddProjectile()
     {
@@ -144,7 +260,6 @@ public class Danu_FSM : MonoBehaviour
     {
         return baseProjectiles.Count;
     }
-    #endregion
     #endregion
     int indexx;
     public Danu_State curr { get; private set; }

@@ -2,51 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P2DSpin: Danu_State
+public class Part2Heli : MonoBehaviour
 {
-    public P2DSpin() : base(StateNames.P2D_SPIN){}
-
-    private GameObject globalGO;
-    Transform preview;
-    Transform[] bladesPreview = new Transform[4];
-    AttackData bladesParentAttackData;
-    private Transform dSphereN,dSphereW,dSphereE,dSphereS;
-    private float dist;
-    private float rotationSpeed;
-    private bool turningRight;
-    private float maxWaitTime;
-    private float lifetime;
-    Vector3 n,w,e,s;
-
-    List<GameObject> nblades = new List<GameObject>();
-    List<GameObject> wblades = new List<GameObject>();
-    List<GameObject> eblades = new List<GameObject>();
-    List<GameObject> sblades = new List<GameObject>();
-    private bool wait;
-    private float waitTime;
-    bool isSetUp;
-    Pool pool;
+    [SerializeField]private GameObject globalGO;
+   [SerializeField] Transform preview;
+    [SerializeField]Transform[] bladesPreview = new Transform[4];
+   [SerializeField] AttackData bladesParentAttackData;
+  [SerializeField]  private Transform dSphereN,dSphereW,dSphereE,dSphereS;
+  [SerializeField]  private float dist;
+   [SerializeField] private float rotationSpeed;
+  [SerializeField]  private bool turningRight;
+ [SerializeField]   private float maxWaitTime;
+ [SerializeField]   private float lifetime;
+[SerializeField]    Vector3 n,w,e,s;
+ [SerializeField]   Danu_FSM fsm;
+[SerializeField]    List<GameObject> nblades = new List<GameObject>();
+[SerializeField]    List<GameObject> wblades = new List<GameObject>();
+ [SerializeField]   List<GameObject> eblades = new List<GameObject>();
+  [SerializeField]  List<GameObject> sblades = new List<GameObject>();
+ [SerializeField]   private bool wait;
+[SerializeField]   private float waitTime;
+ [SerializeField]   Pool pool;
     // Start is called before the first frame update
-    public override void Begin()
+    void Start()
     {
-        if (!isInit)
+        
             Init();
+            SpawnBladesPreview();
         //activation des helices, ou instantiation si c'est la premiere fois
-        preview.localScale = new Vector3(1, 1, Vector3.Distance(fsm.transform.position, fsm.agent.GetArenaCenter()));
-        preview.position = fsm.transform.position + (fsm.agent.GetArenaCenter() - fsm.transform.position) / 2;
-        preview.LookAt(fsm.agent.GetArenaCenter());
-        preview.gameObject.SetActive(true);
         waitTime = 0;
         wait = true;
     }
-    public override void Init()
+    void Init()
     {
-        pool = fsm.GetPool();
+        pool = GetComponent<Pool>();
         //setup des variables
         dist = fsm.GetP1Sp_Dist();
         globalGO = fsm.GetP1GlobalGO();
         bladesParentAttackData = globalGO.GetComponent<AttackData>();
-        preview = fsm.GetP1sD_Preview();
+        
         Transform[] nwesTrans = fsm.GetP1NWEMax();
         bladesPreview = fsm.GetBladesPreview();
         dSphereN = nwesTrans[0];
@@ -57,19 +51,13 @@ public class P2DSpin: Danu_State
         turningRight = fsm.GetP1TurningRight();
         maxWaitTime = fsm.GetP1MaxWaitTime();
         lifetime = fsm.GetP1SpinLifeTime();
-        base.Init();
     }
     // Update is called once per frame
-    public override void Update()
+    void Update()
     {
         if (wait)
         {
             waitTime += Time.deltaTime;
-            fsm.transform.position = Vector3.Lerp(fsm.transform.position, fsm.agent.GetArenaCenter(), waitTime / maxWaitTime);
-            if (fsm.transform.position == fsm.agent.GetArenaCenter())
-            {
-                SpawnBladesPreview();
-            }
             if (waitTime >= maxWaitTime)
             {
                 wait = false;
@@ -81,10 +69,8 @@ public class P2DSpin: Danu_State
         lifetime -= Time.deltaTime;
         if (lifetime <= 0)
         {
-            if (orig == null)
-                fsm.agent.ToIdle();
-            else
-                orig.progression++;
+            Debug.Log("over");
+            this.enabled=false;
         }
         Rotate();
     }
@@ -92,7 +78,7 @@ public class P2DSpin: Danu_State
     private void SpawnBladesPreview()
     {
         Transform[] nwesTrans = fsm.GetP1NWEMax();
-        Vector3 center = fsm.agent.GetArenaCenter();
+        Vector3 center = transform.position;
         preview.gameObject.SetActive(false);
         for (int i = 0; i < bladesPreview.Length; i++)
         {
@@ -116,16 +102,15 @@ public class P2DSpin: Danu_State
         s = dSphereS.position;
         for (int i = 0; i < dist; i++)
         {
-            SetupBall(pool.SecondGet(), Vector3.Lerp(fsm.transform.position, dSphereN.position, delta * i), nblades);
-            SetupBall(pool.SecondGet(), Vector3.Lerp(fsm.transform.position, dSphereW.position, delta * i), wblades);
-            SetupBall(pool.SecondGet(), Vector3.Lerp(fsm.transform.position, dSphereE.position, delta * i), eblades);
-            SetupBall(pool.SecondGet(), Vector3.Lerp(fsm.transform.position, dSphereS.position, delta * i), eblades);
+            SetupBall(pool.SecondGet(), Vector3.Lerp(transform.position, dSphereN.position, delta * i), nblades);
+            SetupBall(pool.SecondGet(), Vector3.Lerp(transform.position, dSphereW.position, delta * i), wblades);
+            SetupBall(pool.SecondGet(), Vector3.Lerp(transform.position, dSphereE.position, delta * i), eblades);
+            SetupBall(pool.SecondGet(), Vector3.Lerp(transform.position, dSphereS.position, delta * i), sblades);
         }
         globalGO.SetActive(true);
         bladesParentAttackData.GetChildrenHitboxes();
         bladesParentAttackData.SetupHitboxes();
         bladesParentAttackData.LaunchAttack();
-        isSetUp = true;
     }
 
     void SetupBall(GameObject ball, Vector3 position, List<GameObject> blades)
@@ -172,7 +157,7 @@ public class P2DSpin: Danu_State
         else
             globalGO.transform.Rotate(new Vector3(0, -rotationSpeed * Time.deltaTime, 0));
     }
-    public override void End()
+    void End()
     {
         globalGO.SetActive(false);
         lifetime = fsm.GetP1SpinLifeTime();
@@ -188,3 +173,4 @@ public class P2DSpin: Danu_State
         }
     }
 }
+

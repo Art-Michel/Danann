@@ -89,7 +89,10 @@ public class P1CMixDash : Danu_State
             case state.STRAFE:
                 Strafe();
                 if (actual != state.STRAFE)
+                {
                     preview.gameObject.SetActive(false);
+                    dashAttackData.LaunchAttack();
+                }
                 break;
             case state.RETURNDASH:
                 ReturnDash();
@@ -163,12 +166,12 @@ public class P1CMixDash : Danu_State
                 SetTarget();
                 preview.gameObject.SetActive(true);
             }
-            /*dir=(-fsm.transform.position+target.position).normalized;
+            dir=(-fsm.transform.position+target.position).normalized;
             startPos=fsm.transform.position;
             maxArrival=fsm.transform.position+dir*dashSpeed*dashTime;
             preview.position=Vector3.Lerp(preview.position, startPos+(dir*dashSpeed*maxDashTime)/2,1);
             preview.LookAt(target);
-            preview.localScale=new Vector3(fsm.transform.localScale.x,fsm.transform.localScale.y,maxDashTime*dashSpeed);*/
+            preview.localScale=new Vector3(fsm.transform.localScale.x,fsm.transform.localScale.y,maxDashTime*dashSpeed);
             return;
         }
         if (afterStrafe <= mafs)

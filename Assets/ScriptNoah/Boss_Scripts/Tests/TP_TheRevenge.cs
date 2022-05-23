@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class P2CTeleportation : Danu_State
+using Cinemachine;
+public class TP_TheRevenge : MonoBehaviour
 {
-    public P2CTeleportation() : base(StateNames.P2C_TELEPORTATION){}
-
-    GameObject arrival, fakeArrival;
-    GameObject boomBox,fakeBoomBox;
-    AttackData boomBoxAttackData,fakeBoomBoxAttackData;
-    Transform target;
-    [SerializeField] P1CTeleportation.destPoints destination;
+    [SerializeField]GameObject arrival, fakeArrival;
+    [SerializeField]GameObject boomBox,fakeBoomBox;
+    [SerializeField]AttackData boomBoxAttackData,fakeBoomBoxAttackData;
+    [SerializeField] Transform target;
+    [SerializeField] destPoints destination;
     [SerializeField] float MaxFadeTime;
     [SerializeField] float MaxSartup;
     [SerializeField] float offsetValue;
@@ -29,44 +27,31 @@ public class P2CTeleportation : Danu_State
     float reco;
 
     [SerializeField]float arenaRadius;
-    public override void Init()
-    {
-        arrival=fsm.GetP2TP_Arrival();
-        fakeArrival=fsm.GetP2TP_FakeArrival();
-        boomBox=fsm.GetP2TP_Boombox();
-        fakeBoomBox=fsm.GetP2TP_FakeBoombox();
-        boomBoxAttackData=boomBox.GetComponent<AttackData>();
-        fakeBoomBoxAttackData=fakeBoomBox.GetComponent<AttackData>();
-        target=fsm.agent.GetPlayer();
-        arenaCenter = fsm.agent.GetArenaCenter();
-
-    }
     // Start is called before the first frame update
-    public override void Begin() 
+    private void Start() 
     {        
         Init();
-        destination=fsm.GetP1TP_Destination();
         arrival.SetActive(false);
         fakeArrival.SetActive(false);
-        if (destination == P1CTeleportation.destPoints.FAR)
+        if (destination == destPoints.FAR)
         {
-            float dist = farDist / Vector3.Distance(fsm.transform.position, target.position);
-            Vector3 dir = fsm.transform.position - target.position;
+            float dist = farDist / Vector3.Distance(transform.position, target.position);
+            Vector3 dir = transform.position - target.position;
             dir.Normalize();
             dir *= farDist;
             Vector2 rand = Random.insideUnitCircle;
             Vector3 offset = new Vector3(rand.x, 0, rand.y) * offsetValue;
-            arrival.transform.position = fsm.transform.position + dir-offset;
-            fakeArrival.transform.position = fsm.transform.position + dir+offset;
+            arrival.transform.position = transform.position + dir-offset;
+            fakeArrival.transform.position = transform.position + dir+offset;
             if (Vector3.Distance(arrival.transform.position, arenaCenter) >= arenaRadius)
             {
-                dir = fsm.transform.position - target.position;
+                dir = transform.position - target.position;
                 dir.Normalize();
                 arrival.transform.position =arenaCenter+ arenaRadius * dir;
             }            
             if (Vector3.Distance(fakeArrival.transform.position, arenaCenter) >= arenaRadius)
             {
-                dir = fsm.transform.position - target.position;
+                dir = transform.position - target.position;
                 dir.Normalize();
                 fakeArrival.transform.position =arenaCenter+ arenaRadius * dir;
             }
@@ -83,9 +68,11 @@ public class P2CTeleportation : Danu_State
         active=0;
         reco=0;
     }
-
+    void Init()
+    {
+    }
     // Update is called once per frame
-    public override void Update() 
+    private void Update() 
     {
         TP();
     }
@@ -107,7 +94,7 @@ public class P2CTeleportation : Danu_State
             //boomBox.SetActive(true);
             boomBoxAttackData.LaunchAttack();
             fakeBoomBoxAttackData.LaunchAttack();
-            fsm.transform.position = arrival.transform.position;
+            transform.position = arrival.transform.position;
             active += Time.deltaTime;
         }
         else if (reco <= maxReco)
@@ -120,6 +107,7 @@ public class P2CTeleportation : Danu_State
         }
         else
         {
+            enabled=false;
             Debug.Log("over");
         }
     }

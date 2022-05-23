@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P2DBoomerang : Danu_State
+public class BRPart2 : MonoBehaviour
 {
-    public P2DBoomerang() : base(StateNames.P2D_BOOMERANG) { }
     [SerializeField]GameObject boomerangL1, boomerangR1,boomerangL2, boomerangR2;
     [SerializeField]AttackData boomerangAttackData;
     [SerializeField]Transform target;
@@ -31,23 +30,23 @@ public class P2DBoomerang : Danu_State
         Init();
         curveTime=0;
         straightTime=0;
-        fsm.transform.LookAt(new Vector3(target.position.x,0,target.position.z));
+        transform.LookAt(target);
         boomerangR1.transform.localPosition=baseStartR1;
-        boomerangL1.transform.localPosition=baseStartL1;
+        boomerangL1.transform.localPosition=baseStartL1;        
         boomerangR2.transform.localPosition=baseStartR2;
         boomerangL2.transform.localPosition=baseStartL2;
         startL1=boomerangL1.transform.position;
         startR1=boomerangR1.transform.position;
         startL2=boomerangL2.transform.position;
         startR2=boomerangR2.transform.position;
-        curveStartL1 = boomerangL1.transform.position + fsm.transform.forward * maxDistance ;
-        curveStartR1 = boomerangR1.transform.position + fsm.transform.forward * maxDistance;
-        curveStartL2 = boomerangL2.transform.position + fsm.transform.forward * maxDistance ;
-        curveStartR2 = boomerangR2.transform.position + fsm.transform.forward * maxDistance;
-        curveEnd = fsm.transform.position;
+        curveStartL1 = boomerangL1.transform.position + transform.forward * maxDistance ;
+        curveStartR1 = boomerangR1.transform.position + transform.forward * maxDistance;
+        curveStartL2 = boomerangL2.transform.position + transform.forward * maxDistance ;
+        curveStartR2 = boomerangR2.transform.position + transform.forward * maxDistance;
+        curveEnd = transform.position;
         Vector3 straightEnd = (curveStartL1 + curveStartR1+curveStartL2 + curveStartR2) / 4;
-        preview.position = fsm.transform.position + (straightEnd - fsm.transform.position) / 2;
-        preview.localScale = new Vector3(5, 1, Vector3.Distance(fsm.transform.position, straightEnd));
+        preview.position = transform.position + (straightEnd - transform.position) / 2;
+        preview.localScale = new Vector3(5, 1, Vector3.Distance(transform.position, straightEnd));
         preview.LookAt(straightEnd);
         preview.gameObject.SetActive(true);
         
@@ -55,7 +54,7 @@ public class P2DBoomerang : Danu_State
      
         waitTime=0;
     }
-    public override void Init()
+    void Init()
     {
         baseStartL1=boomerangL1.transform.localPosition;
         baseStartR1=boomerangR1.transform.localPosition;   
@@ -63,7 +62,7 @@ public class P2DBoomerang : Danu_State
         baseStartR2=boomerangR2.transform.localPosition;   
     }
     // Update is called once per frame
-    public override void Update()
+    void Update()
     {
         if (wait)
         {
@@ -110,6 +109,7 @@ public class P2DBoomerang : Danu_State
             straightTime=0;
             startCurve=false;
             Debug.Log("over");
+            enabled=false;
 
         }
         boomerangL1.transform.position = Curve(boomerangL1);
@@ -147,7 +147,7 @@ public class P2DBoomerang : Danu_State
         point += tt * curveEnd;
         return point;
     }
-    public override void End()
+    void End()
     {
         /*boomerangL.SetActive(false);
         boomerangR.SetActive(false);

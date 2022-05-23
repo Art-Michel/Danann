@@ -2,17 +2,105 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P2DConeShoot : MonoBehaviour
+public class P2DShoot : Danu_State
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public P2DShoot() : base(StateNames.P2D_SHOOT){}
+    float timer;
+    Transform preview;
+    float delay = 0.2f;
+    int index;
+    int nbShot = 6;
+    List<GameObject> proj;
+    Pool pool;
+    float maxLifeTime;
+    float speed;
+    private bool wait;
+    private float waitTime;
+    private float maxWaitTime=0.2f;
+    Transform target;
 
-    // Update is called once per frame
-    void Update()
+    // Start is called before the first frame update
+    public override void Begin()
     {
-        
+        if (!isInit)
+            Init();
+
+        index = 0;
+        timer = 0;
+        waitTime=0;
+        wait=true;
+        Vector3 dir = (-fsm.transform.position + target.position).normalized;
+        preview.position = fsm.transform.position + (dir * 10)/2;
+        preview.LookAt(target);
+        preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, 10);
+        preview.gameObject.SetActive(true);
+
+    }
+    public override void Init()
+    {
+        pool = fsm.GetPool();
+        maxLifeTime = fsm.GetP2d_ProjLifeTime();
+        delay = fsm.GetP2d_delay();
+        nbShot = fsm.GetP2d_nbShot();
+        speed = fsm.GetP2d_ShotSpeed();
+        fsm.transform.LookAt(fsm.agent.GetPlayer());
+        preview=fsm.GetP2sD_Preview();
+        target=fsm.agent.GetPlayer();
+        base.Init();
+    }
+    // Update is called once per frame
+    public override void Update()
+    {
+        if (wait)
+        {
+            waitTime+=Time.deltaTime;
+
+            fsm.transform.LookAt(fsm.agent.GetPlayer());
+            float rotateValue=fsm.transform.rotation.eulerAngles.y;
+            fsm.transform.rotation=Quaternion.Euler(0,rotateValue,0);
+            Vector3 dir = (-fsm.transform.position + target.position).normalized;
+            preview.position = fsm.transform.position + (dir * 10)/2;
+            preview.LookAt(target);
+            preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, 10);
+            if (waitTime>=maxWaitTime)
+            {
+                preview.gameObject.SetActive(false);
+                wait=false;
+            }
+            return;
+        }
+        timer += Time.deltaTime;
+        if (timer > delay)
+        {
+            timer = 0;
+            if (index > nbShot)
+            {
+                if (!fsm.agent.followsGlobal)
+                {
+                    fsm.agent.SetWaitingTime(2);
+                    fsm.agent.ToIdle();
+                }
+                else
+                {
+                    orig.AddWaitTime(2);
+                    orig.FlowControl();
+                }
+                return;
+            }
+            else
+            {
+
+                index++;
+                GameObject go = pool.Get();
+                go.GetComponent<Projectiles>().SetSpeed(speed);
+                go.transform.position = fsm.transform.position;
+                go.SetActive(true);
+                go.GetComponent<AttackData>().LaunchAttack();
+            }
+        }
+    }
+    public override void End()
+    {
+
     }
 }

@@ -1,5 +1,6 @@
 public class StateNames
 {
+    public static string[] e=new string[]{P1C_DASH,P1C_MIXDASH,P1C_SLAM,P1C_TELEPORTATION,P1D_BOOMERANG,P1D_SHOOT,P1D_SPIN};
     #region  p1
     public const string P1IDLE = "P1Idle";
     public const string P1D_SHOOT = "P1DShoot";
