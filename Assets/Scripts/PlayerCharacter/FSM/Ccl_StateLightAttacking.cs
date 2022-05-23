@@ -18,7 +18,7 @@ public class Ccl_StateLightAttacking : Ccl_State
         _feedbacks.PlayPunchSfx();
         _t = 0;
         _max = _actions.GetActiveTime();
-        _actions.EnableHitbox();
+        _actions.EnableLightAttackHitbox();
         _actions.SlowDownDuringAttack();
     }
 
@@ -31,7 +31,7 @@ public class Ccl_StateLightAttacking : Ccl_State
 
     public override void Exit()
     {
-        _actions.DisableHitbox();
+        _actions.DisableLightAttackHitbox();
         _actions.ResetMovementSpeed();
     }
 }

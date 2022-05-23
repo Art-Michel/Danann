@@ -15,7 +15,6 @@ public class PlayerActions : MonoBehaviour
     Ccl_FSM _fsm;
     public PlayerMovement PlayerMovement { get; private set; }
     [Required][SerializeField] Spear_FSM _leftSpear;
-
     [Required][SerializeField] Spear_FSM _rightSpear;
 
     #endregion
@@ -56,6 +55,13 @@ public class PlayerActions : MonoBehaviour
     [Required][SerializeField] AttackData _lightAttack0Data;
     [Required][SerializeField] AttackData _lightAttack1Data;
     [Required][SerializeField] AttackData _lightAttack2Data;
+
+    [Required][SerializeField] AttackData _DashAttackData;
+
+    #endregion
+
+    #region Dashing
+    public Spear_FSM spearDashedOn {get; private set;}
     #endregion
 
     private void Awake()
@@ -70,11 +76,16 @@ public class PlayerActions : MonoBehaviour
 
         //Inputs
         _inputs.Actions.LightAttack.started += _ => LightAttackInput();
+
         _inputs.Actions.Dodge.started += _ => DodgeInput();
+
         _inputs.Actions.ThrowL.started += _ => AimInput(_leftSpear);
         _inputs.Actions.ThrowR.started += _ => AimInput(_rightSpear);
         _inputs.Actions.ThrowL.canceled += _ => ThrowInput();
         _inputs.Actions.ThrowR.canceled += _ => ThrowInput();
+
+        _inputs.Actions.DashL.started += _ => ParryInput(_leftSpear);
+        _inputs.Actions.DashR.started += _ => ParryInput(_rightSpear);
     }
 
     #region Aiming and Throwing
@@ -192,7 +203,7 @@ public class PlayerActions : MonoBehaviour
             _currentLightAttackIndex = 0;
     }
 
-    public void EnableHitbox()
+    public void EnableLightAttackHitbox()
     {
         switch (_currentLightAttackIndex)
         {
@@ -229,7 +240,7 @@ public class PlayerActions : MonoBehaviour
         this.PlayerMovement.MovementSpeed = this.PlayerMovement._normalSpeed;
     }
 
-    public void DisableHitbox()
+    public void DisableLightAttackHitbox()
     {
         switch (_currentLightAttackIndex)
         {
@@ -251,69 +262,63 @@ public class PlayerActions : MonoBehaviour
     }
     #endregion
 
-    #region Placeholder coroutines instead of animation keys
-    /*void LaunchLightAttack()
+    #region Dash / Parry
+    void ParryInput(Spear_FSM spear)
     {
-        switch (_currentLightAttackIndex)
+        switch (spear.currentState.Name)
         {
-            case 0:
-                StartCoroutine("LightAttack0Animation");
-                break;
-            case 1:
-                StartCoroutine("LightAttack1Animation");
-                break;
-            case 2:
-                StartCoroutine("LightAttack2Animation");
-                break;
+            case Spear_StateNames.ATTACHED:
+            Parry(spear);
+            break;
+            case Spear_StateNames.AIMING:
+            Parry(spear);
+            break;
+
+            case Spear_StateNames.IDLE:
+            Dash(spear);
+            break;
+            case Spear_StateNames.ATTACKING:
+            Dash(spear);
+            break;
+
+            case Spear_StateNames.THROWN:
+            BufferDash(spear);
+            break;
+            case Spear_StateNames.RECALLED:
+            BufferParry(spear);
+            break;
         }
     }
-    
-    Enumerator LightAttack0Animation()
-    {
-        _fsm.ChangeState(Ccl_StateNames.LIGHTATTACKING);
-        _comboWindow = _comboMaxWindow;
-        _lightAttack0Data.LaunchAttack();
-        _playerFeedbacks.PlayPunch0();
-        PlayerMovement.MovementSpeed *= 0.75f;
-        yield return new WaitForSeconds(0.3f);
 
-        _lightAttack0Data.StopAttack();
-        PlayerMovement.ResetMovementSpeed();
-        _fsm.ChangeState(Ccl_StateNames.IDLE);
-        yield return null;
+    private void BufferParry(Spear_FSM spear)
+    {
+        
     }
-    IEnumerator LightAttack1Animation()
+
+    private void BufferDash(Spear_FSM spear)
     {
-        _fsm.ChangeState(Ccl_StateNames.LIGHTATTACKING);
-        PlayerMovement.MovementSpeed *= 0.25f;
-        yield return new WaitForSeconds(0.1f);
 
-        _comboWindow = _comboMaxWindow;
-        _lightAttack1Data.LaunchAttack();
-        _playerFeedbacks.PlayPunch1();
-        yield return new WaitForSeconds(0.4f);
-
-        _lightAttack1Data.StopAttack();
-        PlayerMovement.ResetMovementSpeed();
-        _fsm.ChangeState(Ccl_StateNames.IDLE);
-        yield return null;
     }
-    IEnumerator LightAttack2Animation()
+
+    private void Dash(Spear_FSM spear)
     {
-        _fsm.ChangeState(Ccl_StateNames.LIGHTATTACKING);
-        PlayerMovement.MovementSpeed = 0;
-        yield return new WaitForSeconds(0.4f);
+        spearDashedOn = spear;
+        _fsm.ChangeState(Ccl_StateNames.DASHING);
+    }
+    public void EnableDashHitbox()
+    {
+        _DashAttackData.LaunchAttack();
+    }
+    public void DisableDashHitbox()
+    {
+        _DashAttackData.StopAttack();
+    }
 
-        _comboWindow = _comboMaxWindow;
-        _lightAttack2Data.LaunchAttack();
-        _playerFeedbacks.PlayPunch2();
-        yield return new WaitForSeconds(0.2f);
+    private void Parry(Spear_FSM spear)
+    {
 
-        _lightAttack2Data.StopAttack();
-        PlayerMovement.ResetMovementSpeed();
-        _fsm.ChangeState(Ccl_StateNames.IDLE);
-        yield return null;
-    }*/
+    }
+
     #endregion
 
     void Update()

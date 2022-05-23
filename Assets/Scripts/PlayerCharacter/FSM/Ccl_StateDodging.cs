@@ -12,17 +12,15 @@ public class Ccl_StateDodging : Ccl_State
     Vector3 _startingPosition;
     Vector3 _wantedDirection;
 
-    //private const float _dashLength = 8f;
-    private const float _dashDuration = 0.15f;
-    private const float _dashSpeed = 40f;
-    float _dashT = 0;
+    private const float _dodgeDuration = 0.10f;
+    private const float _dodgeSpeed = 52f;
+    float _dodgeT = 0;
 
     public override void Begin()
     {
-        _actions.PlayerMovement.CanWalk = false;
         _wantedDirection = _actions.PlayerMovement.GetOrientation();
         _actions.PlayerHP._isInvulnerable = true;
-        _dashT = 0;
+        _dodgeT = 0;
 
         _feedbacks.PlayDodgeSfx();
         _feedbacks.SetTrailRenderer(true, true);
@@ -30,9 +28,9 @@ public class Ccl_StateDodging : Ccl_State
 
     public override void StateUpdate()
     {
-        _dashT += Time.deltaTime;
-        _actions.Characon.Move(_wantedDirection * _dashSpeed * Time.deltaTime);
-        if (_dashT >= _dashDuration)
+        _dodgeT += Time.deltaTime;
+        _actions.Characon.Move(_wantedDirection * _dodgeSpeed * Time.deltaTime);
+        if (_dodgeT >= _dodgeDuration)
             _fsm.ChangeState(Spear_StateNames.IDLE);
     }
 
