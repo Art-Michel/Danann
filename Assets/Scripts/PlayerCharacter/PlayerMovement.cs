@@ -118,7 +118,6 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 GetOrientation()
     {
-        Debug.Log(_wantedDirection);
         if (_wantedDirection == Vector3.zero) return PlayerBody.transform.forward;
         else return _wantedDirection;
     }

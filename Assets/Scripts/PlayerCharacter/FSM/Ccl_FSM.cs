@@ -68,7 +68,7 @@ public class Ccl_FSM : MonoBehaviour
         currentState = nextState;
         currentState.Begin();
 
-        Debug.Log(currentState.Name + " started");
+        //Debug.Log(currentState.Name + " started");
     }
 
     private void Update()

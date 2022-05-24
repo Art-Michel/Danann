@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using NaughtyAttributes;
+using System;
 
 public class SpearFeedbacks : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class SpearFeedbacks : MonoBehaviour
      #region Audio
     [Required][SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _reattach;
+    [SerializeField] AudioClip _swing;
 
     private void PlaySound(AudioClip clip, float volume)
     {
@@ -19,6 +21,11 @@ public class SpearFeedbacks : MonoBehaviour
     public void PlayReattach()
     {
         PlaySound(_reattach, 1f);
+    }
+
+    public void PlaySwing()
+    {
+        PlaySound(_swing, 1f);
     }
     #endregion
 
@@ -34,5 +41,4 @@ public class SpearFeedbacks : MonoBehaviour
     {
         _targetGroup.m_Targets[target].weight = weight;
     }
-
 }

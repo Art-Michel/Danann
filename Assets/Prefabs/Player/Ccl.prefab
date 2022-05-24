@@ -308,8 +308,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 1
   shouldHitAllies: 0
-  _attackDamage: 20
-  _plasmaRegainValue: 20
+  _attackDamage: 30
+  _plasmaRegainValue: 5
   _hitboxes:
   - {fileID: 6868656391946405962}
   - {fileID: 6696278159188641473}
@@ -849,14 +849,17 @@ MonoBehaviour:
   - 0.22
   - 0.44
   _lightActive:
-  - 0.05
-  - 0.1
   - 0.2
+  - 0.3
+  - 0.4
   _lightRecovery:
   - 0.1
   - 0.3
   - 0.4
-  _moveSpeedWhileAttacking: []
+  _moveSpeedWhileAttacking:
+  - 0.6
+  - 0.3
+  - 0
   _body: {fileID: 7240768677224004046}
   _cursor: {fileID: 372751712}
   _lightAttack0Data: {fileID: 6696278159469296341}
@@ -889,7 +892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isInvulnerable: 0
-  _playerplasma: {fileID: 0}
+  _playerplasma: {fileID: 6718971616905161990}
   _healthBar: {fileID: 0}
   _vcam: {fileID: 0}
   _body: {fileID: 6696278158316237344}
@@ -1626,8 +1629,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 1
   shouldHitAllies: 0
-  _attackDamage: 5
-  _plasmaRegainValue: 8
+  _attackDamage: 15
+  _plasmaRegainValue: 2
   _hitboxes:
   - {fileID: 6696278158459461242}
   - {fileID: 6696278158567636296}
@@ -1757,7 +1760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 1
   shouldHitAllies: 0
-  _attackDamage: 15
+  _attackDamage: 30
   _plasmaRegainValue: 5
   _hitboxes:
   - {fileID: 4243188476495909262}
@@ -1854,8 +1857,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 1
   shouldHitAllies: 0
-  _attackDamage: 10
-  _plasmaRegainValue: 10
+  _attackDamage: 22
+  _plasmaRegainValue: 3
   _hitboxes:
   - {fileID: 4157928151669737584}
   - {fileID: 6696278158720648605}
@@ -1867,10 +1870,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7240768677224004046}
     m_Modifications:
-    - target: {fileID: 2381953594989876474, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
-      propertyPath: _attackDamage
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3434749978275472625, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: Cursor
       value: 
@@ -1971,6 +1970,14 @@ PrefabInstance:
     - target: {fileID: 5165120295596512482, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_Name
       value: Left Spear
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856483930303422563, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: m_Radius
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856483930303422563, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8038885432945350682, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: _spearTransformWhenAttached

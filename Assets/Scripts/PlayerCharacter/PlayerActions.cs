@@ -61,7 +61,7 @@ public class PlayerActions : MonoBehaviour
     #endregion
 
     #region Dashing
-    public Spear_FSM spearDashedOn {get; private set;}
+    public Spear_FSM spearDashedOn { get; private set; }
     #endregion
 
     private void Awake()
@@ -121,8 +121,11 @@ public class PlayerActions : MonoBehaviour
 
     internal void OrientateBody()
     {
-        _body.transform.forward =
-        new Vector3(_cursor.transform.position.x, transform.position.y, _cursor.transform.position.z) - transform.position;
+        if (_cursor.transform.position != transform.position)
+        {
+            _body.transform.forward =
+            new Vector3(_cursor.transform.position.x, transform.position.y, _cursor.transform.position.z) - transform.position;
+        }
     }
 
     private void ThrowInput()
@@ -268,31 +271,31 @@ public class PlayerActions : MonoBehaviour
         switch (spear.currentState.Name)
         {
             case Spear_StateNames.ATTACHED:
-            Parry(spear);
-            break;
+                Parry(spear);
+                break;
             case Spear_StateNames.AIMING:
-            Parry(spear);
-            break;
+                Parry(spear);
+                break;
 
             case Spear_StateNames.IDLE:
-            Dash(spear);
-            break;
+                Dash(spear);
+                break;
             case Spear_StateNames.ATTACKING:
-            Dash(spear);
-            break;
+                Dash(spear);
+                break;
 
             case Spear_StateNames.THROWN:
-            BufferDash(spear);
-            break;
+                BufferDash(spear);
+                break;
             case Spear_StateNames.RECALLED:
-            BufferParry(spear);
-            break;
+                BufferParry(spear);
+                break;
         }
     }
 
     private void BufferParry(Spear_FSM spear)
     {
-        
+
     }
 
     private void BufferDash(Spear_FSM spear)
