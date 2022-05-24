@@ -106,19 +106,20 @@ public class PlayerMovement : MonoBehaviour
         PlayerBody.transform.forward = Vector3.Lerp(PlayerBody.transform.forward, _wantedDirection + bodyRotationOffset, BodyRotatingSpeed * Time.deltaTime);
     }
 
-    public void OrientateBodyTowardsStickDirection()
+    public void OrientateBodyInstantlyTowardsStickDirection()
     {
-        if(_wantedDirection != Vector3.zero) PlayerBody.transform.forward = _wantedDirection;
+        if (_wantedDirection != Vector3.zero) PlayerBody.transform.forward = _wantedDirection;
     }
+
     public void OrientateBodyTowards(Vector3 direction)
     {
-
+        PlayerBody.transform.forward = direction;
     }
 
     public Vector3 GetOrientation()
     {
         Debug.Log(_wantedDirection);
-        if(_wantedDirection == Vector3.zero) return PlayerBody.transform.forward;
+        if (_wantedDirection == Vector3.zero) return PlayerBody.transform.forward;
         else return _wantedDirection;
     }
 

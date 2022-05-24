@@ -38,13 +38,12 @@ public class Ccl_StateDashing : Ccl_State
     {
         _dashT += Time.deltaTime * _dashSpeed;
         _actions.transform.position = Vector3.Lerp(_startingPosition,_wantedPosition, _dashT);
-        if (_dashT >= 1)
+        if (_dashT >= 1.1f)
             _fsm.ChangeState(Spear_StateNames.IDLE);
     }
 
     public override void Exit()
     {
-        _actions.PlayerMovement.enabled = true;
         _actions.spearDashedOn.ChangeState(Spear_StateNames.ATTACHED);
         _actions.PlayerHP._isInvulnerable = false;
         _actions.DisableDashHitbox();

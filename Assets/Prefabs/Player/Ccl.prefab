@@ -309,7 +309,7 @@ MonoBehaviour:
   shouldHitEnemies: 1
   shouldHitAllies: 0
   _attackDamage: 20
-  _plasmaRegainValue: 0
+  _plasmaRegainValue: 20
   _hitboxes:
   - {fileID: 6868656391946405962}
   - {fileID: 6696278159188641473}
@@ -1627,7 +1627,7 @@ MonoBehaviour:
   shouldHitEnemies: 1
   shouldHitAllies: 0
   _attackDamage: 5
-  _plasmaRegainValue: 0
+  _plasmaRegainValue: 8
   _hitboxes:
   - {fileID: 6696278158459461242}
   - {fileID: 6696278158567636296}
@@ -1855,7 +1855,7 @@ MonoBehaviour:
   shouldHitEnemies: 1
   shouldHitAllies: 0
   _attackDamage: 10
-  _plasmaRegainValue: 0
+  _plasmaRegainValue: 10
   _hitboxes:
   - {fileID: 4157928151669737584}
   - {fileID: 6696278158720648605}

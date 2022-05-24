@@ -36,7 +36,6 @@ public class Ccl_StateDodging : Ccl_State
 
     public override void Exit()
     {
-        _actions.PlayerMovement.enabled = true;
         _actions.PlayerHP._isInvulnerable = false;
         _actions.StartDodgeCooldown();
     }
