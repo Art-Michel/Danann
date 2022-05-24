@@ -90,6 +90,14 @@ public class DanuAI : MonoBehaviour
             m_fsm.AddState(new P1CDash());
             m_fsm.AddState(new P1CTeleportation());
             m_fsm.AddState(new P1CMixDash());
+            m_fsm.AddState(new P2DShoot());
+            m_fsm.AddState(new P2Idle());
+            m_fsm.AddState(new P2CSlam());
+            m_fsm.AddState(new P2DSpin());
+            m_fsm.AddState(new P2DBoomerang());
+            m_fsm.AddState(new P2CDash());
+            m_fsm.AddState(new P2CTeleportation());
+            m_fsm.AddState(new P2DMixDash());
             if (isDebug)
                 m_fsm.ChangeState(testState);
             else

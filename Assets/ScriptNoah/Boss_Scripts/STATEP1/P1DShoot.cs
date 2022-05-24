@@ -30,7 +30,8 @@ public class P1DShoot : Danu_State
         wait=true;
         Vector3 dir = (-fsm.transform.position + target.position).normalized;
         preview.position = fsm.transform.position + (dir * 10)/2;
-        preview.LookAt(target);
+        Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
+        preview.LookAt(straightTarget);
         preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, 10);
         preview.gameObject.SetActive(true);
 
@@ -42,9 +43,10 @@ public class P1DShoot : Danu_State
         delay = fsm.GetP1d_delay();
         nbShot = fsm.GetP1d_nbShot();
         speed = fsm.GetP1d_ShotSpeed();
-        fsm.transform.LookAt(fsm.agent.GetPlayer());
-        preview=fsm.GetP1sD_Preview();
         target=fsm.agent.GetPlayer();
+        Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
+        fsm.transform.LookAt(straightTarget);
+        preview=fsm.GetP1sD_Preview();
         base.Init();
     }
     // Update is called once per frame
@@ -54,12 +56,13 @@ public class P1DShoot : Danu_State
         {
             waitTime+=Time.deltaTime;
 
-            fsm.transform.LookAt(fsm.agent.GetPlayer());
+            Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
+            fsm.transform.LookAt(straightTarget);
             float rotateValue=fsm.transform.rotation.eulerAngles.y;
             fsm.transform.rotation=Quaternion.Euler(0,rotateValue,0);
             Vector3 dir = (-fsm.transform.position + target.position).normalized;
             preview.position = fsm.transform.position + (dir * 10)/2;
-            preview.LookAt(target);
+            preview.LookAt(straightTarget);
             preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, 10);
             if (waitTime>=maxWaitTime)
             {

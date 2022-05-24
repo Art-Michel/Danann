@@ -26,11 +26,13 @@ public class P2DBoomerang : Danu_State
     [SerializeField]float maxDistance;
 
     // Start is called before the first frame update
-    private void Awake() {
+    public override void Begin() {
 
+        if (!isInit)
         Init();
         curveTime=0;
         straightTime=0;
+        boomerangAttackData.LaunchAttack();
         fsm.transform.LookAt(new Vector3(target.position.x,0,target.position.z));
         boomerangR1.transform.localPosition=baseStartR1;
         boomerangL1.transform.localPosition=baseStartL1;
@@ -57,10 +59,29 @@ public class P2DBoomerang : Danu_State
     }
     public override void Init()
     {
+        boomerangAttackData = fsm.Getp2BoomerangAttackData();
+        target = fsm.agent.GetPlayer();
+
+        preview = fsm.GetP1sD_Preview();
+        boomerangL1 = fsm.GetP2BRL1();
+        boomerangR1 = fsm.GetP2BRR1();
+        boomerangL2 = fsm.GetP2BRL2();
+        boomerangR2 = fsm.GetP2BRR2();
+        curveMidL1 = fsm.GetP2BoomeRangcurveMidL1();
+        curveMidR1 = fsm.GetP2BoomeRangcurveMidR1();        
+        curveMidL2 = fsm.GetP2BoomeRangcurveMidL2();
+        curveMidR2 = fsm.GetP2BoomeRangcurveMidR2();
+
+        speed = fsm.GetP2BoomeRangSpeed();
+        maxDistance=fsm.GetP2BR_MaxDist();
+        MaxCurveTime = fsm.GetP2BoomeRangMaxCurveTime();
+        MaxStraightTime = fsm.GetP2BoomeRangMaxStraightTime();
+        maxWaitTime = fsm.GetP2BR_Startup();
         baseStartL1=boomerangL1.transform.localPosition;
         baseStartR1=boomerangR1.transform.localPosition;   
         baseStartL2=boomerangL2.transform.localPosition;
         baseStartR2=boomerangR2.transform.localPosition;   
+        base.Init();
     }
     // Update is called once per frame
     public override void Update()
@@ -109,6 +130,15 @@ public class P2DBoomerang : Danu_State
             curveTime=0;
             straightTime=0;
             startCurve=false;
+            if (orig == null)
+            {
+                fsm.agent.ToIdle();
+            }
+            else
+            {
+                orig.AddWaitTime(2);
+                orig.FlowControl();
+            }
             Debug.Log("over");
 
         }
@@ -149,10 +179,15 @@ public class P2DBoomerang : Danu_State
     }
     public override void End()
     {
-        /*boomerangL.SetActive(false);
-        boomerangR.SetActive(false);
-        boomerangR.transform.localPosition=baseStartR;
-        boomerangL.transform.localPosition=baseStartL;
-        base.End();*/
+        boomerangL1.SetActive(false);
+        boomerangR1.SetActive(false);
+        boomerangL2.SetActive(false);
+        boomerangR2.SetActive(false);
+        boomerangR1.transform.localPosition=baseStartR1;
+        boomerangL1.transform.localPosition=baseStartL1;
+        boomerangR2.transform.localPosition=baseStartR2;
+        boomerangL2.transform.localPosition=baseStartL2;
+        boomerangAttackData.StopAttack();
+        base.End();
     }
 }

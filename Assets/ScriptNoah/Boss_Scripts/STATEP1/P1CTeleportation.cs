@@ -57,6 +57,7 @@ public class P1CTeleportation : Danu_State
             Vector3 offset = new Vector3(rand.x, 0, rand.y) * offsetValue;
             arrival.transform.position = target.position + offset;
         }
+        camWeight=0.4f;
         _lerpIn=true;
         startup=0;
         fadeTime=0;
@@ -65,20 +66,20 @@ public class P1CTeleportation : Danu_State
     }
     public override void Init()
     {
-            cam=fsm.agent.GetCam();
-            arrival = fsm.GetP1TP_Arrival();
-            boomBox = fsm.GetP1TP_Boombox();
-            boomBoxAttackData = boomBox.GetComponent<AttackData>();
-            destination = fsm.GetP1TP_Destination();
-            MaxFadeTime = fsm.GetP1TP_Fadetime();
-            MaxSartup = fsm.GetP1TP_Startup();
-            offsetValue = fsm.GetP1TP_Offset();
-            maxReco = fsm.GetP1TP_Recovery();
-            maxActive = fsm.GetP1TP_Active();
-            farDist = fsm.GetP1TP_FarDist();
-            target = fsm.agent.GetPlayer();
-            arenaCenter = fsm.agent.GetArenaCenter();
-            base.Init();
+        cam=fsm.agent.GetCam();
+        arrival = fsm.GetP1TP_Arrival();
+        boomBox = fsm.GetP1TP_Boombox();
+        boomBoxAttackData = boomBox.GetComponent<AttackData>();
+        destination = fsm.GetP1TP_Destination();
+        MaxFadeTime = fsm.GetP1TP_Fadetime();
+        MaxSartup = fsm.GetP1TP_Startup();
+        offsetValue = fsm.GetP1TP_Offset();
+        maxReco = fsm.GetP1TP_Recovery();
+        maxActive = fsm.GetP1TP_Active();
+        farDist = fsm.GetP1TP_FarDist();
+        target = fsm.agent.GetPlayer();
+        arenaCenter = fsm.agent.GetArenaCenter();
+        base.Init();
     }
     // Update is called once per frame
     public override void Update()

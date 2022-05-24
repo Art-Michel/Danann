@@ -25,6 +25,9 @@ public class P2CDash : Danu_State
         if (!isInit)
             Init();
         StartDash();
+        dashCount = maxDashCount;
+        chargingTime = 0;
+
     }
     public override void Init()
     {
@@ -69,10 +72,13 @@ public class P2CDash : Danu_State
         {
             preview.gameObject.SetActive(false);
             dashCount--;
-            dashTime = 0;
-            dir = (-fsm.transform.position + target.position).normalized;
+            chargingTime/=2;
+            StartDash();
+            if (dashCount!=0)
+                return;
             if (orig == null)
             {
+                Debug.Log("stop");
                 fsm.agent.ToIdle();
                 dashAttackData.StopAttack();
             }
@@ -87,15 +93,14 @@ public class P2CDash : Danu_State
     }
     void StartDash()
     {
-        dashCount = maxDashCount;
         dashTime = 0;
-        chargingTime = 0;
         isDashing = true;
         dir = (-fsm.transform.position + target.position).normalized;
         startPos = fsm.transform.position;
         maxArrival = fsm.transform.position + dir * dashSpeed * dashTime;
         preview.position = startPos + (dir * dashSpeed * maxDashTime) / 2;
-        preview.LookAt(target);
+        Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
+        preview.LookAt(straightTarget);
         preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, maxDashTime * dashSpeed);
         dashAttackData.LaunchAttack();
     }

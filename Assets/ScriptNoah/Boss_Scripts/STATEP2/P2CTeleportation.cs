@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class P2CTeleportation : Danu_State
 {
@@ -29,6 +30,10 @@ public class P2CTeleportation : Danu_State
     float reco;
 
     [SerializeField]float arenaRadius;
+    CinemachineTargetGroup cam;
+    private bool _lerpOut;
+    private bool _lerpIn;
+    float camWeight;
     public override void Init()
     {
         arrival=fsm.GetP2TP_Arrival();
@@ -37,19 +42,28 @@ public class P2CTeleportation : Danu_State
         fakeBoomBox=fsm.GetP2TP_FakeBoombox();
         boomBoxAttackData=boomBox.GetComponent<AttackData>();
         fakeBoomBoxAttackData=fakeBoomBox.GetComponent<AttackData>();
+        MaxFadeTime = fsm.GetP2TP_Fadetime();
+        MaxSartup = fsm.GetP2TP_Startup();
+        offsetValue = fsm.GetP2TP_Offset();
+        maxReco = fsm.GetP2TP_Recovery();
+        maxActive = fsm.GetP2TP_Active();
+        farDist = fsm.GetP2TP_FarDist();
         target=fsm.agent.GetPlayer();
         arenaCenter = fsm.agent.GetArenaCenter();
-
+        arenaRadius=fsm.agent.GetArenaRadius();
+        camWeight=0.4f;
     }
     // Start is called before the first frame update
     public override void Begin() 
     {        
-        Init();
+        if(!isInit)
+            Init();
         destination=fsm.GetP1TP_Destination();
         arrival.SetActive(false);
         fakeArrival.SetActive(false);
         if (destination == P1CTeleportation.destPoints.FAR)
         {
+            Debug.Log("far");
             float dist = farDist / Vector3.Distance(fsm.transform.position, target.position);
             Vector3 dir = fsm.transform.position - target.position;
             dir.Normalize();
@@ -73,6 +87,7 @@ public class P2CTeleportation : Danu_State
         }
         else
         {
+            Debug.Log("close");
             Vector2 rand = Random.insideUnitCircle;
             Vector3 offset = new Vector3(rand.x, 0, rand.y) * offsetValue;
             arrival.transform.position = target.position + offset;
@@ -88,8 +103,38 @@ public class P2CTeleportation : Danu_State
     public override void Update() 
     {
         TP();
+        LerpIn();
+        LerpOut();
+    }   
+private void LerpIn()
+    {
+        if (!_lerpIn)
+            return;
+        float realtime=startup+fadeTime;
+        float lerpValue=Mathf.Clamp(realtime,0,1);
+        cam.m_Targets[cam.m_Targets.Length-1].weight=lerpValue;
+        cam.m_Targets[cam.m_Targets.Length-2].weight=lerpValue;
+        if (lerpValue>=camWeight)
+        {
+            _lerpIn=false;
+        }
+
+
     }
 
+    private void LerpOut()
+    {
+        if (!_lerpOut)
+            return;
+        float lerpValue=Mathf.Lerp(0,maxReco,(maxReco-reco)*camWeight);
+        
+        cam.m_Targets[cam.m_Targets.Length-1].weight=lerpValue;
+        cam.m_Targets[cam.m_Targets.Length-2].weight=lerpValue;
+        if (lerpValue==0)
+        {
+            _lerpOut=false;
+        }
+    }
     void TP()
     {
         if (startup <= MaxSartup)
@@ -120,7 +165,15 @@ public class P2CTeleportation : Danu_State
         }
         else
         {
-            Debug.Log("over");
+             if (orig == null)
+            {
+                fsm.agent.ToIdle();
+            }
+            else
+            {
+                orig.AddWaitTime(2);
+                orig.FlowControl();
+            }
         }
     }
 

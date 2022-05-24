@@ -19,7 +19,9 @@ public class P1Idle : Danu_State
     // Update is called once per frame
     public override void Update()
     {
-        fsm.transform.LookAt(fsm.agent.GetPlayer());
+        Vector3 target=fsm.agent.GetPlayer().position;
+        Vector3 straightTarget =new Vector3( target.x,fsm.transform.position.y,target.z);
+        fsm.transform.LookAt(straightTarget);
         idleTime=Mathf.Clamp(idleTime-Time.deltaTime,0,10);
         if (!fsm.agent.GetIsPushed())
         fsm.transform.position=Vector3.Lerp(IdleMovement,fsm.transform.position,idleTime);

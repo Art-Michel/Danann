@@ -165,7 +165,7 @@ public class Danu_FSM : MonoBehaviour
     [Foldout("Phase 2 Spin")][SerializeField] private GameObject P2globalGO;
     public GameObject GetP2GlobalGO() { return P2globalGO; }
     [Foldout("Phase 2 Spin")][SerializeField] private Transform[] P2nwesMax = new Transform[4];
-    public Transform[] Get2NWESMax() { return P2nwesMax; }
+    public Transform[] GetP2NWESMax() { return P2nwesMax; }
     [Foldout("Phase 2 Spin")][SerializeField] private float p2sp_dist;
     public float GetP2Sp_Dist() { return p2sp_dist; }
     [Foldout("Phase 2 Spin")][SerializeField] private float P2rotationSpeed;
@@ -197,10 +197,12 @@ public class Danu_FSM : MonoBehaviour
     public float GetP2BR_MaxDist() { return p2br_MaxDist; }
     [Foldout("Phase 2 Boomerang")][SerializeField] float P2BoomeRangMaxStraightTime;
     public float GetP2BoomeRangMaxStraightTime() { return P2BoomeRangMaxStraightTime; }
-    [Foldout("Phase 2 Boomerang")][SerializeField] Transform P2BoomeRangcurveMidL;
-    public Transform GetP2BoomeRangcurveMidL() { return P2BoomeRangcurveMidL; }
-    [Foldout("Phase 2 Boomerang")][SerializeField] Transform P2BoomeRangcurveMidR;
-    public Transform GetP2BoomeRangcurveMidR() { return P2BoomeRangcurveMidR; }
+    [Foldout("Phase 2 Boomerang")][SerializeField] Transform P2BoomeRangcurveMidL1,P2BoomeRangcurveMidL2;
+    public Transform GetP2BoomeRangcurveMidL1() { return P2BoomeRangcurveMidL1; }
+    public Transform GetP2BoomeRangcurveMidL2() { return P2BoomeRangcurveMidL2; }
+    [Foldout("Phase 2 Boomerang")][SerializeField] Transform P2BoomeRangcurveMidR1,P2BoomeRangcurveMidR2;
+    public Transform GetP2BoomeRangcurveMidR1() { return P2BoomeRangcurveMidR1; }
+    public Transform GetP2BoomeRangcurveMidR2() { return P2BoomeRangcurveMidR2; }
     [Foldout("Phase 2 Boomerang")][SerializeField] float P2BoomeRangMaxCurveTime;
     public float GetP2BoomeRangMaxCurveTime() { return P2BoomeRangMaxCurveTime; }
     [Foldout("Phase 2 Boomerang")][SerializeField] float p2Br_startup;

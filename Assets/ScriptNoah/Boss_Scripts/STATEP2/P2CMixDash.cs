@@ -10,7 +10,8 @@ public class P2DMixDash : Danu_State
         CHARGING,
         DASH,
         STRAFE,
-        RETURNDASH
+        RETURNDASH,
+        NONE
     }
     state actual;
     [SerializeField] Transform target;
@@ -167,7 +168,8 @@ public class P2DMixDash : Danu_State
             startPos=fsm.transform.position;
             maxArrival=fsm.transform.position+dir*dashSpeed*dashTime;
             preview.position=Vector3.Lerp(preview.position, startPos+(dir*dashSpeed*maxDashTime)/2,1);
-            preview.LookAt(target);
+            Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
+            preview.LookAt(straightTarget);
             preview.localScale=new Vector3(fsm.transform.localScale.x,fsm.transform.localScale.y,maxDashTime*dashSpeed);
             return;
         }
@@ -191,23 +193,27 @@ public class P2DMixDash : Danu_State
         dashTime = 0;
         dashAttackData.LaunchAttack();
         dir = (-fsm.transform.position + target.position).normalized;
-        if (dashCount == 0)
-        {
-            isDashing = false;
-            Debug.Log("End");
+        if (dashCount != 0)
+        {                SetTarget();
+                preview.gameObject.SetActive(true);
+            dashTime = 0;
+            chargingTime = 0;
             actual = state.CHARGING;
-            dashAttackData.StopAttack();
-            if (orig == null)
-            {
-                fsm.agent.ToIdle();
-            }
-            else
-            {
-                orig.AddWaitTime(2);
-                orig.FlowControl();
-            }
+            return;
         }
+        isDashing = false;
+        Debug.Log("End");
         actual = state.CHARGING;
+        dashAttackData.StopAttack();
+        if (orig == null)
+        {
+            fsm.agent.ToIdle();
+        }
+        else
+        {
+            orig.AddWaitTime(2);
+            orig.FlowControl();
+        }
 
     }
     void SetTarget()
@@ -216,7 +222,8 @@ public class P2DMixDash : Danu_State
         startPos = fsm.transform.position;
         maxArrival = fsm.transform.position + dir * dashSpeed * dashTime;
         preview.position = startPos + (dir * dashSpeed * maxDashTime) / 2;
-        preview.LookAt(target);
+        Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
+        preview.LookAt(straightTarget);
         preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, maxDashTime * dashSpeed);
     }
 

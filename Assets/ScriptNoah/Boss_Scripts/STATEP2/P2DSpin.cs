@@ -43,20 +43,20 @@ public class P2DSpin: Danu_State
     {
         pool = fsm.GetPool();
         //setup des variables
-        dist = fsm.GetP1Sp_Dist();
-        globalGO = fsm.GetP1GlobalGO();
+        dist = fsm.GetP2Sp_Dist();
+        globalGO = fsm.GetP2GlobalGO();
         bladesParentAttackData = globalGO.GetComponent<AttackData>();
         preview = fsm.GetP1sD_Preview();
-        Transform[] nwesTrans = fsm.GetP1NWEMax();
-        bladesPreview = fsm.GetBladesPreview();
+        Transform[] nwesTrans = fsm.GetP2NWESMax();
+        bladesPreview = fsm.Getp2BladesPreview();
         dSphereN = nwesTrans[0];
         dSphereE = nwesTrans[1];
         dSphereW = nwesTrans[2];
         dSphereS = nwesTrans[3];
-        rotationSpeed = fsm.GetP1RotationSpeed();
-        turningRight = fsm.GetP1TurningRight();
-        maxWaitTime = fsm.GetP1MaxWaitTime();
-        lifetime = fsm.GetP1SpinLifeTime();
+        rotationSpeed = fsm.GetP2RotationSpeed();
+        turningRight = fsm.GetP2TurningRight();
+        maxWaitTime = fsm.GetP2MaxWaitTime();
+        lifetime = fsm.GetP2SpinLifeTime();
         base.Init();
     }
     // Update is called once per frame
@@ -91,7 +91,7 @@ public class P2DSpin: Danu_State
 
     private void SpawnBladesPreview()
     {
-        Transform[] nwesTrans = fsm.GetP1NWEMax();
+        Transform[] nwesTrans = fsm.GetP2NWESMax();
         Vector3 center = fsm.agent.GetArenaCenter();
         preview.gameObject.SetActive(false);
         for (int i = 0; i < bladesPreview.Length; i++)
@@ -119,7 +119,7 @@ public class P2DSpin: Danu_State
             SetupBall(pool.SecondGet(), Vector3.Lerp(fsm.transform.position, dSphereN.position, delta * i), nblades);
             SetupBall(pool.SecondGet(), Vector3.Lerp(fsm.transform.position, dSphereW.position, delta * i), wblades);
             SetupBall(pool.SecondGet(), Vector3.Lerp(fsm.transform.position, dSphereE.position, delta * i), eblades);
-            SetupBall(pool.SecondGet(), Vector3.Lerp(fsm.transform.position, dSphereS.position, delta * i), eblades);
+            SetupBall(pool.SecondGet(), Vector3.Lerp(fsm.transform.position, dSphereS.position, delta * i), sblades);
         }
         globalGO.SetActive(true);
         bladesParentAttackData.GetChildrenHitboxes();
@@ -161,7 +161,7 @@ public class P2DSpin: Danu_State
             case SpinBullet.bladeIndex.SOUTH:
                 Vector3 sPos;
                 sPos = Vector3.Lerp(fsm.transform.position, dSphereS.position, delta * newind);
-                eblades.Add(fsm.InstantiateStaticProjectile(sPos));
+                sblades.Add(fsm.InstantiateStaticProjectile(sPos));
                 break;
         }
     }
@@ -181,10 +181,14 @@ public class P2DSpin: Danu_State
         float delta = 1 / dist;
         for (int i = 0; i < nblades.Count; i++)
         {
-            nblades[i].SetActive(false);
-            wblades[i].SetActive(false);
-            eblades[i].SetActive(false);
-            sblades[i].SetActive(false);
+            Debug.Log(nblades.Count);
+            Debug.Log(wblades.Count);
+            Debug.Log(eblades.Count);
+            Debug.Log(sblades.Count);
+            pool.SecondBack(nblades[i]);
+            pool.SecondBack(wblades[i]);
+            pool.SecondBack(eblades[i]);
+            pool.SecondBack(sblades[i]);
         }
     }
 }

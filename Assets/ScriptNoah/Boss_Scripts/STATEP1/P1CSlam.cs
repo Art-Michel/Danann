@@ -62,7 +62,10 @@ public class P1CSlam : Danu_State
     {
         _timer = 0;
         _state = 0;
-        fsm.transform.LookAt(fsm.agent.GetPlayer());
+        Transform target = fsm.agent.GetPlayer();
+        Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
+        fsm.transform.LookAt(straightTarget);
+        
         _slamAttackDatas[_index].gameObject.SetActive(true);
     }
 
