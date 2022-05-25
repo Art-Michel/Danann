@@ -435,7 +435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323480812}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -10.897965, y: 34.40439, z: -27.775969}
+  m_LocalPosition: {x: -10.9, y: 38.909744, z: -30.944857}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2028546034}
@@ -1480,7 +1480,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834729807}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -10.897965, y: 34.40439, z: -27.775969}
+  m_LocalPosition: {x: -10.9, y: 38.909744, z: -30.944857}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 384871587}
@@ -1781,7 +1781,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 15
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1952,7 +1952,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9202272107986098324, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _attackName
-      value: TravelingSpear
+      value: DashOnSpear
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
@@ -15678,7 +15678,7 @@ PrefabInstance:
       objectReference: {fileID: 902433842}
     - target: {fileID: 8289406093843463521, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: testState
-      value: P1CDash
+      value: P1CSlam
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2936436895459240192, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}

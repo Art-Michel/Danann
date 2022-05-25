@@ -12,6 +12,7 @@ public class SoundManager : ProjectManager<SoundManager>
     [SerializeField] AudioClip _bossPunchedH;
     [SerializeField] AudioClip _bossSwinged;
     Dictionary<string, AudioClip> _attackSoundEffect;
+    
 
     override protected void Awake()
     {
@@ -22,7 +23,7 @@ public class SoundManager : ProjectManager<SoundManager>
         {Ccl_Attacks.LIGHTATTACK1, _bossPunched},
         {Ccl_Attacks.LIGHTATTACK2, _bossPunched},
         {Ccl_Attacks.LIGHTATTACK3, _bossPunchedH},
-        {Ccl_Attacks.DASH, _bossPunchedH},
+        {Ccl_Attacks.DASHONSPEAR, _bossPunchedH},
         {Ccl_Attacks.SPEARSWINGL, _bossSwinged},
         {Ccl_Attacks.SPEARSWINGR, _bossSwinged},
         {Ccl_Attacks.TRAVELINGSPEAR, _bossPunched}
