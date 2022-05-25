@@ -9,7 +9,8 @@ public class Ccl_Attacks
     public const string LIGHTATTACK3 = "LightAttack3";
     public const string DASH = "Dash";
     public const string TRIANGLE = "Triangle";
-    public const string SPEARSWING = "SpearSwing";
+    public const string SPEARSWINGL = "LeftSpearSwing";
+    public const string SPEARSWINGR = "RightSpearSwing";
     public const string SPEARTHROW = "SpearThrow";
     public const string SHOCKWAVE_L = "Shocwave_L";
     public const string SHOCKWAVE_R = "Shocwave_R";

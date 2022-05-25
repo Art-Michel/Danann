@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Hurtbox : MonoBehaviour
 {
-    public float Radius;
+    [SerializeField]float _radius;
+    [NonSerialized]   public float HalfRadius;
     #region Hurtbox Visualization
     public Color SphereColor;
     public Color SphereWireColor;
@@ -14,9 +16,9 @@ public class Hurtbox : MonoBehaviour
         SOMeshes.Init();
         _mesh = SOMeshes.Instance.HitboxDebugSphere;
         Gizmos.color = SphereColor;
-        Gizmos.DrawMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
+        Gizmos.DrawMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(_radius, _radius, _radius));
         Gizmos.color = SphereWireColor;
-        Gizmos.DrawWireMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(Radius, Radius, Radius));
+        Gizmos.DrawWireMesh(_mesh, -1, transform.position, Quaternion.identity, new Vector3(_radius, _radius, _radius));
 #endif
     }
     #endregion
@@ -27,6 +29,11 @@ public class Hurtbox : MonoBehaviour
     void Awake()
     {
         _attacksThatHitMe = new List<string>();
+    }
+
+    void Start()
+    {
+        HalfRadius = _radius / 2;
     }
 
     public void TakeHit(string attackName, int attackDamage, int plasmaRegainValue)

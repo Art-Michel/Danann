@@ -435,7 +435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323480812}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -10.9, y: 38.909744, z: -30.944857}
+  m_LocalPosition: {x: -10.897965, y: 34.40439, z: -27.775969}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2028546034}
@@ -724,7 +724,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22862
+  m_Name: pb_Mesh25436
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1035,7 +1035,7 @@ PrefabInstance:
     - target: {fileID: 5687422708530208709, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
       propertyPath: EnemyHurtboxes.Array.data[0]
       value: 
-      objectReference: {fileID: 2127200302}
+      objectReference: {fileID: 935630485}
     - target: {fileID: 5687422708530208710, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1480,7 +1480,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834729807}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -10.9, y: 38.909744, z: -30.944857}
+  m_LocalPosition: {x: -10.897965, y: 34.40439, z: -27.775969}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 384871587}
@@ -1781,7 +1781,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 15
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1884,7 +1884,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d5e566ccaf7f3ea48adfcf1ec1e545cf, type: 2}
     - target: {fileID: 3307730332666420334, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _attackName
-      value: SpearSwing
+      value: LightAttack1
       objectReference: {fileID: 0}
     - target: {fileID: 3410175772069140196, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _audioSource
@@ -1896,11 +1896,11 @@ PrefabInstance:
       objectReference: {fileID: 761610233}
     - target: {fileID: 3964248953917037965, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _attackName
-      value: SpearSwing
+      value: LeftSpearSwing
       objectReference: {fileID: 0}
     - target: {fileID: 4673816664990467820, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _attackName
-      value: SpearSwing
+      value: LightAttack1
       objectReference: {fileID: 0}
     - target: {fileID: 4785268684903943270, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _audioSource
@@ -1928,7 +1928,11 @@ PrefabInstance:
       objectReference: {fileID: 761610233}
     - target: {fileID: 6500953911265019663, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _attackName
-      value: SpearSwing
+      value: RightSpearSwing
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696278157733249431, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _radius
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6718971616905161990, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _plasmaBar
@@ -1945,6 +1949,10 @@ PrefabInstance:
     - target: {fileID: 8145834285077593834, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: m_ShadowRadius
       value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202272107986098324, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _attackName
+      value: TravelingSpear
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
@@ -1974,6 +1982,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccca9daeec5df04408f7b0c333e173bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &935630483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 935630484}
+  - component: {fileID: 935630485}
+  m_Layer: 0
+  m_Name: BossHurtbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &935630484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935630483}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2127200301}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &935630485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935630483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccca9daeec5df04408f7b0c333e173bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _radius: 2.38
+  SphereColor: {r: 0.080822945, g: 1, b: 0, a: 0}
+  SphereWireColor: {r: 0.24022806, g: 1, b: 0, a: 1}
+  _hurtboxOwnerHP: {fileID: 1663553912}
 --- !u!1 &941963928
 GameObject:
   m_ObjectHideFlags: 0
@@ -15055,6 +15110,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 823556921784003239, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
   m_PrefabInstance: {fileID: 2127200300}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1663553912 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2577399527204082855, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+  m_PrefabInstance: {fileID: 2127200300}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663553911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775438ba451ddbd429b9085794b2b67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &1663553920
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15514,6 +15580,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 668467335811089780, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1716253134436969643, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: m_Name
       value: BossGameObject
@@ -15530,6 +15600,10 @@ PrefabInstance:
       propertyPath: _playerplasma
       value: 
       objectReference: {fileID: 1313315587}
+    - target: {fileID: 2936436895459240192, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: _radius
+      value: 2.12
+      objectReference: {fileID: 0}
     - target: {fileID: 4112063746909185506, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -15606,21 +15680,11 @@ PrefabInstance:
       propertyPath: testState
       value: P1CDash
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2936436895459240192, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
 --- !u!4 &2127200301 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5178821271800415685, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
   m_PrefabInstance: {fileID: 2127200300}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2127200302 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2936436895459240192, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
-  m_PrefabInstance: {fileID: 2127200300}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1663553911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccca9daeec5df04408f7b0c333e173bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

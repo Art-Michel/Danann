@@ -23,10 +23,16 @@ public class Hitbox : MonoBehaviour
 #endif
     #endregion
     [SerializeField] float _radius;
+    float _halfRadius;
     Hurtbox[] _hurtboxesToFocus;
     string _attackName;
     int _attackDamage;
     int _plasmaRegainValue;
+
+    void Awake()
+    {
+        _halfRadius = _radius / 2;
+    }
 
     public void Setup(Hurtbox[] hurtboxesToFocus, string attackName, int attackDamage)
     {
@@ -73,7 +79,7 @@ public class Hitbox : MonoBehaviour
     private bool CheckDistance(Hurtbox hurtbox)
     {
         float distance = (hurtbox.transform.position - transform.position).sqrMagnitude;
-        if (distance < (_radius / 2 + hurtbox.Radius / 2) * (_radius / 2 + hurtbox.Radius / 2))
+        if (distance < (_halfRadius + hurtbox.HalfRadius) * (_halfRadius + hurtbox.HalfRadius))
             return true;
         return false;
     }
