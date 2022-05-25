@@ -51,6 +51,38 @@ MonoBehaviour:
   _hitboxes:
   - {fileID: 4590300684224502678}
   _attackName: TravelingSpear
+--- !u!1 &3832031661611423233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6280570182990347919}
+  m_Layer: 0
+  m_Name: Mesh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6280570182990347919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3832031661611423233}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4302091171094779897}
+  - {fileID: 8684172199197681728}
+  m_Father: {fileID: 9146115665544943886}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4434779896220650216
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,11 +108,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4434779896220650216}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -0, z: -0.844}
+  m_LocalRotation: {x: 4.4408916e-16, y: -0, z: 0.000000014901157, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.84400034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 9146115665544943886}
+  m_Father: {fileID: 6280570182990347919}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &6695931434931743382
@@ -299,9 +331,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 152619025}
-  - {fileID: 8684172199197681728}
-  - {fileID: 4302091171094779897}
   - {fileID: 5199442321479226200}
+  - {fileID: 6280570182990347919}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 23.022}
@@ -360,6 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5d23f836c8e924bba86f7696246eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mesh: {fileID: 6280570182990347919}
   _audioSource: {fileID: 0}
   _reattach: {fileID: 8300000, guid: ce04db3e2e8a8b041a121ca4761d9117, type: 3}
   _swing: {fileID: 8300000, guid: 7e5c819691a8e4a4580c2c9abab45a33, type: 3}
@@ -483,7 +515,7 @@ Transform:
   m_Children:
   - {fileID: 463491880413139229}
   m_Father: {fileID: 9146115665544943886}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8637741451736142707
 MonoBehaviour:
@@ -517,7 +549,7 @@ GameObject:
   - component: {fileID: 8698836587895712835}
   - component: {fileID: 2246149155282117881}
   m_Layer: 0
-  m_Name: Mesh
+  m_Name: CorrectedMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -530,12 +562,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8042852747832585804}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 9146115665544943886}
-  m_RootOrder: 2
+  m_Father: {fileID: 6280570182990347919}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &7037763743244124853
 MeshRenderer:

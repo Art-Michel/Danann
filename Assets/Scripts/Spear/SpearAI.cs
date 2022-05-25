@@ -14,6 +14,8 @@ public class SpearAI : MonoBehaviour
     private Spear_FSM _fsm;
     private bool _enemyInRange;
 
+    [Required][SerializeField] Transform _spearTransformWhenAttached;
+
     public GameObject Cursor;
     public AttackData TravelingAttackData;
     [SerializeField] AttackData _swingAttackData;
@@ -52,10 +54,11 @@ public class SpearAI : MonoBehaviour
         _swingAttackData.StopAttack();
     }
 
-    public void ResetTransform()
+    public void AttachSpearToPlayer()
     {
         transform.parent = CclBody;
-        _spearFeedbacks.ResetPositionAndRotation();
+        transform.position = _spearTransformWhenAttached.position;
+        _spearFeedbacks.SetMeshRotation(_spearTransformWhenAttached.rotation.eulerAngles);
     }
 
     void OnTriggerEnter(Collider other)

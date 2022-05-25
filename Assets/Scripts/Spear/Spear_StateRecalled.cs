@@ -15,11 +15,10 @@ public class Spear_StateRecalled : Spear_State
 
     public override void Begin()
     {
-
         _startingPosition = _ai.transform.position;
         _destination = _ai.CclBody.position;
 
-        //_fsm.transform.forward = (_destination - _startingPosition).normalized;
+        _feedbacks.SetMeshUp(_destination - _startingPosition);
 
         _t = 0;
         _ai.TravelingAttackData.LaunchAttack();

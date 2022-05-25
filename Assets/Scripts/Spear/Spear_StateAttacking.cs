@@ -14,7 +14,7 @@ public class Spear_StateAttacking : Spear_State
     float _activeAttack;
     bool _isAttacking;
     const float _attackCooldown = 1f;
-    const float _attackDuration = 0.1f;
+    const float _attackDuration = 0.2f;
 
     public override void Begin()
     {
@@ -30,13 +30,13 @@ public class Spear_StateAttacking : Spear_State
             Attack();
         if (_isAttacking && _t >= _attackDuration)
             StopAttack();
-
     }
 
     void Attack()
     {
         _t = 0f;
         _isAttacking = true;
+        _feedbacks.StartSwingAnimation();
         _ai.LaunchSwing();
     }
 
@@ -44,11 +44,12 @@ public class Spear_StateAttacking : Spear_State
     {
         _t = 0f;
         _isAttacking = false;
+        _feedbacks.StopSwingAnimation();
         _ai.StopSwing();
     }
 
     public override void Exit()
     {
-        _isAttacking = false;
+        StopAttack();
     }
 }

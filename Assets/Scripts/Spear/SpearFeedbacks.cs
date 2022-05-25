@@ -7,8 +7,17 @@ using System;
 
 public class SpearFeedbacks : MonoBehaviour
 {
+    #region anim
+    [SerializeField] Transform _mesh;
+    Vector3 _swingingRot = new Vector3(0, 90, 90);
+    bool _isSwinging = false;
+    float _swingAnimT = 0;
 
-     #region Audio
+    [Required][SerializeField] CinemachineTargetGroup _targetGroup;
+
+    #endregion
+
+    #region Audio
     [Required][SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _reattach;
     [SerializeField] AudioClip _swing;
@@ -17,7 +26,7 @@ public class SpearFeedbacks : MonoBehaviour
     {
         _audioSource.PlayOneShot(clip, volume);
     }
-    
+
     public void PlayReattach()
     {
         PlaySound(_reattach, 1f);
@@ -29,16 +38,59 @@ public class SpearFeedbacks : MonoBehaviour
     }
     #endregion
 
-
-    [Required][SerializeField] Transform _spearTransformWhenAttached;
-    public void ResetPositionAndRotation()
+    void Start()
     {
-        transform.SetPositionAndRotation(_spearTransformWhenAttached.position, _spearTransformWhenAttached.rotation);
+        _isSwinging = false;
     }
 
-    [Required][SerializeField] CinemachineTargetGroup _targetGroup;
     public void SetCameraTargetWeight(int target, int weight)
     {
         _targetGroup.m_Targets[target].weight = weight;
     }
+
+    #region animation
+    [Button]
+    public void StartSwingAnimation()
+    {
+        SetMeshRotation(_swingingRot);
+        _swingAnimT = 0;
+        _isSwinging = true;
+    }
+
+    public void StopSwingAnimation()
+    {
+        _isSwinging = false;
+        SetMeshRotation(Vector3.zero);
+    }
+
+    void AnimateSwing()
+    {
+        _mesh.rotation = Quaternion.Euler(_mesh.rotation.eulerAngles + Vector3.right * Mathf.Lerp(0, 360, _swingAnimT) * Time.deltaTime);
+    }
+
+    public void SetMeshRotation(Vector3 rotation)
+    {
+        _mesh.rotation = Quaternion.Euler(rotation);
+    }
+
+    public void SetMeshForward(Vector3 direction)
+    {
+        _mesh.forward = direction;
+    }
+
+    public void SetMeshUp(Vector3 direction)
+    {
+        _mesh.up = direction;
+    }
+    #endregion
+
+    void Update()
+    {
+        if (_isSwinging)
+        {
+            _swingAnimT += Time.deltaTime * 5;
+            AnimateSwing();
+        }
+    }
+
 }

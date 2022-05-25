@@ -17,10 +17,10 @@ public class Spear_StateThrown : Spear_State
     {
         _fsm.transform.parent = null;
 
-        _startingPosition = _fsm.transform.position;
-        _destination = new Vector3(_ai.Cursor.transform.position.x, _fsm.transform.position.y, _ai.Cursor.transform.position.z);
+        _startingPosition = _ai.transform.position;
+        _destination = new Vector3(_ai.Cursor.transform.position.x, _ai.transform.position.y, _ai.Cursor.transform.position.z);
 
-        _fsm.transform.forward = (_destination - _startingPosition).normalized;
+        _feedbacks.SetMeshUp(_destination-_startingPosition);
 
         _t = 0;
         _ai.TravelingAttackData.LaunchAttack();

@@ -11,8 +11,8 @@ public class Spear_StateIdle : Spear_State
 
     public override void Begin()
     {
-        _ai.transform.forward = Vector3.up;
         _ai.AttackIfShouldAttack();
+        _feedbacks.SetMeshRotation(Vector3.zero);
     }
 
     public override void Update()
