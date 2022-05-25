@@ -48,8 +48,11 @@ public class Pool : MonoBehaviour
                 if (proj!=null)
                 {
                     go.GetComponent<Projectiles>().SetOrigin(this);
-                    go.GetComponent<Projectiles>().SetTarget(boss.GetPlayer());
-                    go.GetComponent<Projectiles>().SetLifeTime(fsm.GetP1d_ProjLifeTime());
+                    if (fsm!=null)
+                    {
+                        go.GetComponent<Projectiles>().SetTarget(boss.GetPlayer());
+                        go.GetComponent<Projectiles>().SetLifeTime(fsm.GetP1d_ProjLifeTime());
+                    }
                     go.SetActive(false);
                     items.Enqueue(go);
                     return;

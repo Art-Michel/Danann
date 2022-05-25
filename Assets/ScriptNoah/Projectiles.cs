@@ -42,9 +42,20 @@ public class Projectiles : MonoBehaviour
             transform.LookAt(newTarget);
             nbTurn--;
         }
+        if( target!=null)
+        {
         if (Vector3.Distance(transform.position, target.position) <= 2.5f)
             nbTurn = 0;
-        if (lifeTime > maxLifeTime) { transform.position = Vector3.zero; origin.Back(gameObject); }
+
+        }
+        if (lifeTime > maxLifeTime) 
+        {
+            transform.position = Vector3.zero; 
+            if (origin!=null) 
+                origin.Back(gameObject); 
+            else 
+                gameObject.SetActive(false);
+        }
     }
     public void SetTarget(Transform newTarget)
     {
