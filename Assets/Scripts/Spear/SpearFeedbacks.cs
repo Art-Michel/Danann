@@ -12,6 +12,7 @@ public class SpearFeedbacks : MonoBehaviour
     Vector3 _swingingRot = new Vector3(0, 90, 90);
     bool _isSwinging = false;
     float _swingAnimT = 0;
+    [Required][SerializeField] TrailRenderer _bladeTrail;
 
     [Required][SerializeField] CinemachineTargetGroup _targetGroup;
 
@@ -55,17 +56,29 @@ public class SpearFeedbacks : MonoBehaviour
         SetMeshRotation(_swingingRot);
         _swingAnimT = 0;
         _isSwinging = true;
+        EnableTrail();
     }
 
     public void StopSwingAnimation()
     {
         _isSwinging = false;
+        DisableTrail();
         SetMeshRotation(Vector3.zero);
+    }
+
+    public void EnableTrail()
+    {
+        _bladeTrail.emitting = true;
+    }
+    public void DisableTrail()
+    {
+        _bladeTrail.emitting = false;
     }
 
     void AnimateSwing()
     {
-        _mesh.rotation = Quaternion.Euler(_mesh.rotation.eulerAngles + Vector3.right * Mathf.Lerp(0, 360, _swingAnimT) * Time.deltaTime);
+        _swingAnimT += Time.deltaTime * 0.4f;
+        SetMeshRotation(_mesh.rotation.eulerAngles + Vector3.up * Mathf.Lerp(0, 360, _swingAnimT));
     }
 
     public void SetMeshRotation(Vector3 rotation)
@@ -87,10 +100,6 @@ public class SpearFeedbacks : MonoBehaviour
     void Update()
     {
         if (_isSwinging)
-        {
-            _swingAnimT += Time.deltaTime * 5;
             AnimateSwing();
-        }
     }
-
 }
