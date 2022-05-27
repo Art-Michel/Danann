@@ -49,6 +49,7 @@ public class PlayerFeedbacks : MonoBehaviour
 
     #region Other
     [SerializeField] AudioClip _error;
+    [SerializeField] Pooler _billboardsPool;
     #endregion
 
     #region Audio
@@ -171,6 +172,12 @@ public class PlayerFeedbacks : MonoBehaviour
     }
     #endregion
 
+    #region Plasma
+    public void NotEnoughPlasmaText()
+    {
+        _billboardsPool.Get().GetComponent<Billboard>().Enable("Not enough\nPlasma!");
+    }
+    #endregion
 
     public void SetCameraTargetWeight(int target, int weight)
     {

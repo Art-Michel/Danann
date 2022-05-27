@@ -37,6 +37,7 @@ public class PlayerPlasma : MonoBehaviour
             return true;
         else
             _playerFeedbacks.PlayErrorSfx();
+            _playerFeedbacks.NotEnoughPlasmaText();
             return false;
     }
 
