@@ -77,7 +77,7 @@ public class SpearFeedbacks : MonoBehaviour
 
     void AnimateSwing()
     {
-        _swingAnimT += Time.deltaTime * 0.4f;
+        _swingAnimT += Time.deltaTime * 0.6f;
         SetMeshRotation(_mesh.rotation.eulerAngles + Vector3.up * Mathf.Lerp(0, 360, _swingAnimT));
     }
 
