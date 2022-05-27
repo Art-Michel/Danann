@@ -21,9 +21,9 @@ public class P2DRosace : Danu_State
         arenaRadius=fsm.agent.GetArenaRadius();
         pool=fsm.GetRosacePool();
         proj = fsm.GetStraightProj();
-        nb=fsm.GetRosaceNumber();
-        nbBullets=fsm.GetRosaceBulletNB();
-        maxDelay=fsm.GetRosaceDelay();
+        nb=fsm.GetP2RosaceNumber();
+        nbBullets=fsm.GetP2RosaceBulletNB();
+        maxDelay=fsm.GetP2RosaceDelay();
         spirales=new GameObject[nb];
     }
     // Start is called before the first frame update
@@ -31,7 +31,7 @@ public class P2DRosace : Danu_State
     {
         if (!isInit)
             Init();
-        lifetime=nbBullets*maxDelay+1f;
+        lifetime=nbBullets*maxDelay+5;
 
         int delta =360/nb;
         for (int i=0;i<nb;i++)
@@ -57,10 +57,8 @@ public class P2DRosace : Danu_State
         lifetime-=Time.deltaTime;
         if  (lifetime<=0)
         {
-            Debug.Log("ee");
              if (orig == null)
             {
-                Debug.Log("stop");
                 fsm.agent.ToIdle();
             }
             else

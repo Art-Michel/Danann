@@ -32,7 +32,6 @@ public class P1DBoomerang : Danu_State
             Init();
         curveTime=0;
         straightTime=0;
-        boomerangAttackData.LaunchAttack();
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
         fsm.transform.LookAt(straightTarget);
         boomerangR.transform.localPosition=baseStartR;
@@ -79,7 +78,10 @@ public class P1DBoomerang : Danu_State
         {
             waitTime += Time.deltaTime;
             if (waitTime >= maxWaitTime)
+            {
                 wait = false;
+                boomerangAttackData.LaunchAttack();
+            }
             return;
         }
         if (startCurve)

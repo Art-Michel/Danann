@@ -12,7 +12,7 @@ public class MovingSpirale : MonoBehaviour
     [SerializeField] bool shootLeft;
     
     int index;
-    float radius=19.5f;
+    float radius=27.5f;
     [SerializeField] int angle;
     [SerializeField] float maxDelay;
     public void SetDelay(float newMax ){maxDelay=newMax;}
