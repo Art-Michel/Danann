@@ -14,6 +14,7 @@ public class PlayerActions : MonoBehaviour
     PlayerInputMap _inputs;
     Ccl_FSM _fsm;
     public PlayerMovement PlayerMovement { get; private set; }
+    PlayerPlasma _playerPlasma;
     [Required][SerializeField] Spear_FSM _leftSpear;
     [Required][SerializeField] Spear_FSM _rightSpear;
 
@@ -73,6 +74,7 @@ public class PlayerActions : MonoBehaviour
         Characon = GetComponent<CharacterController>();
         this.PlayerHP = GetComponent<PlayerHP>();
         this._playerFeedbacks = GetComponent<PlayerFeedbacks>();
+        this._playerPlasma = GetComponent<PlayerPlasma>();
 
         //Inputs
         _inputs.Actions.LightAttack.started += _ => LightAttackInput();
@@ -149,8 +151,6 @@ public class PlayerActions : MonoBehaviour
             _playerFeedbacks.SetCameraTargetWeight(4, 0);
         }
     }
-
-
     #endregion
 
     #region DodgeRoll
@@ -305,8 +305,12 @@ public class PlayerActions : MonoBehaviour
 
     private void Dash(Spear_FSM spear)
     {
-        spearDashedOn = spear;
-        _fsm.ChangeState(Ccl_StateNames.DASHING);
+        if (_playerPlasma.VerifyPlasma(Ccl_Attacks.DASHONSPEAR))
+        {
+            _playerPlasma.SpendPlasma(Ccl_Attacks.DASHONSPEAR);
+            spearDashedOn = spear;
+            _fsm.ChangeState(Ccl_StateNames.DASHING);
+        }
     }
     public void EnableDashHitbox()
     {

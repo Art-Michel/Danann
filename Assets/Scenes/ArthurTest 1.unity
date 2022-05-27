@@ -1940,6 +1940,10 @@ PrefabInstance:
       propertyPath: m_MinVertexDistance
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3964248953917037965, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _plasmaRegainValue
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4674944994858628127, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: m_Radius
       value: 4
@@ -1989,6 +1993,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6351119601355520869, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _error
+      value: 
+      objectReference: {fileID: 8300000, guid: 87bca9d342503294193c37cc647ac3d3, type: 3}
+    - target: {fileID: 6351119601355520869, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _volume
       value: 
       objectReference: {fileID: 301105354}
@@ -2000,6 +2008,10 @@ PrefabInstance:
       propertyPath: _targetGroup
       value: 
       objectReference: {fileID: 761610233}
+    - target: {fileID: 6500953911265019663, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _plasmaRegainValue
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6718971616905161990, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _plasmaBar
       value: 
@@ -2039,6 +2051,10 @@ PrefabInstance:
     - target: {fileID: 8517587590999825569, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202272107986098324, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _plasmaRegainValue
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
