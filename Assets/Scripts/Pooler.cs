@@ -5,12 +5,12 @@ using UnityEngine;
 public class Pooler : MonoBehaviour
 {
     [SerializeField] GameObject _prefab;
-    Queue<GameObject> _prefabs;
+    Queue<PooledObject> _prefabs;
     int _initialCount = 10;
 
     void Awake()
     {
-        _prefabs = new Queue<GameObject>();
+        _prefabs = new Queue<PooledObject>();
     }
 
     void Start()
@@ -21,7 +21,7 @@ public class Pooler : MonoBehaviour
         }
     }
 
-    public GameObject Get()
+    public PooledObject Get()
     {
         if (_prefabs.Count > 0)
             return _prefabs.Dequeue();
@@ -29,16 +29,17 @@ public class Pooler : MonoBehaviour
             return Create();
     }
 
-    public void Return(GameObject obj)
+    public void Return(PooledObject obj)
     {
         _prefabs.Enqueue(obj);
-        obj.SetActive(false);
+        obj.gameObject.SetActive(false);
     }
 
-    GameObject Create()
+    PooledObject Create()
     {
-        PooledObject obj = Instantiate(_prefab).GetComponent<PooledObject>();
-        obj.Init(this);
-        return obj.gameObject;
+        GameObject obj = Instantiate(_prefab);
+        PooledObject bill = obj.GetComponent<PooledObject>();
+        bill.Init(this);
+        return bill;
     }
 }

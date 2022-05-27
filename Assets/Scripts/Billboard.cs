@@ -22,7 +22,7 @@ public class Billboard : PooledObject
         transform.rotation = _camera.transform.rotation;
         transform.position += Vector3.up * Time.deltaTime * _speed;
         if (_t > _duration)
-            _pooler.Return(gameObject);
+            _pooler.Return(this);
     }
 
     public void Enable(string text)

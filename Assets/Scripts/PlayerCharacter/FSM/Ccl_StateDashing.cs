@@ -47,5 +47,6 @@ public class Ccl_StateDashing : Ccl_State
         _actions.spearDashedOn.ChangeState(Spear_StateNames.ATTACHED);
         _actions.PlayerHP._isInvulnerable = false;
         _actions.DisableDashHitbox();
+        _feedbacks.SetTrailRenderer(true, false);
     }
 }

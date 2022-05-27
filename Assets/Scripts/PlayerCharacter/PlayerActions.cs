@@ -172,7 +172,7 @@ public class PlayerActions : MonoBehaviour
     public void StartDodgeCooldown()
     {
         _dodgeCooldown = _dodgeMaxCooldown;
-        this._playerFeedbacks.SetTrailRenderer(false, true);
+        this._playerFeedbacks.SetTrailRenderer(true, false);
         _canDodge = false;
     }
 

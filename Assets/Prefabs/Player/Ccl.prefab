@@ -1056,7 +1056,7 @@ MonoBehaviour:
   _punch2: {fileID: 8300000, guid: 86522244f05eceb4aaf36933fcf0965f, type: 3}
   _dashShout: {fileID: 8300000, guid: 6754480ff4987ef48b901107bed43096, type: 3}
   _error: {fileID: 8300000, guid: 87bca9d342503294193c37cc647ac3d3, type: 3}
-  _billboardsPool: {fileID: 0}
+  _billboardsPool: {fileID: 1906970742}
   _audioSource: {fileID: 0}
   _targetGroup: {fileID: 0}
 --- !u!1 &5913651250591817328
@@ -1486,7 +1486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5aa69f2669ebd54e80c47008416e66d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textPrefab: {fileID: 6698246371522507134}
+  _prefab: {fileID: 7936506649813069170, guid: 4fe64cf98fc7a0849a6db259d7ff0bc6, type: 3}
 --- !u!1 &7601273358831288586
 GameObject:
   m_ObjectHideFlags: 0

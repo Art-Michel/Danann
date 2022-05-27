@@ -175,7 +175,8 @@ public class PlayerFeedbacks : MonoBehaviour
     #region Plasma
     public void NotEnoughPlasmaText()
     {
-        _billboardsPool.Get().GetComponent<Billboard>().Enable("Not enough\nPlasma!");
+        Billboard billboard = _billboardsPool.Get() as Billboard;
+        billboard.Enable("Not enough\nPlasma!");
     }
     #endregion
 

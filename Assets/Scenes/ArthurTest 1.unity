@@ -724,7 +724,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23914
+  m_Name: pb_Mesh25606
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1080,30 +1080,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5687422708530208711, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
-      propertyPath: _dash
-      value: 
-      objectReference: {fileID: 8300000, guid: 7eca6ab425eee8247988fbb4097a4850, type: 3}
-    - target: {fileID: 5687422708530208711, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
-      propertyPath: _throw
-      value: 
-      objectReference: {fileID: 8300000, guid: 108a993aec5663f48868fc1003f9fc4e, type: 3}
-    - target: {fileID: 5687422708530208711, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
-      propertyPath: _recall
-      value: 
-      objectReference: {fileID: 8300000, guid: a531983aa0b438c46bcc80b641743ffa, type: 3}
-    - target: {fileID: 5687422708530208711, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
-      propertyPath: _zoomin
-      value: 
-      objectReference: {fileID: 8300000, guid: f3b0c0fad8ebbac458dc9fde9391ac69, type: 3}
-    - target: {fileID: 5687422708530208711, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
-      propertyPath: _zoomout
-      value: 
-      objectReference: {fileID: 8300000, guid: 52325725b0f8ce745bb4bc332e004026, type: 3}
-    - target: {fileID: 5687422708530208711, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
-      propertyPath: _bossSwinged
-      value: 
-      objectReference: {fileID: 8300000, guid: e0b913ef99f982e44aae2d866298fe81, type: 3}
     - target: {fileID: 5687422708530208713, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
       propertyPath: m_Name
       value: Manager
@@ -1691,10 +1667,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1906970742, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: _prefab
-      value: 
-      objectReference: {fileID: 7936506649813069170, guid: 4fe64cf98fc7a0849a6db259d7ff0bc6, type: 3}
     - target: {fileID: 20423502006755893, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _vcam
       value: 
@@ -1779,10 +1751,6 @@ PrefabInstance:
       propertyPath: _targetGroup
       value: 
       objectReference: {fileID: 761610233}
-    - target: {fileID: 6351119601355520869, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: _billboardsPool
-      value: 
-      objectReference: {fileID: 1906970743}
     - target: {fileID: 6718971616905161990, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _plasmaBar
       value: 
@@ -15104,17 +15072,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1906970743 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1906970742, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-  m_PrefabInstance: {fileID: 902433836}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5aa69f2669ebd54e80c47008416e66d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1916065964
 GameObject:
   m_ObjectHideFlags: 0

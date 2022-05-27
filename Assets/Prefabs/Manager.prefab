@@ -45,13 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b704ab24b577c284cb3309f2c471bb29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerHurt: {fileID: 8300000, guid: ccac04d1d2bc0d64f9c2ee53763ca179, type: 3}
   _bossPunched: {fileID: 8300000, guid: 6d3b2c964a0a5ae4386b4ea547253370, type: 3}
   _blockedHit: {fileID: 8300000, guid: ad669621ff865374e9db99d32c91bd0a, type: 3}
-  _punch0: {fileID: 8300000, guid: 0c2f8eb10536c7a41afba418b4134a4a, type: 3}
-  _punch1: {fileID: 8300000, guid: 48b06c9d93bd5064dbdcaedbf4d17003, type: 3}
-  _punch2: {fileID: 8300000, guid: 86522244f05eceb4aaf36933fcf0965f, type: 3}
   _bossPunchedH: {fileID: 8300000, guid: f4189285134eabf45bae326984d3704f, type: 3}
+  _bossSwinged: {fileID: 8300000, guid: e0b913ef99f982e44aae2d866298fe81, type: 3}
 --- !u!82 &5687422708530208712
 AudioSource:
   m_ObjectHideFlags: 0
