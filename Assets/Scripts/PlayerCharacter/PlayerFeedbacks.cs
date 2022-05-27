@@ -47,6 +47,10 @@ public class PlayerFeedbacks : MonoBehaviour
     [SerializeField] AudioClip _dashShout;
     #endregion
 
+    #region Other
+    [SerializeField] AudioClip _error;
+    #endregion
+
     #region Audio
     [Required][SerializeField] AudioSource _audioSource;
     #endregion
@@ -155,12 +159,18 @@ public class PlayerFeedbacks : MonoBehaviour
     {
         PlaySound(_playerHurt, 2f);
     }
-    #endregion
 
     public void PlayDashingShoutSfx()
     {
         PlaySound(_dashShout, 1f);
     }
+
+    public void PlayErrorSfx()
+    {
+        PlaySound(_error, 1f);
+    }
+    #endregion
+
 
     public void SetCameraTargetWeight(int target, int weight)
     {

@@ -67,6 +67,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 999510d683fc0314887dd4f9d78da653, type: 2}
+    - target: {fileID: -5754084199372789682, guid: 18e15b7e94ff49641810a25c5069586e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1675928856296060088, guid: 37cd11a8e6b3a0d4ab7cecc0488f899c, type: 3}
     - target: {fileID: 919132149155446097, guid: 18e15b7e94ff49641810a25c5069586e, type: 3}
       propertyPath: m_Name
       value: Pref_PineTree Variant
