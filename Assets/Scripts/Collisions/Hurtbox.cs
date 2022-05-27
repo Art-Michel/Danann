@@ -4,8 +4,8 @@ using System;
 
 public class Hurtbox : MonoBehaviour
 {
-    [SerializeField]float _radius;
-    [NonSerialized]   public float HalfRadius;
+    [SerializeField] float _radius;
+    [NonSerialized] public float HalfRadius;
     #region Hurtbox Visualization
     public Color SphereColor;
     public Color SphereWireColor;
@@ -42,8 +42,8 @@ public class Hurtbox : MonoBehaviour
             return;
         else
         {
-            _hurtboxOwnerHP.TakeDamage(attackDamage, attackName, plasmaRegainValue);
-            _attacksThatHitMe.Add(attackName);
+            if (_hurtboxOwnerHP.TakeDamage(attackDamage, attackName, plasmaRegainValue))
+                _attacksThatHitMe.Add(attackName);
         }
     }
 

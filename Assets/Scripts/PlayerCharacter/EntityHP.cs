@@ -21,7 +21,7 @@ public class EntityHP : MonoBehaviour
     }
 
     [Button]
-    public void TakeDamage(int amount, string attackName, int plasmaRegainValue,int revengeGain=0)
+    public bool TakeDamage(int amount, string attackName, int plasmaRegainValue,int revengeGain=0)
     {
         if (!_isInvulnerable)
         {
@@ -32,7 +32,9 @@ public class EntityHP : MonoBehaviour
             DamageFeedback(attackName);
             if (HealthPoints <= 0) Die();
             if (plasmaRegainValue > 0) _playerplasma.IncreasePlasma(plasmaRegainValue);
+            return true;
         }
+        return false;
     }
 
     [Button]
