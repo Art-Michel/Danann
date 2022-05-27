@@ -1746,6 +1746,7 @@ GameObject:
   - component: {fileID: 2936436895459240192}
   - component: {fileID: 59749957390876159}
   - component: {fileID: 2577399527204082855}
+  - component: {fileID: 1250626158}
   m_Layer: 0
   m_Name: Boss_1
   m_TagString: Boss
@@ -1930,9 +1931,9 @@ MonoBehaviour:
   maxChain: 2
   projectile: {fileID: 3516479995275154835, guid: a802e1e7d87be014ca7ef970427689d4, type: 3}
   maxCap: 0
-  goingRandom: 1
+  goingRandom: 0
   maxProjectilePool: 13
-  testState: P2CMixDash
+  testState: P2RSPIRALE
   isDebug: 1
 --- !u!114 &3827543814706810072
 MonoBehaviour:
@@ -2040,9 +2041,9 @@ MonoBehaviour:
   - {fileID: 6358177358797626433}
   - {fileID: 7792996389893935023}
   P2AttackFrames:
-  - {x: 0.6, y: 0.3, z: 0}
-  - {x: 1, y: 0.4, z: 0}
-  - {x: 1.4, y: 0.6, z: 0.8}
+  - {x: 0.5, y: 0.35, z: 0.1}
+  - {x: 0.8, y: 0.45, z: 0.1}
+  - {x: 1, y: 0.5, z: 0.8}
   P2SlamRecovery: 0.4
   p2Sl_MaxMoveTime: 18
   P2globalGO: {fileID: 8345609119479587746}
@@ -2092,6 +2093,11 @@ MonoBehaviour:
   p2TP_Reco: 2
   p2TP_Active: 0.8
   p2TP_farDist: 12
+  rosacePool: {fileID: 0}
+  straightProj: {fileID: 0}
+  rosaceNumber: 7
+  bulletNumber: 25
+  rosaceDelay: 0.2
 --- !u!114 &2936436895459240192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2104,7 +2110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccca9daeec5df04408f7b0c333e173bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Radius: 2
+  _radius: 0
   SphereColor: {r: 0.080822945, g: 1, b: 0, a: 0}
   SphereWireColor: {r: 0.24022806, g: 1, b: 0, a: 1}
   _hurtboxOwnerHP: {fileID: 2577399527204082855}
@@ -2138,6 +2144,20 @@ MonoBehaviour:
   _playerplasma: {fileID: 0}
   _healthBar: {fileID: 0}
   _body: {fileID: 3664297022142350869}
+--- !u!136 &1250626158
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823556921784003239}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.01
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &853909173432436930
 GameObject:
   m_ObjectHideFlags: 0

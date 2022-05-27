@@ -19,7 +19,20 @@ public class Pool : MonoBehaviour
         AddCount(baseCount);
         SecondAddCount(secondBaseCount);
     }
-
+    public void SetUp(DanuAI nai=null, Danu_FSM nfsm=null,GameObject pref=null)
+    {
+        boss=nai;
+        fsm=nfsm;
+        prefab=pref;
+    }
+    public DanuAI GetBoss()
+    {
+        return boss;
+    }
+    public Danu_FSM GetFSM()
+    {
+        return fsm;
+    }
     public GameObject Get()
     {
 //        Debug.Log(items.Count);

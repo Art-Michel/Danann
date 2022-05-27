@@ -98,6 +98,7 @@ public class DanuAI : MonoBehaviour
             m_fsm.AddState(new P2CDash());
             m_fsm.AddState(new P2CTeleportation());
             m_fsm.AddState(new P2DMixDash());
+            m_fsm.AddState(new P2DRosace());
             if (isDebug)
                 m_fsm.ChangeState(testState);
             else

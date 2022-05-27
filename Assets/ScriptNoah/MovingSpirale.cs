@@ -7,6 +7,7 @@ public class MovingSpirale : MonoBehaviour
 {
     Pool pool;
     [SerializeField] int nbBullet;
+    public void SetBullets(int newnb){nbBullet=newnb;}
     [SerializeField] bool goLeft;
     [SerializeField] bool shootLeft;
     
@@ -14,23 +15,24 @@ public class MovingSpirale : MonoBehaviour
     float radius=19.5f;
     [SerializeField] int angle;
     [SerializeField] float maxDelay;
+    public void SetDelay(float newMax ){maxDelay=newMax;}
     float delay;
     private float moveIndex;
     [SerializeField] Vector3 arenaCenter;
-    [SerializeField,MinMaxSlider(-180,180)] public Vector2 maxAngle;
+    [SerializeField,MinMaxSlider(-180,180)] Vector2 maxAngle;
     [SerializeField] float speed;
     Vector3 projdir;
     [SerializeField] float sinIndex;
+    public float lifetime{get;private set;}
+    List<GameObject> activeBullets=new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
         pool=transform.parent.GetComponent<Pool>();
         Vector3 dir=(-arenaCenter+transform.position).normalized;
-        Debug.Log(transform.position+":"+radius+":"+dir);
         transform.position=arenaCenter;
         dir*=radius;
         transform.position+=dir;
-        Debug.Log(Vector3.Distance(transform.position,arenaCenter));
     }
 
     // Update is called once per frame
@@ -39,7 +41,17 @@ public class MovingSpirale : MonoBehaviour
         Shoot();
         //Move();
     }
+    private void OnDisable() {
+        sinIndex=0;
+        delay=0;
+        for (int i=activeBullets.Count-1;i>=0;i--)
+        {
+            pool.Back(activeBullets[i]);
+            activeBullets[i].SetActive(false);
+            activeBullets.RemoveAt(i);
 
+        }
+    }
     private void Move()
     {
             Vector2 pos;
@@ -67,6 +79,7 @@ public class MovingSpirale : MonoBehaviour
             delay=0;
 
             GameObject go= pool.Get();
+            activeBullets.Add(go);
             go.transform.position=transform.position;
             go.SetActive(true);
             go.GetComponent<Projectiles>().SetOrigin(pool);
@@ -85,7 +98,6 @@ public class MovingSpirale : MonoBehaviour
                     index--;
                 if (index<=maxAngle.x)
                 {
-                    Debug.Log(Vector3.Angle(baseDir,projAngle));
                     shootLeft=false;
                 }
                 projdir=projAngle;
@@ -99,7 +111,6 @@ public class MovingSpirale : MonoBehaviour
                     index++;
                 if (index>=maxAngle.y)
                 {
-                    Debug.Log(Vector3.Angle(baseDir,projAngle));
                     //go.transform.Rotate(0,maxAngle.y,0);
                     shootLeft=true;
                 }

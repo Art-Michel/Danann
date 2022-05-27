@@ -246,6 +246,18 @@ public class Danu_FSM : MonoBehaviour
     [Foldout("Phase 2 TP"), SerializeField] float p2TP_farDist;
     public float GetP2TP_FarDist() { return p2TP_farDist; }
     #endregion
+        #region Rosace
+    [Foldout("Rosace"), SerializeField] Pool rosacePool;
+    public Pool GetRosacePool(){return rosacePool;}
+    [Foldout("Rosace"), SerializeField] GameObject straightProj;
+    public GameObject GetStraightProj(){return straightProj;} 
+    [Foldout("Rosace"), SerializeField] int rosaceNumber;
+    public int GetRosaceNumber(){return rosaceNumber;}    
+    [Foldout("Rosace"), SerializeField] int bulletNumber;
+    public int GetRosaceBulletNB(){return bulletNumber;}
+    [Foldout("Rosace"), SerializeField] float rosaceDelay;
+    public float GetRosaceDelay(){return rosaceDelay;}
+        #endregion
     #endregion
     #region ProjectilesInit
     private List<GameObject> baseProjectiles = new List<GameObject>();
@@ -264,6 +276,8 @@ public class Danu_FSM : MonoBehaviour
     }
     #endregion
     int indexx;
+
+
     public Danu_State curr { get; private set; }
     public Danu_State prev { get; private set; }
     [Button]
