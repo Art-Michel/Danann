@@ -30,16 +30,17 @@ public class PlayerHP : EntityHP
     float _invulerabilityT;
     float _tookAHit;
 
+
     PlayerFeedbacks _playerFeedbacks;
 
     Hurtbox _hurtbox;
 
     void Awake()
     {
-        _maxHealthPoints = 100;
         _vcamPerlin = _vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         _hurtbox = GetComponent<Hurtbox>();
         _playerFeedbacks = GetComponent<PlayerFeedbacks>();
+        _maxHealthPoints = 100;
     }
 
     override protected void DamageFeedback(string attackName= "")
@@ -58,6 +59,11 @@ public class PlayerHP : EntityHP
     void FixedUpdate()
     {
         if(_isBlinking) _body.enabled = !_body.enabled;
+    }
+
+    protected override void Parry()
+    {
+        _playerFeedbacks.PlayParryTriggerSfx();
     }
 
     #region slow down time after damage taken + camera shake
@@ -90,6 +96,7 @@ public class PlayerHP : EntityHP
         _invulerabilityT = _invulerabilityLength;
         _isBlinking = true;
     }
+
     private void HandlePostDamageInvul()
     {
         _invulerabilityT -= Time.unscaledDeltaTime;

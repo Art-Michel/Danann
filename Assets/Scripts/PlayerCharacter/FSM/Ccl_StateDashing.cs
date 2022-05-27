@@ -19,7 +19,7 @@ public class Ccl_StateDashing : Ccl_State
     public override void Begin()
     {
         _startingPosition = _actions.transform.position;
-        _wantedPosition = new Vector3(_actions.spearDashedOn.transform.position.x, _actions.transform.position.y, _actions.spearDashedOn.transform.position.z);
+        _wantedPosition = new Vector3(_actions.SpearDashedOn.transform.position.x, _actions.transform.position.y, _actions.SpearDashedOn.transform.position.z);
 
         Vector3 trajectory = _startingPosition - _wantedPosition;
         _actions.PlayerMovement.OrientateBodyTowards(trajectory);
@@ -44,7 +44,7 @@ public class Ccl_StateDashing : Ccl_State
 
     public override void Exit()
     {
-        _actions.spearDashedOn.ChangeState(Spear_StateNames.ATTACHED);
+        _actions.SpearDashedOn.ChangeState(Spear_StateNames.ATTACHED);
         _actions.PlayerHP._isInvulnerable = false;
         _actions.DisableDashHitbox();
         _feedbacks.SetTrailRenderer(true, false);

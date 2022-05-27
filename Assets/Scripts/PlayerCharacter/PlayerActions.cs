@@ -62,7 +62,11 @@ public class PlayerActions : MonoBehaviour
     #endregion
 
     #region Dashing
-    public Spear_FSM spearDashedOn { get; private set; }
+    public Spear_FSM SpearDashedOn { get; private set; }
+    #endregion
+
+    #region Parrying
+    public Spear_FSM SpearUsedToParry { get; private set; }
     #endregion
 
     private void Awake()
@@ -308,7 +312,7 @@ public class PlayerActions : MonoBehaviour
         if (_playerPlasma.VerifyPlasma(Ccl_Attacks.DASHONSPEAR))
         {
             _playerPlasma.SpendPlasma(Ccl_Attacks.DASHONSPEAR);
-            spearDashedOn = spear;
+            SpearDashedOn = spear;
             _fsm.ChangeState(Ccl_StateNames.DASHING);
         }
     }
@@ -323,7 +327,12 @@ public class PlayerActions : MonoBehaviour
 
     private void Parry(Spear_FSM spear)
     {
-
+        if (_playerPlasma.VerifyPlasma(Ccl_Attacks.PARRY))
+        {
+            _playerPlasma.SpendPlasma(Ccl_Attacks.PARRY);
+            SpearDashedOn = spear;
+            _fsm.ChangeState(Ccl_StateNames.PARRYING);
+        }
     }
 
     #endregion

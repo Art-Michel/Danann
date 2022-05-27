@@ -13,10 +13,14 @@ public class EntityHP : MonoBehaviour
     [Required][SerializeField] PlayerPlasma _playerplasma;
     [Required][SerializeField] Image _healthBar;
 
+    //parry
+    public bool _isParrying;
 
     void Start()
     {
         HealthPoints = _maxHealthPoints;
+        _isInvulnerable = false;
+        _isParrying = false;
         UpdateHealthBar();
     }
 
@@ -32,6 +36,11 @@ public class EntityHP : MonoBehaviour
             DamageFeedback(attackName);
             if (HealthPoints <= 0) Die();
             if (plasmaRegainValue > 0) _playerplasma.IncreasePlasma(plasmaRegainValue);
+            return true;
+        }
+        else if(_isParrying)
+        {
+            Parry();
             return true;
         }
         return false;
@@ -62,6 +71,11 @@ public class EntityHP : MonoBehaviour
 
     protected virtual void DamageFeedback(string attackName = "")
     {
+    }
+
+    protected virtual void Parry()
+    {
+
     }
 
     internal void TakeDamage(object attackDamage)

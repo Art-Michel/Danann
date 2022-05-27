@@ -1740,6 +1740,10 @@ PrefabInstance:
       value: Ccl
       objectReference: {fileID: 0}
     - target: {fileID: 6351119601355520869, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _parry
+      value: 
+      objectReference: {fileID: 8300000, guid: 9dee6be243a6f0348b662872b7bd5871, type: 3}
+    - target: {fileID: 6351119601355520869, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _volume
       value: 
       objectReference: {fileID: 301105354}
@@ -1751,6 +1755,10 @@ PrefabInstance:
       propertyPath: _targetGroup
       value: 
       objectReference: {fileID: 761610233}
+    - target: {fileID: 6351119601355520869, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _parryTrigger
+      value: 
+      objectReference: {fileID: 8300000, guid: cb7e5973fa750a348a4b165a60eedcf8, type: 3}
     - target: {fileID: 6718971616905161990, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _plasmaBar
       value: 

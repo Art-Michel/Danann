@@ -14,6 +14,7 @@ public class PlayerFeedbacks : MonoBehaviour
 
     #region Health
     [SerializeField] AudioClip _playerHurt;
+
     #endregion
 
     #region Aiming
@@ -45,6 +46,11 @@ public class PlayerFeedbacks : MonoBehaviour
 
     #region Dashing
     [SerializeField] AudioClip _dashShout;
+    #endregion
+
+    #region Parrying
+    [SerializeField] AudioClip _parry;
+    [SerializeField] AudioClip _parryTrigger;
     #endregion
 
     #region Other
@@ -154,6 +160,16 @@ public class PlayerFeedbacks : MonoBehaviour
     public void PlayDodgeSfx()
     {
         PlaySound(_dodge, 2f);
+    }
+    
+    public void PlayParrySfx()
+    {
+        PlaySound(_parry, 0.7f);
+    }
+
+    public void PlayParryTriggerSfx()
+    {
+        PlaySound(_parryTrigger, 2f);
     }
 
     public void PlayPlayerHurtSfx()
