@@ -40,7 +40,7 @@ public class P2DRosace : Danu_State
             float rad= delta*Mathf.Deg2Rad;
             Vector3 dest=new Vector3(Mathf.Cos(rad*i),0,Mathf.Sin(rad*i)).normalized;
             pos+=dest*arenaRadius;
-            GameObject go= pool.Get();
+            GameObject go= pool.SecondGet();
             go.transform.position=pos;
             Pool pooll= go.GetComponent<Pool>();
             go.SetActive(true);
@@ -72,7 +72,7 @@ public class P2DRosace : Danu_State
     {
         for (int i=0;i<nb;i++)
         {
-            pool.Back(spirales[i]);
+            pool.SecondBack(spirales[i]);
             spirales[i].SetActive(false);
             spirales[i]=null;
 

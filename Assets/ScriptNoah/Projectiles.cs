@@ -50,11 +50,16 @@ public class Projectiles : MonoBehaviour
         }
         if (lifeTime > maxLifeTime) 
         {
-            transform.position = Vector3.zero; 
+
             if (origin!=null) 
-                origin.Back(gameObject); 
-            else 
+            {
+                transform.position=origin.transform.position;
                 gameObject.SetActive(false);
+                origin.Back(gameObject);
+                return; 
+            }
+            transform.position = Vector3.zero; 
+            gameObject.SetActive(false);
         }
     }
     public void SetTarget(Transform newTarget)

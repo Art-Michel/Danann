@@ -57,6 +57,7 @@ public class Pool : MonoBehaviour
                 go= Instantiate(prefab, fsm.transform.position,fsm.transform.rotation,transform);
                 else
                 go= Instantiate(prefab, transform.position,transform.rotation,transform);
+                go.SetActive(false);
                 Projectiles proj=go.GetComponent<Projectiles>();
                 if (proj!=null)
                 {
@@ -91,8 +92,13 @@ public class Pool : MonoBehaviour
     public void SecondAddCount(int nb)
     {
         for (int i = 0; i < nb; i++)
-        {
-                GameObject go = Instantiate(secondPrefab, fsm.transform.position,fsm.transform.rotation,fsm.GetP1GlobalGO().transform);
+        {      
+            GameObject go;
+            if (fsm!=null)
+                go = Instantiate(secondPrefab, fsm.transform.position,fsm.transform.rotation,fsm.GetP1GlobalGO().transform);
+            else
+                go= Instantiate(prefab, transform.position,transform.rotation,transform);
+
                 go.SetActive(false);
                 secondItems.Enqueue(go);
         }
