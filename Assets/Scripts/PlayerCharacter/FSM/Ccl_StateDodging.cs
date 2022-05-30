@@ -19,7 +19,7 @@ public class Ccl_StateDodging : Ccl_State
     public override void Begin()
     {
         _wantedDirection = _actions.PlayerMovement.GetOrientation();
-        _actions.PlayerHP._isInvulnerable = true;
+        //_actions.PlayerHP._isInvulnerable = true;
         _dodgeT = 0;
 
         _feedbacks.PlayDodgeSfx();
@@ -36,7 +36,7 @@ public class Ccl_StateDodging : Ccl_State
 
     public override void Exit()
     {
-        _actions.PlayerHP._isInvulnerable = false;
+        //_actions.PlayerHP._isInvulnerable = false;
         _actions.StartDodgeCooldown();
     }
 }

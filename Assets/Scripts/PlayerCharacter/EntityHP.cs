@@ -9,28 +9,29 @@ public class EntityHP : MonoBehaviour
 {
     public float HealthPoints { get; protected set; }
     protected float _maxHealthPoints = 1;
-    public bool _isInvulnerable = false;
+    public bool IsInvulnerable { get { return _isInvulnerable;} set { _isInvulnerable = value;} }
+    bool _isInvulnerable;
     [Required][SerializeField] PlayerPlasma _playerplasma;
     [Required][SerializeField] Image _healthBar;
-
+    [SerializeField] Pooler _billboardsPool;
     //parry
-    public bool _isParrying;
+    public bool IsParrying;
 
     void Start()
     {
         HealthPoints = _maxHealthPoints;
         _isInvulnerable = false;
-        _isParrying = false;
+        IsParrying = false;
         UpdateHealthBar();
     }
 
     [Button]
-    public bool TakeDamage(int amount, string attackName, int plasmaRegainValue,int revengeGain=0)
+    public bool TakeDamage(int amount, string attackName, int plasmaRegainValue, int revengeGain = 0)
     {
         if (!_isInvulnerable)
         {
             HealthPoints = Mathf.Clamp(HealthPoints -= amount, 0, _maxHealthPoints);
-            bool isBoss = _maxHealthPoints>100;
+            bool isBoss = _maxHealthPoints > 100;
             if (isBoss) GetComponent<DanuAI>().BuildUpRevenge(revengeGain);
             if (_healthBar) UpdateHealthBar();
             DamageFeedback(attackName);
@@ -38,7 +39,7 @@ public class EntityHP : MonoBehaviour
             if (plasmaRegainValue > 0) _playerplasma.IncreasePlasma(plasmaRegainValue);
             return true;
         }
-        else if(_isParrying)
+        else if (IsParrying)
         {
             Parry();
             return true;
@@ -81,5 +82,17 @@ public class EntityHP : MonoBehaviour
     internal void TakeDamage(object attackDamage)
     {
         throw new NotImplementedException();
+    }
+
+    public void InvulnerableText()
+    {
+        Billboard billboard = _billboardsPool.Get() as Billboard;
+        billboard.Enable("Invulnerable!");
+    }
+
+    public void ParryingText()
+    {
+        Billboard billboard = _billboardsPool.Get() as Billboard;
+        billboard.Enable("Parrying!");
     }
 }

@@ -25,7 +25,8 @@ public class Ccl_StateDashing : Ccl_State
         _actions.PlayerMovement.OrientateBodyTowards(trajectory);
         _dashSpeed = _dashBaseSpeed / trajectory.magnitude;
 
-        _actions.PlayerHP._isInvulnerable = true;
+        _actions.PlayerHP.IsInvulnerable = true;
+        _actions.PlayerHP.InvulnerableText();
         _dashT = 0;
 
         _feedbacks.PlayDashingShoutSfx();
@@ -45,7 +46,7 @@ public class Ccl_StateDashing : Ccl_State
     public override void Exit()
     {
         _actions.SpearDashedOn.ChangeState(Spear_StateNames.ATTACHED);
-        _actions.PlayerHP._isInvulnerable = false;
+        _actions.PlayerHP.IsInvulnerable = false;
         _actions.DisableDashHitbox();
         _feedbacks.SetTrailRenderer(true, false);
     }

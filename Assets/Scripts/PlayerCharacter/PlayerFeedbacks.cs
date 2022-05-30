@@ -188,12 +188,14 @@ public class PlayerFeedbacks : MonoBehaviour
     }
     #endregion
 
-    #region Plasma
+    #region Text
     public void NotEnoughPlasmaText()
     {
         Billboard billboard = _billboardsPool.Get() as Billboard;
         billboard.Enable("Not enough\nPlasma!");
     }
+
+    
     #endregion
 
     public void SetCameraTargetWeight(int target, int weight)

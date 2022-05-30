@@ -13,7 +13,6 @@ public class Ccl_Attacks
     public const string SPEARSWINGL = "LeftSpearSwing";
     public const string SPEARSWINGR = "RightSpearSwing";
     public const string SPEARTHROW = "SpearThrow";
-    public const string Mario = "cool";
     public const string SHOCKWAVE_L = "Shocwave_L";
     public const string SHOCKWAVE_R = "Shocwave_R";
     public const string SHOCKWAVE_CCL = "Shocwave_Ccl";

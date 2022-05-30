@@ -14,10 +14,11 @@ public class Ccl_StateParrying : Ccl_State
 
     public override void Begin()
     {
-        _actions.PlayerHP._isInvulnerable = true;
-        _actions.PlayerHP._isParrying = true;
+        _actions.PlayerHP.IsInvulnerable = true;
+        _actions.PlayerHP.IsParrying = true;
         _parryT = 0;
 
+        _actions.PlayerHP.ParryingText();
         _feedbacks.PlayParrySfx();
     }
 
@@ -30,7 +31,7 @@ public class Ccl_StateParrying : Ccl_State
 
     public override void Exit()
     {
-        _actions.PlayerHP._isInvulnerable = false;
-        _actions.PlayerHP._isParrying = true;
+        _actions.PlayerHP.IsInvulnerable = false;
+        _actions.PlayerHP.IsParrying = true;
     }
 }

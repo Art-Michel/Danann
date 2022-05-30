@@ -58,7 +58,7 @@ public class PlayerHP : EntityHP
 
     void FixedUpdate()
     {
-        if(_isBlinking) _body.enabled = !_body.enabled;
+        if(_isBlinking) _body.gameObject.SetActive(!_body.gameObject.activeSelf);
     }
 
     protected override void Parry()
@@ -92,7 +92,7 @@ public class PlayerHP : EntityHP
     #region invulnerability time after damage taken + character's body is blinking
     void StartInvul()
     {
-        _isInvulnerable = true;
+        IsInvulnerable = true;
         _invulerabilityT = _invulerabilityLength;
         _isBlinking = true;
     }
@@ -105,7 +105,7 @@ public class PlayerHP : EntityHP
     
     private void ResetInvulerability()
     {
-        _isInvulnerable = false;
+        IsInvulnerable = false;
         _hurtbox.ForgetAllAttacks();
         ResetBlinking();
     }
@@ -113,7 +113,7 @@ public class PlayerHP : EntityHP
     //post damage blinking while invul
     private void ResetBlinking()
     {
-        _body.enabled = true;
+        _body.gameObject.SetActive(true);
         _isBlinking = false;
     }
     #endregion
