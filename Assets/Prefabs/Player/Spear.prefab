@@ -360,8 +360,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3.5
-  m_Center: {x: 0, y: 0, z: -1.5}
+  m_Radius: 4
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3434749978275472625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,6 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isLeft: 0
   CclBody: {fileID: 0}
+  _spearTransformWhenAttached: {fileID: 0}
   Cursor: {fileID: 0}
   TravelingAttackData: {fileID: 152619026}
   _swingAttackData: {fileID: 8637741451736142707}
@@ -392,11 +393,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mesh: {fileID: 6280570182990347919}
+  _bladeTrail: {fileID: 0}
+  _targetGroup: {fileID: 0}
   _audioSource: {fileID: 0}
   _reattach: {fileID: 8300000, guid: ce04db3e2e8a8b041a121ca4761d9117, type: 3}
   _swing: {fileID: 8300000, guid: 7e5c819691a8e4a4580c2c9abab45a33, type: 3}
-  _spearTransformWhenAttached: {fileID: 0}
-  _targetGroup: {fileID: 0}
 --- !u!1 &5493423371716959303
 GameObject:
   m_ObjectHideFlags: 0

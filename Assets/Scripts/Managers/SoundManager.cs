@@ -52,7 +52,7 @@ public class SoundManager : ProjectManager<SoundManager>
 
     public void PlayBlockedHit()
     {
-        PlaySound(_bossPunched, 1f);
+        PlaySound(_blockedHit, .5f);
     }
 
 }

@@ -6,9 +6,9 @@ using UnityEngine;
 public class Billboard : PooledObject
 {
     Camera _camera;
-    [SerializeField]TextMeshPro _text;
+    [SerializeField] TextMeshPro _text;
     const float _speed = 1f;
-    const float _duration = 1f;
+    const float _duration = .5f;
     float _t;
 
     void Awake()

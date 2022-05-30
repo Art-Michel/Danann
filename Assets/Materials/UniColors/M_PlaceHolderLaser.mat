@@ -327,12 +327,12 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0, g: 1, b: 0.6795902, a: 0.77254903}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 1, g: 0, b: 0.99197716, a: 0.59607846}
+    - _Color: {r: 0.145098, g: 0.9921568, b: 0.9137255, a: 0.59607846}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissiveColor: {r: 1.4539725, g: 0.28040877, b: 1.2668571, a: 1.4539725}
-    - _EmissiveColorLDR: {r: 1, g: 0.47641504, b: 0.94114804, a: 1}
+    - _EmissiveColor: {r: 0.026898807, g: 1.4281653, b: 1.1847646, a: 1.4539725}
+    - _EmissiveColorLDR: {r: 0.14509805, g: 0.99215686, b: 0.9137255, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
@@ -342,7 +342,7 @@ Material:
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
-    - _UnlitColor: {r: 1, g: 0, b: 0.99197716, a: 0.59607846}
+    - _UnlitColor: {r: 0.14509805, g: 0.99215686, b: 0.9137255, a: 0.59607846}
     - _UnlitColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &240798365130948474

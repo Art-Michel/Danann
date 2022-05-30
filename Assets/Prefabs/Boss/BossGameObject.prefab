@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 1679649718}
   - component: {fileID: 1679649719}
   m_Layer: 0
-  m_Name: TextFeedbacks
+  m_Name: BossTextFeedbacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2024,10 +2024,10 @@ MonoBehaviour:
   maxChain: 2
   projectile: {fileID: 3516479995275154835, guid: a802e1e7d87be014ca7ef970427689d4, type: 3}
   maxCap: 0
-  goingRandom: 0
+  goingRandom: 1
   maxProjectilePool: 13
-  testState: P1DBoomerang
-  isDebug: 1
+  testState: P2DShoot
+  isDebug: 0
 --- !u!114 &3827543814706810072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2222,7 +2222,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerplasma: {fileID: 0}
   _healthBar: {fileID: 0}
-  _isParrying: 0
+  _billboardsPool: {fileID: 1679649719}
+  IsParrying: 0
+  _playerFeedbacks: {fileID: 0}
   _body: {fileID: 3664297022142350869}
 --- !u!136 &1250626158
 CapsuleCollider:

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PooledObject : MonoBehaviour
 {
-   protected Pooler _pooler;
+    protected Pooler _pooler;
 
-   public void Init(Pooler pooler)
-   {
-       _pooler = pooler;
-       transform.parent = pooler.transform;
-   }
+    public void Init(Pooler pooler)
+    {
+        _pooler = pooler;
+        transform.parent = pooler.transform;
+    }
 }

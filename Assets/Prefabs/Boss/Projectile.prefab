@@ -109,8 +109,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 0, b: 0.88933325, a: 1}
-  m_Intensity: 400000000
+  m_Color: {r: 0.14509805, g: 0.99215686, b: 0.9137255, a: 1}
+  m_Intensity: 4000000
   m_Range: 1.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -175,6 +175,7 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 5
+  _plasmaRegainValue: 0
   _hitboxes:
   - {fileID: 5585978236100329044}
   _attackName: LightAttack1

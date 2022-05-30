@@ -180,7 +180,7 @@ public class PlayerActions : MonoBehaviour
         _canDodge = false;
     }
 
-    private void CanDashAgain()
+    private void CanDodgeAgain()
     {
         this._playerFeedbacks.SetTrailRenderer(false, false);
         _canDodge = true;
@@ -272,28 +272,35 @@ public class PlayerActions : MonoBehaviour
     #region Dash / Parry
     void ParryInput(Spear_FSM spear)
     {
-        switch (spear.currentState.Name)
+        bool canDash = _fsm.currentState.Name == Ccl_StateNames.IDLE;
+        canDash = canDash || _fsm.currentState.Name == Ccl_StateNames.DODGING;
+        canDash = canDash || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKRECOVERY;
+
+        if (canDash)
         {
-            case Spear_StateNames.ATTACHED:
-                Parry(spear);
-                break;
-            case Spear_StateNames.AIMING:
-                Parry(spear);
-                break;
+            switch (spear.currentState.Name)
+            {
+                case Spear_StateNames.ATTACHED:
+                    Parry(spear);
+                    break;
+                case Spear_StateNames.AIMING:
+                    Parry(spear);
+                    break;
 
-            case Spear_StateNames.IDLE:
-                Dash(spear);
-                break;
-            case Spear_StateNames.ATTACKING:
-                Dash(spear);
-                break;
+                case Spear_StateNames.IDLE:
+                    Dash(spear);
+                    break;
+                case Spear_StateNames.ATTACKING:
+                    Dash(spear);
+                    break;
 
-            case Spear_StateNames.THROWN:
-                BufferDash(spear);
-                break;
-            case Spear_StateNames.RECALLED:
-                BufferParry(spear);
-                break;
+                case Spear_StateNames.THROWN:
+                    BufferDash(spear);
+                    break;
+                case Spear_StateNames.RECALLED:
+                    BufferParry(spear);
+                    break;
+            }
         }
     }
 
@@ -348,7 +355,7 @@ public class PlayerActions : MonoBehaviour
         if (!_canDodge)
         {
             _dodgeCooldown -= Time.deltaTime;
-            if (_dodgeCooldown <= 0) CanDashAgain();
+            if (_dodgeCooldown <= 0) CanDodgeAgain();
         }
     }
 

@@ -415,8 +415,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 1
   shouldHitAllies: 0
-  _attackDamage: 30
-  _plasmaRegainValue: 15
+  _attackDamage: 20
+  _plasmaRegainValue: 20
   _hitboxes:
   - {fileID: 6868656391946405962}
   - {fileID: 6696278159188641473}
@@ -996,9 +996,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fcd4ade5ae595e4aa3e2812dbc37c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isInvulnerable: 0
   _playerplasma: {fileID: 6718971616905161990}
   _healthBar: {fileID: 0}
+  _billboardsPool: {fileID: 1906970742}
+  IsParrying: 0
   _vcam: {fileID: 0}
   _body: {fileID: 6200968815517808619}
 --- !u!114 &6718971616905161990
@@ -1055,6 +1056,8 @@ MonoBehaviour:
   _punch1: {fileID: 8300000, guid: 48b06c9d93bd5064dbdcaedbf4d17003, type: 3}
   _punch2: {fileID: 8300000, guid: 86522244f05eceb4aaf36933fcf0965f, type: 3}
   _dashShout: {fileID: 8300000, guid: 6754480ff4987ef48b901107bed43096, type: 3}
+  _parry: {fileID: 8300000, guid: 9dee6be243a6f0348b662872b7bd5871, type: 3}
+  _parryTrigger: {fileID: 8300000, guid: cb7e5973fa750a348a4b165a60eedcf8, type: 3}
   _error: {fileID: 8300000, guid: 87bca9d342503294193c37cc647ac3d3, type: 3}
   _billboardsPool: {fileID: 1906970742}
   _audioSource: {fileID: 0}
@@ -1359,8 +1362,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 1
   shouldHitAllies: 0
-  _attackDamage: 15
-  _plasmaRegainValue: 4
+  _attackDamage: 5
+  _plasmaRegainValue: 5
   _hitboxes:
   - {fileID: 6696278158459461242}
   - {fileID: 6696278158567636296}
@@ -1454,7 +1457,7 @@ GameObject:
   - component: {fileID: 6534431790282018164}
   - component: {fileID: 1906970742}
   m_Layer: 0
-  m_Name: TextFeedbacks
+  m_Name: CclTextFeedbacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1534,8 +1537,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 1
   shouldHitAllies: 0
-  _attackDamage: 30
-  _plasmaRegainValue: 10
+  _attackDamage: 50
+  _plasmaRegainValue: 23
   _hitboxes:
   - {fileID: 4243188476495909262}
   - {fileID: 5803004937825471345}
@@ -1631,8 +1634,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 1
   shouldHitAllies: 0
-  _attackDamage: 22
-  _plasmaRegainValue: 6
+  _attackDamage: 10
+  _plasmaRegainValue: 10
   _hitboxes:
   - {fileID: 4157928151669737584}
   - {fileID: 6696278158720648605}
@@ -1857,7 +1860,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8684172199197681728, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.982
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8684172199197681728, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2038,22 +2041,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d5e566ccaf7f3ea48adfcf1ec1e545cf, type: 2}
-    - target: {fileID: 7856483930303422563, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
-      propertyPath: m_Radius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7856483930303422563, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7856483930303422563, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
-      propertyPath: m_Center.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8038885432945350682, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
-      propertyPath: _mesh
-      value: 
-      objectReference: {fileID: 1726473156897190001}
     - target: {fileID: 8038885432945350682, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: _bladeTrail
       value: 
@@ -2088,7 +2075,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8684172199197681728, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.197
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8684172199197681728, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2144,11 +2131,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
---- !u!4 &1726473156897190001 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6280570182990347919, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
-  m_PrefabInstance: {fileID: 4673816664873504510}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9031753204082181142 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4434779896220650216, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
@@ -2291,14 +2273,14 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 2af3c282167b05640a1864953df6c31e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cb2db93d3010e49a985fcacfd90539, type: 3}
---- !u!23 &6200968815517808619 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 63cb2db93d3010e49a985fcacfd90539, type: 3}
-  m_PrefabInstance: {fileID: 4742239732553231215}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5063568341787561092 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 63cb2db93d3010e49a985fcacfd90539, type: 3}
+  m_PrefabInstance: {fileID: 4742239732553231215}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6200968815517808619 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 63cb2db93d3010e49a985fcacfd90539, type: 3}
   m_PrefabInstance: {fileID: 4742239732553231215}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5368742384533981354

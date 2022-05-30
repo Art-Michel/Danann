@@ -32,13 +32,13 @@ public class Ccl_StateDashing : Ccl_State
         _feedbacks.PlayDashingShoutSfx();
         _actions.EnableDashHitbox();
         _feedbacks.SetTrailRenderer(true, true);
-        
+
     }
 
     public override void StateUpdate()
     {
         _dashT += Time.deltaTime * _dashSpeed;
-        _actions.transform.position = Vector3.Lerp(_startingPosition,_wantedPosition, _dashT);
+        _actions.transform.position = Vector3.Lerp(_startingPosition, _wantedPosition, _dashT);
         if (_dashT >= 1.1f)
             _fsm.ChangeState(Spear_StateNames.IDLE);
     }

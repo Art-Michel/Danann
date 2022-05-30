@@ -44,6 +44,10 @@ public class EntityHP : MonoBehaviour
             Parry();
             return true;
         }
+        else
+        {
+            SoundManager.Instance.PlayBlockedHit();
+        }
         return false;
     }
 

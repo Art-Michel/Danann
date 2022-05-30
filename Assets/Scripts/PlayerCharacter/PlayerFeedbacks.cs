@@ -62,11 +62,18 @@ public class PlayerFeedbacks : MonoBehaviour
     [Required][SerializeField] AudioSource _audioSource;
     #endregion
 
+    #region CamShake
+    [SerializeField] CinemachineVirtualCamera _vcam;
+    CinemachineBasicMultiChannelPerlin _vcamPerlin;
+    float _shakeT;
+    #endregion
+
     [Required][SerializeField] CinemachineTargetGroup _targetGroup;
 
     void Awake()
     {
         //aiming
+        _vcamPerlin = _vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         _cursorSprite = _cursor.GetComponent<SpriteRenderer>();
         _playerActions = GetComponent<PlayerActions>();
         if (_volume) _volume.profile.TryGet<Vignette>(out _vignette);
@@ -161,7 +168,7 @@ public class PlayerFeedbacks : MonoBehaviour
     {
         PlaySound(_dodge, 2f);
     }
-    
+
     public void PlayParrySfx()
     {
         PlaySound(_parry, 0.7f);
@@ -195,11 +202,37 @@ public class PlayerFeedbacks : MonoBehaviour
         billboard.Enable("Not enough\nPlasma!");
     }
 
-    
+
     #endregion
 
     public void SetCameraTargetWeight(int target, int weight)
     {
         _targetGroup.m_Targets[target].weight = weight;
+    }
+
+    #region cam shake
+    public void StartShake(float duration, float intensity)
+    {
+        if (duration > _shakeT)
+            _shakeT = duration;
+        if (intensity > _vcamPerlin.m_AmplitudeGain)
+            _vcamPerlin.m_AmplitudeGain = intensity;
+    }
+
+    public void StopShake()
+    {
+        _vcamPerlin.m_AmplitudeGain = 0;
+        _shakeT = -1;
+    }
+    #endregion
+
+    void Update()
+    {
+        if (_vcamPerlin.m_AmplitudeGain > 0)
+        {
+            _shakeT -= Time.deltaTime;
+            if (_shakeT < 0)
+                StopShake();
+        }
     }
 }

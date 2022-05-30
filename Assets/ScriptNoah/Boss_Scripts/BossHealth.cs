@@ -10,6 +10,8 @@ public class BossHealth : EntityHP
     const float _blinkingDuration = 0.3f;
     float _blinkingT = 0;
 
+    [SerializeField] PlayerFeedbacks _playerFeedbacks;
+
     [Required][SerializeField] GameObject _body;
 
     void Awake()
@@ -20,6 +22,7 @@ public class BossHealth : EntityHP
     override protected void DamageFeedback(string attackName)
     {
         SoundManager.Instance.PlayHitSound(attackName);
+        _playerFeedbacks.StartShake(0.2f, AttackShake.ShakeValue[attackName]);
         _isBlinking = true;
         _blinkingT = _blinkingDuration;
     }

@@ -8,11 +8,8 @@ using Cinemachine;
 
 public class PlayerHP : EntityHP
 {
-    #region Variables for feedbacks: camera shake + time slowdown
-    //cam shake
-    [SerializeField] CinemachineVirtualCamera _vcam;
-    CinemachineBasicMultiChannelPerlin _vcamPerlin;
-    private const float _cameraShakeIntensity = 1f;
+    #region Variables for feedbacks: + time slowdown
+
 
     //time slow
     const float _slowdownLength = 0.3f;
@@ -30,24 +27,26 @@ public class PlayerHP : EntityHP
     float _invulerabilityT;
     float _tookAHit;
 
-
+    //Init
     PlayerFeedbacks _playerFeedbacks;
+    PlayerPlasma _playerPlasma;
 
     Hurtbox _hurtbox;
 
     void Awake()
     {
-        _vcamPerlin = _vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         _hurtbox = GetComponent<Hurtbox>();
         _playerFeedbacks = GetComponent<PlayerFeedbacks>();
+        _playerPlasma = GetComponent<PlayerPlasma>();
         _maxHealthPoints = 100;
     }
 
-    override protected void DamageFeedback(string attackName= "")
+    override protected void DamageFeedback(string attackName = "")
     {
         _playerFeedbacks.PlayPlayerHurtSfx();
         SlowDownTime();
         StartInvul();
+        _playerFeedbacks.StartShake(.3f, 1f);
     }
 
     void Update()
@@ -58,12 +57,15 @@ public class PlayerHP : EntityHP
 
     void FixedUpdate()
     {
-        if(_isBlinking) _body.gameObject.SetActive(!_body.gameObject.activeSelf);
+        if (_isBlinking) _body.gameObject.SetActive(!_body.gameObject.activeSelf);
     }
 
     protected override void Parry()
     {
         _playerFeedbacks.PlayParryTriggerSfx();
+
+        //Refund Parry cost
+        _playerPlasma.IncreasePlasma(_playerPlasma._plasmaCost[Ccl_Attacks.PARRY]);
     }
 
     #region slow down time after damage taken + camera shake
@@ -73,8 +75,6 @@ public class PlayerHP : EntityHP
         _timeIsSlow = true;
         _slowdownT = _slowdownLength;
 
-        // + camera shake
-        _vcamPerlin.m_AmplitudeGain = _cameraShakeIntensity;
     }
     private void HandlePostDamageTimeSlow()
     {
@@ -83,7 +83,6 @@ public class PlayerHP : EntityHP
     }
     private void ResetSlowdown()
     {
-        _vcamPerlin.m_AmplitudeGain = 0f;
         Time.timeScale = 1f;
         _timeIsSlow = false;
     }
@@ -102,7 +101,7 @@ public class PlayerHP : EntityHP
         _invulerabilityT -= Time.unscaledDeltaTime;
         if (_invulerabilityT < 0) ResetInvulerability();
     }
-    
+
     private void ResetInvulerability()
     {
         IsInvulnerable = false;

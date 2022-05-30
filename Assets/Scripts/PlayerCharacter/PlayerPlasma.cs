@@ -12,7 +12,7 @@ public class PlayerPlasma : MonoBehaviour
     PlayerFeedbacks _playerFeedbacks;
     [SerializeField] Image _plasmaBar;
 
-    Dictionary<string, int> _plasmaCost = new Dictionary<string, int>()
+    public Dictionary<string, int> _plasmaCost = new Dictionary<string, int>()
     {
         {Ccl_Attacks.TRIANGLE, 90},
         {Ccl_Attacks.DASHONSPEAR, 30},
