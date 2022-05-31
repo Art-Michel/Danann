@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class ProjSpirale : MonoBehaviour
 {
-    public void Init(Pool pool,int nbBullet,bool goLeft,int angle,float maxDelay)
+    public void Init(Pool pool,int nbBullet,bool goLeft,int angle,float maxDelay, int index=0)
     {
         this.pool=pool;
         this.nbBullet=nbBullet;
         this.goLeft=goLeft;
         this.angle=angle;
         this.maxDelay=maxDelay;
+        this.index=index;
     }
     Pool pool;
     [SerializeField] int nbBullet;

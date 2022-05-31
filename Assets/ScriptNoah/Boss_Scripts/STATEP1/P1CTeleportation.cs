@@ -57,7 +57,6 @@ public class P1CTeleportation : Danu_State
             Vector3 offset = new Vector3(rand.x, 0, rand.y) * offsetValue;
             arrival.transform.position = target.position + offset;
         }
-        camWeight=0.4f;
         _lerpIn=true;
         startup=0;
         fadeTime=0;
@@ -67,6 +66,7 @@ public class P1CTeleportation : Danu_State
     public override void Init()
     {
         cam=fsm.agent.GetCam();
+        camWeight=fsm.GetP1TP_CamWeight();
         arrival = fsm.GetP1TP_Arrival();
         boomBox = fsm.GetP1TP_Boombox();
         boomBoxAttackData = boomBox.GetComponent<AttackData>();
@@ -109,7 +109,7 @@ public class P1CTeleportation : Danu_State
     {
         if (!_lerpOut)
             return;
-        float lerpValue=Mathf.Lerp(0,maxReco,(maxReco-reco)*camWeight);
+        float lerpValue=Mathf.Lerp(0,camWeight,(reco/maxReco));
         
         cam.m_Targets[cam.m_Targets.Length-1].weight=lerpValue;
         if (lerpValue==0)

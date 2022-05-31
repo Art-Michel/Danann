@@ -128,6 +128,8 @@ public class Danu_FSM : MonoBehaviour
     public float GetP1TP_Active() { return p1TP_Active; }
     [Foldout("Phase 1 TP"), SerializeField] float p1TP_farDist;
     public float GetP1TP_FarDist() { return p1TP_farDist; }
+    [Foldout("Phase 1 TP"), SerializeField] float p1TP_CamWeight;
+    public float GetP1TP_CamWeight() { return p1TP_CamWeight; }
     #endregion    
     #endregion
     #region Phase 2

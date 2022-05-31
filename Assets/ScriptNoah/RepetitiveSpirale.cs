@@ -46,7 +46,7 @@ public class RepetitiveSpirale : MonoBehaviour
         if (spiraleDelay<MaxSpiraleDelay)
             return;
         ProjSpirale spirale=new ProjSpirale();
-        spirale.Init(pool,nbBullet,goLeft,angle,maxDelay);
+        spirale.Init(pool,nbBullet,goLeft,angle,maxDelay,index);
         spirales.Add(spirale);
         if (reverse)
             goLeft=!goLeft;

@@ -34,6 +34,7 @@ public class P1DBoomerang : Danu_State
         straightTime=0;
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
         fsm.transform.LookAt(straightTarget);
+        preview.LookAt(straightTarget);
         boomerangR.transform.localPosition=baseStartR;
         boomerangL.transform.localPosition=baseStartL;
         startL=boomerangL.transform.position;
@@ -44,7 +45,6 @@ public class P1DBoomerang : Danu_State
         Vector3 straightEnd = (curveStartL + curveStartR) / 2;
         preview.position = fsm.transform.position + (straightEnd - fsm.transform.position) / 2;
         preview.localScale = new Vector3(5, 1, Vector3.Distance(fsm.transform.position, straightEnd));
-        preview.LookAt(straightTarget);
         preview.gameObject.SetActive(true);
         
         wait = true;
@@ -99,7 +99,7 @@ public class P1DBoomerang : Danu_State
         boomerangL.transform.position = Vector3.Lerp(startL, curveStartL, straightTime / MaxStraightTime);
         boomerangR.transform.position = Vector3.Lerp(startR, curveStartR, straightTime / MaxStraightTime);
         straightTime += Time.deltaTime;
-        if (boomerangL.transform.position == curveStartL||boomerangR.transform.position==curveStartR)
+        if (boomerangL.transform.position == curveStartL||boomerangR.transform.position==curveStartR ||straightTime>=MaxStraightTime)
         {    
             preview.gameObject.SetActive(false);
             startCurve = true;
@@ -123,7 +123,7 @@ public class P1DBoomerang : Danu_State
                 orig.AddWaitTime(2);
                 orig.FlowControl();
             }
-
+            return;
         }
         boomerangL.transform.position = Curve(boomerangL);
         boomerangR.transform.position = Curve(boomerangR);
