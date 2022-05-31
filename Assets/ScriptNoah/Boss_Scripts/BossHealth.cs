@@ -22,7 +22,7 @@ public class BossHealth : EntityHP
     override protected void DamageFeedback(string attackName)
     {
         SoundManager.Instance.PlayHitSound(attackName);
-        _playerFeedbacks.StartShake(0.2f, AttackShake.ShakeValue[attackName]);
+        _playerFeedbacks.StartShake(AttackShake.ShakeValue[attackName].x, AttackShake.ShakeValue[attackName].y);
         _isBlinking = true;
         _blinkingT = _blinkingDuration;
     }
