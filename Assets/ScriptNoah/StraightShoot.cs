@@ -11,13 +11,17 @@ public class StraightShoot : MonoBehaviour
     Vector3 startPos;
     [SerializeField]Transform player;
     [SerializeField] Transform[] debug=new Transform[2]{null,null};
+    [SerializeField] bool followPlayer;
     // Start is called before the first frame update
     void Start()
     {
         index=0;
         delay=0;
-        Vector3 target=new Vector3(player.position.x,transform.position.y,player.position.z);
-        transform.LookAt(target);
+        if (followPlayer)
+        {
+            Vector3 target=new Vector3(player.position.x,transform.position.y,player.position.z);
+            transform.LookAt(target);
+        }
         float offset;
         if (row%2==0)
             offset=gap*(-row/2)+gap/2;
