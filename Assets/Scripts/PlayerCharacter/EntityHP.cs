@@ -25,7 +25,6 @@ public class EntityHP : MonoBehaviour
         UpdateHealthBar();
     }
 
-    [Button]
     public bool TakeDamage(int amount, string attackName, int plasmaRegainValue, int revengeGain = 0)
     {
         if (!_isInvulnerable)

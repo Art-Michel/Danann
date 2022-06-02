@@ -9,7 +9,7 @@ public class Ccl_StateThrowing : Ccl_State
 
     }
 
-    const float _stateDuration = 0.3f;
+    const float _stateDuration = 0.0f;
     float _t;
 
     public override void Begin()

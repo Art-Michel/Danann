@@ -49,7 +49,7 @@ public class PlayerActions : MonoBehaviour
     public PlayerHP PlayerHP { get; private set; }
     bool _canDodge;
     float _dodgeCooldown = 0;
-    const float _dodgeMaxCooldown = 0.4f;
+    const float _dodgeMaxCooldown = 0.25f;
     #endregion
 
     #region Attacks Data

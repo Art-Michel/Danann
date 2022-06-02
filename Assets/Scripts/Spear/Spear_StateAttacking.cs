@@ -11,7 +11,6 @@ public class Spear_StateAttacking : Spear_State
     }
     
     float _t;
-    float _activeAttack;
     bool _isAttacking;
     const float _attackCooldown = 1f;
     const float _attackDuration = 0.2f;
@@ -19,8 +18,6 @@ public class Spear_StateAttacking : Spear_State
     public override void Begin()
     {
         _t = 0f;
-        _activeAttack = 0f;
-        Attack();
     }
 
     public override void Update()

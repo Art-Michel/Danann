@@ -9,6 +9,6 @@ public class PooledObject : MonoBehaviour
     public void Init(Pooler pooler)
     {
         _pooler = pooler;
-        transform.parent = pooler.transform;
+        transform.SetParent(pooler.transform);
     }
 }

@@ -17,6 +17,10 @@ public class PlayerFeedbacks : MonoBehaviour
 
     #endregion
 
+    #region  Plasma
+    [SerializeField] AudioClip _segmentFill;
+    #endregion
+    
     #region Aiming
     [SerializeField] Volume _volume;
     [SerializeField] GameObject _cursor;
@@ -142,6 +146,11 @@ public class PlayerFeedbacks : MonoBehaviour
     void PlayPunch2()
     {
         PlaySound(_punch2, 5f);
+    }
+
+    public void PlaySegmentFill()
+    {
+        PlaySound(_segmentFill, 1f);
     }
 
     public void PlayZoomInSfx()
