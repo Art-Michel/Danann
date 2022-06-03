@@ -102,9 +102,10 @@ public class PlayerHP : EntityHP
         if (_invulerabilityT < 0) ResetInvulerability();
     }
 
-    private void ResetInvulerability()
+    public void ResetInvulerability()
     {
         IsInvulnerable = false;
+        IsParrying = false;
         _hurtbox.ForgetAllAttacks();
         ResetBlinking();
     }

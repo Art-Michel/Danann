@@ -31,7 +31,6 @@ public class Ccl_StateParrying : Ccl_State
 
     public override void Exit()
     {
-        _actions.PlayerHP.IsInvulnerable = false;
-        _actions.PlayerHP.IsParrying = true;
+        _actions.PlayerHP.ResetInvulerability();
     }
 }
