@@ -34,7 +34,6 @@ public class P1DBoomerang : Danu_State
         straightTime=0;
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
         fsm.transform.LookAt(straightTarget);
-        preview.LookAt(straightTarget);
         boomerangR.transform.localPosition=baseStartR;
         boomerangL.transform.localPosition=baseStartL;
         startL=boomerangL.transform.position;
@@ -46,7 +45,8 @@ public class P1DBoomerang : Danu_State
         preview.position = fsm.transform.position + (straightEnd - fsm.transform.position) / 2;
         preview.localScale = new Vector3(5, 1, Vector3.Distance(fsm.transform.position, straightEnd));
         preview.gameObject.SetActive(true);
-        
+        preview.LookAt(straightTarget);
+        SoundManager.Instance.PlayBossBoomerang();
         wait = true;
      
         waitTime=0;

@@ -62,6 +62,7 @@ public class P1CTeleportation : Danu_State
         fadeTime=0;
         active=0;
         reco=0;
+        fsm.agent.m_anims.SetInteger("Pattern",0);
     }
     public override void Init()
     {
@@ -138,6 +139,7 @@ public class P1CTeleportation : Danu_State
         }
         else if (reco <= maxReco)
         {
+            fsm.agent.m_anims.SetTrigger("TPOver");
             boomBoxAttackData.StopAttack();
             //boomBox.SetActive(false);
 
@@ -147,6 +149,9 @@ public class P1CTeleportation : Danu_State
         }
         else
         {
+            fsm.agent.m_anims.SetInteger("Pattern",-1);
+            fsm.agent.m_anims.ResetTrigger("TPOver");
+
             if (orig == null)
             {
                 fsm.agent.ToIdle();

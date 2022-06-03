@@ -65,7 +65,7 @@ public class P1CSlam : Danu_State
         Transform target = fsm.agent.GetPlayer();
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
         fsm.transform.LookAt(straightTarget);
-        
+        SoundManager.Instance.PlayBossRiseStart();
         _slamAttackDatas[_index].gameObject.SetActive(true);
     }
 
@@ -75,6 +75,7 @@ public class P1CSlam : Danu_State
         _state = 1;
         _slamAttackDatas[_index].LaunchAttack();
         _slamHitbox[_index].SetActive(true);
+        SoundManager.Instance.PlayBossRiseEnd();
 
     }
 

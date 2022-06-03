@@ -61,6 +61,7 @@ public class DanuAI : MonoBehaviour
     private float revengeSpeed;
     [SerializeField] bool isDebug;
     public bool GetFollowingGlobal(){return followsGlobal;}
+    public Animator m_anims;
     private void Awake() {
         if (m_fsm==null)
             m_fsm=GetComponent<Danu_FSM>();
@@ -114,6 +115,7 @@ public class DanuAI : MonoBehaviour
         else
             maxStunTime=sTime;
         isStun=true;
+        m_anims.SetBool("StunTime",true);
     }
     // Update is called once per frame
     void Update()
@@ -126,6 +128,7 @@ public class DanuAI : MonoBehaviour
             stunTime+=Time.deltaTime;
             if (stunTime>=maxStunTime)
             {
+                m_anims.SetBool("StunTime",false);
                 stunTime=0;
                 maxStunTime=0;
                 isStun=false;
@@ -175,6 +178,14 @@ public class DanuAI : MonoBehaviour
             {
                 m_fsm.SetTPDest(P1CTeleportation.destPoints.FAR);  
             }
+            switch(testState){
+                case StateNames.P1C_DASH:m_anims.SetInteger("Pattern",1); break;
+                case StateNames.P1C_MIXDASH:m_anims.SetInteger("Pattern",2); break;
+                case StateNames.P1C_SLAM:m_anims.SetInteger("Pattern",3); break;
+                case StateNames.P1D_BOOMERANG:m_anims.SetInteger("Pattern",4); break;
+                case StateNames.P1D_SHOOT:m_anims.SetInteger("Pattern",5); break;
+                case StateNames.P1R_SPIRALE:m_anims.SetInteger("Pattern",6); break;
+                case StateNames.P1D_SPIN:m_anims.SetInteger("Pattern",7); break;}
             m_fsm.ChangeState(testState);
             return;
             
@@ -184,19 +195,27 @@ public class DanuAI : MonoBehaviour
             float revengePercent=revenge*100/maxRevenge;
             if (goingRandom)
             {
-                int chance=Random.Range(1,7);
+                int chance=Random.Range(1,8);
                     switch (chance)
                     {
                         case 1:
                         
                             int rand=Random.Range(0,2);
                             if (rand==1)
+                            {
+                                m_anims.SetInteger("Pattern",2);
                                 m_fsm.ChangeState(StateNames.P1C_MIXDASH);
+                            }
                             else
+                            {
                                 m_fsm.ChangeState(StateNames.P1C_DASH);
+                                m_anims.SetInteger("Pattern",1);
+
+                            }
                             break;
                         case 2:
                             m_fsm.ChangeState(StateNames.P1C_SLAM);
+                                m_anims.SetInteger("Pattern",3);
                             break;
                         case 3:
                             Vector3 playerPos=player.position;
@@ -211,15 +230,23 @@ public class DanuAI : MonoBehaviour
                                 m_fsm.SetTPDest(P1CTeleportation.destPoints.CLOSE);  
                             }
                             m_fsm.ChangeState(StateNames.P1C_TELEPORTATION);
+                                m_anims.SetInteger("Pattern",0);
                             break;
                         case 4:
                             m_fsm.ChangeState(StateNames.P1D_BOOMERANG);
+                                m_anims.SetInteger("Pattern",4);
                             break;
                         case 5:
                             m_fsm.ChangeState(StateNames.P1D_SHOOT);
+                                m_anims.SetInteger("Pattern",5);
                             break;
                         case 6:
+                            m_fsm.ChangeState(StateNames.P1R_SPIRALE);
+                                m_anims.SetInteger("Pattern",6);
+                            break;                                   
+                        case 7:
                             m_fsm.ChangeState(StateNames.P1D_SPIN);
+                                m_anims.SetInteger("Pattern",7);
                             break;                    
 
                     }
@@ -231,6 +258,10 @@ public class DanuAI : MonoBehaviour
                 if (!goingRandom)
                     return;
             }
+        }
+        else 
+        {
+            followsGlobal=true;
         }
     }
     public void NextGlobalPattern()
