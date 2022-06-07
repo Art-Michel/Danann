@@ -25,7 +25,7 @@ public class EntityHP : MonoBehaviour
         UpdateHealthBar();
     }
 
-    public bool TakeDamage(int amount, string attackName, int plasmaRegainValue, int revengeGain = 0)
+    public virtual bool TakeDamage(int amount, string attackName, int plasmaRegainValue, int revengeGain = 0)
     {
         if (!_isInvulnerable)
         {

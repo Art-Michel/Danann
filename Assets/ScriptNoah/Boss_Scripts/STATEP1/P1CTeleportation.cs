@@ -149,7 +149,6 @@ public class P1CTeleportation : Danu_State
         }
         else
         {
-            fsm.agent.m_anims.SetInteger("Pattern",-1);
             fsm.agent.m_anims.ResetTrigger("TPOver");
 
             if (orig == null)

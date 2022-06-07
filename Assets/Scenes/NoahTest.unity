@@ -9311,7 +9311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expansionRate: 120
-  expansionLimits: 47.2
+  expansionLimits: 56.47
   isVFX: 1
 --- !u!199 &557311434
 ParticleSystemRenderer:
@@ -10650,11 +10650,11 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.07898478, b: 0, a: 0.25882354}
-        key1: {r: 1, g: 0.36335683, b: 0, a: 0.2784314}
-        key2: {r: 1, g: 0.047946326, b: 0, a: 0.25882354}
-        key3: {r: 1, g: 0, b: 0.036188602, a: 0.12156863}
-        key4: {r: 0, g: 0, b: 0, a: 0.12156863}
+        key0: {r: 0, g: 1, b: 0.77576256, a: 0.25882354}
+        key1: {r: 0, g: 1, b: 0.84967804, a: 0.2784314}
+        key2: {r: 0, g: 1, b: 0.74154973, a: 0.25882354}
+        key3: {r: 0, g: 1, b: 0.9381459, a: 0.12156863}
+        key4: {r: 1, g: 0, b: 0.036188602, a: 0.12156863}
         key5: {r: 0, g: 0, b: 0, a: 0.25882354}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
@@ -10662,7 +10662,7 @@ ParticleSystem:
         ctime1: 23516
         ctime2: 47031
         ctime3: 65535
-        ctime4: 0
+        ctime4: 65535
         ctime5: 0
         ctime6: 0
         ctime7: 0
@@ -24687,7 +24687,7 @@ PrefabInstance:
       objectReference: {fileID: 672744068}
     - target: {fileID: 8289406093843463521, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: testState
-      value: P1CTeleportation
+      value: P1CSlam
       objectReference: {fileID: 0}
     - target: {fileID: 8289406093843463521, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: globalStates
@@ -54763,6 +54763,10 @@ PrefabInstance:
     - target: {fileID: 3120902133637466486, guid: 293909d9f50a36a4c8a1bc00a098a96d, type: 3}
       propertyPath: m_Name
       value: Meteor
+      objectReference: {fileID: 0}
+    - target: {fileID: 3120902133637466486, guid: 293909d9f50a36a4c8a1bc00a098a96d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3120902133637466491, guid: 293909d9f50a36a4c8a1bc00a098a96d, type: 3}
       propertyPath: m_RootOrder

@@ -181,7 +181,7 @@ public class DanuAI : MonoBehaviour
             switch(testState){
                 case StateNames.P1C_DASH:m_anims.SetInteger("Pattern",1); break;
                 case StateNames.P1C_MIXDASH:m_anims.SetInteger("Pattern",2); break;
-                case StateNames.P1C_SLAM:m_anims.SetInteger("Pattern",3); break;
+                case StateNames.P1C_SLAM:m_anims.SetInteger("Pattern",3);Debug.Log("bulet");break;
                 case StateNames.P1D_BOOMERANG:m_anims.SetInteger("Pattern",4); break;
                 case StateNames.P1D_SHOOT:m_anims.SetInteger("Pattern",5); break;
                 case StateNames.P1R_SPIRALE:m_anims.SetInteger("Pattern",6); break;
@@ -230,7 +230,7 @@ public class DanuAI : MonoBehaviour
                                 m_fsm.SetTPDest(P1CTeleportation.destPoints.CLOSE);  
                             }
                             m_fsm.ChangeState(StateNames.P1C_TELEPORTATION);
-                                m_anims.SetInteger("Pattern",0);
+                               m_anims.SetInteger("Pattern",0);
                             break;
                         case 4:
                             m_fsm.ChangeState(StateNames.P1D_BOOMERANG);
@@ -326,7 +326,9 @@ public class DanuAI : MonoBehaviour
         m_fsm.GetProjectile().SetActive(true);
     }
     public void ToIdle()
-    {/*
+    {
+        m_anims.SetInteger("Pattern",-1);
+        /*
         chain=Mathf.Clamp(chain--,0,maxChain);
         if (phase==1)
         {

@@ -73,6 +73,8 @@ public class P1CSlam : Danu_State
     {
         _timer = 0;
         _state = 1;
+                if (_index == _maxSlamCount-1)
+            fsm.agent.m_anims.SetTrigger("RiseOver");
         _slamAttackDatas[_index].LaunchAttack();
         _slamHitbox[_index].SetActive(true);
         SoundManager.Instance.PlayBossRiseEnd();
@@ -83,6 +85,7 @@ public class P1CSlam : Danu_State
     {
         _timer = 0;
         _state = 2;
+
         _slamAttackDatas[_index].StopAttack();
         _slamAttackDatas[_index].gameObject.SetActive(false);
         _slamHitbox[_index].SetActive(false);

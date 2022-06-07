@@ -32,7 +32,10 @@ public class BossHealth : EntityHP
         _blinkingT -= Time.unscaledDeltaTime;
         if (_blinkingT <= 0) ResetBlinking();
     }
-
+    public override bool TakeDamage(int amount, string attackName, int plasmaRegainValue, int revengeGain = 0){
+        base.TakeDamage(amount,attackName,plasmaRegainValue,revengeGain);
+        return false;
+    }
     private void ResetBlinking()
     {
         _body.SetActive(true);
