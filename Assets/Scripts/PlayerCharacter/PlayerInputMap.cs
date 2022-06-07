@@ -363,6 +363,17 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""64c3c1f1-bf67-4daf-a3d8-5d623823638a"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""8c91295b-3e06-4f6c-a07a-b5b8e8a3bd2e"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",

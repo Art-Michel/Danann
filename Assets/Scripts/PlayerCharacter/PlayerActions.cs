@@ -90,8 +90,8 @@ public class PlayerActions : MonoBehaviour
         _inputs.Actions.ThrowL.canceled += _ => ThrowInput();
         _inputs.Actions.ThrowR.canceled += _ => ThrowInput();
 
-        _inputs.Actions.DashL.started += _ => ParryInput(_leftSpear);
-        _inputs.Actions.DashR.started += _ => ParryInput(_rightSpear);
+        /*_inputs.Actions.DashL.started += _ => ParryInput(_leftSpear);
+        _inputs.Actions.DashR.started += _ => ParryInput(_rightSpear);*/
     }
 
     #region Aiming and Throwing
