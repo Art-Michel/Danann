@@ -53,7 +53,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3423980711893007013, guid: 469d512d6cd43f543828512fc638424f, type: 3}
       propertyPath: m_Name
-      value: FlamePlane_2
+      value: VFX_Fire_orange
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784308059187469168, guid: 469d512d6cd43f543828512fc638424f, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3784308059187469168, guid: 469d512d6cd43f543828512fc638424f, type: 3}
       propertyPath: m_Materials.Array.data[0]
