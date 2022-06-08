@@ -7,7 +7,7 @@ using System;
 
 public class SpearAI : MonoBehaviour
 {
-    [SerializeField] bool _isLeft;
+    public bool IsLeft;
     [Required] SpearFeedbacks _spearFeedbacks;
 
     public Transform CclBody;
@@ -33,14 +33,6 @@ public class SpearAI : MonoBehaviour
     void Start()
     {
         _enemyInRange = false;
-    }
-
-    public void SetSpearWeight(int weight)
-    {
-        if (_isLeft)
-            _spearFeedbacks.SetCameraTargetWeight(2, weight);
-        else
-            _spearFeedbacks.SetCameraTargetWeight(3, weight);
     }
 
     internal void LaunchSwing()

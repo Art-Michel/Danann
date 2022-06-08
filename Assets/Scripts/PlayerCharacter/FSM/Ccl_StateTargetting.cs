@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ccl_StateKnockdown : Ccl_State
+public class Ccl_StateTargetting : Ccl_State
 {
-    public Ccl_StateKnockdown() : base(Ccl_StateNames.KKOCKDOWN)
+    public Ccl_StateTargetting() : base(Ccl_StateNames.TARGETTING)
     {
 
     }

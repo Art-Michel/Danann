@@ -14,7 +14,6 @@ public class Ccl_StateAiming : Ccl_State
     public override void Begin()
     {
         _actions.EnableCursor();
-        _feedbacks.SetCameraTargetWeight(4, 1);
         _feedbacks.PlayZoomInSfx();
         _feedbacks.ZoomCamera();
     }

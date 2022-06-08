@@ -6,10 +6,9 @@ using UnityEngine;
 public class Spear_FSM : MonoBehaviour
 {
     private Dictionary<string, Spear_State> states;
-    SpearAI _spearAi;
-    SpearFeedbacks _spearFeedbacks;
+    public SpearAI SpearAi { get; private set; }
+    public SpearFeedbacks SpearFeedbacks { get; private set; }
 
-    public bool IsLeft;
     public Spear_State currentState { get; private set; }
     public Spear_State previousState { get; private set; }
 
@@ -17,8 +16,8 @@ public class Spear_FSM : MonoBehaviour
     void Awake()
     {
         states = new Dictionary<string, Spear_State>();
-        _spearAi = GetComponent<SpearAI>();
-        _spearFeedbacks = GetComponent<SpearFeedbacks>();
+        SpearAi = GetComponent<SpearAI>();
+        this.SpearFeedbacks = GetComponent<SpearFeedbacks>();
     }
 
     void Start()
@@ -37,8 +36,8 @@ public class Spear_FSM : MonoBehaviour
     public void AddState(Spear_State state)
     {
         state._fsm = this;
-        state._ai = _spearAi;
-        state._feedbacks = _spearFeedbacks;
+        state._ai = SpearAi;
+        state._feedbacks = this.SpearFeedbacks;
         states[state.Name] = state;
     }
 

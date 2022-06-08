@@ -12,7 +12,7 @@ public class Spear_StateAttached : Spear_State
     public override void Begin()
     {
         _ai.AttachSpearToPlayer();
-        _ai.SetSpearWeight(0);
+        _feedbacks.SetSpearCameraTargetWeight(_ai.IsLeft, 0);
         _feedbacks.PlayReattach();
     }
 
@@ -23,6 +23,6 @@ public class Spear_StateAttached : Spear_State
 
     public override void Exit()
     {
-        _ai.SetSpearWeight(1);
+        
     }
 }

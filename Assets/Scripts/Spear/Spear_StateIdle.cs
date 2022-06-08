@@ -12,6 +12,7 @@ public class Spear_StateIdle : Spear_State
     public override void Begin()
     {
         _ai.AttackIfShouldAttack();
+        _feedbacks.SetSpearCameraTargetWeight(_ai.IsLeft, 1);
         _feedbacks.SetMeshRotation(Vector3.zero);
     }
 

@@ -7,6 +7,8 @@ using System;
 
 public class SpearFeedbacks : MonoBehaviour
 {
+    SpearAI _spearAi;
+    [SerializeField] GameObject _targetArrow;
     #region anim
     [SerializeField] Transform _mesh;
     Vector3 _swingingRot = new Vector3(0, 90, 90);
@@ -22,6 +24,8 @@ public class SpearFeedbacks : MonoBehaviour
     [Required][SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _reattach;
     [SerializeField] AudioClip _swing;
+    [SerializeField] AudioClip _target;
+    [SerializeField] AudioClip _unTarget;
 
     private void PlaySound(AudioClip clip, float volume)
     {
@@ -37,17 +41,61 @@ public class SpearFeedbacks : MonoBehaviour
     {
         PlaySound(_swing, 1f);
     }
+
+    public void PlayTargetSfx()
+    {
+        PlaySound(_target, 1f);
+    }
+
+    public void PlayUntargetSfx()
+    {
+        PlaySound(_unTarget, 1f);
+    }
     #endregion
+
+    void Awake()
+    {
+        _spearAi = GetComponent<SpearAI>();
+    }
 
     void Start()
     {
         _isSwinging = false;
     }
 
+    public void SetSpearCameraTargetWeight(bool isLeft, int weight)
+    {
+        if (isLeft) _targetGroup.m_Targets[2].weight = weight;
+        else _targetGroup.m_Targets[3].weight = weight;
+    }
+
+    public void SetSpearCameraTargetRadius(bool isLeft, int radius)
+    {
+        if (isLeft) _targetGroup.m_Targets[2].radius = radius;
+        else _targetGroup.m_Targets[3].radius = radius;
+    }
+
     public void SetCameraTargetWeight(int target, int weight)
     {
         _targetGroup.m_Targets[target].weight = weight;
     }
+
+
+    #region Targetting
+    public void TargettedFeedbacks()
+    {
+        SetSpearCameraTargetRadius(_spearAi.IsLeft, 5);
+        _targetArrow.SetActive(true);
+        PlayTargetSfx();
+    }
+
+    public void UntargettedFeedbacks()
+    {
+        SetSpearCameraTargetRadius(_spearAi.IsLeft, 4);
+        _targetArrow.SetActive(false);
+        PlayUntargetSfx();
+    }
+    #endregion
 
     #region animation
     [Button]
@@ -102,4 +150,6 @@ public class SpearFeedbacks : MonoBehaviour
         if (_isSwinging)
             AnimateSwing();
     }
+
+
 }

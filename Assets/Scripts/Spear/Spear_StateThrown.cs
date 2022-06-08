@@ -36,7 +36,7 @@ public class Spear_StateThrown : Spear_State
 
     public override void Exit()
     {
-        _ai.TravelingAttackData.StopAttack();
         _feedbacks.SetCameraTargetWeight(4, 0);
+        _ai.TravelingAttackData.StopAttack();
     }
 }

@@ -35,6 +35,7 @@ public class Ccl_FSM : MonoBehaviour
         AddState(new Ccl_StateParrying());
         AddState(new Ccl_StateRecalling());
         AddState(new Ccl_StateDodging());
+        AddState(new Ccl_StateTargetting());
 
         ChangeState(Ccl_StateNames.IDLE);
     }

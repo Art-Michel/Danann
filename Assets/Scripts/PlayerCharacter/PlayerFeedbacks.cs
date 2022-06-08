@@ -20,7 +20,7 @@ public class PlayerFeedbacks : MonoBehaviour
     #region  Plasma
     [SerializeField] AudioClip _segmentFill;
     #endregion
-    
+
     #region Aiming
     [SerializeField] Volume _volume;
     [SerializeField] GameObject _cursor;
@@ -101,6 +101,20 @@ public class PlayerFeedbacks : MonoBehaviour
         else
             _cursorSprite.color = Color.yellow;
     }
+    #endregion
+
+    #region Targetting feedbacks
+
+    internal void TargetFeedbacks()
+    {
+        ZoomCamera();
+    }
+
+    internal void UntargetFeedbacks()
+    {
+        UnzoomCamera();
+    }
+    
     #endregion
 
     #region Dodgeroll Feedbacks
@@ -244,4 +258,5 @@ public class PlayerFeedbacks : MonoBehaviour
                 StopShake();
         }
     }
+
 }

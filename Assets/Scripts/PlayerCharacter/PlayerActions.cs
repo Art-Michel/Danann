@@ -23,7 +23,7 @@ public class PlayerActions : MonoBehaviour
     //Feedbacks
     [Required] PlayerFeedbacks _playerFeedbacks;
 
-    #region Light Attack
+    #region Init Light Attack
     [Foldout("LightAttackFrameData"), SerializeField] float[] _lightStartup;
     public float GetStartupTime() { return _lightStartup[_currentLightAttackIndex]; }
     [Foldout("LightAttackFrameData"), SerializeField] float[] _lightActive;
@@ -38,13 +38,17 @@ public class PlayerActions : MonoBehaviour
     float _comboWindow = 0f;
     #endregion
 
-    #region Aiming
+    #region Init Targetting
+    Spear_FSM _currentlyTargettedSpear;
+    #endregion
+
+    #region Init Aiming
     [SerializeField] Transform _body;
     Spear_FSM _currentlyHeldSpear;
     [SerializeField] GameObject _cursor;
     #endregion
 
-    #region Dodge Rolling
+    #region Init Dodge Rolling
     public CharacterController Characon { get; private set; }
     public PlayerHP PlayerHP { get; private set; }
     bool _canDodge;
@@ -52,7 +56,7 @@ public class PlayerActions : MonoBehaviour
     const float _dodgeMaxCooldown = 0.25f;
     #endregion
 
-    #region Attacks Data
+    #region Init Attacks Data
     [Required][SerializeField] AttackData _lightAttack0Data;
     [Required][SerializeField] AttackData _lightAttack1Data;
     [Required][SerializeField] AttackData _lightAttack2Data;
@@ -61,11 +65,11 @@ public class PlayerActions : MonoBehaviour
 
     #endregion
 
-    #region Dashing
+    #region Init Dashing
     public Spear_FSM SpearDashedOn { get; private set; }
     #endregion
 
-    #region Parrying
+    #region Init Parrying
     public Spear_FSM SpearUsedToParry { get; private set; }
     #endregion
 
@@ -87,37 +91,51 @@ public class PlayerActions : MonoBehaviour
 
         _inputs.Actions.ThrowL.started += _ => AimInput(_leftSpear);
         _inputs.Actions.ThrowR.started += _ => AimInput(_rightSpear);
-        _inputs.Actions.ThrowL.canceled += _ => ThrowInput();
-        _inputs.Actions.ThrowR.canceled += _ => ThrowInput();
+        _inputs.Actions.ThrowL.canceled += _ => ThrowInput(_leftSpear);
+        _inputs.Actions.ThrowR.canceled += _ => ThrowInput(_rightSpear);
 
         /*_inputs.Actions.DashL.started += _ => ParryInput(_leftSpear);
         _inputs.Actions.DashR.started += _ => ParryInput(_rightSpear);*/
     }
 
-    #region Aiming and Throwing
+    #region Triggers Inputs
     private void AimInput(Spear_FSM spear)
     {
-        bool canBeRecalled = spear.currentState.Name == Spear_StateNames.IDLE;
-        canBeRecalled = canBeRecalled || spear.currentState.Name == Spear_StateNames.ATTACKING;
-        canBeRecalled = canBeRecalled || spear.currentState.Name == Spear_StateNames.TRIANGLING;
         if (_fsm.currentState.Name == Ccl_StateNames.IDLE && spear.currentState.Name == Spear_StateNames.ATTACHED)
+            StartAiming(spear);
+        else
         {
-            _currentlyHeldSpear = spear;
-            _fsm.ChangeState(Ccl_StateNames.AIMING);
-            spear.ChangeState(Spear_StateNames.AIMING);
+            bool canTarget = spear.currentState.Name != Spear_StateNames.ATTACHED;
+            canTarget = canTarget && spear.currentState.Name != Spear_StateNames.AIMING;
+            canTarget = canTarget && _fsm.currentState.Name != Ccl_StateNames.TARGETTING;
+            if (canTarget)
+                TargetSpear(spear);
         }
-        else if (_fsm.currentState.Name == Ccl_StateNames.IDLE && canBeRecalled)
-        {
-            _fsm.ChangeState(Ccl_StateNames.RECALLING);
-            spear.ChangeState(Spear_StateNames.RECALLED);
-        }
+    }
+
+    private void ThrowInput(Spear_FSM spear)
+    {
+        if (_fsm.currentState.Name == Ccl_StateNames.AIMING)
+            Throw();
+        else if (_fsm.currentState.Name == Ccl_StateNames.TARGETTING && _currentlyTargettedSpear == spear)
+            Recall();
+    }
+    #endregion
+
+    #region Aiming
+    void StartAiming(Spear_FSM spear)
+    {
+        _currentlyHeldSpear = spear;
+        _fsm.ChangeState(Ccl_StateNames.AIMING);
+        spear.ChangeState(Spear_StateNames.AIMING);
     }
 
     public void EnableCursor()
     {
         _cursor.transform.position = transform.position;
+        _playerFeedbacks.SetCameraTargetWeight(4, 1);
         _cursor.SetActive(true);
-        _playerFeedbacks.ChangeCursorColor(_currentlyHeldSpear.IsLeft);
+        _playerFeedbacks.ChangeCursorColor(_currentlyHeldSpear.SpearAi.IsLeft);
     }
 
     public void DisableCursor()
@@ -134,33 +152,61 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
-    private void ThrowInput()
-    {
-        if (_fsm.currentState.Name == Ccl_StateNames.AIMING)
-            Throw();
-    }
-
-    private void Throw()
-    {
-        _fsm.ChangeState(Ccl_StateNames.THROWING);
-        _currentlyHeldSpear.ChangeState(Spear_StateNames.THROWN);
-    }
-
     private void CancelAim()
     {
         {
             _fsm.ChangeState(Ccl_StateNames.IDLE);
             _currentlyHeldSpear.ChangeState(Spear_StateNames.ATTACHED);
             _currentlyHeldSpear = null;
-            _playerFeedbacks.SetCameraTargetWeight(4, 0);
         }
+    }
+    #endregion
+
+    #region Throwing
+
+    private void Throw()
+    {
+        _fsm.ChangeState(Ccl_StateNames.THROWING);
+        _currentlyHeldSpear.ChangeState(Spear_StateNames.THROWN);
+    }
+    #endregion
+
+    #region Targetting
+    void TargetSpear(Spear_FSM spear)
+    {
+        _currentlyTargettedSpear = spear;
+        _fsm.ChangeState(Ccl_StateNames.TARGETTING);
+
+        _playerFeedbacks.TargetFeedbacks();
+        _currentlyTargettedSpear.SpearFeedbacks.TargettedFeedbacks();
+    }
+
+    public void StopTargettingSpear()
+    {
+        _currentlyTargettedSpear.SpearFeedbacks.UntargettedFeedbacks();
+        _playerFeedbacks.UntargetFeedbacks();
+
+        _fsm.ChangeState(Ccl_StateNames.IDLE);
+        _currentlyTargettedSpear = null;
+    }
+    #endregion
+
+    #region Recalling
+    void Recall()
+    {
+        _fsm.ChangeState(Ccl_StateNames.RECALLING);
+        _currentlyTargettedSpear.ChangeState(Spear_StateNames.RECALLED);
+        StopTargettingSpear();
     }
     #endregion
 
     #region DodgeRoll
     private void DodgeInput()
     {
-        if ((_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKRECOVERY || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKSTARTUP) && _dodgeCooldown <= 0)
+        if (_currentlyTargettedSpear != null)
+            Dash(_currentlyTargettedSpear);
+
+        else if ((_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKRECOVERY || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKSTARTUP) && _dodgeCooldown <= 0)
             DodgeRoll();
 
         else if (_fsm.currentState.Name == Ccl_StateNames.AIMING)
@@ -190,10 +236,12 @@ public class PlayerActions : MonoBehaviour
     #region Light Attack
     private void LightAttackInput()
     {
-        if (_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKRECOVERY)
-            LightAttack();
+        if (_fsm.currentState.Name == Ccl_StateNames.TARGETTING)
+            StopTargettingSpear();
         else if (_fsm.currentState.Name == Ccl_StateNames.AIMING)
             CancelAim();
+        else if (_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKRECOVERY)
+            LightAttack();
     }
 
     private void LightAttack()
@@ -270,7 +318,7 @@ public class PlayerActions : MonoBehaviour
     #endregion
 
     #region Dash / Parry
-    void ParryInput(Spear_FSM spear)
+    /*void ParryInput(Spear_FSM spear)
     {
         bool canDash = _fsm.currentState.Name == Ccl_StateNames.IDLE;
         canDash = canDash || _fsm.currentState.Name == Ccl_StateNames.DODGING;
@@ -302,14 +350,14 @@ public class PlayerActions : MonoBehaviour
                     break;
             }
         }
-    }
+    }*/
 
-    private void BufferParry(Spear_FSM spear)
+    private void BufferParry()
     {
 
     }
 
-    private void BufferDash(Spear_FSM spear)
+    private void BufferDash()
     {
 
     }
@@ -319,6 +367,7 @@ public class PlayerActions : MonoBehaviour
         if (_playerPlasma.VerifyPlasma(Ccl_Attacks.DASHONSPEAR))
         {
             _playerPlasma.SpendPlasma(Ccl_Attacks.DASHONSPEAR);
+            StopTargettingSpear();
             SpearDashedOn = spear;
             _fsm.ChangeState(Ccl_StateNames.DASHING);
         }
@@ -332,12 +381,12 @@ public class PlayerActions : MonoBehaviour
         _DashAttackData.StopAttack();
     }
 
-    private void Parry(Spear_FSM spear)
+    private void Parry()
     {
         if (_playerPlasma.VerifyPlasma(Ccl_Attacks.PARRY))
         {
             _playerPlasma.SpendPlasma(Ccl_Attacks.PARRY);
-            SpearDashedOn = spear;
+            SpearDashedOn = _currentlyTargettedSpear;
             _fsm.ChangeState(Ccl_StateNames.PARRYING);
         }
     }
