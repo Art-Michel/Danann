@@ -11,11 +11,12 @@ public class BossHealth : EntityHP
     float _blinkingT = 0;
 
     [SerializeField] PlayerFeedbacks _playerFeedbacks;
-
+    DanuAI agent;
     [Required][SerializeField] GameObject _body;
 
     void Awake()
     {
+        agent=GetComponent<DanuAI>();
         _maxHealthPoints = 500;
     }
 
@@ -34,6 +35,9 @@ public class BossHealth : EntityHP
     }
     public override bool TakeDamage(int amount, string attackName, int plasmaRegainValue, int revengeGain = 0){
         base.TakeDamage(amount,attackName,plasmaRegainValue,revengeGain);
+        float percent = (HealthPoints/_maxHealthPoints)*100;
+        if (percent<50)
+            agent.NextPhase();
         return false;
     }
     private void ResetBlinking()

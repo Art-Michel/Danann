@@ -261,7 +261,111 @@ public class DanuAI : MonoBehaviour
         }
         else 
         {
-            followsGlobal=true;
+            phase=2;
+            NextP2Pattern();
+        }
+    } 
+    public void NextP2Pattern() 
+    {
+        if (isDebug)
+        {
+            Vector3 playerPos=player.position;
+            Vector3 agentPos=transform.position;
+            float dist=Vector3.Distance(playerPos,agentPos);
+            if (dist>distLimit)
+            {
+                m_fsm.SetTPDest(P1CTeleportation.destPoints.CLOSE);  
+            }
+            else
+            {
+                m_fsm.SetTPDest(P1CTeleportation.destPoints.FAR);  
+            }
+            switch(testState){
+                case StateNames.P1C_DASH:m_anims.SetInteger("Pattern",1); break;
+                case StateNames.P1C_MIXDASH:m_anims.SetInteger("Pattern",2); break;
+                case StateNames.P1C_SLAM:m_anims.SetInteger("Pattern",3);Debug.Log("bulet");break;
+                case StateNames.P1D_BOOMERANG:m_anims.SetInteger("Pattern",4); break;
+                case StateNames.P1D_SHOOT:m_anims.SetInteger("Pattern",5); break;
+                case StateNames.P1R_SPIRALE:m_anims.SetInteger("Pattern",6); break;
+                case StateNames.P1D_SPIN:m_anims.SetInteger("Pattern",7); break;}
+            m_fsm.ChangeState(testState);
+            return;
+            
+        }
+        if (phase==2)
+        {
+            float revengePercent=revenge*100/maxRevenge;
+            if (goingRandom)
+            {
+                int chance=Random.Range(1,8);
+                    switch (chance)
+                    {
+                        case 1:
+                        
+                            int rand=Random.Range(0,2);
+                            if (rand==1)
+                            {
+                                m_anims.SetInteger("Pattern",2);
+                                m_fsm.ChangeState(StateNames.P2C_MIXDASH);
+                            }
+                            else
+                            {
+                                m_fsm.ChangeState(StateNames.P2C_DASH);
+                                m_anims.SetInteger("Pattern",1);
+
+                            }
+                            break;
+                        case 2:
+                            m_fsm.ChangeState(StateNames.P2C_SLAM);
+                                m_anims.SetInteger("Pattern",3);
+                            break;
+                        case 3:
+                            Vector3 playerPos=player.position;
+                            Vector3 agentPos=transform.position;
+                            float dist=Vector3.Distance(playerPos,agentPos);
+                            if (dist>distLimit)
+                            {
+                                m_fsm.SetTPDest(P1CTeleportation.destPoints.FAR);  
+                            }
+                            else
+                            {
+                                m_fsm.SetTPDest(P1CTeleportation.destPoints.CLOSE);  
+                            }
+                            m_fsm.ChangeState(StateNames.P2C_TELEPORTATION);
+                               m_anims.SetInteger("Pattern",0);
+                            break;
+                        case 4:
+                            m_fsm.ChangeState(StateNames.P2D_BOOMERANG);
+                                m_anims.SetInteger("Pattern",4);
+                            break;
+                        case 5:
+                            m_fsm.ChangeState(StateNames.P2D_SHOOT);
+                                m_anims.SetInteger("Pattern",5);
+                            break;
+                        case 6:
+                            m_fsm.ChangeState(StateNames.P2R_SPIRALE);
+                                m_anims.SetInteger("Pattern",6);
+                            break;                                   
+                        case 7:
+                            m_fsm.ChangeState(StateNames.P2D_SPIN);
+                                m_anims.SetInteger("Pattern",7);
+                            break;                    
+
+                    }
+                    return;
+            }
+            else
+            {
+               // m_fsm.ChangeState(StateNames.P1C_MIXDASH);
+                if (!goingRandom)
+                    return;
+            }
+            
+        }
+        else 
+        {
+            phase=2;
+            NextP2Pattern();
         }
     }
     public void NextGlobalPattern()
@@ -315,7 +419,6 @@ public class DanuAI : MonoBehaviour
             return;
         phase++;
         //Add all P2 states and remove all P1 states
-        NextPattern();
     }
     public int GetPhase() { return phase; }
     public Transform GetPlayer(){return player;}
