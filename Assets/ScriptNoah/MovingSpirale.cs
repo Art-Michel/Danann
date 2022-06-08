@@ -83,8 +83,8 @@ public class MovingSpirale : MonoBehaviour
             activeBullets.Add(go);
             go.transform.position=transform.position;
             go.SetActive(true);
-            go.GetComponent<Projectiles>().SetOrigin(pool);
-
+            Projectiles prooj= go.GetComponent<Projectiles>();
+            prooj.SetOrigin(pool);
             Vector2 pos=new Vector2(go.transform.position.x,go.transform.position.z);
             float rad= angle*Mathf.Deg2Rad;
             pos=new Vector2(Mathf.Cos(rad*index),Mathf.Sin( rad*index));

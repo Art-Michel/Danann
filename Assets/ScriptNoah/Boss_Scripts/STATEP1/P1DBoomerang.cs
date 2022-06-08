@@ -48,7 +48,6 @@ public class P1DBoomerang : Danu_State
         preview.LookAt(straightTarget);
         SoundManager.Instance.PlayBossBoomerang();
         wait = true;
-     
         waitTime=0;
     }
     public override void Init()
