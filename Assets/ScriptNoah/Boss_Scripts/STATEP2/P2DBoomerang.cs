@@ -32,7 +32,6 @@ public class P2DBoomerang : Danu_State
         Init();
         curveTime=0;
         straightTime=0;
-        boomerangAttackData.LaunchAttack();
         fsm.transform.LookAt(new Vector3(target.position.x,0,target.position.z));
         boomerangR1.transform.localPosition=baseStartR1;
         boomerangL1.transform.localPosition=baseStartL1;
@@ -90,7 +89,10 @@ public class P2DBoomerang : Danu_State
         {
             waitTime += Time.deltaTime;
             if (waitTime >= maxWaitTime)
+            {
                 wait = false;
+                boomerangAttackData.LaunchAttack();
+            }
             return;
         }
         if (startCurve)
@@ -114,6 +116,7 @@ public class P2DBoomerang : Danu_State
         cond = cond||boomerangL2.transform.position == curveStartL2;
         cond = cond||boomerangR2.transform.position==curveStartR2;
         cond = cond||boomerangR1.transform.position==curveStartR1;
+        cond=cond||straightTime>=MaxStraightTime;
         if (cond)
         {    
             preview.gameObject.SetActive(false);

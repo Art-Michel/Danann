@@ -25,14 +25,15 @@ public class MovingSpirale : MonoBehaviour
     [SerializeField] float sinIndex;
     public float lifetime{get;private set;}
     List<GameObject> activeBullets=new List<GameObject>();
+    [SerializeField] Transform preview;
     // Start is called before the first frame update
     void Start()
     {
         pool=transform.parent.GetComponent<Pool>();
         Vector3 dir=(-arenaCenter+transform.position).normalized;
-        transform.position=arenaCenter;
+        //transform.position=arenaCenter;
         dir*=radius;
-        transform.position+=dir;
+        //transform.position+=dir;
     }
 
     // Update is called once per frame

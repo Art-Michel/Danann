@@ -170,6 +170,9 @@ public class P2DMixDash : Danu_State
             preview.position=Vector3.Lerp(preview.position, startPos+(dir*dashSpeed*maxDashTime)/2,1);
             Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
             preview.LookAt(straightTarget);
+            Quaternion rot=Quaternion.identity;
+            rot.eulerAngles=new Vector3(0,preview.rotation.eulerAngles.y,preview.rotation.eulerAngles.z);
+            preview.rotation=rot;
             preview.localScale=new Vector3(fsm.transform.localScale.x,fsm.transform.localScale.y,maxDashTime*dashSpeed);
             return;
         }
@@ -224,6 +227,11 @@ public class P2DMixDash : Danu_State
         preview.position = startPos + (dir * dashSpeed * maxDashTime) / 2;
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
         preview.LookAt(straightTarget);
+        Quaternion rot=Quaternion.identity;
+        rot.eulerAngles=new Vector3(0,preview.rotation.eulerAngles.y,preview.rotation.eulerAngles.z);
+        preview.rotation=rot;
+
+    
         preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, maxDashTime * dashSpeed);
     }
 

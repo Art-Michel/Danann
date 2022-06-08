@@ -22,6 +22,10 @@ public class Projectiles : MonoBehaviour
         transform.LookAt(target);
         if (maxLifeTime == 0)
             maxLifeTime = 12;
+        if (nbTurn==0)
+        {
+            maxLifeTime=8;
+        }
     }
     private void OnEnable()
     {
@@ -71,5 +75,5 @@ public class Projectiles : MonoBehaviour
         origin = pool;
     }
     public void SetSpeed(float newSpeed) { speed = newSpeed; }
-    public void SetLifeTime(float newLT) { maxLifeTime = newLT; }
+    public void SetLifeTime(float newLT) {if (nbTurn!=0) maxLifeTime = newLT; }
 }

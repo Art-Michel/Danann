@@ -18,12 +18,12 @@ public class P1RSpirale : Danu_State
     bool wait;
     private float waitTime;
     private float maxWaitTime;
-
+    private Transform preview;
     public override void Init()
     {
         base.Init();
         arenaCenter=fsm.agent.GetArenaCenter();
-        arenaRadius=fsm.agent.GetArenaRadius();
+        arenaRadius=fsm.agent.GetArenaRadius()+1.2f;
         pool=fsm.GetRosacePool();
         proj = fsm.GetStraightProj();
         nb=fsm.GetRosaceNumber();
@@ -31,6 +31,8 @@ public class P1RSpirale : Danu_State
         maxDelay=fsm.GetRosaceDelay();
         maxWaitTime=fsm.GetP1MaxWaitTime();
         spirales=new GameObject[nb];
+        preview = fsm.GetP1sD_Preview();
+
     }
     // Start is called before the first frame update
     public override void Begin()
@@ -39,6 +41,10 @@ public class P1RSpirale : Danu_State
             Init();
         lifetime=nbBullets*maxDelay+5;
         waitTime=0;
+        preview.localScale = new Vector3(1, 1, Vector3.Distance(fsm.transform.position, fsm.agent.GetArenaCenter()));
+        preview.position = fsm.transform.position + (fsm.agent.GetArenaCenter() - fsm.transform.position) / 2;
+        preview.LookAt(fsm.agent.GetArenaCenter());
+        preview.gameObject.SetActive(true);
         wait=true;
 
     }
@@ -54,6 +60,7 @@ public class P1RSpirale : Danu_State
             if (waitTime >= maxWaitTime)
             {
                 wait = false;
+                preview.gameObject.SetActive(false);
                 Start();
             }
             else
