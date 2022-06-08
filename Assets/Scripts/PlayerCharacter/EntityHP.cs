@@ -9,7 +9,7 @@ public class EntityHP : MonoBehaviour
 {
     public float HealthPoints { get; protected set; }
     protected float _maxHealthPoints = 1;
-    public bool IsInvulnerable { get { return _isInvulnerable;} set { _isInvulnerable = value;} }
+    public bool IsInvulnerable { get { return _isInvulnerable; } set { _isInvulnerable = value; } }
     bool _isInvulnerable;
     [Required][SerializeField] PlayerPlasma _playerplasma;
     [Required][SerializeField] Image _healthBar;

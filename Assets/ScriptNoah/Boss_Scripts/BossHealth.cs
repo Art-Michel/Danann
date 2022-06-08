@@ -16,7 +16,7 @@ public class BossHealth : EntityHP
 
     void Awake()
     {
-        agent=GetComponent<DanuAI>();
+        agent = GetComponent<DanuAI>();
         _maxHealthPoints = 500;
     }
 
@@ -33,13 +33,14 @@ public class BossHealth : EntityHP
         _blinkingT -= Time.unscaledDeltaTime;
         if (_blinkingT <= 0) ResetBlinking();
     }
-    public override bool TakeDamage(int amount, string attackName, int plasmaRegainValue, int revengeGain = 0){
-        base.TakeDamage(amount,attackName,plasmaRegainValue,revengeGain);
-        float percent = (HealthPoints/_maxHealthPoints)*100;
-        if (percent<50)
+    public override bool TakeDamage(int amount, string attackName, int plasmaRegainValue, int revengeGain = 0)
+    {
+        float percent = (HealthPoints / _maxHealthPoints) * 100;
+        if (percent < 50)
             agent.NextPhase();
-        return false;
+        return base.TakeDamage(amount, attackName, plasmaRegainValue, revengeGain);
     }
+
     private void ResetBlinking()
     {
         _body.SetActive(true);
