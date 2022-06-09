@@ -2685,6 +2685,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
+--- !u!1 &546641021 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5687422708530208713, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
+  m_PrefabInstance: {fileID: 546641020}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &546641022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546641021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc5d6bc236c9d446843086cc04f2348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &546777080
 GameObject:
   m_ObjectHideFlags: 0
@@ -3990,6 +4007,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 372751715, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 20423502006755893, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _healthBar
       value: 
@@ -20623,6 +20644,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 902433842}
+    - target: {fileID: 8289406093843463521, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: isDebug
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8289406093843463521, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: m_anims
       value: 

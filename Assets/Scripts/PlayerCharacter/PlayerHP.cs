@@ -30,6 +30,7 @@ public class PlayerHP : EntityHP
     //Init
     PlayerFeedbacks _playerFeedbacks;
     PlayerPlasma _playerPlasma;
+    Ccl_FSM _fsm;
 
     Hurtbox _hurtbox;
 
@@ -38,6 +39,7 @@ public class PlayerHP : EntityHP
         _hurtbox = GetComponent<Hurtbox>();
         _playerFeedbacks = GetComponent<PlayerFeedbacks>();
         _playerPlasma = GetComponent<PlayerPlasma>();
+        _fsm = GetComponent<Ccl_FSM>();
         _maxHealthPoints = 100;
     }
 
@@ -60,9 +62,12 @@ public class PlayerHP : EntityHP
         if (_isBlinking) _body.gameObject.SetActive(!_body.gameObject.activeSelf);
     }
 
-    protected override void Parry()
+    protected override void Parry(GameObject obj)
     {
         _playerFeedbacks.PlayParryTriggerSfx();
+        Ccl_StateParrying stateParrying = _fsm.currentState as Ccl_StateParrying;
+        stateParrying.ParryT = 0f;
+        obj.SetActive(false);
 
         //Refund Parry cost
         _playerPlasma.IncreasePlasma(_playerPlasma._plasmaCost[Ccl_Attacks.PARRY]);

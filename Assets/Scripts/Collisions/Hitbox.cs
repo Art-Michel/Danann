@@ -72,7 +72,7 @@ public class Hitbox : MonoBehaviour
         foreach (Hurtbox hurtbox in _hurtboxesToFocus)
         {
             if (CheckDistance(hurtbox))
-                hurtbox.TakeHit(_attackName, _attackDamage, _plasmaRegainValue);
+                hurtbox.TakeHit(gameObject, _attackName, _attackDamage, _plasmaRegainValue);
         }
     }
 

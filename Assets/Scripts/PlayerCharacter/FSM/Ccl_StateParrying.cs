@@ -9,14 +9,14 @@ public class Ccl_StateParrying : Ccl_State
 
     }
 
-    private const float _parryDuration = 0.5f;
-    float _parryT = 0;
+    private const float _parryDuration = 1f;
+    public float ParryT = 0;
 
     public override void Begin()
     {
         _actions.PlayerHP.IsInvulnerable = true;
         _actions.PlayerHP.IsParrying = true;
-        _parryT = 0;
+        ParryT = 0;
 
         _actions.PlayerHP.ParryingText();
         _feedbacks.PlayParrySfx();
@@ -24,8 +24,8 @@ public class Ccl_StateParrying : Ccl_State
 
     public override void StateUpdate()
     {
-        _parryT += Time.deltaTime;
-        if (_parryT >= _parryDuration)
+        ParryT += Time.deltaTime;
+        if (ParryT >= _parryDuration)
             _fsm.ChangeState(Spear_StateNames.IDLE);
     }
 

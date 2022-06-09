@@ -109,7 +109,6 @@ public class PlayerActions : MonoBehaviour
             canBeTargetted = canBeTargetted || spear.currentState.Name == Spear_StateNames.ATTACKING;
             canBeTargetted = canBeTargetted || spear.currentState.Name == Spear_StateNames.THROWN;
             bool canTarget = _fsm.currentState.Name != Ccl_StateNames.TARGETTING;
-            Debug.LogWarning("canTarget is " + canTarget + " and canBeTargetted is " + canBeTargetted);
             if (canTarget && canBeTargetted)
                 TargetSpear(spear);
         }
@@ -171,6 +170,7 @@ public class PlayerActions : MonoBehaviour
     {
         _fsm.ChangeState(Ccl_StateNames.THROWING);
         _currentlyHeldSpear.ChangeState(Spear_StateNames.THROWN);
+        _currentlyHeldSpear = null;
     }
     #endregion
 
@@ -366,7 +366,6 @@ public class PlayerActions : MonoBehaviour
         if (_playerPlasma.VerifyPlasma(Ccl_Attacks.PARRY))
         {
             _playerPlasma.SpendPlasma(Ccl_Attacks.PARRY);
-            SpearDashedOn = _currentlyTargettedSpear;
             _fsm.ChangeState(Ccl_StateNames.PARRYING);
         }
     }

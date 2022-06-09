@@ -33,7 +33,7 @@ public class BossHealth : EntityHP
         _blinkingT -= Time.unscaledDeltaTime;
         if (_blinkingT <= 0) ResetBlinking();
     }
-    public override bool TakeDamage(int amount, string attackName, int plasmaRegainValue, int revengeGain = 0)
+    public override bool TakeDamage(int amount, string attackName, int plasmaRegainValue, int revengeGain = 0, GameObject obj = null)
     {
         float percent = (HealthPoints / _maxHealthPoints) * 100;
         if (percent < 50)

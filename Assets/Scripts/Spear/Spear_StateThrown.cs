@@ -20,7 +20,7 @@ public class Spear_StateThrown : Spear_State
         _startingPosition = _ai.transform.position;
         _destination = new Vector3(_ai.Cursor.transform.position.x, _ai.transform.position.y, _ai.Cursor.transform.position.z);
 
-        _feedbacks.SetMeshUp(_destination-_startingPosition);
+        _feedbacks.SetMeshUp(_destination - _startingPosition);
 
         _t = 0;
         _ai.TravelingAttackData.LaunchAttack();

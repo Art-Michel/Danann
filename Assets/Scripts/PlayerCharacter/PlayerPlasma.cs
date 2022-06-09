@@ -39,7 +39,7 @@ public class PlayerPlasma : MonoBehaviour
 
     public bool VerifyPlasma(string skill)
     {
-        if (PlasmaPoints > _plasmaCost[skill] * _plasmaPerSegment)
+        if (PlasmaPoints >= _plasmaCost[skill] * _plasmaPerSegment)
             return true;
         else
             _playerFeedbacks.PlayErrorSfx();

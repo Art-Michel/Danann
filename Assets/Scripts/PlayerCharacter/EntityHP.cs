@@ -25,7 +25,7 @@ public class EntityHP : MonoBehaviour
         UpdateHealthBar();
     }
 
-    public virtual bool TakeDamage(int amount, string attackName, int plasmaRegainValue, int revengeGain = 0)
+    public virtual bool TakeDamage(int amount, string attackName, int plasmaRegainValue, int revengeGain = 0,GameObject obj = null)
     {
         if (!_isInvulnerable)
         {
@@ -40,8 +40,8 @@ public class EntityHP : MonoBehaviour
         }
         else if (IsParrying)
         {
-            Parry();
-            return true;
+            Parry(obj);
+            return false;
         }
         else
         {
@@ -77,7 +77,7 @@ public class EntityHP : MonoBehaviour
     {
     }
 
-    protected virtual void Parry()
+    protected virtual void Parry(GameObject obj)
     {
 
     }
