@@ -25,16 +25,16 @@ public class PlayerActions : MonoBehaviour
 
     #region Init Light Attack
     [Foldout("LightAttackFrameData"), SerializeField] float[] _lightStartup;
-    public float GetStartupTime() { return _lightStartup[_currentLightAttackIndex]; }
+    public float GetStartupTime() { return _lightStartup[CurrentLightAttackIndex]; }
     [Foldout("LightAttackFrameData"), SerializeField] float[] _lightActive;
-    public float GetActiveTime() { return _lightActive[_currentLightAttackIndex]; }
+    public float GetActiveTime() { return _lightActive[CurrentLightAttackIndex]; }
     [Foldout("LightAttackFrameData"), SerializeField] float[] _lightRecovery;
-    public float GetRecoveryTime() { return _lightRecovery[_currentLightAttackIndex]; }
+    public float GetRecoveryTime() { return _lightRecovery[CurrentLightAttackIndex]; }
     [Foldout("LightAttackFrameData"), SerializeField] float[] _moveSpeedWhileAttacking;
-    public float GetAttackingMoveSpeed() { return _moveSpeedWhileAttacking[_currentLightAttackIndex]; }
+    public float GetAttackingMoveSpeed() { return _moveSpeedWhileAttacking[CurrentLightAttackIndex]; }
 
 
-    public int _currentLightAttackIndex { get; private set; } = 0;
+    public int CurrentLightAttackIndex { get; private set; } = 0;
     float _comboWindow = 0f;
     #endregion
 
@@ -255,15 +255,15 @@ public class PlayerActions : MonoBehaviour
 
     public void IncreaseLightAttackIndex()
     {
-        if (_currentLightAttackIndex < 2)
-            _currentLightAttackIndex++;
+        if (CurrentLightAttackIndex < 2)
+            CurrentLightAttackIndex++;
         else
-            _currentLightAttackIndex = 0;
+            CurrentLightAttackIndex = 0;
     }
 
     public void EnableLightAttackHitbox()
     {
-        switch (_currentLightAttackIndex)
+        switch (CurrentLightAttackIndex)
         {
             case 0:
                 _lightAttack0Data.LaunchAttack();
@@ -279,7 +279,7 @@ public class PlayerActions : MonoBehaviour
 
     public void SlowDownDuringAttack()
     {
-        switch (_currentLightAttackIndex)
+        switch (CurrentLightAttackIndex)
         {
             case 0:
                 this.PlayerMovement.MovementSpeed = this.PlayerMovement._normalSpeed * _moveSpeedWhileAttacking[0];
@@ -300,7 +300,7 @@ public class PlayerActions : MonoBehaviour
 
     public void DisableLightAttackHitbox()
     {
-        switch (_currentLightAttackIndex)
+        switch (CurrentLightAttackIndex)
         {
             case 0:
                 _lightAttack0Data.StopAttack();
@@ -378,7 +378,7 @@ public class PlayerActions : MonoBehaviour
         {
             _comboWindow -= Time.deltaTime;
         }
-        if (_comboWindow <= 0) _currentLightAttackIndex = 0;
+        if (_comboWindow <= 0) CurrentLightAttackIndex = 0;
 
         if (!_canDodge)
         {

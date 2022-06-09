@@ -25,6 +25,7 @@ public class PlayerFeedbacks : MonoBehaviour
     [SerializeField] Volume _volume;
     [SerializeField] GameObject _cursor;
     SpriteRenderer _cursorSprite;
+    Color orange = new Color(1,0.6f,0);
 
     Vignette _vignette;
 
@@ -72,6 +73,10 @@ public class PlayerFeedbacks : MonoBehaviour
     float _shakeT;
     #endregion
 
+    #region Animations
+    [Required][SerializeField] Animator _animator;
+    #endregion
+
     [Required][SerializeField] CinemachineTargetGroup _targetGroup;
 
     void Awake()
@@ -82,6 +87,13 @@ public class PlayerFeedbacks : MonoBehaviour
         _playerActions = GetComponent<PlayerActions>();
         if (_volume) _volume.profile.TryGet<Vignette>(out _vignette);
     }
+
+    #region Animations
+    public void SetAnimationTrigger(string trigger)
+    {
+        _animator.SetTrigger(trigger);
+    }
+    #endregion
 
     #region Aiming Feedbacks
     public void ZoomCamera()
@@ -97,14 +109,13 @@ public class PlayerFeedbacks : MonoBehaviour
     public void ChangeCursorColor(bool isLeft)
     {
         if (isLeft)
-            _cursorSprite.color = Color.cyan;
+            _cursorSprite.color = orange;
         else
-            _cursorSprite.color = Color.yellow;
+            _cursorSprite.color = Color.blue;
     }
     #endregion
 
     #region Targetting feedbacks
-
     internal void TargetFeedbacks()
     {
         ZoomCamera();
@@ -114,10 +125,10 @@ public class PlayerFeedbacks : MonoBehaviour
     {
         UnzoomCamera();
     }
-    
     #endregion
 
     #region Dodgeroll Feedbacks
+
     public void SetTrailRenderer(bool enabled, bool emitting)
     {
         _bodyTrailRenderer.enabled = enabled;
@@ -133,7 +144,7 @@ public class PlayerFeedbacks : MonoBehaviour
 
     public void PlayPunchSfx()
     {
-        switch (_playerActions._currentLightAttackIndex)
+        switch (_playerActions.CurrentLightAttackIndex)
         {
             case 0:
                 PlayPunch0();
