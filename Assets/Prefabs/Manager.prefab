@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5687422708530208711}
   - component: {fileID: 5687422708530208712}
   - component: {fileID: 5687422708530208709}
+  - component: {fileID: 546641022}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -49,6 +50,14 @@ MonoBehaviour:
   _blockedHit: {fileID: 8300000, guid: ad669621ff865374e9db99d32c91bd0a, type: 3}
   _bossPunchedH: {fileID: 8300000, guid: f4189285134eabf45bae326984d3704f, type: 3}
   _bossSwinged: {fileID: 8300000, guid: e0b913ef99f982e44aae2d866298fe81, type: 3}
+  _bossTPIn: {fileID: 0}
+  _bossTPOut: {fileID: 0}
+  _bossShoot: {fileID: 0}
+  _bossStartRise: {fileID: 0}
+  _bossEndRise: {fileID: 0}
+  _bossDash: {fileID: 0}
+  _bossBoomerang: {fileID: 0}
+  _bossAllOut: {fileID: 0}
 --- !u!82 &5687422708530208712
 AudioSource:
   m_ObjectHideFlags: 0
@@ -162,3 +171,15 @@ MonoBehaviour:
   - {fileID: 0}
   AllyHurtboxes:
   - {fileID: 0}
+--- !u!114 &546641022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5687422708530208713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc5d6bc236c9d446843086cc04f2348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

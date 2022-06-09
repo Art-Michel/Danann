@@ -19,6 +19,7 @@ public class Ccl_StateDodging : Ccl_State
     public override void Begin()
     {
         _wantedDirection = _actions.PlayerMovement.GetOrientation();
+        _feedbacks.SetAnimationTrigger("Dash");
         //_actions.PlayerHP._isInvulnerable = true;
         _dodgeT = 0;
 

@@ -15,6 +15,7 @@ public class Ccl_StateLightAttacking : Ccl_State
     public override void Begin()
     {
         //_feedbacks. Lancer l'animation
+        _feedbacks.SetAnimationTrigger("Light_Attack_0" + (_actions.CurrentLightAttackIndex + 1).ToString());
         _feedbacks.PlayPunchSfx();
         _t = 0;
         _max = _actions.GetActiveTime();
@@ -24,7 +25,7 @@ public class Ccl_StateLightAttacking : Ccl_State
 
     public override void StateUpdate()
     {
-        _t+= Time.deltaTime;
+        _t += Time.deltaTime;
         if (_t >= _max)
             _fsm.ChangeState(Ccl_StateNames.LIGHTATTACKRECOVERY);
     }

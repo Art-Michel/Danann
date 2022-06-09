@@ -19,7 +19,7 @@ public class PlayerHP : EntityHP
 
     //blinking (same length as invul)
     private bool _isBlinking;
-    [SerializeField] MeshRenderer _body;
+    [SerializeField] GameObject _body;
     #endregion
 
     //invul
@@ -59,7 +59,7 @@ public class PlayerHP : EntityHP
 
     void FixedUpdate()
     {
-        if (_isBlinking) _body.gameObject.SetActive(!_body.gameObject.activeSelf);
+        if (_isBlinking) _body.gameObject.SetActive(!_body.activeSelf);
     }
 
     protected override void Parry(GameObject obj)
@@ -118,7 +118,7 @@ public class PlayerHP : EntityHP
     //post damage blinking while invul
     private void ResetBlinking()
     {
-        _body.gameObject.SetActive(true);
+        _body.SetActive(true);
         _isBlinking = false;
     }
     #endregion

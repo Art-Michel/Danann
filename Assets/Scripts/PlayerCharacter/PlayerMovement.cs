@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     CharacterController _charaCon;
     Ccl_FSM _fsm;
     [SerializeField] CursorMovement _cursorMovement;
+    [SerializeField] Animator _animator;
+    float _animationSpeed;
 
     bool _isMoving;
     public bool CanWalk;
@@ -38,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
         _isMoving = false;
         _wantedDirection = Vector3.zero;
         _easeInValue = 0;
+        _animationSpeed = 0f;
         _rb = GetComponent<Rigidbody>();
     }
 
@@ -54,21 +57,30 @@ public class PlayerMovement : MonoBehaviour
             EaseInMovement();
             Move();
         }
+            AnimateWalk();
 
         if (_rb.IsSleeping())
             _rb.WakeUp();
     }
 
+    private void AnimateWalk()
+    {
+        if (_isMoving)
+            _animationSpeed = Mathf.InverseLerp(0, _normalSpeed, MovementSpeed * _easeInValue * _inputs.Movement.Move.ReadValue<Vector2>().sqrMagnitude);
+        else _animationSpeed = Mathf.Clamp(_animationSpeed - Time.deltaTime * 10, 0, 1);
+        _animator.SetFloat("Blend_Idle_Sprint", _animationSpeed);
+    }
+
     private void ReadMovementInputs(InputAction.CallbackContext obj)
     {
         _isMoving = true;
-        _easeInValue = 0;
     }
 
     private void StopReadingMovementInputs(InputAction.CallbackContext obj)
     {
         _isMoving = false;
         _wantedDirection = Vector3.zero;
+        _easeInValue = 0;
     }
 
     public void ResetMovementSpeed()
@@ -89,13 +101,14 @@ public class PlayerMovement : MonoBehaviour
     {
         _wantedDirection = new Vector3(_inputs.Movement.Move.ReadValue<Vector2>().x, 0, _inputs.Movement.Move.ReadValue<Vector2>().y);
         _charaCon.Move(_wantedDirection * MovementSpeed * _easeInValue * Time.deltaTime);
+
         if (_cursorMovement)
         {
             _cursorMovement.WantedDirection = _wantedDirection;
             _cursorMovement.EaseInValue = 1;
         }
 
-        if (_fsm.currentState.Name == Ccl_StateNames.IDLE) RotateBody();
+        if (_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.TARGETTING) RotateBody();
     }
 
     private void RotateBody()
