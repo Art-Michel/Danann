@@ -45,15 +45,32 @@ public class Laser : MonoBehaviour
             Delay();
             return;
         }
+        VolumeUpdate();
         MoveTip();
         Live();
         
     }
+
+    private void VolumeUpdate()
+    {
+        if (goUp)
+        {
+            volumeTime=Mathf.Clamp( volumeTime+Time.deltaTime,0,1);
+            _volume.weight=Mathf.Lerp(0,1,volumeTime);
+        }
+        else
+        {
+            volumeTime=Mathf.Clamp( volumeTime-Time.deltaTime,0,1);
+            _volume.weight=Mathf.Lerp(0,1,volumeTime);
+        }
+    }
+
     void Delay()
     {
             delay-=Time.deltaTime;
             if (delay<=0)
             {
+                goUp=true;
                 preview.SetActive(false);
                 StartShaking(lifetime, secondShakeForce);
                 gather.SetActive(false);
@@ -73,6 +90,7 @@ public class Laser : MonoBehaviour
             {
                 ps.Stop();
             }
+            goUp=false;
         }
     }
 
@@ -103,8 +121,10 @@ public class Laser : MonoBehaviour
     private List<ShakeConfig> m_configs = new List<ShakeConfig>();
 	private bool m_isShaking = false;
 	private Vector3 m_originalPos = Vector3.zero;
+    private float volumeTime;
+    private bool goUp;
 
-	public void StartShaking( float time, float force ) {
+    public void StartShaking( float time, float force ) {
 		this.m_originalPos = cam.transform.position;
 
 		ShakeConfig config = new ShakeConfig( time, force );
