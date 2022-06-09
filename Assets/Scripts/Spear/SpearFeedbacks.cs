@@ -84,16 +84,16 @@ public class SpearFeedbacks : MonoBehaviour
     #region Targetting
     public void TargettedFeedbacks()
     {
-        SetSpearCameraTargetRadius(_spearAi.IsLeft, 5);
+        SetSpearCameraTargetRadius(_spearAi.IsLeft, 6);
         _targetArrow.SetActive(true);
         PlayTargetSfx();
     }
 
-    public void UntargettedFeedbacks()
+    public void UntargettedFeedbacks(bool shouldPlaySound)
     {
         SetSpearCameraTargetRadius(_spearAi.IsLeft, 4);
         _targetArrow.SetActive(false);
-        PlayUntargetSfx();
+        if (shouldPlaySound) PlayUntargetSfx();
     }
     #endregion
 
@@ -125,7 +125,7 @@ public class SpearFeedbacks : MonoBehaviour
 
     void AnimateSwing()
     {
-        _swingAnimT += Time.deltaTime * 0.6f;
+        _swingAnimT += Time.deltaTime * 0.4f;
         SetMeshRotation(_mesh.rotation.eulerAngles + Vector3.up * Mathf.Lerp(0, 360, _swingAnimT));
     }
 

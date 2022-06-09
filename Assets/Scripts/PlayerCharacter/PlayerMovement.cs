@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     {
         bool canMove = _isMoving && _fsm.currentState.Name == Ccl_StateNames.IDLE;
         canMove = canMove || _fsm.currentState.Name == Ccl_StateNames.AIMING;
+        canMove = canMove || _fsm.currentState.Name == Ccl_StateNames.TARGETTING;
         canMove = canMove || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING;
         canMove = canMove || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKSTARTUP;
         canMove = canMove || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKRECOVERY;

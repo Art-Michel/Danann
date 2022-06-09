@@ -227,7 +227,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Triangle"",
+                    ""name"": ""Shockwave"",
                     ""type"": ""Button"",
                     ""id"": ""6ff9566f-e9da-4a14-a167-19fd2bed5150"",
                     ""expectedControlType"": ""Button"",
@@ -235,23 +235,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""DashL"",
-                    ""type"": ""Button"",
-                    ""id"": ""ee47d151-dfa2-4d33-835d-6a8d3d4abf03"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""DashR"",
-                    ""type"": ""Button"",
-                    ""id"": ""91d9e291-5c2e-457f-a7bb-aa6df30df41d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Shockwave"",
+                    ""name"": ""Parry"",
                     ""type"": ""Button"",
                     ""id"": ""189153cf-a92c-42a5-9c0b-8e3444db2a67"",
                     ""expectedControlType"": ""Button"",
@@ -287,7 +271,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""bc031dd0-1301-4c44-abcf-7ac534c9ae67"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -313,29 +297,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controller"",
-                    ""action"": ""Triangle"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1766bd59-f544-4e68-b82b-c4c3b4aa409d"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""DashL"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1ec95fb8-6afb-4fa4-af0c-4ba411dc465a"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""DashR"",
+                    ""action"": ""Shockwave"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -346,7 +308,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controller"",
-                    ""action"": ""Shockwave"",
+                    ""action"": ""Parry"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -386,7 +348,18 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d75cd486-9ebf-4fe7-9639-2cd8898d795b"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThrowR"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c02dcc44-44c6-4c6f-a266-19daf30a1ec8"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -408,7 +381,18 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ea686eef-32af-4c83-b361-cf87f6dcd86c"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThrowL"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""14b0840a-c837-4d4c-bb68-7013304070cf"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -434,10 +418,8 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         // Actions
         m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
         m_Actions_LightAttack = m_Actions.FindAction("LightAttack", throwIfNotFound: true);
-        m_Actions_Triangle = m_Actions.FindAction("Triangle", throwIfNotFound: true);
-        m_Actions_DashL = m_Actions.FindAction("DashL", throwIfNotFound: true);
-        m_Actions_DashR = m_Actions.FindAction("DashR", throwIfNotFound: true);
         m_Actions_Shockwave = m_Actions.FindAction("Shockwave", throwIfNotFound: true);
+        m_Actions_Parry = m_Actions.FindAction("Parry", throwIfNotFound: true);
         m_Actions_Dodge = m_Actions.FindAction("Dodge", throwIfNotFound: true);
         m_Actions_ThrowR = m_Actions.FindAction("ThrowR", throwIfNotFound: true);
         m_Actions_ThrowL = m_Actions.FindAction("ThrowL", throwIfNotFound: true);
@@ -532,10 +514,8 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Actions;
     private IActionsActions m_ActionsActionsCallbackInterface;
     private readonly InputAction m_Actions_LightAttack;
-    private readonly InputAction m_Actions_Triangle;
-    private readonly InputAction m_Actions_DashL;
-    private readonly InputAction m_Actions_DashR;
     private readonly InputAction m_Actions_Shockwave;
+    private readonly InputAction m_Actions_Parry;
     private readonly InputAction m_Actions_Dodge;
     private readonly InputAction m_Actions_ThrowR;
     private readonly InputAction m_Actions_ThrowL;
@@ -544,10 +524,8 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         private @PlayerInputMap m_Wrapper;
         public ActionsActions(@PlayerInputMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @LightAttack => m_Wrapper.m_Actions_LightAttack;
-        public InputAction @Triangle => m_Wrapper.m_Actions_Triangle;
-        public InputAction @DashL => m_Wrapper.m_Actions_DashL;
-        public InputAction @DashR => m_Wrapper.m_Actions_DashR;
         public InputAction @Shockwave => m_Wrapper.m_Actions_Shockwave;
+        public InputAction @Parry => m_Wrapper.m_Actions_Parry;
         public InputAction @Dodge => m_Wrapper.m_Actions_Dodge;
         public InputAction @ThrowR => m_Wrapper.m_Actions_ThrowR;
         public InputAction @ThrowL => m_Wrapper.m_Actions_ThrowL;
@@ -563,18 +541,12 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 @LightAttack.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLightAttack;
                 @LightAttack.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLightAttack;
                 @LightAttack.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLightAttack;
-                @Triangle.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnTriangle;
-                @Triangle.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnTriangle;
-                @Triangle.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnTriangle;
-                @DashL.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDashL;
-                @DashL.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDashL;
-                @DashL.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDashL;
-                @DashR.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDashR;
-                @DashR.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDashR;
-                @DashR.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDashR;
                 @Shockwave.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnShockwave;
                 @Shockwave.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnShockwave;
                 @Shockwave.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnShockwave;
+                @Parry.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnParry;
+                @Parry.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnParry;
+                @Parry.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnParry;
                 @Dodge.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDodge;
                 @Dodge.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDodge;
                 @Dodge.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDodge;
@@ -591,18 +563,12 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 @LightAttack.started += instance.OnLightAttack;
                 @LightAttack.performed += instance.OnLightAttack;
                 @LightAttack.canceled += instance.OnLightAttack;
-                @Triangle.started += instance.OnTriangle;
-                @Triangle.performed += instance.OnTriangle;
-                @Triangle.canceled += instance.OnTriangle;
-                @DashL.started += instance.OnDashL;
-                @DashL.performed += instance.OnDashL;
-                @DashL.canceled += instance.OnDashL;
-                @DashR.started += instance.OnDashR;
-                @DashR.performed += instance.OnDashR;
-                @DashR.canceled += instance.OnDashR;
                 @Shockwave.started += instance.OnShockwave;
                 @Shockwave.performed += instance.OnShockwave;
                 @Shockwave.canceled += instance.OnShockwave;
+                @Parry.started += instance.OnParry;
+                @Parry.performed += instance.OnParry;
+                @Parry.canceled += instance.OnParry;
                 @Dodge.started += instance.OnDodge;
                 @Dodge.performed += instance.OnDodge;
                 @Dodge.canceled += instance.OnDodge;
@@ -633,10 +599,8 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
     public interface IActionsActions
     {
         void OnLightAttack(InputAction.CallbackContext context);
-        void OnTriangle(InputAction.CallbackContext context);
-        void OnDashL(InputAction.CallbackContext context);
-        void OnDashR(InputAction.CallbackContext context);
         void OnShockwave(InputAction.CallbackContext context);
+        void OnParry(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
         void OnThrowR(InputAction.CallbackContext context);
         void OnThrowL(InputAction.CallbackContext context);

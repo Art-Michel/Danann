@@ -214,7 +214,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Triangle",
+                    "name": "Shockwave",
                     "type": "Button",
                     "id": "6ff9566f-e9da-4a14-a167-19fd2bed5150",
                     "expectedControlType": "Button",
@@ -222,23 +222,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "DashL",
-                    "type": "Button",
-                    "id": "ee47d151-dfa2-4d33-835d-6a8d3d4abf03",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "DashR",
-                    "type": "Button",
-                    "id": "91d9e291-5c2e-457f-a7bb-aa6df30df41d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Shockwave",
+                    "name": "Parry",
                     "type": "Button",
                     "id": "189153cf-a92c-42a5-9c0b-8e3444db2a67",
                     "expectedControlType": "Button",
@@ -274,7 +258,7 @@
                 {
                     "name": "",
                     "id": "bc031dd0-1301-4c44-abcf-7ac534c9ae67",
-                    "path": "<Keyboard>/e",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -300,29 +284,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "Triangle",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1766bd59-f544-4e68-b82b-c4c3b4aa409d",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "DashL",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1ec95fb8-6afb-4fa4-af0c-4ba411dc465a",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "DashR",
+                    "action": "Shockwave",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -333,7 +295,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "Shockwave",
+                    "action": "Parry",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -373,7 +335,18 @@
                 {
                     "name": "",
                     "id": "d75cd486-9ebf-4fe7-9639-2cd8898d795b",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ThrowR",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c02dcc44-44c6-4c6f-a266-19daf30a1ec8",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -395,7 +368,18 @@
                 {
                     "name": "",
                     "id": "ea686eef-32af-4c83-b361-cf87f6dcd86c",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ThrowL",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "14b0840a-c837-4d4c-bb68-7013304070cf",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
