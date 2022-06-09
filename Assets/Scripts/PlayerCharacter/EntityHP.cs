@@ -67,12 +67,14 @@ public class EntityHP : MonoBehaviour
     protected void Die()
     {
         Time.timeScale = 1;
-        if (_maxHealthPoints > 100)
-            Application.Quit();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameObject.SetActive(false);
+        Invoke("Quit",2);
         Debug.Log(name + " just died");
     }
-
+    void Quit()
+    {
+        Application.Quit();
+    }
     protected virtual void DamageFeedback(string attackName = "")
     {
     }
