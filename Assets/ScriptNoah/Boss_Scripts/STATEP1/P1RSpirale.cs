@@ -107,6 +107,7 @@ public class P1RSpirale : Danu_State
         for (int i=0;i<nb;i++)
         {
             pool.Back(spirales[i]);
+            fsm.agent.m_anims.SetTrigger("RosaceOver");
             spirales[i].SetActive(false);
             spirales[i]=null;
 

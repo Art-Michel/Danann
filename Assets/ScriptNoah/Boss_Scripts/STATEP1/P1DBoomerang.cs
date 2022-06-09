@@ -113,6 +113,7 @@ public class P1DBoomerang : Danu_State
             curveTime=0;
             straightTime=0;
             startCurve=false;
+            fsm.agent.m_anims.SetTrigger("BoomerangOver");
             if (orig == null)
             {
                 fsm.agent.ToIdle();

@@ -169,6 +169,7 @@ public class P1DSpin : Danu_State
     {
         globalGO.SetActive(false);
         lifetime = fsm.GetP1SpinLifeTime();
+        fsm.agent.m_anims.SetTrigger("SpinOver");
         bladesParentAttackData.StopAttack();
         globalGO.transform.rotation = Quaternion.identity;
         float delta = 1 / dist;

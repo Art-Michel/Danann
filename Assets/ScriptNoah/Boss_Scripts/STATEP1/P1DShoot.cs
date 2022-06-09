@@ -77,6 +77,7 @@ public class P1DShoot : Danu_State
             timer = 0;
             if (index > nbShot)
             {
+                fsm.agent.m_anims.SetTrigger("ShootOver");
                 if (!fsm.agent.followsGlobal)
                 {
                     fsm.agent.SetWaitingTime(2);
