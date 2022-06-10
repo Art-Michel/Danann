@@ -30,6 +30,7 @@ public class Ccl_StateDashing : Ccl_State
         _dashT = 0;
 
         _feedbacks.PlayDashingShoutSfx();
+        _feedbacks.EnableDashVfx(true);
         _actions.EnableDashHitbox();
         _feedbacks.SetTrailRenderer(true, true);
 
@@ -48,6 +49,7 @@ public class Ccl_StateDashing : Ccl_State
         _actions.SpearDashedOn.ChangeState(Spear_StateNames.ATTACHED);
         _actions.PlayerHP.IsInvulnerable = false;
         _actions.DisableDashHitbox();
+        _feedbacks.EnableDashVfx(false);
         _feedbacks.SetTrailRenderer(true, false);
     }
 }

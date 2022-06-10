@@ -17,6 +17,7 @@ public class Ccl_StateLightAttackStartup : Ccl_State
         //_feedbacks. Lancer l'animation
         _t = 0;
         _max = _actions.GetStartupTime();
+        _feedbacks.EnablePunchVfx(_actions.CurrentLightAttackIndex, true);
         _actions.SlowDownDuringAttack();
     }
 

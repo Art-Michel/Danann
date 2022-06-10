@@ -102,11 +102,11 @@ public class PlayerMovement : MonoBehaviour
         _wantedDirection = new Vector3(_inputs.Movement.Move.ReadValue<Vector2>().x, 0, _inputs.Movement.Move.ReadValue<Vector2>().y);
         _charaCon.Move(_wantedDirection * MovementSpeed * _easeInValue * Time.deltaTime);
 
-        if (_cursorMovement)
+        /*if (_cursorMovement)
         {
             _cursorMovement.WantedDirection = _wantedDirection;
             _cursorMovement.EaseInValue = 1;
-        }
+        }*/
 
         if (_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.TARGETTING) RotateBody();
     }
