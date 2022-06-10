@@ -423,8 +423,8 @@ public class DanuAI : MonoBehaviour
         if (phase != 1)
             return;
         phase++;
-        meshP1.SetActive(false);
-        meshP2.SetActive(true);
+        /*meshP1.SetActive(false);
+        meshP2.SetActive(true);*/
         //Add all P2 states and remove all P1 states
     }
     public int GetPhase() { return phase; }
