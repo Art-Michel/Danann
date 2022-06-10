@@ -29,7 +29,7 @@ public class DanuAI : MonoBehaviour
     [SerializeField] private AnimationCurve distEvaluator;
     [SerializeField] private float revenge;
     [SerializeField] private float maxRevenge;
-
+    [SerializeField]BossHealth health;
     public float GetMovementRange()
     {
         return movementRange;
@@ -40,6 +40,7 @@ public class DanuAI : MonoBehaviour
     [SerializeField] private Vector3 arenaCenter;
     [SerializeField] private float movementRange;
     [SerializeField] private float maxChain;
+
     float chain;
     [SerializeField] private GameObject projectile;
     private bool isPushed;
@@ -64,7 +65,9 @@ public class DanuAI : MonoBehaviour
     public Animator m_anims;
     [SerializeField] GameObject meshP1;
     [SerializeField] GameObject meshP2;
-    
+    private bool dmActive;
+    private bool dmOver;
+
     private void Awake() {
         if (m_fsm==null)
             m_fsm=GetComponent<Danu_FSM>();
@@ -471,4 +474,16 @@ public class DanuAI : MonoBehaviour
     public Vector3 GetArenaCenter(){return arenaCenter;}
     public float GetArenaRadius(){return arenaRadius;}
     public bool GetIsPushed(){return isPushed;}
+    
+    public void launchDM()
+    {
+        health.IsInvulnerable=true;
+        dmActive=true;
+    }
+    public void EndDM()
+    {
+        health.IsInvulnerable=false;
+        dmActive=false;
+        dmOver=true;
+    }
 }

@@ -25,13 +25,14 @@ public class Laser : MonoBehaviour
     [SerializeField] Volume _volume;
     [SerializeField] GameObject cam;
     [SerializeField] GameObject preview;
+    bool over;
     // Start is called before the first frame update
     [Button]
     void Start()
     {
         var main = this.GetComponent<ParticleSystem>().main;
         delay=main.startDelay.constant;
-                StartShaking(firstShakeTime,firstShakeForce);
+        StartShaking(firstShakeTime,firstShakeForce);
         preview.SetActive(true);
 
     }
@@ -39,15 +40,19 @@ public class Laser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         ShakeUpdate();
         if (delay>=0)
         {
             Delay();
             return;
         }
-        VolumeUpdate();
-        MoveTip();
-        Live();
+        if (!over)
+        {
+            VolumeUpdate();
+            MoveTip();
+            Live();
+        }
         
     }
 
@@ -82,7 +87,11 @@ public class Laser : MonoBehaviour
     }
     void Live()
     {
-        lifetime-=Time.deltaTime;
+        if (lifetime>=0)
+        {
+            lifetime-=Time.deltaTime;
+            return;
+        }
         if (lifetime<=0)
         {
             aData.StopAttack();
@@ -90,7 +99,9 @@ public class Laser : MonoBehaviour
             {
                 ps.Stop();
             }
+            m_isShaking=false;
             goUp=false;
+            over=true;
         }
     }
 
@@ -109,7 +120,6 @@ public class Laser : MonoBehaviour
         if (laserTip.transform.localPosition.x<=maxRange)
         {
             t+=Time.deltaTime*speed;
-            Debug.Log(t);
             float nX=Mathf.Lerp(0,maxRange,t);
             range=nX;
             Vector3 nPos=new Vector3(nX,0,0);
@@ -154,6 +164,7 @@ public class Laser : MonoBehaviour
 				force = config.force;
 			}
 			config.time -= Time.deltaTime;
+            Debug.Log(config.time);
 			if( config.time <= 0.0f ) {
 				this.m_configs.RemoveAt( i );
 			}

@@ -36,8 +36,10 @@ public class BossHealth : EntityHP
     public override bool TakeDamage(int amount, string attackName, int plasmaRegainValue, int revengeGain = 0, GameObject obj = null)
     {
         float percent = (HealthPoints / _maxHealthPoints) * 100;
-        if (percent < 50)
+        if (percent < 50 && agent.GetPhase()==1)
             agent.NextPhase();
+        if (percent<5)
+            agent.launchDM();
         return base.TakeDamage(amount, attackName, plasmaRegainValue, revengeGain);
     }
 
