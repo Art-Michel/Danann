@@ -12,6 +12,7 @@ public class TriangleGeneration : MonoBehaviour
     Mesh latestMesh;
     MeshFilter latestFilter;
     bool move;
+    [SerializeField] Transform target;
     // Start is called before the first frame update
     [Button]
     void Begin()
@@ -70,5 +71,33 @@ public class TriangleGeneration : MonoBehaviour
 
         latestMesh.vertices=vertices;
         }
+    }
+    [Button]
+    void CheckIsIn()
+    {
+        float A = Area(player.position,lSpear.position,rSpear.position);
+        Debug.Log(A);
+        float A1 = Area(target.position,lSpear.position,rSpear.position);
+        Debug.Log(A1);
+        float A2 = Area(target.position,player.position,rSpear.position);
+        Debug.Log(A2);
+        float A3 = Area(target.position,lSpear.position,player.position);
+        Debug.Log(A3);
+        float Af =(A1+A2+A3);
+        Debug.Log(Af);
+        bool isIn = A==Af;
+        Debug.Log(isIn);
+    }
+    float Area(Vector3 A,Vector3 B, Vector3 C)
+    {
+    float x1=A.x;
+    float y1=A.z;
+    float x2=B.x;
+    float y2=B.z;
+    float x3=C.x; 
+    float y3=C.z;
+    float area =(x1 * (y2 - y3) +x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0f;
+    area=Mathf.Abs(area);
+    return area;    
     }
 }
