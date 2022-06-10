@@ -477,8 +477,14 @@ public class DanuAI : MonoBehaviour
     
     public void launchDM()
     {
-        health.IsInvulnerable=true;
+        if (dmActive)
+        {
+        //health.IsInvulnerable=true;
         dmActive=true;
+        //debug
+        dmOver=true;
+
+        }
     }
     public void EndDM()
     {
