@@ -30,6 +30,7 @@ public class Ccl_StateLightAttackRecovery : Ccl_State
 
     public override void Exit()
     {
+        _feedbacks.EnablePunchVfx(_actions.CurrentLightAttackIndex, false);
         _actions.IncreaseLightAttackIndex();
         _actions.ResetMovementSpeed();
     }

@@ -25,7 +25,7 @@ public class PlayerFeedbacks : MonoBehaviour
     [SerializeField] Volume _volume;
     [SerializeField] GameObject _cursor;
     SpriteRenderer _cursorSprite;
-    Color orange = new Color(1,0.6f,0);
+    Color orange = new Color(1, 0.6f, 0);
 
     Vignette _vignette;
 
@@ -47,10 +47,15 @@ public class PlayerFeedbacks : MonoBehaviour
     [SerializeField] AudioClip _punch0;
     [SerializeField] AudioClip _punch1;
     [SerializeField] AudioClip _punch2;
+    [SerializeField] ParticleSystem _rightPunchVfx1;
+    [SerializeField] ParticleSystem _rightPunchVfx2;
+    [SerializeField] ParticleSystem _leftPunchVfx1;
+    [SerializeField] ParticleSystem _leftPunchVfx2;
     #endregion
 
     #region Dashing
     [SerializeField] AudioClip _dashShout;
+    [SerializeField] GameObject _dashVfx;
     #endregion
 
     #region Parrying
@@ -124,6 +129,33 @@ public class PlayerFeedbacks : MonoBehaviour
     internal void UntargetFeedbacks()
     {
         UnzoomCamera();
+    }
+    #endregion
+
+    #region Light Attack Feedbacks
+    public void EnablePunchVfx(int id, bool boolean)
+    {
+        if (id == 0 || id == 2)
+            {
+                _rightPunchVfx1.Clear();
+                _rightPunchVfx1.Play();
+                _rightPunchVfx2.Clear();
+                _rightPunchVfx2.Play();
+            }
+        else
+            {
+                _leftPunchVfx1.Clear();
+                _leftPunchVfx1.Play();
+                _leftPunchVfx2.Clear();
+                _leftPunchVfx2.Play();
+            }
+    }
+    #endregion
+
+    #region Dashing Feedbacks
+    public void EnableDashVfx(bool boolean)
+    {
+        _dashVfx.SetActive(boolean);
     }
     #endregion
 

@@ -1902,8 +1902,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 823556921784003239}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8, y: 0, z: 11.7}
+  m_LocalRotation: {x: -0, y: -0.9994377, z: -0, w: 0.033532158}
+  m_LocalPosition: {x: 0.29, y: 0, z: 6.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8402980316602951499}
@@ -1921,7 +1921,7 @@ Transform:
   - {fileID: 6157254456254008040}
   m_Father: {fileID: 4112063746909185506}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -176.157, z: 0}
 --- !u!33 &8145766450103133497
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2240,8 +2240,8 @@ MonoBehaviour:
   p2TP_Reco: 2
   p2TP_Active: 0.8
   p2TP_farDist: 12
-  rosacePool: {fileID: 1039830531}
-  straightProj: {fileID: 0}
+  rosacePool: {fileID: 6907635222599691132}
+  straightProj: {fileID: 4303272448886879995, guid: dd7bef405e7e2f3449ce7825aa8e7424, type: 3}
   rosaceNumber: 5
   bulletNumber: 25
   rosaceDelay: 0.2
@@ -2279,7 +2279,7 @@ MonoBehaviour:
   _billboardsPool: {fileID: 1679649719}
   IsParrying: 0
   _playerFeedbacks: {fileID: 0}
-  _body: {fileID: 3664297022142350869}
+  _body: {fileID: 6789500668194738258}
 --- !u!136 &1250626158
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13641,7 +13641,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9009107338812310142}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.07, z: 0}
+  m_LocalPosition: {x: 0, y: 0.029, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5178821271800415685}
@@ -13658,9 +13658,9 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 0.42830187, b: 0.42830187, a: 1}
-  m_Intensity: 47.746483
-  m_Range: 344.7439
+  m_Color: {r: 0.7075472, g: 0, b: 0.22060579, a: 1}
+  m_Intensity: 1851162
+  m_Range: 2
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -13700,7 +13700,7 @@ Light:
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 2
-  m_AreaSize: {x: 1, y: 1}
+  m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 1
@@ -13729,14 +13729,14 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 600
+  m_Intensity: 23.82
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
-  m_LightUnit: 0
+  m_LightUnit: 4
   m_FadeDistance: 10000
   m_VolumetricFadeDistance: 10000
   m_AffectDiffuse: 1
