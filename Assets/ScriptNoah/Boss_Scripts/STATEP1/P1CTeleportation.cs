@@ -30,6 +30,7 @@ public class P1CTeleportation : Danu_State
     private bool _lerpOut;
     private bool _lerpIn;
     float camWeight;
+    bool played;
     // Start is called before the first frame update
     public override void Begin()
     {        
@@ -129,13 +130,30 @@ public class P1CTeleportation : Danu_State
         {
             arrival.SetActive(true);
             fadeTime += Time.deltaTime;
+            if (!played)
+            {
+                SoundManager.Instance.PlayBossTpIn();
+                played=true;
+            }
+            if (fadeTime>MaxFadeTime)
+                played=false;
         }
         else if (active <= maxActive)
         {
             //boomBox.SetActive(true);
             boomBoxAttackData.LaunchAttack();
+            boomBox.SetActive(true);
             fsm.transform.position = arrival.transform.position;
+            boomBox.transform.position = arrival.transform.position;
+            arrival.SetActive(false);
             active += Time.deltaTime;
+            if (!played)
+            {
+                SoundManager.Instance.PlayBossTpOut();
+                played=true;
+            }
+            if (active>maxActive)
+                played=false;
         }
         else if (reco <= maxReco)
         {

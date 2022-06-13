@@ -76,7 +76,10 @@ public class P1CMixDash : Danu_State
             case state.CHARGING:
                 ChargeDash();
                 if (actual != state.CHARGING)
+                {
                     preview.gameObject.SetActive(false);
+                    SoundManager.Instance.PlayBossDash();
+                }     
                 break;
             case state.DASH:
                 Dash();
@@ -92,6 +95,7 @@ public class P1CMixDash : Danu_State
                 {
                     preview.gameObject.SetActive(false);
                     dashAttackData.LaunchAttack();
+                    SoundManager.Instance.PlayBossDash();
                 }
                 break;
             case state.RETURNDASH:

@@ -13,11 +13,13 @@ public class BossHealth : EntityHP
     [SerializeField] PlayerFeedbacks _playerFeedbacks;
     DanuAI agent;
     [Required][SerializeField] GameObject _body;
+    private float oldValue;
+    private float accel;
 
     void Awake()
     {
         agent = GetComponent<DanuAI>();
-        _maxHealthPoints = 500;
+        //_maxHealthPoints = 500;
     }
 
     override protected void DamageFeedback(string attackName)
@@ -36,13 +38,15 @@ public class BossHealth : EntityHP
     public override bool TakeDamage(int amount, string attackName, int plasmaRegainValue, int revengeGain = 0, GameObject obj = null)
     {
         float percent = (HealthPoints / _maxHealthPoints) * 100;
+        if (!activateRemnant)
+        oldValue=(HealthPoints / _maxHealthPoints);
+        accel=0;        
         if (percent < 50 && agent.GetPhase()==1)
             agent.NextPhase();
         if (percent<5)
             agent.launchDM();
         return base.TakeDamage(amount, attackName, plasmaRegainValue, revengeGain);
     }
-
     private void ResetBlinking()
     {
         _body.SetActive(true);
@@ -52,6 +56,20 @@ public class BossHealth : EntityHP
     void Update()
     {
         if (_isBlinking) HandlePostDamageBlinking();
+        accel=Mathf.Clamp( accel+Time.deltaTime,0,1);
+        if (!activateRemnant)
+            return;
+        remnantTime+=Time.deltaTime*accel;
+        float value = Mathf.InverseLerp(0, _maxHealthPoints, HealthPoints);
+        value = Mathf.Lerp(0, 1, value);
+        _healthBarRemnant.fillAmount=Mathf.Lerp(oldValue,value,remnantTime/maxRemnantTime);
+        
+        Debug.Log(remnantTime/maxRemnantTime);
+        if (remnantTime>=maxRemnantTime)
+        {
+            remnantTime=0;
+            activateRemnant=false;
+        }
     }
 
     void FixedUpdate()

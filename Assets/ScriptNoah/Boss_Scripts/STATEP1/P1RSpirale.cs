@@ -46,6 +46,7 @@ public class P1RSpirale : Danu_State
         preview.LookAt(fsm.agent.GetArenaCenter());
         preview.gameObject.SetActive(true);
         wait=true;
+                SoundManager.Instance.PlayBossAllOut();
 
     }
 

@@ -23,6 +23,8 @@ public class P1CDash : Danu_State
     bool isDashing;
     Vector3 maxArrival;
     private Vector3 startPos;
+    private bool playedSound;
+
     // Start is called before the first frame update
     public override void Begin()
     {
@@ -64,9 +66,13 @@ public class P1CDash : Danu_State
             chargingTime += Time.deltaTime;
             //Vector3 arrival= transform.position+dir*dashSpeed*maxDashTime ;
             //arrival=new Vector3(arrival.x,3.72f,arrival.z);
-
+            if (chargingTime>=maxChargingTime*0.8f && !playedSound)
+            {    SoundManager.Instance.PlayBossDash();
+                playedSound=true;
+            }
             return;
         }
+        playedSound=false;
         dashTime += Time.deltaTime;
         fsm.transform.position += dir * dashSpeed * Time.deltaTime;
         if (dashTime >= maxDashTime)

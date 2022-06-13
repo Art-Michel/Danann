@@ -75,6 +75,7 @@ public class P1DSpin : Danu_State
             {
                 wait = false;
                 SpawnBlades();
+                SoundManager.Instance.PlayBossAllOut();
             }
             else
                 return;

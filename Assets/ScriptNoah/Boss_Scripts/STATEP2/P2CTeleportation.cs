@@ -69,7 +69,7 @@ public class P2CTeleportation : Danu_State
             dir.Normalize();
             dir *= farDist;
             Vector2 rand = Random.insideUnitCircle;
-            Vector3 offset = new Vector3(rand.x, 0, rand.y) * offsetValue;
+            Vector3 offset = new Vector3(rand.x, 0, rand.y) * offsetValue*2;
             arrival.transform.position = fsm.transform.position + dir-offset;
             fakeArrival.transform.position = fsm.transform.position + dir+offset;
             if (Vector3.Distance(arrival.transform.position, arenaCenter) >= arenaRadius)
@@ -149,10 +149,14 @@ private void LerpIn()
         }
         else if (active <= maxActive)
         {
+            arrival.SetActive(false);
+            fakeArrival.SetActive(false);
             //boomBox.SetActive(true);
             boomBoxAttackData.LaunchAttack();
             fakeBoomBoxAttackData.LaunchAttack();
             fsm.transform.position = arrival.transform.position;
+            boomBox.transform.position = arrival.transform.position;
+            fakeBoomBox.transform.position = fakeArrival.transform.position;
             active += Time.deltaTime;
         }
         else if (reco <= maxReco)

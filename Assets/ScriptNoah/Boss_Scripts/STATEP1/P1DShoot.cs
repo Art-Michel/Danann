@@ -72,6 +72,10 @@ public class P1DShoot : Danu_State
             return;
         }
         timer += Time.deltaTime;
+        Vector3 straightTargets =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
+            fsm.transform.LookAt(straightTargets);
+            float rotateValues=fsm.transform.rotation.eulerAngles.y;
+            fsm.transform.rotation=Quaternion.Euler(0,rotateValues,0);
         if (timer > delay)
         {
             timer = 0;
@@ -94,6 +98,7 @@ public class P1DShoot : Danu_State
             {
 
                 index++;
+                SoundManager.Instance.PlayBossShoot();
                 GameObject go = pool.Get();
                 go.GetComponent<Projectiles>().SetSpeed(speed);
                 go.transform.position = fsm.transform.position;

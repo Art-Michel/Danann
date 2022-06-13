@@ -8,17 +8,26 @@ using UnityEngine.SceneManagement;
 public class EntityHP : MonoBehaviour
 {
     public float HealthPoints { get; protected set; }
-    protected float _maxHealthPoints = 1;
+    [SerializeField] protected float _maxHealthPoints = 1;
     public bool IsInvulnerable { get { return _isInvulnerable; } set { _isInvulnerable = value; } }
+
+
     bool _isInvulnerable;
     [Required][SerializeField] PlayerPlasma _playerplasma;
     [Required][SerializeField] Image _healthBar;
+    [Required][SerializeField] public Image _healthBarRemnant;
     [SerializeField] Pooler _billboardsPool;
     //parry
     public bool IsParrying;
+    public bool activateRemnant;
+    public float remnantTime;
+    public float maxRemnantTime;
 
     void Start()
     {
+        maxRemnantTime=0.7f;
+        remnantTime=0;
+        activateRemnant=false;
         HealthPoints = _maxHealthPoints;
         _isInvulnerable = false;
         IsParrying = false;
@@ -62,8 +71,9 @@ public class EntityHP : MonoBehaviour
         float value = Mathf.InverseLerp(0, _maxHealthPoints, HealthPoints);
         value = Mathf.Lerp(0, 1, value);
         _healthBar.fillAmount = value;
+        activateRemnant=true;
+    
     }
-
     protected void Die()
     {
         Time.timeScale = 1;

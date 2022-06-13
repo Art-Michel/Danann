@@ -113,8 +113,8 @@ public class DanuAI : MonoBehaviour
                 m_fsm.ChangeState(StateNames.P1IDLE);
         }
     }
-
-    public void Stun(float sTime)
+    [Button]
+    public void Stun(float sTime=2)
     {
         if (isStun)
             maxStunTime+= sTime/2;
@@ -126,9 +126,25 @@ public class DanuAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float nx=Mathf.Clamp(transform.position.x,arenaCenter.x-arenaRadius,arenaCenter.x+arenaRadius);
-        float nz=Mathf.Clamp(transform.position.z,arenaCenter.z-arenaRadius,arenaCenter.z+arenaRadius);
-        transform.position=new Vector3(nx,arenaCenter.y,nz);
+        PosLock();
+        ApplyStun();
+        UpdateRevenge();
+
+    }
+    void UpdateRevenge()
+    {
+        if (revenge>0 && revengeTime>=revengeMaxTime)
+        {
+            revenge=Mathf.Clamp(revenge-Time.deltaTime*revengeSpeed,0,maxRevenge);
+            return;
+        }
+        if (revenge>0)
+        {
+            revengeTime=Mathf.Clamp( revengeTime+Time.deltaTime,0,revengeMaxTime);
+        }
+    }
+    void ApplyStun()
+    {
         if (isStun)
         {
             stunTime+=Time.deltaTime;
@@ -141,16 +157,11 @@ public class DanuAI : MonoBehaviour
             }
             return;
         }
-        if (revenge>0 && revengeTime>=revengeMaxTime)
-        {
-            revenge=Mathf.Clamp(revenge-Time.deltaTime*revengeSpeed,0,maxRevenge);
-            return;
-        }
-        if (revenge>0)
-        {
-            revengeTime=Mathf.Clamp( revengeTime+Time.deltaTime,0,revengeMaxTime);
-        }
-
+    }
+    void PosLock(){
+        float nx=Mathf.Clamp(transform.position.x,arenaCenter.x-arenaRadius,arenaCenter.x+arenaRadius);
+        float nz=Mathf.Clamp(transform.position.z,arenaCenter.z-arenaRadius,arenaCenter.z+arenaRadius);
+        transform.position=new Vector3(nx,arenaCenter.y,nz);
     }
     public void BuildUpRevenge(float add)
     {
@@ -202,16 +213,15 @@ public class DanuAI : MonoBehaviour
             float revengePercent=revenge*100/maxRevenge;
             if (goingRandom)
             {
-                int chance=Random.Range(1,8);
+                int chance=Random.Range(1,6);
                     switch (chance)
                     {
                         case 1:
-                        
                             int rand=Random.Range(0,2);
                             if (rand==1)
                             {
-                                m_anims.SetInteger("Pattern",2);
                                 m_fsm.ChangeState(StateNames.P1C_MIXDASH);
+                                m_anims.SetInteger("Pattern",2);
                             }
                             else
                             {
@@ -248,12 +258,17 @@ public class DanuAI : MonoBehaviour
                                 m_anims.SetInteger("Pattern",5);
                             break;
                         case 6:
-                            m_fsm.ChangeState(StateNames.P1R_SPIRALE);
+                            int randSP=Random.Range(0,2);
+                            if (randSP==1)
+                            {
+                                m_fsm.ChangeState(StateNames.P1R_SPIRALE);
                                 m_anims.SetInteger("Pattern",6);
-                            break;                                   
-                        case 7:
-                            m_fsm.ChangeState(StateNames.P1D_SPIN);
+                            }
+                            else
+                            {
+                                m_fsm.ChangeState(StateNames.P1D_SPIN);
                                 m_anims.SetInteger("Pattern",7);
+                            }
                             break;                    
 
                     }
@@ -483,7 +498,7 @@ public class DanuAI : MonoBehaviour
         dmActive=true;
         //debug
         dmOver=true;
-
+        
         }
     }
     public void EndDM()
