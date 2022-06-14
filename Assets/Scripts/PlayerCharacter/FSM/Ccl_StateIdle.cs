@@ -11,6 +11,10 @@ public class Ccl_StateIdle : Ccl_State
 
     public override void Begin()
     {
+        UiManager.Instance.SetText(UiManager.Instance.EText, "Parry");
+        UiManager.Instance.SetText(UiManager.Instance.NText, "");
+        UiManager.Instance.SetText(UiManager.Instance.WText, "Punch");
+        UiManager.Instance.SetText(UiManager.Instance.SText, "Dodge");
     }
 
     public override void StateUpdate()

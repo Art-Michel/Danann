@@ -13,6 +13,8 @@ public class Spear_StateAttached : Spear_State
     {
         _ai.AttachSpearToPlayer();
         _feedbacks.SetSpearCameraTargetWeight(_ai.IsLeft, 0);
+        _feedbacks.SetText("Aim");
+        _feedbacks.SetImageTransparency(1f);
         _feedbacks.PlayReattach();
     }
 

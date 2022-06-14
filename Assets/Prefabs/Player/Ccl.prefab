@@ -1023,7 +1023,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2
   m_Radius: 0.5
-  m_SlopeLimit: 0
+  m_SlopeLimit: 1
   m_StepOffset: 0
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -1174,9 +1174,9 @@ MonoBehaviour:
   _recall: {fileID: 8300000, guid: a531983aa0b438c46bcc80b641743ffa, type: 3}
   _bodyTrailRenderer: {fileID: 1512190303}
   _dodge: {fileID: 8300000, guid: 7eca6ab425eee8247988fbb4097a4850, type: 3}
-  _punch0: {fileID: 8300000, guid: 0c2f8eb10536c7a41afba418b4134a4a, type: 3}
-  _punch1: {fileID: 8300000, guid: 48b06c9d93bd5064dbdcaedbf4d17003, type: 3}
-  _punch2: {fileID: 8300000, guid: 86522244f05eceb4aaf36933fcf0965f, type: 3}
+  _punch0: {fileID: 8300000, guid: 9f5e76942f784da4da221cd9d67120af, type: 3}
+  _punch1: {fileID: 8300000, guid: c5130bde4fde7364ea0954f85dcf94aa, type: 3}
+  _punch2: {fileID: 8300000, guid: 4011abedfc9a40040938fa904a48ab3a, type: 3}
   _rightPunchVfx1: {fileID: 1349764751648911522}
   _rightPunchVfx2: {fileID: 1349764750080257878}
   _leftPunchVfx1: {fileID: 1349764751080505587}

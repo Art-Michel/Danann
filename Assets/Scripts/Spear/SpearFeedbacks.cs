@@ -4,6 +4,8 @@ using Cinemachine;
 using UnityEngine;
 using NaughtyAttributes;
 using System;
+using TMPro;
+using UnityEngine.UI;
 
 public class SpearFeedbacks : MonoBehaviour
 {
@@ -53,6 +55,20 @@ public class SpearFeedbacks : MonoBehaviour
     }
     #endregion
 
+    #region ui
+    [SerializeField] TextMeshProUGUI spearText;
+    [SerializeField] Image spearImage;
+
+    public void SetText(string str)
+    {
+        spearText.text = str;
+    }
+    public void SetImageTransparency(float alpha)
+    {
+        spearImage.color = new Color(1, 1, 1, alpha);
+    }
+    #endregion
+
     void Awake()
     {
         _spearAi = GetComponent<SpearAI>();
@@ -80,7 +96,6 @@ public class SpearFeedbacks : MonoBehaviour
         _targetGroup.m_Targets[target].weight = weight;
     }
 
-
     #region Targetting
     public void TargettedFeedbacks()
     {
@@ -89,11 +104,15 @@ public class SpearFeedbacks : MonoBehaviour
         PlayTargetSfx();
     }
 
-    public void UntargettedFeedbacks(bool shouldPlaySound)
+    public void UntargettedFeedbacks(bool gotRecalled)
     {
         SetSpearCameraTargetRadius(_spearAi.IsLeft, 4);
         _targetArrow.SetActive(false);
-        if (shouldPlaySound) PlayUntargetSfx();
+        if (gotRecalled)
+        {
+            PlayUntargetSfx();
+            SetText("Focus");
+        }
     }
     #endregion
 

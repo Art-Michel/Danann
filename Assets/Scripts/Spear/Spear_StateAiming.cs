@@ -11,7 +11,7 @@ public class Spear_StateAiming : Spear_State
 
     public override void Begin()
     {
-        
+        _feedbacks.SetText("Throw");
     }
 
     public override void Update()

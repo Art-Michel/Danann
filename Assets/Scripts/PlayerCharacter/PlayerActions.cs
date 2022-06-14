@@ -39,12 +39,12 @@ public class PlayerActions : MonoBehaviour
     #endregion
 
     #region Init Targetting
-    Spear_FSM _currentlyTargettedSpear;
+    public Spear_FSM _currentlyTargettedSpear{get; private set;}
     #endregion
 
     #region Init Aiming
     [SerializeField] Transform _body;
-    Spear_FSM _currentlyHeldSpear;
+    public Spear_FSM CurrentlyHeldSpear{get; private set;}
     [SerializeField] GameObject _cursor;
     #endregion
 
@@ -89,17 +89,17 @@ public class PlayerActions : MonoBehaviour
 
         _inputs.Actions.Dodge.started += _ => DodgeInput();
 
-        _inputs.Actions.ThrowL.started += _ => AimInput(_leftSpear);
-        _inputs.Actions.ThrowR.started += _ => AimInput(_rightSpear);
-        _inputs.Actions.ThrowL.canceled += _ => ThrowInput(_leftSpear);
-        _inputs.Actions.ThrowR.canceled += _ => ThrowInput(_rightSpear);
+        _inputs.Actions.ThrowL.started += _ => PressTrigger(_leftSpear);
+        _inputs.Actions.ThrowR.started += _ => PressTrigger(_rightSpear);
+        _inputs.Actions.ThrowL.canceled += _ => ReleaseTrigger(_leftSpear);
+        _inputs.Actions.ThrowR.canceled += _ => ReleaseTrigger(_rightSpear);
 
         _inputs.Actions.Parry.started += _ => ParryInput();
 
     }
 
     #region Triggers Inputs
-    private void AimInput(Spear_FSM spear)
+    private void PressTrigger(Spear_FSM spear)
     {
         if (_fsm.currentState.Name == Ccl_StateNames.IDLE && spear.currentState.Name == Spear_StateNames.ATTACHED)
             StartAiming(spear);
@@ -114,7 +114,7 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
-    private void ThrowInput(Spear_FSM spear)
+    private void ReleaseTrigger(Spear_FSM spear)
     {
         if (_fsm.currentState.Name == Ccl_StateNames.AIMING)
             Throw();
@@ -126,7 +126,7 @@ public class PlayerActions : MonoBehaviour
     #region Aiming
     void StartAiming(Spear_FSM spear)
     {
-        _currentlyHeldSpear = spear;
+        CurrentlyHeldSpear = spear;
         _fsm.ChangeState(Ccl_StateNames.AIMING);
         spear.ChangeState(Spear_StateNames.AIMING);
     }
@@ -136,7 +136,7 @@ public class PlayerActions : MonoBehaviour
         _cursor.transform.position = transform.position;
         _playerFeedbacks.SetCameraTargetWeight(4, 1);
         _cursor.SetActive(true);
-        _playerFeedbacks.ChangeCursorColor(_currentlyHeldSpear.SpearAi.IsLeft);
+        _playerFeedbacks.ChangeCursorColor(CurrentlyHeldSpear.SpearAi.IsLeft);
     }
 
     public void DisableCursor()
@@ -158,8 +158,8 @@ public class PlayerActions : MonoBehaviour
         {
             _fsm.ChangeState(Ccl_StateNames.IDLE);
             _playerFeedbacks.SetCameraTargetWeight(4, 0);
-            _currentlyHeldSpear.ChangeState(Spear_StateNames.ATTACHED);
-            _currentlyHeldSpear = null;
+            CurrentlyHeldSpear.ChangeState(Spear_StateNames.ATTACHED);
+            CurrentlyHeldSpear = null;
         }
     }
     #endregion
@@ -169,8 +169,8 @@ public class PlayerActions : MonoBehaviour
     private void Throw()
     {
         _fsm.ChangeState(Ccl_StateNames.THROWING);
-        _currentlyHeldSpear.ChangeState(Spear_StateNames.THROWN);
-        _currentlyHeldSpear = null;
+        CurrentlyHeldSpear.ChangeState(Spear_StateNames.THROWN);
+        CurrentlyHeldSpear = null;
     }
     #endregion
 

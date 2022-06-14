@@ -11,7 +11,11 @@ public class Ccl_StateTargetting : Ccl_State
 
     public override void Begin()
     {
-        
+        _actions._currentlyTargettedSpear.SpearFeedbacks.SetText("Recall");
+        UiManager.Instance.SetText(UiManager.Instance.EText, "Cancel");
+        UiManager.Instance.SetText(UiManager.Instance.NText, "Cancel");
+        UiManager.Instance.SetText(UiManager.Instance.WText, "Cancel");
+        UiManager.Instance.SetText(UiManager.Instance.SText, "JUMP");
     }
 
     public override void StateUpdate()

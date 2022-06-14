@@ -65,7 +65,6 @@ public class BossHealth : EntityHP
         value = Mathf.Lerp(0, 1, value);
         _healthBarRemnant.fillAmount=Mathf.Lerp(oldValue,value,remnantTime/maxRemnantTime);
         
-        Debug.Log(remnantTime/maxRemnantTime);
         if (remnantTime>=maxRemnantTime)
         {
             remnantTime=0;

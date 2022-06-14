@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,13 +17,17 @@ public class Ccl_StateAiming : Ccl_State
         _actions.EnableCursor();
         _feedbacks.PlayZoomInSfx();
         _feedbacks.ZoomCamera();
+        UiManager.Instance.SetText(UiManager.Instance.EText, "Cancel");
+        UiManager.Instance.SetText(UiManager.Instance.NText, "Cancel");
+        UiManager.Instance.SetText(UiManager.Instance.WText, "Cancel");
+        UiManager.Instance.SetText(UiManager.Instance.SText, "Cancel");
     }
 
     public override void StateUpdate()
     {
         _actions.OrientateBody();
     }
-    
+
     public override void Exit()
     {
         _actions.DisableCursor();

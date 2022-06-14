@@ -19,6 +19,7 @@ public class Spear_StateRecalled : Spear_State
         _destination = _ai.CclBody.position;
 
         _feedbacks.SetMeshUp(_destination - _startingPosition);
+        _feedbacks.SetText("");
 
         _t = 0;
         _ai.TravelingAttackData.LaunchAttack();

@@ -21,6 +21,8 @@ public class Spear_StateThrown : Spear_State
         _destination = new Vector3(_ai.Cursor.transform.position.x, _ai.transform.position.y, _ai.Cursor.transform.position.z);
 
         _feedbacks.SetMeshUp(_destination - _startingPosition);
+        _feedbacks.SetImageTransparency(0.5f);
+        _feedbacks.SetText("");
 
         _t = 0;
         _ai.TravelingAttackData.LaunchAttack();
@@ -36,6 +38,7 @@ public class Spear_StateThrown : Spear_State
 
     public override void Exit()
     {
+        _feedbacks.SetText("Focus");
         _feedbacks.SetCameraTargetWeight(4, 0);
         _ai.TravelingAttackData.StopAttack();
     }
