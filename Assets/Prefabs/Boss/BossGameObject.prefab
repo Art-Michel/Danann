@@ -1821,7 +1821,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 823556921784003239}
   m_LocalRotation: {x: -0, y: -0.9994377, z: -0, w: 0.033532158}
-  m_LocalPosition: {x: 0.29, y: 0, z: 6.3}
+  m_LocalPosition: {x: 4.8, y: 0, z: -19.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5709522794188642998}
@@ -1985,14 +1985,14 @@ MonoBehaviour:
   health: {fileID: 2577399527204082855}
   waitingTime: 0.5
   arenaRadius: 25
-  arenaCenter: {x: -11.2, y: 0, z: -3.72}
+  arenaCenter: {x: -10.26, y: 0, z: -3.04}
   movementRange: 6
   maxChain: 2
   projectile: {fileID: 3516479995275154835, guid: a802e1e7d87be014ca7ef970427689d4, type: 3}
   maxCap: 0
   goingRandom: 1
   maxProjectilePool: 13
-  testState: P2RSPIRALE
+  testState: P2DSpin
   isDebug: 0
   m_anims: {fileID: 672744068}
   meshP1: {fileID: 6789500668194738258}
@@ -2089,13 +2089,13 @@ MonoBehaviour:
   p1TP_offsetValue: 7
   p1TP_Reco: 2
   p1TP_Active: 0.8
-  p1TP_farDist: 8.56
+  p1TP_farDist: 8.29
   p1TP_CamWeight: 0.6
   P2D_nbShot: 16
-  P2D_delay: 0.2
+  P2D_delay: 0.11
   P2D_wait: 0.1
   P2D_ProjLifeTime: 4
-  p2d_ShotSpeed: 12
+  p2d_ShotSpeed: 14.16
   P2Slam1AttackData: {fileID: 1349357082501807420}
   P2Slam2AttackData: {fileID: 6086156463162176614}
   P2Slam3AttackData: {fileID: 3461607736094266743}
@@ -2130,14 +2130,14 @@ MonoBehaviour:
   P2BoomerangR1: {fileID: 8462581839820052091}
   P2BoomerangR2: {fileID: 6257748742119177978}
   p2boomerangAttackData: {fileID: 4246075186812950941}
-  P2BoomeRangSpeed: 15
+  P2BoomeRangSpeed: 20.21
   p2br_MaxDist: 25
-  P2BoomeRangMaxStraightTime: 0.9
+  P2BoomeRangMaxStraightTime: 0.61
   P2BoomeRangcurveMidL1: {fileID: 8321944833867621251}
   P2BoomeRangcurveMidL2: {fileID: 3250053471965051940}
   P2BoomeRangcurveMidR1: {fileID: 8620936250036854932}
   P2BoomeRangcurveMidR2: {fileID: 1494051520908832862}
-  P2BoomeRangMaxCurveTime: 0.8
+  P2BoomeRangMaxCurveTime: 0.43
   p2Br_startup: 1
   p2sDash_preview: {fileID: 8380206358711455303}
   p2sDash_MaxDashTime: 0.33
@@ -2156,7 +2156,7 @@ MonoBehaviour:
   p2TP_Reco: 2
   p2TP_Active: 0.8
   p2TP_farDist: 12
-  rosacePool: {fileID: 6907635222599691132}
+  rosacePool: {fileID: 1039830531}
   straightProj: {fileID: 4303272448886879995, guid: dd7bef405e7e2f3449ce7825aa8e7424, type: 3}
   rosaceNumber: 5
   bulletNumber: 25

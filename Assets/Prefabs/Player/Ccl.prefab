@@ -1108,10 +1108,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fcd4ade5ae595e4aa3e2812dbc37c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHealthPoints: 1
   _playerplasma: {fileID: 6718971616905161990}
   _healthBar: {fileID: 0}
+  _healthBarRemnant: {fileID: 0}
   _billboardsPool: {fileID: 1906970742}
   IsParrying: 0
+  activateRemnant: 0
+  remnantTime: 0
+  maxRemnantTime: 0
   _body: {fileID: 6634550191406175141}
 --- !u!114 &6718971616905161990
 MonoBehaviour:
