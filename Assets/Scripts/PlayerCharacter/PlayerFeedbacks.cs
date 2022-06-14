@@ -7,6 +7,7 @@ using UnityEngine.Rendering.HighDefinition;
 using NaughtyAttributes;
 using Cinemachine;
 using System;
+using UnityEngine.InputSystem;
 
 public class PlayerFeedbacks : MonoBehaviour
 {
@@ -136,19 +137,19 @@ public class PlayerFeedbacks : MonoBehaviour
     public void EnablePunchVfx(int id, bool boolean)
     {
         if (id == 0 || id == 2)
-            {
-                _rightPunchVfx1.Clear();
-                _rightPunchVfx1.Play();
-                _rightPunchVfx2.Clear();
-                _rightPunchVfx2.Play();
-            }
+        {
+            _rightPunchVfx1.Clear();
+            _rightPunchVfx1.Play();
+            _rightPunchVfx2.Clear();
+            _rightPunchVfx2.Play();
+        }
         else
-            {
-                _leftPunchVfx1.Clear();
-                _leftPunchVfx1.Play();
-                _leftPunchVfx2.Clear();
-                _leftPunchVfx2.Play();
-            }
+        {
+            _leftPunchVfx1.Clear();
+            _leftPunchVfx1.Play();
+            _leftPunchVfx2.Clear();
+            _leftPunchVfx2.Play();
+        }
     }
     #endregion
 
@@ -292,6 +293,24 @@ public class PlayerFeedbacks : MonoBehaviour
     }
     #endregion
 
+    #region rumble
+    private float _rumbleT;
+    private bool _isRumbling;
+    public void StartRumble(float duration, float lowIntensity, float highIntensity)
+    {
+        Gamepad.current.SetMotorSpeeds(lowIntensity, highIntensity);
+        _rumbleT = duration;
+        _isRumbling = true;
+    }
+
+    public void StopRumble()
+    {
+        Gamepad.current.SetMotorSpeeds(0, 0);
+        _vcamPerlin.m_AmplitudeGain = 0;
+        _isRumbling = false;
+    }
+    #endregion
+
     void Update()
     {
         if (_vcamPerlin.m_AmplitudeGain > 0)
@@ -299,6 +318,12 @@ public class PlayerFeedbacks : MonoBehaviour
             _shakeT -= Time.deltaTime;
             if (_shakeT < 0)
                 StopShake();
+        }
+        if (_isRumbling)
+        {
+            _rumbleT -= Time.deltaTime;
+            if (_rumbleT <= 0)
+                StopRumble();
         }
     }
 

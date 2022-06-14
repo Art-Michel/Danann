@@ -15,6 +15,7 @@ public class Ccl_StateThrowing : Ccl_State
     public override void Begin()
     {
         _feedbacks.PlayThrowSfx();
+        _feedbacks.StartShake(0.1f, 0.25f);
         _t = 0;
     }
 

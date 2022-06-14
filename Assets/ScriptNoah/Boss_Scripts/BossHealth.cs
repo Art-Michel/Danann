@@ -26,6 +26,7 @@ public class BossHealth : EntityHP
     {
         SoundManager.Instance.PlayHitSound(attackName);
         _playerFeedbacks.StartShake(AttackShake.ShakeValue[attackName].x, AttackShake.ShakeValue[attackName].y);
+        _playerFeedbacks.StartRumble(AttackShake.RumbleValue[attackName].x, AttackShake.RumbleValue[attackName].y, AttackShake.RumbleValue[attackName].z);
         _isBlinking = true;
         _blinkingT = _blinkingDuration;
     }

@@ -2083,6 +2083,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7240768677224004046}
     m_Modifications:
+    - target: {fileID: 152619026, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: _attackName
+      value: TravelingSpear
+      objectReference: {fileID: 0}
     - target: {fileID: 759470701, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2191,6 +2195,10 @@ PrefabInstance:
       propertyPath: _spearTransformWhenAttached
       value: 
       objectReference: {fileID: 3023749069325140284}
+    - target: {fileID: 8637741451736142707, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: _attackName
+      value: RightSpearSwing
+      objectReference: {fileID: 0}
     - target: {fileID: 8684172199197681728, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.411
@@ -2273,6 +2281,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7240768677224004046}
     m_Modifications:
+    - target: {fileID: 152619026, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: _attackName
+      value: TravelingSpear
+      objectReference: {fileID: 0}
     - target: {fileID: 759470704, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_Color.b
       value: 0

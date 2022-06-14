@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 public class PlayerHP : EntityHP
 {
@@ -49,6 +50,7 @@ public class PlayerHP : EntityHP
         SlowDownTime();
         StartInvul();
         _playerFeedbacks.StartShake(.3f, 1f);
+        _playerFeedbacks.StartRumble(.3f, 0.5f,0.8f);
     }
 
     void Update()
@@ -79,7 +81,6 @@ public class PlayerHP : EntityHP
         Time.timeScale = _timeScalePostHit;
         _timeIsSlow = true;
         _slowdownT = _slowdownLength;
-
     }
     private void HandlePostDamageTimeSlow()
     {
