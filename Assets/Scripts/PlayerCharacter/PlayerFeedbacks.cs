@@ -73,12 +73,6 @@ public class PlayerFeedbacks : MonoBehaviour
     [Required][SerializeField] AudioSource _audioSource;
     #endregion
 
-    #region CamShake
-    [SerializeField] CinemachineVirtualCamera _vcam;
-    CinemachineBasicMultiChannelPerlin _vcamPerlin;
-    float _shakeT;
-    #endregion
-
     #region Animations
     [Required][SerializeField] Animator _animator;
     #endregion
@@ -193,17 +187,17 @@ public class PlayerFeedbacks : MonoBehaviour
 
     void PlayPunch0()
     {
-        PlaySound(_punch0, 5f);
+        PlaySound(_punch0, 6f);
     }
 
     void PlayPunch1()
     {
-        PlaySound(_punch1, 8f);
+        PlaySound(_punch1, 6f);
     }
 
     void PlayPunch2()
     {
-        PlaySound(_punch2, 5f);
+        PlaySound(_punch2, 4f);
     }
 
     public void PlaySegmentFill()
@@ -278,6 +272,9 @@ public class PlayerFeedbacks : MonoBehaviour
     }
 
     #region cam shake
+    [SerializeField] CinemachineVirtualCamera _vcam;
+    CinemachineBasicMultiChannelPerlin _vcamPerlin;
+    float _shakeT;
     public void StartShake(float duration, float intensity)
     {
         if (duration > _shakeT)
@@ -296,9 +293,9 @@ public class PlayerFeedbacks : MonoBehaviour
     #region rumble
     private float _rumbleT;
     private bool _isRumbling;
-    public void StartRumble(float duration, float lowIntensity, float highIntensity)
+    public void StartRumble(float duration, float lowFrequencyIntensity, float highFrequencyIntensity)
     {
-        Gamepad.current.SetMotorSpeeds(lowIntensity, highIntensity);
+        Gamepad.current.SetMotorSpeeds(lowFrequencyIntensity, highFrequencyIntensity);
         _rumbleT = duration;
         _isRumbling = true;
     }

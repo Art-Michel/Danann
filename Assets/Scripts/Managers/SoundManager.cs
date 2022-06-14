@@ -11,6 +11,7 @@ public class SoundManager : ProjectManager<SoundManager>
     [SerializeField] AudioClip _bossPunched;
     [SerializeField] AudioClip _blockedHit;
     [SerializeField] AudioClip _bossPunchedH;
+    [SerializeField] AudioClip  _bossSlashedH;
     [SerializeField] AudioClip _bossSwinged;
     Dictionary<string, AudioClip> _attackSoundEffect;
     #region Boss
@@ -67,7 +68,7 @@ public class SoundManager : ProjectManager<SoundManager>
         {Ccl_Attacks.DASHONSPEAR, _bossPunchedH},
         {Ccl_Attacks.SPEARSWINGL, _bossSwinged},
         {Ccl_Attacks.SPEARSWINGR, _bossSwinged},
-        {Ccl_Attacks.TRAVELINGSPEAR, _bossPunched}
+        {Ccl_Attacks.TRAVELINGSPEAR, _bossSlashedH}
         };
     }
 
@@ -83,12 +84,17 @@ public class SoundManager : ProjectManager<SoundManager>
 
     public void PlayBossPunched()
     {
-        PlaySound(_bossPunched, 1f);
+        PlaySound(_bossPunched, 3f);
     }
 
     public void PlayBossPunchedH()
     {
-        PlaySound(_bossPunchedH, 1f);
+        PlaySound(_bossPunchedH, 5f);
+    }
+
+    public void PlayBossHeavySlashed()
+    {
+        PlaySound(_bossSlashedH, 5f);
     }    
 
     public void PlayBlockedHit()

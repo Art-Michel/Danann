@@ -75,6 +75,13 @@ public class PlayerHP : EntityHP
         _playerPlasma.IncreasePlasma(_playerPlasma._plasmaCost[Ccl_Attacks.PARRY]);
     }
 
+    protected override void Die()
+    {
+        _playerFeedbacks.StopShake();
+        _playerFeedbacks.StopRumble();
+        base.Die();
+    }
+
     #region slow down time after damage taken + camera shake
     void SlowDownTime()
     {

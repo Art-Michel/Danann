@@ -74,7 +74,7 @@ public class EntityHP : MonoBehaviour
         activateRemnant=true;
     
     }
-    protected void Die()
+    protected virtual void Die()
     {
         Time.timeScale = 1;
         gameObject.SetActive(false);
