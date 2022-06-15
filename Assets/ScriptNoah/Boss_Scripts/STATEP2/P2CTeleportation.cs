@@ -93,6 +93,9 @@ public class P2CTeleportation : Danu_State
             arrival.transform.position = target.position + offset;
             fakeArrival.transform.position = target.position - offset;
         }
+        fsm.agent.vfx[1].SetActive(true);
+        fsm.agent.vfx[2].SetActive(true);
+        fsm.agent.vfx[3].SetActive(true);
         startup=0;
         fadeTime=0;
         active=0;
@@ -149,8 +152,7 @@ private void LerpIn()
         }
         else if (active <= maxActive)
         {
-            arrival.SetActive(false);
-            fakeArrival.SetActive(false);
+
             //boomBox.SetActive(true);
             boomBoxAttackData.LaunchAttack();
             fakeBoomBoxAttackData.LaunchAttack();
@@ -163,12 +165,14 @@ private void LerpIn()
         {
             boomBoxAttackData.StopAttack();
             fakeBoomBoxAttackData.StopAttack();
-            arrival.SetActive(false);
-            fakeArrival.SetActive(false);
+                    fsm.agent.vfx[1].SetActive(false);
+
             reco += Time.deltaTime;
         }
         else
         {
+        fsm.agent.vfx[2].SetActive(false);
+        fsm.agent.vfx[3].SetActive(false);
              if (orig == null)
             {
                 fsm.agent.ToIdle();

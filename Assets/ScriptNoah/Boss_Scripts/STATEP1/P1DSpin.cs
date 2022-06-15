@@ -40,6 +40,7 @@ public class P1DSpin : Danu_State
         preview.gameObject.SetActive(true);
         waitTime = 0;
         wait = true;
+        fsm.agent.vfx[5].SetActive(true);
     }
     public override void Init()
     {
@@ -83,6 +84,7 @@ public class P1DSpin : Danu_State
         lifetime -= Time.deltaTime;
         if (lifetime <= 0)
         {
+            fsm.agent.vfx[5].SetActive(false);
             if (orig == null)
                 fsm.agent.ToIdle();
             else

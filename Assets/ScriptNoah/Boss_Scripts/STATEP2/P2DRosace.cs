@@ -46,6 +46,7 @@ public class P2DRosace : Danu_State
         preview.gameObject.SetActive(true);
         lifetime=nbBullets*maxDelay+5;
         wait=true;
+        fsm.agent.vfx[5].SetActive(true);
         waitTime=0;
 
        
@@ -70,6 +71,7 @@ public class P2DRosace : Danu_State
         lifetime-=Time.deltaTime;
         if  (lifetime<=0)
         {
+        fsm.agent.vfx[5].SetActive(false);
              if (orig == null)
             {
                 fsm.agent.ToIdle();

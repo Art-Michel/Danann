@@ -81,8 +81,11 @@ public class P1CDash : Danu_State
             dashCount--;
             dashTime = 0;
             dir = (-fsm.transform.position + target.position).normalized;
+            fsm.agent.vfx[0].SetActive(false);
+
             if (orig == null)
             {
+                
                 fsm.agent.ToIdle();
                 dashAttackData.StopAttack();
             }
@@ -109,5 +112,6 @@ public class P1CDash : Danu_State
         preview.LookAt(straightTarget);
         preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, maxDashTime * dashSpeed);
         dashAttackData.LaunchAttack();
+        fsm.agent.vfx[0].SetActive(true);
     }
 }

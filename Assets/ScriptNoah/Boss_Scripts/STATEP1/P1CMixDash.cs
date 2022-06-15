@@ -79,6 +79,8 @@ public class P1CMixDash : Danu_State
                 {
                     preview.gameObject.SetActive(false);
                     SoundManager.Instance.PlayBossDash();
+                            fsm.agent.vfx[0].SetActive(true);
+
                 }     
                 break;
             case state.DASH:
@@ -87,6 +89,8 @@ public class P1CMixDash : Danu_State
                 {
                     dashAttackData.StopAttack();
                     StartStrafe();
+                    fsm.agent.vfx[0].SetActive(false);
+                    SetTarget();
                 }
                 break;
             case state.STRAFE:
@@ -96,6 +100,7 @@ public class P1CMixDash : Danu_State
                     preview.gameObject.SetActive(false);
                     dashAttackData.LaunchAttack();
                     SoundManager.Instance.PlayBossDash();
+        fsm.agent.vfx[0].SetActive(true);
                 }
                 break;
             case state.RETURNDASH:
@@ -176,6 +181,7 @@ public class P1CMixDash : Danu_State
             preview.position=Vector3.Lerp(preview.position, startPos+(dir*dashSpeed*maxDashTime)/2,1);
             Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
             preview.LookAt(straightTarget);
+            fsm.transform.LookAt(straightTarget);
             preview.localScale=new Vector3(fsm.transform.localScale.x,fsm.transform.localScale.y,maxDashTime*dashSpeed);
             return;
         }
@@ -201,6 +207,7 @@ public class P1CMixDash : Danu_State
         dir = (-fsm.transform.position + target.position).normalized;
         if (dashCount == 0)
         {
+            fsm.agent.vfx[0].SetActive(false);
             isDashing = false;
             Debug.Log("End");
             actual = state.CHARGING;

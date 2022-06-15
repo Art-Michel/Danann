@@ -46,7 +46,8 @@ public class P1RSpirale : Danu_State
         preview.LookAt(fsm.agent.GetArenaCenter());
         preview.gameObject.SetActive(true);
         wait=true;
-                SoundManager.Instance.PlayBossAllOut();
+        SoundManager.Instance.PlayBossAllOut();
+        fsm.agent.vfx[5].SetActive(true);
 
     }
 
@@ -71,6 +72,7 @@ public class P1RSpirale : Danu_State
         if  (lifetime<=0)
         {
             Debug.Log("ee");
+            fsm.agent.vfx[5].SetActive(false);
              if (orig == null)
             {
                 Debug.Log("stop");

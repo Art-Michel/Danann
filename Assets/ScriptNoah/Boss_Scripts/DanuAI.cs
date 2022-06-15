@@ -67,6 +67,7 @@ public class DanuAI : MonoBehaviour
     [SerializeField] GameObject meshP2;
     private bool dmActive;
     private bool dmOver;
+    public List<GameObject> vfx;
 
     private void Awake() {
         if (m_fsm==null)
@@ -75,6 +76,20 @@ public class DanuAI : MonoBehaviour
         if (gfsm==null)
             gfsm=GetComponent<Danu_GlobalFSM>();
         gfsm.agent=this;
+    }
+    public void HideMesh()
+    {
+        if (phase==1)
+            meshP1.SetActive(false);
+        else
+            meshP2.SetActive(false);
+    }
+    public void ShowMesh()
+    {
+        if (phase==1)
+            meshP1.SetActive(true);
+        else
+            meshP2.SetActive(true);
     }
     // Start is called before the first frame update
     void Start()
@@ -441,8 +456,9 @@ public class DanuAI : MonoBehaviour
         if (phase != 1)
             return;
         phase++;
-        /*meshP1.SetActive(false);
-        meshP2.SetActive(true);*/
+        vfx[4].SetActive(true);
+        meshP1.SetActive(false);
+        meshP2.SetActive(true);
         //Add all P2 states and remove all P1 states
     }
     public int GetPhase() { return phase; }
