@@ -13,7 +13,7 @@ public class EntityHP : MonoBehaviour
 
 
     bool _isInvulnerable;
-    [Required][SerializeField] PlayerPlasma _playerplasma;
+    [Required][SerializeField] protected PlayerPlasma _playerplasma;
     [Required][SerializeField] Image _healthBar;
     [Required][SerializeField] public Image _healthBarRemnant;
     [SerializeField] Pooler _billboardsPool;
@@ -42,9 +42,8 @@ public class EntityHP : MonoBehaviour
             bool isBoss = _maxHealthPoints > 100;
             if (isBoss) GetComponent<DanuAI>().BuildUpRevenge(revengeGain);
             if (_healthBar) UpdateHealthBar();
-            DamageFeedback(attackName);
+            DamageFeedback(attackName, plasmaRegainValue);
             if (HealthPoints <= 0) Die();
-            if (plasmaRegainValue > 0) _playerplasma.IncreasePlasma(plasmaRegainValue);
             return true;
         }
         else if (IsParrying)
@@ -85,7 +84,7 @@ public class EntityHP : MonoBehaviour
     {
         Application.Quit();
     }
-    protected virtual void DamageFeedback(string attackName = "")
+    protected virtual void DamageFeedback(string attackName = "", int plasmaRegainValue = 0)
     {
     }
 

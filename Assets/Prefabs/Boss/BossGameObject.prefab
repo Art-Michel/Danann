@@ -20303,8 +20303,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 30
-  _plasmaRegainValue: 0
+  _attackDamage: 2
+  _plasmaRegainValue: 15
   _hitboxes:
   - {fileID: 4419278741841212523}
   _attackName: Slam3
@@ -21409,7 +21409,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 823556921784003239}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77ba99e0ee354c54ab11415cedd30e5c, type: 3}
   m_Name: 
@@ -21823,7 +21823,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 10
+  _attackDamage: 1
   _plasmaRegainValue: 15
   _hitboxes:
   - {fileID: 4438893303315489329}
@@ -23536,8 +23536,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 15
-  _plasmaRegainValue: 0
+  _attackDamage: 2
+  _plasmaRegainValue: 15
   _hitboxes:
   - {fileID: 8856399677336489369}
   _attackName: Tp
@@ -24257,7 +24257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 10
+  _attackDamage: 1
   _plasmaRegainValue: 15
   _hitboxes:
   - {fileID: 4586589500849244632}
@@ -27964,8 +27964,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 20
-  _plasmaRegainValue: 0
+  _attackDamage: 2
+  _plasmaRegainValue: 15
   _hitboxes:
   - {fileID: 4828560283248673675}
   _attackName: Slam2
@@ -29925,8 +29925,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 5
-  _plasmaRegainValue: 0
+  _attackDamage: 1
+  _plasmaRegainValue: 10
   _hitboxes: []
   _attackName: Projectile
 --- !u!1 &6257748742119177978
@@ -31049,8 +31049,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 15
-  _plasmaRegainValue: 0
+  _attackDamage: 2
+  _plasmaRegainValue: 15
   _hitboxes:
   - {fileID: 33414682578957620}
   _attackName: Slam1
@@ -31230,7 +31230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 10
+  _attackDamage: 1
   _plasmaRegainValue: 30
   _hitboxes:
   - {fileID: 7264284666882184930}
@@ -31859,8 +31859,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 15
-  _plasmaRegainValue: 0
+  _attackDamage: 2
+  _plasmaRegainValue: 10
   _hitboxes:
   - {fileID: 3157848548875340874}
   _attackName: Tp
@@ -32645,8 +32645,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 5
-  _plasmaRegainValue: 0
+  _attackDamage: 1
+  _plasmaRegainValue: 5
   _hitboxes: []
   _attackName: Projectile
 --- !u!1 &8380206358576935220

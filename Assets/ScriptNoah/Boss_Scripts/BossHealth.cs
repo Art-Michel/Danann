@@ -22,13 +22,14 @@ public class BossHealth : EntityHP
         //_maxHealthPoints = 500;
     }
 
-    override protected void DamageFeedback(string attackName)
+    override protected void DamageFeedback(string attackName, int plasmaRegainValue)
     {
         SoundManager.Instance.PlayHitSound(attackName);
         _playerFeedbacks.StartShake(AttackShake.ShakeValue[attackName].x, AttackShake.ShakeValue[attackName].y);
         _playerFeedbacks.StartRumble(AttackShake.RumbleValue[attackName].x, AttackShake.RumbleValue[attackName].y, AttackShake.RumbleValue[attackName].z);
         _isBlinking = true;
         _blinkingT = _blinkingDuration;
+        if (plasmaRegainValue > 0) _playerplasma.IncreasePlasma(plasmaRegainValue);
     }
 
     private void HandlePostDamageBlinking()
@@ -40,11 +41,11 @@ public class BossHealth : EntityHP
     {
         float percent = (HealthPoints / _maxHealthPoints) * 100;
         if (!activateRemnant)
-        oldValue=(HealthPoints / _maxHealthPoints);
-        accel=0;        
-        if (percent < 50 && agent.GetPhase()==1)
+            oldValue = (HealthPoints / _maxHealthPoints);
+        accel = 0;
+        if (percent < 50 && agent.GetPhase() == 1)
             agent.NextPhase();
-        if (percent<5)
+        if (percent < 5)
             agent.launchDM();
         return base.TakeDamage(amount, attackName, plasmaRegainValue, revengeGain);
     }
@@ -57,18 +58,18 @@ public class BossHealth : EntityHP
     void Update()
     {
         if (_isBlinking) HandlePostDamageBlinking();
-        accel=Mathf.Clamp( accel+Time.deltaTime,0,1);
+        accel = Mathf.Clamp(accel + Time.deltaTime, 0, 1);
         if (!activateRemnant)
             return;
-        remnantTime+=Time.deltaTime*accel;
+        remnantTime += Time.deltaTime * accel;
         float value = Mathf.InverseLerp(0, _maxHealthPoints, HealthPoints);
         value = Mathf.Lerp(0, 1, value);
-        _healthBarRemnant.fillAmount=Mathf.Lerp(oldValue,value,remnantTime/maxRemnantTime);
-        
-        if (remnantTime>=maxRemnantTime)
+        _healthBarRemnant.fillAmount = Mathf.Lerp(oldValue, value, remnantTime / maxRemnantTime);
+
+        if (remnantTime >= maxRemnantTime)
         {
-            remnantTime=0;
-            activateRemnant=false;
+            remnantTime = 0;
+            activateRemnant = false;
         }
     }
 
