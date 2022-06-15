@@ -37,6 +37,7 @@ public class BossHealth : EntityHP
         _blinkingT -= Time.unscaledDeltaTime;
         if (_blinkingT <= 0) ResetBlinking();
     }
+
     public override bool TakeDamage(int amount, string attackName, int plasmaRegainValue, int revengeGain = 0, GameObject obj = null)
     {
         float percent = (HealthPoints / _maxHealthPoints) * 100;
@@ -49,6 +50,7 @@ public class BossHealth : EntityHP
             agent.launchDM();
         return base.TakeDamage(amount, attackName, plasmaRegainValue, revengeGain);
     }
+    
     private void ResetBlinking()
     {
         _body.SetActive(true);

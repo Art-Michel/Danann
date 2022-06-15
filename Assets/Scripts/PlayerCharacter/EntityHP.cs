@@ -65,7 +65,7 @@ public class EntityHP : MonoBehaviour
         UpdateHealthBar();
     }
 
-    private void UpdateHealthBar()
+    protected void UpdateHealthBar()
     {
         float value = Mathf.InverseLerp(0, _maxHealthPoints, HealthPoints);
         value = Mathf.Lerp(0, 1, value);

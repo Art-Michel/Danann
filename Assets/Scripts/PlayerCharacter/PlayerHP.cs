@@ -36,6 +36,9 @@ public class PlayerHP : EntityHP
     [SerializeField] BossHealth _bossHealth;
 
     Hurtbox _hurtbox;
+    private float _regenT;
+    private bool _canRegen;
+    private float maxRegenT = 3f;
 
     void Awake()
     {
@@ -53,12 +56,29 @@ public class PlayerHP : EntityHP
         StartInvul();
         _playerFeedbacks.StartShake(.3f, 1f);
         _playerFeedbacks.StartRumble(.3f, 0.6f, 0.9f);
+        StartRegenCooldown();
+    }
+
+    private void StartRegenCooldown()
+    {
+        _regenT = maxRegenT;
+        _canRegen = false;
     }
 
     void Update()
     {
         if (_invulerabilityT > 0) HandlePostDamageInvul();
         if (_timeIsSlow) HandlePostDamageTimeSlow();
+        if (!_canRegen)
+        {
+            _regenT -= Time.deltaTime;
+            if (_regenT <= 0) _canRegen = true;
+        }
+        else if (HealthPoints < _maxHealthPoints)
+        {
+            HealthPoints = Mathf.Clamp(HealthPoints + Time.deltaTime * 0.25f, 0, _maxHealthPoints);
+            UpdateHealthBar();
+        }
     }
 
     void FixedUpdate()
