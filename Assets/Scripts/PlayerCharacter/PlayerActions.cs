@@ -39,12 +39,12 @@ public class PlayerActions : MonoBehaviour
     #endregion
 
     #region Init Targetting
-    public Spear_FSM _currentlyTargettedSpear{get; private set;}
+    public Spear_FSM _currentlyTargettedSpear { get; private set; }
     #endregion
 
     #region Init Aiming
     [SerializeField] Transform _body;
-    public Spear_FSM CurrentlyHeldSpear{get; private set;}
+    public Spear_FSM CurrentlyHeldSpear { get; private set; }
     [SerializeField] GameObject _cursor;
     #endregion
 
@@ -53,7 +53,12 @@ public class PlayerActions : MonoBehaviour
     public PlayerHP PlayerHP { get; private set; }
     bool _canDodge;
     float _dodgeCooldown = 0;
-    const float _dodgeMaxCooldown = 0.25f;
+    const float _dodgeMaxCooldown = 1.5f;
+    const float _dodgeResetCooldown = 1f;
+    const float _dodgeMinCooldown = 0.12f;
+    int _successiveDodges;
+    float _timeSinceLastDodged;
+    private bool _isPressingDodge;
     #endregion
 
     #region Init Attacks Data
@@ -88,6 +93,7 @@ public class PlayerActions : MonoBehaviour
         _inputs.Actions.LightAttack.started += _ => LightAttackInput();
 
         _inputs.Actions.Dodge.started += _ => DodgeInput();
+        _inputs.Actions.Dodge.canceled += _ => DodgeInputReleased();
 
         _inputs.Actions.ThrowL.started += _ => PressTrigger(_leftSpear);
         _inputs.Actions.ThrowR.started += _ => PressTrigger(_rightSpear);
@@ -95,7 +101,11 @@ public class PlayerActions : MonoBehaviour
         _inputs.Actions.ThrowR.canceled += _ => ReleaseTrigger(_rightSpear);
 
         _inputs.Actions.Parry.started += _ => ParryInput();
+    }
 
+    void Start()
+    {
+        _successiveDodges = 0;
     }
 
     #region Triggers Inputs
@@ -116,7 +126,7 @@ public class PlayerActions : MonoBehaviour
 
     private void ReleaseTrigger(Spear_FSM spear)
     {
-        if (_fsm.currentState.Name == Ccl_StateNames.AIMING)
+        if (_fsm.currentState.Name == Ccl_StateNames.AIMING && CurrentlyHeldSpear == spear)
             Throw();
         else if (_fsm.currentState.Name == Ccl_StateNames.TARGETTING && _currentlyTargettedSpear == spear)
             Recall();
@@ -203,28 +213,47 @@ public class PlayerActions : MonoBehaviour
     }
     #endregion
 
-    #region DodgeRoll`
+    #region DodgeRoll
     private void DodgeInput()
     {
+        _isPressingDodge = true;
         if (_fsm.currentState.Name == Ccl_StateNames.TARGETTING && _currentlyTargettedSpear != null)
             Dash(_currentlyTargettedSpear);
 
-        else if ((_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKRECOVERY || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKSTARTUP) && _dodgeCooldown <= 0)
+        else if ((_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKRECOVERY || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKSTARTUP))
             DodgeRoll();
 
         else if (_fsm.currentState.Name == Ccl_StateNames.AIMING)
             CancelAim();
     }
+    void DodgeInputReleased()
+    {
+        _isPressingDodge = false;
+    }
 
     private void DodgeRoll()
     {
-        if (_fsm.currentState.Name != Ccl_StateNames.LIGHTATTACKING) PlayerMovement.OrientateBodyInstantlyTowardsStickDirection();
-        _fsm.ChangeState(Ccl_StateNames.DODGING);
+        if (_dodgeCooldown <= 0)
+        {
+            if (_fsm.currentState.Name != Ccl_StateNames.LIGHTATTACKING)
+                PlayerMovement.OrientateBodyInstantlyTowardsStickDirection();
+            _fsm.ChangeState(Ccl_StateNames.DODGING);
+        }
     }
 
     public void StartDodgeCooldown()
     {
-        _dodgeCooldown = _dodgeMaxCooldown;
+        _timeSinceLastDodged = 0f;
+        if (_successiveDodges < 2)
+        {
+            _successiveDodges++;
+            _dodgeCooldown = _dodgeMinCooldown;
+        }
+        else
+        {
+            _successiveDodges = 0;
+            _dodgeCooldown = _dodgeMaxCooldown;
+        }
         this._playerFeedbacks.SetTrailRenderer(true, false);
         _canDodge = false;
     }
@@ -380,10 +409,19 @@ public class PlayerActions : MonoBehaviour
         }
         if (_comboWindow <= 0) CurrentLightAttackIndex = 0;
 
+        if(_isPressingDodge) DodgeInput();
+
         if (!_canDodge)
         {
             _dodgeCooldown -= Time.deltaTime;
             if (_dodgeCooldown <= 0) CanDodgeAgain();
+        }
+
+        if (_successiveDodges > 0)
+        {
+            _timeSinceLastDodged += Time.deltaTime;
+            if (_timeSinceLastDodged > _dodgeResetCooldown)
+                _successiveDodges = 0;
         }
     }
 

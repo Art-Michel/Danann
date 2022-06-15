@@ -50,7 +50,7 @@ public class PlayerHP : EntityHP
         SlowDownTime();
         StartInvul();
         _playerFeedbacks.StartShake(.3f, 1f);
-        _playerFeedbacks.StartRumble(.3f, 0.5f,0.8f);
+        _playerFeedbacks.StartRumble(.3f, 0.6f,0.9f);
     }
 
     void Update()
