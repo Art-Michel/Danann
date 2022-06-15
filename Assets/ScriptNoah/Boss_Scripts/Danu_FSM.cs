@@ -259,6 +259,8 @@ public class Danu_FSM : MonoBehaviour
     public int GetRosaceBulletNB(){return bulletNumber;}
     [Foldout("Rosace"), SerializeField] float rosaceDelay;
     public float GetRosaceDelay(){return rosaceDelay;}
+    [Foldout("Rosace"), SerializeField] float arenaDist;
+    public float GetArenaDist(){return arenaDist;}
         #endregion
         #region Phase 2 Rosace
     [Foldout("Rosace"), SerializeField] int p2rosaceNumber;

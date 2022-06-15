@@ -24,7 +24,7 @@ public class P2DRosace : Danu_State
     {
         base.Init();
         arenaCenter=fsm.agent.GetArenaCenter();
-        arenaRadius=fsm.agent.GetArenaRadius()+1.2f;
+        arenaRadius=fsm.GetArenaDist();
         pool=fsm.GetRosacePool();
         proj = fsm.GetStraightProj();
         nb=fsm.GetP2RosaceNumber();
