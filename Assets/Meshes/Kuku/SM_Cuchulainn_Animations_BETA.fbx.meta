@@ -21,7 +21,17 @@ ModelImporter:
   - first:
       74: 6698843338090819942
     second: Light_Attack_03
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_3dsM_Body1
+    second: {fileID: 2100000, guid: 2af3c282167b05640a1864953df6c31e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_3dsM_Rings1
+    second: {fileID: 2100000, guid: ce044945bce4f2242a4c8de3b1eaac28, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
