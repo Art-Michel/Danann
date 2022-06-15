@@ -20,6 +20,7 @@ public class DesperationMove : MonoBehaviour
     public Transform GetP1sD_Preview() { return p1sDash_preview; }
     public Pool GetPool() { return pool; }
     public DanuAI agent;
+    List<Dm_State> states=new List<Dm_State>();
     enum State
     {
         SHOOT,
@@ -30,74 +31,28 @@ public class DesperationMove : MonoBehaviour
         LASTTP,
         LASER
     }
+    int index;
     State curr;
     // Start is called before the first frame update
     void Start()
     {
-        
+        states.Add(new DM_Shoot());
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch(curr)
-        {
-            case State.SHOOT :
-                ShootUpdate();
-                break;
-            case State.DOUBLETP :
-                DoubleTpUpdate();
-                break;                
-            case State.ROSACE :
-                RosaceUpdate();
-                break;                
-            case State.TP :
-                TPUpdate();
-                break;                
-            case State.SLAM :
-                SlamUpdate();
-                break;                
-            case State.LASTTP :
-                LastTPUpdate();
-                break;                
-            case State.LASER :
-                LaserUpdate();
-                break;                
+        states[index].Update();
+    }
+
+    public void Next()
+    {
+        index++;
+        if (index>=states.Count)
+        {    
+            agent.EndDM();
+            enabled=false;
         }
-    }
-
-    private void LaserUpdate()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void LastTPUpdate()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void SlamUpdate()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void TPUpdate()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void RosaceUpdate()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void DoubleTpUpdate()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void ShootUpdate()
-    {
-        throw new NotImplementedException();
     }
 }

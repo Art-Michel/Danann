@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DM_Shoot : MonoBehaviour
+public class DM_Shoot : Dm_State
 {
     float timer;
     Transform preview;
@@ -20,7 +20,7 @@ public class DM_Shoot : MonoBehaviour
     DesperationMove fsm;
 
     // Start is called before the first frame update
-    public void Begin()
+    public override void Begin()
     {
         Init();
 
@@ -49,7 +49,7 @@ public class DM_Shoot : MonoBehaviour
         preview=fsm.GetP1sD_Preview();
     }
     // Update is called once per frame
-    public void Update()
+    public override void Update()
     {
         if (wait)
         {
@@ -80,7 +80,7 @@ public class DM_Shoot : MonoBehaviour
             timer = 0;
             if (index > nbShot)
             {
-                
+                fsm.Next();
                 return;
             }
             else
