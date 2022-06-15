@@ -5171,8 +5171,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 1
   shouldHitAllies: 0
-  _attackDamage: 7
-  _plasmaRegainValue: 4
+  _attackDamage: 2
+  _plasmaRegainValue: 2
   _hitboxes:
   - {fileID: 6868656391946405962}
   - {fileID: 6696278159188641473}
@@ -5900,16 +5900,16 @@ MonoBehaviour:
   _leftSpear: {fileID: 3459590204732892884}
   _rightSpear: {fileID: 6717469305649593430}
   _lightStartup:
+  - 0.02
+  - 0.02
   - 0.1
-  - 0.1
-  - 0.3
   _lightActive:
+  - 0.05
   - 0.1
-  - 0.1
-  - 0.1
+  - 0.2
   _lightRecovery:
-  - 0.1
-  - 0.1
+  - 0.2
+  - 0.2
   - 0.4
   _moveSpeedWhileAttacking:
   - 0.6
@@ -6350,8 +6350,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 1
   shouldHitAllies: 0
-  _attackDamage: 2
-  _plasmaRegainValue: 2
+  _attackDamage: 1
+  _plasmaRegainValue: 1
   _hitboxes:
   - {fileID: 6696278158459461242}
   - {fileID: 6696278158567636296}
@@ -6525,7 +6525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 1
   shouldHitAllies: 0
-  _attackDamage: 50
+  _attackDamage: 30
   _plasmaRegainValue: 10
   _hitboxes:
   - {fileID: 4243188476495909262}
@@ -6622,8 +6622,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 1
   shouldHitAllies: 0
-  _attackDamage: 3
-  _plasmaRegainValue: 3
+  _attackDamage: 1
+  _plasmaRegainValue: 1
   _hitboxes:
   - {fileID: 4157928151669737584}
   - {fileID: 6696278158720648605}
@@ -7741,6 +7741,14 @@ PrefabInstance:
       propertyPath: _attackName
       value: RightSpearSwing
       objectReference: {fileID: 0}
+    - target: {fileID: 8637741451736142707, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: _attackDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8637741451736142707, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: _plasmaRegainValue
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8684172199197681728, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.411
@@ -7955,6 +7963,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9a5ccda3c9c559f4a9faf83b0dddfc4f, type: 2}
+    - target: {fileID: 8637741451736142707, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: _attackDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8637741451736142707, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: _plasmaRegainValue
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8684172199197681728, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.411

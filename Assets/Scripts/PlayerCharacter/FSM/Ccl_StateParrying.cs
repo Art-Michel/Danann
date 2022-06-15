@@ -20,6 +20,7 @@ public class Ccl_StateParrying : Ccl_State
 
         _actions.PlayerHP.ParryingText();
         _feedbacks.StartParryFeedback();
+        _feedbacks.SetAnimationTrigger("Shield");
         _actions.EnlargenHurtbox();
     }
 
@@ -32,6 +33,7 @@ public class Ccl_StateParrying : Ccl_State
 
     public override void Exit()
     {
+        _feedbacks.SetAnimationTrigger("Idle");
         _actions.ResetHurtboxSize();
         _feedbacks.StopParryFeedback();
         _actions.PlayerHP.ResetInvulerability();

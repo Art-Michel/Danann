@@ -8,13 +8,14 @@ public class Ccl_StateRecalling : Ccl_State
     {
 
     }
-    
+
     const float _stateDuration = 0.1f;
     float _t;
 
     public override void Begin()
     {
         _feedbacks.PlayRecallSfx();
+        _feedbacks.SetAnimationTrigger("Recall");
         _t = 0;
     }
 

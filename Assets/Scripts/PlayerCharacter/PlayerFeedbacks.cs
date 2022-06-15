@@ -199,17 +199,17 @@ public class PlayerFeedbacks : MonoBehaviour
 
     void PlayPunch0()
     {
-        PlaySound(_punch0, 6f);
+        PlaySound(_punch0, 1f);
     }
 
     void PlayPunch1()
     {
-        PlaySound(_punch1, 6f);
+        PlaySound(_punch1, 1f);
     }
 
     void PlayPunch2()
     {
-        PlaySound(_punch2, 4f);
+        PlaySound(_punch2, .8f);
     }
 
     public void PlaySegmentFill()

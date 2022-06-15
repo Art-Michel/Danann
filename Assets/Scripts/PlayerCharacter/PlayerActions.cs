@@ -169,6 +169,7 @@ public class PlayerActions : MonoBehaviour
     {
         {
             _fsm.ChangeState(Ccl_StateNames.IDLE);
+            _playerFeedbacks.SetAnimationTrigger("Idle");
             _playerFeedbacks.SetCameraTargetWeight(4, 0);
             CurrentlyHeldSpear.ChangeState(Spear_StateNames.ATTACHED);
             CurrentlyHeldSpear = null;
@@ -231,6 +232,12 @@ public class PlayerActions : MonoBehaviour
     void DodgeInputReleased()
     {
         _isPressingDodge = false;
+    }
+
+    void TryToDodge()
+    {
+        if ((_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKRECOVERY || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKSTARTUP))
+            DodgeRoll();
     }
 
     private void DodgeRoll()
@@ -411,7 +418,7 @@ public class PlayerActions : MonoBehaviour
         }
         if (_comboWindow <= 0) CurrentLightAttackIndex = 0;
 
-        if(_isPressingDodge) DodgeInput();
+        if (_isPressingDodge) TryToDodge();
 
         if (!_canDodge)
         {

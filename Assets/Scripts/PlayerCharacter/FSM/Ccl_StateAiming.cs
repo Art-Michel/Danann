@@ -17,6 +17,7 @@ public class Ccl_StateAiming : Ccl_State
         _actions.EnableCursor();
         _feedbacks.PlayZoomInSfx();
         _feedbacks.ZoomCamera();
+        _feedbacks.SetAnimationTrigger("Aim");
         UiManager.Instance.SetText(UiManager.Instance.EText, "Cancel");
         UiManager.Instance.SetText(UiManager.Instance.NText, "Cancel");
         UiManager.Instance.SetText(UiManager.Instance.WText, "Cancel");

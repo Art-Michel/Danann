@@ -43,7 +43,7 @@ public class PlayerHP : EntityHP
         _playerFeedbacks = GetComponent<PlayerFeedbacks>();
         _playerPlasma = GetComponent<PlayerPlasma>();
         _fsm = GetComponent<Ccl_FSM>();
-        _maxHealthPoints = 100;
+        _maxHealthPoints = 5;
     }
 
     override protected void DamageFeedback(string attackName = "")
