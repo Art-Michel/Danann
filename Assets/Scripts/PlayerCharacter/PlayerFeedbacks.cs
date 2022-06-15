@@ -20,6 +20,18 @@ public class PlayerFeedbacks : MonoBehaviour
 
     #region  Plasma
     [SerializeField] AudioClip _segmentFill;
+    [SerializeField] GameObject _ShieldVfx;
+
+    internal void StartParryFeedback()
+    {
+        PlayParrySfx();
+        _ShieldVfx.SetActive(true);
+    }
+
+    internal void StopParryFeedback()
+    {
+        _ShieldVfx.SetActive(false);
+    }
     #endregion
 
     #region Aiming
@@ -295,16 +307,22 @@ public class PlayerFeedbacks : MonoBehaviour
     private bool _isRumbling;
     public void StartRumble(float duration, float lowFrequencyIntensity, float highFrequencyIntensity)
     {
-        Gamepad.current.SetMotorSpeeds(lowFrequencyIntensity, highFrequencyIntensity);
-        _rumbleT = duration;
-        _isRumbling = true;
+        if (Gamepad.current != null)
+        {
+            Gamepad.current.SetMotorSpeeds(lowFrequencyIntensity, highFrequencyIntensity);
+            _rumbleT = duration;
+            _isRumbling = true;
+        }
     }
 
     public void StopRumble()
     {
-        Gamepad.current.SetMotorSpeeds(0, 0);
-        _vcamPerlin.m_AmplitudeGain = 0;
-        _isRumbling = false;
+        if (Gamepad.current != null)
+        {
+            Gamepad.current.SetMotorSpeeds(0, 0);
+            _vcamPerlin.m_AmplitudeGain = 0;
+            _isRumbling = false;
+        }
     }
     #endregion
 

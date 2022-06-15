@@ -32,6 +32,7 @@ public class PlayerHP : EntityHP
     PlayerFeedbacks _playerFeedbacks;
     PlayerPlasma _playerPlasma;
     Ccl_FSM _fsm;
+    [SerializeField] DanuAI _danuAI;
 
     Hurtbox _hurtbox;
 
@@ -50,7 +51,7 @@ public class PlayerHP : EntityHP
         SlowDownTime();
         StartInvul();
         _playerFeedbacks.StartShake(.3f, 1f);
-        _playerFeedbacks.StartRumble(.3f, 0.6f,0.9f);
+        _playerFeedbacks.StartRumble(.3f, 0.6f, 0.9f);
     }
 
     void Update()
@@ -64,15 +65,23 @@ public class PlayerHP : EntityHP
         if (_isBlinking) _body.gameObject.SetActive(!_body.activeSelf);
     }
 
-    protected override void Parry(GameObject obj)
+    protected override void Parry(GameObject obj, int plasmaRegainValue, string attackName)
     {
         _playerFeedbacks.PlayParryTriggerSfx();
+        //Refund Parry cost
+        _playerPlasma.IncreasePlasma(plasmaRegainValue);
+
         Ccl_StateParrying stateParrying = _fsm.currentState as Ccl_StateParrying;
         stateParrying.ParryT = 0f;
-        obj.SetActive(false);
 
-        //Refund Parry cost
-        _playerPlasma.IncreasePlasma(_playerPlasma._plasmaCost[Ccl_Attacks.PARRY]);
+        bool attackIsMelee = Danu_Attacks.AttackIsMelee[attackName];
+        if (attackIsMelee)
+        {
+            _danuAI.Stun(2);
+            obj.SetActive(false); // renvoyer le projo un jour
+        }
+        else
+            obj.SetActive(false); // renvoyer le projo un jour
     }
 
     protected override void Die()

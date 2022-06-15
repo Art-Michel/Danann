@@ -76,6 +76,7 @@ public class PlayerActions : MonoBehaviour
 
     #region Init Parrying
     public Spear_FSM SpearUsedToParry { get; private set; }
+    Hurtbox _hurtbox;
     #endregion
 
     private void Awake()
@@ -88,6 +89,7 @@ public class PlayerActions : MonoBehaviour
         this.PlayerHP = GetComponent<PlayerHP>();
         this._playerFeedbacks = GetComponent<PlayerFeedbacks>();
         this._playerPlasma = GetComponent<PlayerPlasma>();
+        this._hurtbox = GetComponent<Hurtbox>();
 
         //Inputs
         _inputs.Actions.LightAttack.started += _ => LightAttackInput();
@@ -361,14 +363,14 @@ public class PlayerActions : MonoBehaviour
             Parry();
     }
 
-    private void BufferParry()
+    public void EnlargenHurtbox()
     {
-
+        _hurtbox.SetRadius(3f);
     }
 
-    private void BufferDash()
+    public void ResetHurtboxSize()
     {
-
+        _hurtbox.SetRadius(0.3f);
     }
 
     private void Dash(Spear_FSM spear)

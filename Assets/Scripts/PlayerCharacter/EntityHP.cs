@@ -49,7 +49,7 @@ public class EntityHP : MonoBehaviour
         }
         else if (IsParrying)
         {
-            Parry(obj);
+            Parry(obj, plasmaRegainValue, attackName);
             return false;
         }
         else
@@ -89,7 +89,7 @@ public class EntityHP : MonoBehaviour
     {
     }
 
-    protected virtual void Parry(GameObject obj)
+    protected virtual void Parry(GameObject obj, int plasmaRegainValue, string attackName)
     {
 
     }
