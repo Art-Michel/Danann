@@ -33,6 +33,7 @@ public class PlayerHP : EntityHP
     PlayerPlasma _playerPlasma;
     Ccl_FSM _fsm;
     [SerializeField] DanuAI _danuAI;
+    [SerializeField] BossHealth _bossHealth;
 
     Hurtbox _hurtbox;
 
@@ -75,10 +76,11 @@ public class PlayerHP : EntityHP
         stateParrying.ParryT = 0f;
 
         bool attackIsMelee = Danu_Attacks.AttackIsMelee[attackName];
+        _bossHealth.TakeDamage(plasmaRegainValue, attackName, 0);
         if (attackIsMelee)
         {
-            _danuAI.Stun(2);
-            obj.SetActive(false); // renvoyer le projo un jour
+            _danuAI.Stun(3);
+            obj.transform.parent.gameObject.SetActive(false); // renvoyer le projo un jour
         }
         else
             obj.SetActive(false); // renvoyer le projo un jour

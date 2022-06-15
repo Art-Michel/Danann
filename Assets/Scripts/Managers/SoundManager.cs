@@ -11,28 +11,31 @@ public class SoundManager : ProjectManager<SoundManager>
     [SerializeField] AudioClip _bossPunched;
     [SerializeField] AudioClip _blockedHit;
     [SerializeField] AudioClip _bossPunchedH;
-    [SerializeField] AudioClip  _bossSlashedH;
+    [SerializeField] AudioClip _bossSlashedH;
     [SerializeField] AudioClip _bossSwinged;
+    [SerializeField] AudioClip _counterAttack;
     Dictionary<string, AudioClip> _attackSoundEffect;
     #region Boss
-    [SerializeField,Foldout("BossSFX")] AudioClip _bossTPIn;
-    [SerializeField,Foldout("BossSFX")] AudioClip _bossTPOut;
-    [SerializeField,Foldout("BossSFX")] AudioClip _bossShoot;
-    [SerializeField,Foldout("BossSFX")] AudioClip _bossStartRise;
-    [SerializeField,Foldout("BossSFX")] AudioClip _bossEndRise;
-    [SerializeField,Foldout("BossSFX")] AudioClip _bossDash;
-    [SerializeField,Foldout("BossSFX")] AudioClip _bossBoomerang;
-    [SerializeField,Foldout("BossSFX")] AudioClip _bossAllOut;
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossTPIn;
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossTPOut;
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossShoot;
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossStartRise;
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossEndRise;
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossDash;
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossBoomerang;
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossAllOut;
     public void PlayBossTpIn()
     {
         PlaySound(_bossTPIn, 1f);
-    }    public void PlayBossTpOut()
+    }
+    public void PlayBossTpOut()
     {
         PlaySound(_bossTPOut, 1f);
-    }    public void PlayBossShoot()
+    }
+    public void PlayBossShoot()
     {
         PlaySound(_bossShoot, 1f);
-    }    
+    }
     public void PlayBossRiseStart()
     {
         PlaySound(_bossStartRise, 1f);
@@ -53,6 +56,10 @@ public class SoundManager : ProjectManager<SoundManager>
     {
         PlaySound(_bossAllOut, 1f);
     }
+    public void PlayCounterAttack()
+    {
+        PlaySound(_counterAttack, 0.4f);
+    }
 
     #endregion
 
@@ -68,7 +75,14 @@ public class SoundManager : ProjectManager<SoundManager>
         {Ccl_Attacks.DASHONSPEAR, _bossPunchedH},
         {Ccl_Attacks.SPEARSWINGL, _bossSwinged},
         {Ccl_Attacks.SPEARSWINGR, _bossSwinged},
-        {Ccl_Attacks.TRAVELINGSPEAR, _bossSlashedH}
+        {Ccl_Attacks.TRAVELINGSPEAR, _bossSlashedH},
+        {Danu_Attacks.DASH, _counterAttack},
+        {Danu_Attacks.DASH2, _counterAttack},
+        {Danu_Attacks.PROJECTILE, _counterAttack},
+        {Danu_Attacks.SLAM1, _counterAttack},
+        {Danu_Attacks.SLAM2, _counterAttack},
+        {Danu_Attacks.SLAM3, _counterAttack},
+        {Danu_Attacks.TP, _counterAttack}
         };
     }
 
@@ -95,7 +109,7 @@ public class SoundManager : ProjectManager<SoundManager>
     public void PlayBossHeavySlashed()
     {
         PlaySound(_bossSlashedH, 5f);
-    }    
+    }
 
     public void PlayBlockedHit()
     {

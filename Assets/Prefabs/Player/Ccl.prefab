@@ -5172,7 +5172,7 @@ MonoBehaviour:
   shouldHitEnemies: 1
   shouldHitAllies: 0
   _attackDamage: 7
-  _plasmaRegainValue: 5
+  _plasmaRegainValue: 4
   _hitboxes:
   - {fileID: 6868656391946405962}
   - {fileID: 6696278159188641473}
@@ -5957,6 +5957,7 @@ MonoBehaviour:
   maxRemnantTime: 0
   _body: {fileID: 6634550191406175141}
   _danuAI: {fileID: 0}
+  _bossHealth: {fileID: 0}
 --- !u!114 &6718971616905161990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6622,7 +6623,7 @@ MonoBehaviour:
   shouldHitEnemies: 1
   shouldHitAllies: 0
   _attackDamage: 3
-  _plasmaRegainValue: 2
+  _plasmaRegainValue: 3
   _hitboxes:
   - {fileID: 4157928151669737584}
   - {fileID: 6696278158720648605}

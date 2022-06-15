@@ -249,7 +249,7 @@ public class PlayerFeedbacks : MonoBehaviour
 
     public void PlayParryTriggerSfx()
     {
-        PlaySound(_parryTrigger, 2f);
+        PlaySound(_parryTrigger, 1f);
     }
 
     public void PlayPlayerHurtSfx()
