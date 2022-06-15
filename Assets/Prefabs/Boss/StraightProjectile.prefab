@@ -176,10 +176,10 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 5
-  _plasmaRegainValue: 0
+  _plasmaRegainValue: 2
   _hitboxes:
   - {fileID: 5111621923231931708}
-  _attackName: LightAttack1
+  _attackName: Projectile
 --- !u!114 &2650930807530830819
 MonoBehaviour:
   m_ObjectHideFlags: 0

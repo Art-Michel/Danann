@@ -21360,16 +21360,16 @@ MonoBehaviour:
   maxRevenge: 100
   health: {fileID: 2577399527204082855}
   waitingTime: 0.5
-  arenaRadius: 25
-  arenaCenter: {x: -10.26, y: 0, z: -3.04}
+  arenaRadius: 18
+  arenaCenter: {x: -9.88, y: 0, z: -4.05}
   movementRange: 6
   maxChain: 2
   projectile: {fileID: 3516479995275154835, guid: a802e1e7d87be014ca7ef970427689d4, type: 3}
   maxCap: 0
   goingRandom: 1
   maxProjectilePool: 13
-  testState: P2CTeleportation
-  isDebug: 1
+  testState: P1RSPIRALE
+  isDebug: 0
   m_anims: {fileID: 672744068}
   meshP1: {fileID: 6789500668194738258}
   meshP2: {fileID: 6789500668194738258}
@@ -21824,7 +21824,7 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 10
-  _plasmaRegainValue: 0
+  _plasmaRegainValue: 15
   _hitboxes:
   - {fileID: 4438893303315489329}
   - {fileID: 4572560890183370767}
@@ -24258,7 +24258,7 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 10
-  _plasmaRegainValue: 0
+  _plasmaRegainValue: 15
   _hitboxes:
   - {fileID: 4586589500849244632}
   - {fileID: 9033900647121788308}
@@ -31231,7 +31231,7 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 10
-  _plasmaRegainValue: 0
+  _plasmaRegainValue: 30
   _hitboxes:
   - {fileID: 7264284666882184930}
   _attackName: Dash
