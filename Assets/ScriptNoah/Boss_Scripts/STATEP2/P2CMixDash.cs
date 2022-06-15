@@ -74,7 +74,10 @@ public class P2DMixDash : Danu_State
             case state.CHARGING:
                 ChargeDash();
                 if (actual != state.CHARGING)
+                {
                     preview.gameObject.SetActive(false);
+                    fsm.agent.vfx[0].SetActive(true);
+                }
                 break;
             case state.DASH:
                 Dash();
@@ -82,6 +85,7 @@ public class P2DMixDash : Danu_State
                 {
                     dashAttackData.StopAttack();
                     StartStrafe();
+                    fsm.agent.vfx[0].SetActive(false);
                 }
                 break;
             case state.STRAFE:
@@ -90,6 +94,7 @@ public class P2DMixDash : Danu_State
                 {
                     preview.gameObject.SetActive(false);
                     dashAttackData.LaunchAttack();
+                    fsm.agent.vfx[0].SetActive(true);
                 }
                 break;
             case state.RETURNDASH:
@@ -170,6 +175,7 @@ public class P2DMixDash : Danu_State
             preview.position=Vector3.Lerp(preview.position, startPos+(dir*dashSpeed*maxDashTime)/2,1);
             Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
             preview.LookAt(straightTarget);
+            fsm.transform.LookAt(straightTarget);
             Quaternion rot=Quaternion.identity;
             rot.eulerAngles=new Vector3(0,preview.rotation.eulerAngles.y,preview.rotation.eulerAngles.z);
             preview.rotation=rot;
@@ -197,8 +203,9 @@ public class P2DMixDash : Danu_State
         dashAttackData.LaunchAttack();
         dir = (-fsm.transform.position + target.position).normalized;
         if (dashCount != 0)
-        {                SetTarget();
-                preview.gameObject.SetActive(true);
+        {                
+            SetTarget();
+            preview.gameObject.SetActive(true);
             dashTime = 0;
             chargingTime = 0;
             actual = state.CHARGING;
@@ -208,6 +215,8 @@ public class P2DMixDash : Danu_State
         Debug.Log("End");
         actual = state.CHARGING;
         dashAttackData.StopAttack();
+        fsm.agent.vfx[0].SetActive(false);
+
         if (orig == null)
         {
             fsm.agent.ToIdle();
@@ -227,6 +236,7 @@ public class P2DMixDash : Danu_State
         preview.position = startPos + (dir * dashSpeed * maxDashTime) / 2;
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
         preview.LookAt(straightTarget);
+        fsm.transform.LookAt(straightTarget);
         Quaternion rot=Quaternion.identity;
         rot.eulerAngles=new Vector3(0,preview.rotation.eulerAngles.y,preview.rotation.eulerAngles.z);
         preview.rotation=rot;

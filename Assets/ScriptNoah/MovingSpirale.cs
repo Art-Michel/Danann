@@ -10,7 +10,8 @@ public class MovingSpirale : MonoBehaviour
     public void SetBullets(int newnb){nbBullet=newnb;}
     [SerializeField] bool goLeft;
     [SerializeField] bool shootLeft;
-    
+    bool offset;
+    public float offsetValue;
     int index;
     float radius=27.5f;
     [SerializeField] int angle;
@@ -89,6 +90,9 @@ public class MovingSpirale : MonoBehaviour
             float rad= angle*Mathf.Deg2Rad;
             pos=new Vector2(Mathf.Cos(rad*index),Mathf.Sin( rad*index));
             go.transform.forward=arenaCenter-transform.position;
+            if (offset)
+            go.transform.Rotate(0,angle+offsetValue,0);
+            else
             go.transform.Rotate(0,angle,0);
             if (shootLeft)
             {

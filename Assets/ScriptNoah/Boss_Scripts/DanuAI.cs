@@ -214,7 +214,7 @@ public class DanuAI : MonoBehaviour
                 case StateNames.P1C_TELEPORTATION:m_anims.SetInteger("Pattern",0); break;
                 case StateNames.P1C_DASH:m_anims.SetInteger("Pattern",1); break;
                 case StateNames.P1C_MIXDASH:m_anims.SetInteger("Pattern",2); break;
-                case StateNames.P1C_SLAM:m_anims.SetInteger("Pattern",3);Debug.Log("bulet");break;
+                case StateNames.P1C_SLAM:m_anims.SetInteger("Pattern",3);break;
                 case StateNames.P1D_BOOMERANG:m_anims.SetInteger("Pattern",4); break;
                 case StateNames.P1D_SHOOT:m_anims.SetInteger("Pattern",5); break;
                 case StateNames.P1R_SPIRALE:m_anims.SetInteger("Pattern",6); break;

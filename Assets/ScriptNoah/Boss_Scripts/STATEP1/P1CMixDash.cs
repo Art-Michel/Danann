@@ -115,6 +115,7 @@ public class P1CMixDash : Danu_State
     {
         Vector3 dir = target.position - fsm.transform.position;
         dir.Normalize();
+
         Vector3 left = Vector3.Cross(dir, Vector3.up).normalized;
         Vector3 offset = left * Random.Range(-15, 15);
         offset = new Vector3(offset.x, 0, offset.z);
@@ -175,14 +176,7 @@ public class P1CMixDash : Danu_State
                 SetTarget();
                 preview.gameObject.SetActive(true);
             }
-            dir=(-fsm.transform.position+target.position).normalized;
-            startPos=fsm.transform.position;
-            maxArrival=fsm.transform.position+dir*dashSpeed*dashTime;
-            preview.position=Vector3.Lerp(preview.position, startPos+(dir*dashSpeed*maxDashTime)/2,1);
-            Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
-            preview.LookAt(straightTarget);
-            fsm.transform.LookAt(straightTarget);
-            preview.localScale=new Vector3(fsm.transform.localScale.x,fsm.transform.localScale.y,maxDashTime*dashSpeed);
+            SetTarget();
             return;
         }
         if (afterStrafe <= mafs)
@@ -228,11 +222,26 @@ public class P1CMixDash : Danu_State
     void SetTarget()
     {
         dir = (-fsm.transform.position + target.position).normalized;
+        if (Vector3.Distance( target.position,fsm.agent.GetArenaCenter())>=fsm.agent.GetArenaRadius())
+        {
+            dir=(fsm.agent.GetArenaCenter()-fsm.transform.position).normalized;
+            maxArrival=fsm.agent.GetArenaCenter();
+             preview.position = startPos +(maxArrival) / 2;
+            Vector3 strTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
+            preview.LookAt(maxArrival);
+            fsm.transform.LookAt(maxArrival);
+            preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, maxDashTime * dashSpeed);
+            return;
+        }
         startPos = fsm.transform.position;
-        maxArrival = fsm.transform.position + dir * dashSpeed * dashTime;
-        preview.position = startPos + (dir * dashSpeed * maxDashTime) / 2;
+        Debug.Log(startPos);
+        Debug.Log(maxArrival);
+        Debug.Log(preview.position);
+        maxArrival = startPos + dir * dashSpeed * dashTime;
+        preview.position = startPos +((dir * dashSpeed * maxDashTime) / 2);
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
         preview.LookAt(straightTarget);
+        fsm.transform.LookAt(straightTarget);
         preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, maxDashTime * dashSpeed);
     }
 

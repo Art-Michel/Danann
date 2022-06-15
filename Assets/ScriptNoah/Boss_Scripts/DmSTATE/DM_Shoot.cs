@@ -17,7 +17,6 @@ public class DM_Shoot : Dm_State
     private float waitTime;
     private float maxWaitTime=0.2f;
     Transform target;
-    DesperationMove fsm;
 
     // Start is called before the first frame update
     public override void Begin()
@@ -28,11 +27,11 @@ public class DM_Shoot : Dm_State
         timer = 0;
         waitTime=0;
         wait=true;
-        Vector3 dir = (-transform.position + target.position).normalized;
-        preview.position = transform.position + (dir * 10)/2;
-        Vector3 straightTarget =new Vector3( target.position.x,transform.position.y,target.position.z);
+        Vector3 dir = (-fsm.transform.position + target.position).normalized;
+        preview.position = fsm.transform.position + (dir * 10)/2;
+        Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
         preview.LookAt(straightTarget);
-        preview.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 10);
+        preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, 10);
         preview.gameObject.SetActive(true);
 
     }
@@ -55,14 +54,14 @@ public class DM_Shoot : Dm_State
         {
             waitTime+=Time.deltaTime;
 
-            Vector3 straightTarget =new Vector3( target.position.x,transform.position.y,target.position.z);
-            transform.LookAt(straightTarget);
-            float rotateValue=transform.rotation.eulerAngles.y;
-            transform.rotation=Quaternion.Euler(0,rotateValue,0);
-            Vector3 dir = (-transform.position + target.position).normalized;
-            preview.position = transform.position + (dir * 10)/2;
+            Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
+            fsm.transform.LookAt(straightTarget);
+            float rotateValue=fsm.transform.rotation.eulerAngles.y;
+            fsm.transform.rotation=Quaternion.Euler(0,rotateValue,0);
+            Vector3 dir = (-fsm.transform.position + target.position).normalized;
+            preview.position = fsm.transform.position + (dir * 10)/2;
             preview.LookAt(straightTarget);
-            preview.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 10);
+            preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, 10);
             if (waitTime>=maxWaitTime)
             {
                 preview.gameObject.SetActive(false);
@@ -71,10 +70,10 @@ public class DM_Shoot : Dm_State
             return;
         }
         timer += Time.deltaTime;
-        Vector3 straightTargets =new Vector3( target.position.x,transform.position.y,target.position.z);
-            transform.LookAt(straightTargets);
-            float rotateValues=transform.rotation.eulerAngles.y;
-            transform.rotation=Quaternion.Euler(0,rotateValues,0);
+        Vector3 straightTargets =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
+            fsm.transform.LookAt(straightTargets);
+            float rotateValues=fsm.transform.rotation.eulerAngles.y;
+            fsm.transform.rotation=Quaternion.Euler(0,rotateValues,0);
         if (timer > delay)
         {
             timer = 0;
@@ -90,6 +89,7 @@ public class DM_Shoot : Dm_State
                 SoundManager.Instance.PlayBossShoot();
                 GameObject go = pool.Get();
                 go.GetComponent<Projectiles>().SetSpeed(speed);
+                go.GetComponent<Projectiles>().SetTarget(fsm.agent.GetPlayer());
                 go.transform.position = fsm.transform.position;
                 go.SetActive(true);
                 go.GetComponent<AttackData>().LaunchAttack();
