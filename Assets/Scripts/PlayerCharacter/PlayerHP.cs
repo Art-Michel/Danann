@@ -96,7 +96,7 @@ public class PlayerHP : EntityHP
         stateParrying.ParryT = 0f;
 
         bool attackIsMelee = Danu_Attacks.AttackIsMelee[attackName];
-        _bossHealth.TakeDamage(plasmaRegainValue, attackName, 0);
+        _bossHealth.TakeDamage(plasmaRegainValue * 5, attackName, 0);
         if (attackIsMelee)
         {
             _danuAI.Stun(3);

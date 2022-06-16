@@ -120,7 +120,11 @@ public class PlayerActions : MonoBehaviour
             bool canBeTargetted = spear.currentState.Name == Spear_StateNames.IDLE;
             canBeTargetted = canBeTargetted || spear.currentState.Name == Spear_StateNames.ATTACKING;
             canBeTargetted = canBeTargetted || spear.currentState.Name == Spear_StateNames.THROWN;
-            bool canTarget = _fsm.currentState.Name != Ccl_StateNames.TARGETTING;
+            bool canTarget = _fsm.currentState.Name == Ccl_StateNames.IDLE;
+            canTarget = canTarget || _fsm.currentState.Name == Ccl_StateNames.DODGING;
+            canTarget = canTarget || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKRECOVERY;
+            canTarget = canTarget || _fsm.currentState.Name == Ccl_StateNames.RECALLING;
+            canTarget = canTarget || _fsm.currentState.Name == Ccl_StateNames.THROWING;
             if (canTarget && canBeTargetted)
                 TargetSpear(spear);
         }

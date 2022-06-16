@@ -20304,7 +20304,7 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 2
-  _plasmaRegainValue: 15
+  _plasmaRegainValue: 5
   _hitboxes:
   - {fileID: 4419278741841212523}
   _attackName: Slam3
@@ -23537,7 +23537,7 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 2
-  _plasmaRegainValue: 15
+  _plasmaRegainValue: 5
   _hitboxes:
   - {fileID: 8856399677336489369}
   _attackName: Tp
@@ -27965,7 +27965,7 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 2
-  _plasmaRegainValue: 15
+  _plasmaRegainValue: 5
   _hitboxes:
   - {fileID: 4828560283248673675}
   _attackName: Slam2
@@ -29926,7 +29926,7 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 1
-  _plasmaRegainValue: 10
+  _plasmaRegainValue: 3
   _hitboxes: []
   _attackName: Projectile
 --- !u!1 &6257748742119177978
@@ -31050,7 +31050,7 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 2
-  _plasmaRegainValue: 15
+  _plasmaRegainValue: 5
   _hitboxes:
   - {fileID: 33414682578957620}
   _attackName: Slam1
@@ -31231,7 +31231,7 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 1
-  _plasmaRegainValue: 30
+  _plasmaRegainValue: 5
   _hitboxes:
   - {fileID: 7264284666882184930}
   _attackName: Dash
@@ -31860,7 +31860,7 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 2
-  _plasmaRegainValue: 10
+  _plasmaRegainValue: 5
   _hitboxes:
   - {fileID: 3157848548875340874}
   _attackName: Tp
@@ -32646,7 +32646,7 @@ MonoBehaviour:
   shouldHitEnemies: 0
   shouldHitAllies: 1
   _attackDamage: 1
-  _plasmaRegainValue: 5
+  _plasmaRegainValue: 2
   _hitboxes: []
   _attackName: Projectile
 --- !u!1 &8380206358576935220
