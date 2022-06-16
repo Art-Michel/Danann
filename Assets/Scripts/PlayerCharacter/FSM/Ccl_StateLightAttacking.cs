@@ -15,7 +15,6 @@ public class Ccl_StateLightAttacking : Ccl_State
     public override void Begin()
     {
         //_feedbacks. Lancer l'animation
-        _feedbacks.SetAnimationTrigger("Light_Attack_0" + (_actions.CurrentLightAttackIndex + 1).ToString());
         _feedbacks.PlayPunchSfx();
         _feedbacks.StartShake(0.1f, (_actions.CurrentLightAttackIndex + 1) * 0.05f);
         _t = 0;

@@ -14,7 +14,7 @@ public class Ccl_StateLightAttackStartup : Ccl_State
 
     public override void Begin()
     {
-        //_feedbacks. Lancer l'animation
+        _feedbacks.SetAnimationTrigger("Light_Attack_0" + (_actions.CurrentLightAttackIndex + 1).ToString());
         _t = 0;
         _max = _actions.GetStartupTime();
         _feedbacks.EnablePunchVfx(_actions.CurrentLightAttackIndex, true);

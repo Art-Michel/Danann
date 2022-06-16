@@ -871,6 +871,26 @@ PrefabInstance:
       propertyPath: _targetGroup
       value: 
       objectReference: {fileID: 761610233}
+    - target: {fileID: 6696278159164135574, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _lightActive.Array.data[0]
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696278159164135574, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _lightActive.Array.data[1]
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696278159164135574, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _lightActive.Array.data[2]
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696278159164135574, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _lightStartup.Array.data[2]
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696278159164135574, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _lightRecovery.Array.data[2]
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6718971616905161990, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _plasmaBar
       value: 
@@ -936,7 +956,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-31440
+  m_Name: pb_Mesh-4552
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2000,6 +2020,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Decor
       objectReference: {fileID: 0}
+    - target: {fileID: 5648395882046929677, guid: 32498d5ef89d04a4bb75301f61f47134, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5648395882046929680, guid: 32498d5ef89d04a4bb75301f61f47134, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2012,5 +2036,9 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1035659273}
+    - target: {fileID: 5911440269443237485, guid: 32498d5ef89d04a4bb75301f61f47134, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32498d5ef89d04a4bb75301f61f47134, type: 3}
