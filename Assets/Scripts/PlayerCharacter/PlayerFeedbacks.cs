@@ -20,6 +20,18 @@ public class PlayerFeedbacks : MonoBehaviour
 
     #region  Plasma
     [SerializeField] AudioClip _segmentFill;
+    [SerializeField] GameObject _ShieldVfx;
+
+    internal void StartParryFeedback()
+    {
+        PlayParrySfx();
+        _ShieldVfx.SetActive(true);
+    }
+
+    internal void StopParryFeedback()
+    {
+        _ShieldVfx.SetActive(false);
+    }
     #endregion
 
     #region Aiming
@@ -187,17 +199,17 @@ public class PlayerFeedbacks : MonoBehaviour
 
     void PlayPunch0()
     {
-        PlaySound(_punch0, 6f);
+        PlaySound(_punch0, 1f);
     }
 
     void PlayPunch1()
     {
-        PlaySound(_punch1, 6f);
+        PlaySound(_punch1, 1f);
     }
 
     void PlayPunch2()
     {
-        PlaySound(_punch2, 4f);
+        PlaySound(_punch2, .8f);
     }
 
     public void PlaySegmentFill()
@@ -237,7 +249,7 @@ public class PlayerFeedbacks : MonoBehaviour
 
     public void PlayParryTriggerSfx()
     {
-        PlaySound(_parryTrigger, 2f);
+        PlaySound(_parryTrigger, 1f);
     }
 
     public void PlayPlayerHurtSfx()
@@ -295,16 +307,22 @@ public class PlayerFeedbacks : MonoBehaviour
     private bool _isRumbling;
     public void StartRumble(float duration, float lowFrequencyIntensity, float highFrequencyIntensity)
     {
-        Gamepad.current.SetMotorSpeeds(lowFrequencyIntensity, highFrequencyIntensity);
-        _rumbleT = duration;
-        _isRumbling = true;
+        if (Gamepad.current != null)
+        {
+            Gamepad.current.SetMotorSpeeds(lowFrequencyIntensity, highFrequencyIntensity);
+            _rumbleT = duration;
+            _isRumbling = true;
+        }
     }
 
     public void StopRumble()
     {
-        Gamepad.current.SetMotorSpeeds(0, 0);
-        _vcamPerlin.m_AmplitudeGain = 0;
-        _isRumbling = false;
+        if (Gamepad.current != null)
+        {
+            Gamepad.current.SetMotorSpeeds(0, 0);
+            _vcamPerlin.m_AmplitudeGain = 0;
+            _isRumbling = false;
+        }
     }
     #endregion
 

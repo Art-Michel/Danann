@@ -81,8 +81,11 @@ public class P1CDash : Danu_State
             dashCount--;
             dashTime = 0;
             dir = (-fsm.transform.position + target.position).normalized;
+            fsm.agent.vfx[0].SetActive(false);
+
             if (orig == null)
             {
+                
                 fsm.agent.ToIdle();
                 dashAttackData.StopAttack();
             }
@@ -102,12 +105,32 @@ public class P1CDash : Danu_State
         chargingTime = 0;
         isDashing = true;
         dir = (-fsm.transform.position + target.position).normalized;
+        if (Vector3.Distance( target.position,fsm.agent.GetArenaCenter())>=fsm.agent.GetArenaRadius()+2 || Vector3.Distance( target.position,fsm.transform.position)>=fsm.agent.GetArenaRadius()+2)
+        {
+            dir=(fsm.agent.GetArenaCenter()-fsm.transform.position).normalized;
+            startPos = fsm.transform.position;
+            maxArrival = fsm.agent.GetArenaCenter();
+            preview.localScale = new Vector3(1, 1, Vector3.Distance(fsm.transform.position, fsm.agent.GetArenaCenter()));
+            preview.position = fsm.transform.position + (fsm.agent.GetArenaCenter() - fsm.transform.position) / 2;
+            preview.LookAt(fsm.agent.GetArenaCenter());
+            fsm.transform.LookAt(fsm.agent.GetArenaCenter());
+            preview.gameObject.SetActive(true);
+            dashAttackData.LaunchAttack();
+            fsm.agent.vfx[0].SetActive(true);
+            return;
+        }
+        else
+        {
+
+        }
         startPos = fsm.transform.position;
         maxArrival = fsm.transform.position + dir * dashSpeed * dashTime;
         preview.position = startPos + (dir * dashSpeed * maxDashTime) / 2;
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
         preview.LookAt(straightTarget);
+        fsm.transform.LookAt(straightTarget);
         preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, maxDashTime * dashSpeed);
         dashAttackData.LaunchAttack();
+        fsm.agent.vfx[0].SetActive(true);
     }
 }

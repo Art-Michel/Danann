@@ -76,6 +76,7 @@ public class PlayerActions : MonoBehaviour
 
     #region Init Parrying
     public Spear_FSM SpearUsedToParry { get; private set; }
+    Hurtbox _hurtbox;
     #endregion
 
     private void Awake()
@@ -88,6 +89,7 @@ public class PlayerActions : MonoBehaviour
         this.PlayerHP = GetComponent<PlayerHP>();
         this._playerFeedbacks = GetComponent<PlayerFeedbacks>();
         this._playerPlasma = GetComponent<PlayerPlasma>();
+        this._hurtbox = GetComponent<Hurtbox>();
 
         //Inputs
         _inputs.Actions.LightAttack.started += _ => LightAttackInput();
@@ -167,6 +169,7 @@ public class PlayerActions : MonoBehaviour
     {
         {
             _fsm.ChangeState(Ccl_StateNames.IDLE);
+            _playerFeedbacks.SetAnimationTrigger("Idle");
             _playerFeedbacks.SetCameraTargetWeight(4, 0);
             CurrentlyHeldSpear.ChangeState(Spear_StateNames.ATTACHED);
             CurrentlyHeldSpear = null;
@@ -229,6 +232,12 @@ public class PlayerActions : MonoBehaviour
     void DodgeInputReleased()
     {
         _isPressingDodge = false;
+    }
+
+    void TryToDodge()
+    {
+        if ((_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKRECOVERY || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKSTARTUP))
+            DodgeRoll();
     }
 
     private void DodgeRoll()
@@ -361,14 +370,14 @@ public class PlayerActions : MonoBehaviour
             Parry();
     }
 
-    private void BufferParry()
+    public void EnlargenHurtbox()
     {
-
+        _hurtbox.SetRadius(3f);
     }
 
-    private void BufferDash()
+    public void ResetHurtboxSize()
     {
-
+        _hurtbox.SetRadius(0.3f);
     }
 
     private void Dash(Spear_FSM spear)
@@ -409,7 +418,7 @@ public class PlayerActions : MonoBehaviour
         }
         if (_comboWindow <= 0) CurrentLightAttackIndex = 0;
 
-        if(_isPressingDodge) DodgeInput();
+        if (_isPressingDodge) TryToDodge();
 
         if (!_canDodge)
         {

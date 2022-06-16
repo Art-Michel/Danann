@@ -73,10 +73,11 @@ public class P2CDash : Danu_State
             preview.gameObject.SetActive(false);
             dashCount--;
             chargingTime/=2;
+            fsm.agent.vfx[0].SetActive(false);
             StartDash();
             if (dashCount!=0)
                 return;
-            if (orig == null)
+             if (orig == null)
             {
                 Debug.Log("stop");
                 fsm.agent.ToIdle();
@@ -106,6 +107,8 @@ public class P2CDash : Danu_State
         preview.rotation=rot;
         preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, maxDashTime * dashSpeed);
         dashAttackData.LaunchAttack();
+            fsm.agent.vfx[0].SetActive(true);
+
     }
 
 }

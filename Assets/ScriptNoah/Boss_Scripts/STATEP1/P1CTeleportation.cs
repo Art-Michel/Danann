@@ -58,6 +58,8 @@ public class P1CTeleportation : Danu_State
             Vector3 offset = new Vector3(rand.x, 0, rand.y) * offsetValue;
             arrival.transform.position = target.position + offset;
         }
+        fsm.agent.vfx[1].SetActive(true);
+        fsm.agent.vfx[2].SetActive(true);
         _lerpIn=true;
         startup=0;
         fadeTime=0;
@@ -129,6 +131,7 @@ public class P1CTeleportation : Danu_State
         else if (fadeTime <= MaxFadeTime)
         {
             arrival.SetActive(true);
+            fsm.agent.HideMesh();
             fadeTime += Time.deltaTime;
             if (!played)
             {
@@ -140,13 +143,17 @@ public class P1CTeleportation : Danu_State
         }
         else if (active <= maxActive)
         {
+            fsm.agent.ShowMesh();
+
             //boomBox.SetActive(true);
             boomBoxAttackData.LaunchAttack();
             boomBox.SetActive(true);
             fsm.transform.position = arrival.transform.position;
             boomBox.transform.position = arrival.transform.position;
-            arrival.SetActive(false);
+            
             active += Time.deltaTime;
+            fsm.agent.vfx[1].SetActive(false);
+
             if (!played)
             {
                 SoundManager.Instance.PlayBossTpOut();

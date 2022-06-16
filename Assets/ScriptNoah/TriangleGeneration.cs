@@ -12,6 +12,7 @@ public class TriangleGeneration : MonoBehaviour
     Mesh latestMesh;
     MeshFilter latestFilter;
     bool move;
+    
     [SerializeField] Transform target;
     // Start is called before the first frame update
     [Button]
@@ -38,7 +39,7 @@ public class TriangleGeneration : MonoBehaviour
         tri[3]=2;
         tri[4]=1;
         tri[5]=0;
-
+    
         Mesh mesh=new Mesh();
         mesh.vertices=vertices;
         mesh.uv=uv;

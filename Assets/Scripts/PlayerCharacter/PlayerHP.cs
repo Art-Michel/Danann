@@ -32,8 +32,13 @@ public class PlayerHP : EntityHP
     PlayerFeedbacks _playerFeedbacks;
     PlayerPlasma _playerPlasma;
     Ccl_FSM _fsm;
+    [SerializeField] DanuAI _danuAI;
+    [SerializeField] BossHealth _bossHealth;
 
     Hurtbox _hurtbox;
+    private float _regenT;
+    private bool _canRegen;
+    private float maxRegenT = 3f;
 
     void Awake()
     {
@@ -41,22 +46,39 @@ public class PlayerHP : EntityHP
         _playerFeedbacks = GetComponent<PlayerFeedbacks>();
         _playerPlasma = GetComponent<PlayerPlasma>();
         _fsm = GetComponent<Ccl_FSM>();
-        _maxHealthPoints = 100;
+        _maxHealthPoints = 5;
     }
 
-    override protected void DamageFeedback(string attackName = "")
+    override protected void DamageFeedback(string attackName = "", int plasmaRegainValue = 0)
     {
         _playerFeedbacks.PlayPlayerHurtSfx();
         SlowDownTime();
         StartInvul();
         _playerFeedbacks.StartShake(.3f, 1f);
-        _playerFeedbacks.StartRumble(.3f, 0.6f,0.9f);
+        _playerFeedbacks.StartRumble(.3f, 0.6f, 0.9f);
+        StartRegenCooldown();
+    }
+
+    private void StartRegenCooldown()
+    {
+        _regenT = maxRegenT;
+        _canRegen = false;
     }
 
     void Update()
     {
         if (_invulerabilityT > 0) HandlePostDamageInvul();
         if (_timeIsSlow) HandlePostDamageTimeSlow();
+        if (!_canRegen)
+        {
+            _regenT -= Time.deltaTime;
+            if (_regenT <= 0) _canRegen = true;
+        }
+        else if (HealthPoints < _maxHealthPoints)
+        {
+            HealthPoints = Mathf.Clamp(HealthPoints + Time.deltaTime * 0.25f, 0, _maxHealthPoints);
+            UpdateHealthBar();
+        }
     }
 
     void FixedUpdate()
@@ -64,15 +86,24 @@ public class PlayerHP : EntityHP
         if (_isBlinking) _body.gameObject.SetActive(!_body.activeSelf);
     }
 
-    protected override void Parry(GameObject obj)
+    protected override void Parry(GameObject obj, int plasmaRegainValue, string attackName)
     {
         _playerFeedbacks.PlayParryTriggerSfx();
+        //Refund Parry cost
+        _playerPlasma.IncreasePlasma(plasmaRegainValue);
+
         Ccl_StateParrying stateParrying = _fsm.currentState as Ccl_StateParrying;
         stateParrying.ParryT = 0f;
-        obj.SetActive(false);
 
-        //Refund Parry cost
-        _playerPlasma.IncreasePlasma(_playerPlasma._plasmaCost[Ccl_Attacks.PARRY]);
+        bool attackIsMelee = Danu_Attacks.AttackIsMelee[attackName];
+        _bossHealth.TakeDamage(plasmaRegainValue, attackName, 0);
+        if (attackIsMelee)
+        {
+            _danuAI.Stun(3);
+            obj.transform.parent.gameObject.SetActive(false); // renvoyer le projo un jour
+        }
+        else
+            obj.SetActive(false); // renvoyer le projo un jour
     }
 
     protected override void Die()

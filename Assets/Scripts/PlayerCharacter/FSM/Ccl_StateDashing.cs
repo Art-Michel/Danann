@@ -21,6 +21,7 @@ public class Ccl_StateDashing : Ccl_State
         _startingPosition = _actions.transform.position;
         _wantedPosition = new Vector3(_actions.SpearDashedOn.transform.position.x, _actions.transform.position.y, _actions.SpearDashedOn.transform.position.z);
 
+        _feedbacks.SetAnimationTrigger("BigDash");
         Vector3 trajectory = _startingPosition - _wantedPosition;
         _actions.PlayerMovement.OrientateBodyTowards(trajectory);
         _dashSpeed = _dashBaseSpeed / trajectory.magnitude;
@@ -46,6 +47,7 @@ public class Ccl_StateDashing : Ccl_State
 
     public override void Exit()
     {
+        _feedbacks.SetAnimationTrigger("Idle");
         _actions.SpearDashedOn.ChangeState(Spear_StateNames.ATTACHED);
         _actions.PlayerHP.IsInvulnerable = false;
         _actions.DisableDashHitbox();
