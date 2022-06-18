@@ -191,16 +191,20 @@ MonoBehaviour:
   _wText: {fileID: 0}
   _ltText: {fileID: 0}
   _rtText: {fileID: 0}
-  _nButton: {fileID: 0}
-  _sButton: {fileID: 0}
+  _dodge: {fileID: 0}
+  _dash: {fileID: 0}
+  _cancel: {fileID: 0}
+  _eCost: {fileID: 0}
   _eButton: {fileID: 0}
   _wButton: {fileID: 0}
   _ltButton: {fileID: 0}
   _rtButton: {fileID: 0}
-  _punchIcon: {fileID: 0}
+  _punchIcon: {fileID: 21300000, guid: cf3c01e52008a0d4a82241491bfde485, type: 3}
   _dodgeIcon: {fileID: 21300000, guid: 9ce82ec3bb8223f4a8e9c8efa690c1ab, type: 3}
   _dashIcon: {fileID: 21300000, guid: 348a7fea9c4f3cc4d8aae000cfeb0ad0, type: 3}
-  _parryIcon: {fileID: 0}
-  _cancelIcon: {fileID: 0}
+  _shieldIcon: {fileID: 21300000, guid: dc57199668be7104085b99a821eb83da, type: 3}
+  _cancelIcon: {fileID: 21300000, guid: daf250b051710cc4c8f5f320781a2724, type: 3}
   _lSpearIcon: {fileID: 21300000, guid: ccbd018c91ca09e46b532af0633d5176, type: 3}
   _rSpearIcon: {fileID: 21300000, guid: 8a2dca49ba020674481951718f1615b7, type: 3}
+  _lSpearTransparentIcon: {fileID: 21300000, guid: a76f00772ea8ccf4eab649837d231da9, type: 3}
+  _rSpearTransparentIcon: {fileID: 21300000, guid: a96a2136c2370804babfea88ec8698ac, type: 3}

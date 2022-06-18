@@ -30,7 +30,7 @@ public class SpinBullet : MonoBehaviour
     {
         
     }
-    public void OnParry()
+    public void OnShield()
     {
         state.Regenerate(this);
     }

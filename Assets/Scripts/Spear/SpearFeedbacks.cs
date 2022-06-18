@@ -63,10 +63,6 @@ public class SpearFeedbacks : MonoBehaviour
     {
         spearText.text = str;
     }
-    public void SetImageTransparent(bool boolean)
-    {
-        UiManager.Instance.
-    }
     #endregion
 
     void Awake()

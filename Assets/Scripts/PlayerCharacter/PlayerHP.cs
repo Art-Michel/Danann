@@ -87,14 +87,14 @@ public class PlayerHP : EntityHP
         if (_isBlinking) _body.gameObject.SetActive(!_body.activeSelf);
     }
 
-    protected override void Parry(GameObject obj, int plasmaRegainValue, string attackName)
+    protected override void Shield(GameObject obj, int plasmaRegainValue, string attackName)
     {
-        _playerFeedbacks.PlayParryTriggerSfx();
-        //Refund Parry cost
+        _playerFeedbacks.PlayShieldTriggerSfx();
+        //Refund Shield cost
         _playerPlasma.IncreasePlasma(plasmaRegainValue);
 
-        Ccl_StateParrying stateParrying = _fsm.currentState as Ccl_StateParrying;
-        stateParrying.ParryT = 0f;
+        Ccl_StateShielding stateShielding = _fsm.currentState as Ccl_StateShielding;
+        stateShielding.ShieldT = 0f;
 
         bool attackIsMelee = Danu_Attacks.AttackIsMelee[attackName];
         _bossHealth.TakeDamage(plasmaRegainValue * 5, attackName, 0);
@@ -144,13 +144,13 @@ public class PlayerHP : EntityHP
     private void HandlePostDamageInvul()
     {
         _invulerabilityT -= Time.unscaledDeltaTime;
-        if (_invulerabilityT < 0) ResetInvulerability();
+        if (_invulerabilityT < 0 && _fsm.currentState.Name != Ccl_StateNames.SHIELDING) ResetInvulerability();
     }
 
     public void ResetInvulerability()
     {
         IsInvulnerable = false;
-        IsParrying = false;
+        IsShielding = false;
         _hurtbox.ForgetAllAttacks();
         ResetBlinking();
     }

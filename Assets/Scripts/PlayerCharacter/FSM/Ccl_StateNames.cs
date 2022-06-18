@@ -4,7 +4,7 @@
     public const string AIMING = "StateAiming";
     public const string THROWING = "StateThrowing";
     public const string RECALLING = "StateRecalling";
-    public const string PARRYING = "StateParrying";
+    public const string SHIELDING = "StateShielding";
     public const string LIGHTATTACKSTARTUP = "StateLightArrackStartup";
     public const string LIGHTATTACKING = "StateLightAttacking";
     public const string LIGHTATTACKRECOVERY = "StateLightArrackRecovery";

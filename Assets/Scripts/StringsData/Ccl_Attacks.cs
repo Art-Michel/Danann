@@ -8,7 +8,7 @@ public class Ccl_Attacks
     public const string LIGHTATTACK2 = "LightAttack2";
     public const string LIGHTATTACK3 = "LightAttack3";
     public const string DASHONSPEAR = "DashOnSpear";
-    public const string PARRY = "Parry";
+    public const string SHIELD = "Shield";
     public const string TRIANGLE = "Triangle";
     public const string SPEARSWINGL = "LeftSpearSwing";
     public const string SPEARSWINGR = "RightSpearSwing";

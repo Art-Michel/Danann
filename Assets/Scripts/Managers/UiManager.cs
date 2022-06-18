@@ -24,8 +24,13 @@ public class UiManager : LocalManager<UiManager>
     [SerializeField] TextMeshProUGUI _rtText;
     public TextMeshProUGUI RtText { get { return _rtText; } }
 
+    [SerializeField] TextMeshProUGUI _dodgesCount;
+    public TextMeshProUGUI DodgesCount { get { return _dodgesCount; } }
+
     [SerializeField] GameObject _dodge;
     [SerializeField] GameObject _dash;
+    [SerializeField] GameObject _cancel;
+    [SerializeField] Image _eCost;
 
     [SerializeField] Image _eButton;
     public Image EButton { get { return _eButton; } }
@@ -49,8 +54,8 @@ public class UiManager : LocalManager<UiManager>
     [SerializeField] Sprite _dashIcon;
     public Sprite DashIcon { get { return _dashIcon; } }
 
-    [SerializeField] Sprite _parryIcon;
-    public Sprite ParryIcon { get { return _parryIcon; } }
+    [SerializeField] Sprite _shieldIcon;
+    public Sprite ShieldIcon { get { return _shieldIcon; } }
 
     [SerializeField] Sprite _cancelIcon;
     public Sprite CancelIcon { get { return _cancelIcon; } }
@@ -65,6 +70,7 @@ public class UiManager : LocalManager<UiManager>
     public Sprite LSpearTransparentIcon { get { return _lSpearTransparentIcon; } }
 
     [SerializeField] Sprite _rSpearTransparentIcon;
+
     public Sprite RSpearTransparentIcon { get { return _rSpearTransparentIcon; } }
 
     void SetSprite(Image image, Sprite sprite)
@@ -74,19 +80,65 @@ public class UiManager : LocalManager<UiManager>
 
     public void EnableDash()
     {
+        _cancel.SetActive(false);
         _dodge.SetActive(false);
         _dash.SetActive(true);
     }
 
     public void EnableDodge()
     {
+        _cancel.SetActive(false);
         _dodge.SetActive(true);
         _dash.SetActive(false);
     }
 
+    public void EnableCancel()
+    {
+        _dodge.SetActive(false);
+        _dash.SetActive(false);
+        _cancel.SetActive(true);
+    }
+
+    public void SetSpearImage(bool isLeft, bool transparent)
+    {
+        if (isLeft)
+            if (transparent) LtButton.sprite = LSpearTransparentIcon;
+            else LtButton.sprite = LSpearIcon;
+        else
+            if (transparent) RtButton.sprite = RSpearTransparentIcon;
+        else RtButton.sprite = RSpearIcon;
+    }
+
     public void AimHud()
     {
+        EButton.sprite = CancelIcon;
+        WButton.sprite = CancelIcon;
+        _eCost.enabled = false;
+        EnableCancel();
+    }
 
+    public void UnaimHud()
+    {
+        EButton.sprite = ShieldIcon;
+        WButton.sprite = PunchIcon;
+        _eCost.enabled = true;
+        EnableDodge();
+    }
+
+    public void TargetHud()
+    {
+        EnableDash();
+        EButton.sprite = CancelIcon;
+        WButton.sprite = CancelIcon;
+        _eCost.enabled = false;
+    }
+
+    public void UntargetHud()
+    {
+        EnableDodge();
+        EButton.sprite = ShieldIcon;
+        WButton.sprite = PunchIcon;
+        _eCost.enabled = true;
     }
 
     public void OnePlasmaFilled()

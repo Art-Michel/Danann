@@ -20,7 +20,7 @@ public class PlayerPlasma : MonoBehaviour
     {
         {Ccl_Attacks.TRIANGLE, 3},
         {Ccl_Attacks.DASHONSPEAR, 1},
-        {Ccl_Attacks.PARRY, 1}
+        {Ccl_Attacks.SHIELD, 1}
     };
 
     void Awake()

@@ -34,7 +34,6 @@ public class Ccl_StateDashing : Ccl_State
         _feedbacks.EnableDashVfx(true);
         _actions.EnableDashHitbox();
         _feedbacks.SetTrailRenderer(true, true);
-
     }
 
     public override void StateUpdate()

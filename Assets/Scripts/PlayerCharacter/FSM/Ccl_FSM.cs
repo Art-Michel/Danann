@@ -32,7 +32,7 @@ public class Ccl_FSM : MonoBehaviour
         AddState(new Ccl_StateAiming());
         AddState(new Ccl_StateThrowing());
         AddState(new Ccl_StateDashing());
-        AddState(new Ccl_StateParrying());
+        AddState(new Ccl_StateShielding());
         AddState(new Ccl_StateRecalling());
         AddState(new Ccl_StateDodging());
         AddState(new Ccl_StateTargetting());

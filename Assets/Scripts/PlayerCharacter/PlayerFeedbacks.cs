@@ -22,13 +22,13 @@ public class PlayerFeedbacks : MonoBehaviour
     [SerializeField] AudioClip _segmentFill;
     [SerializeField] GameObject _ShieldVfx;
 
-    internal void StartParryFeedback()
+    internal void StartShieldFeedback()
     {
-        PlayParrySfx();
+        PlayShieldSfx();
         _ShieldVfx.SetActive(true);
     }
 
-    internal void StopParryFeedback()
+    internal void StopShieldFeedback()
     {
         _ShieldVfx.SetActive(false);
     }
@@ -38,7 +38,7 @@ public class PlayerFeedbacks : MonoBehaviour
     [SerializeField] Volume _volume;
     [SerializeField] GameObject _cursor;
     SpriteRenderer _cursorSprite;
-    Color orange = new Color(1, 0.6f, 0);
+    Color orange = new Color(1, .9f, .8f);
 
     Vignette _vignette;
 
@@ -71,9 +71,9 @@ public class PlayerFeedbacks : MonoBehaviour
     [SerializeField] GameObject _dashVfx;
     #endregion
 
-    #region Parrying
-    [SerializeField] AudioClip _parry;
-    [SerializeField] AudioClip _parryTrigger;
+    #region Shielding
+    [SerializeField] AudioClip _shield;
+    [SerializeField] AudioClip _shieldTrigger;
     #endregion
 
     #region Other
@@ -242,14 +242,14 @@ public class PlayerFeedbacks : MonoBehaviour
         PlaySound(_dodge, 2f);
     }
 
-    public void PlayParrySfx()
+    public void PlayShieldSfx()
     {
-        PlaySound(_parry, 0.7f);
+        PlaySound(_shield, 0.7f);
     }
 
-    public void PlayParryTriggerSfx()
+    public void PlayShieldTriggerSfx()
     {
-        PlaySound(_parryTrigger, 1f);
+        PlaySound(_shieldTrigger, 1f);
     }
 
     public void PlayPlayerHurtSfx()
@@ -272,7 +272,7 @@ public class PlayerFeedbacks : MonoBehaviour
     public void NotEnoughPlasmaText()
     {
         Billboard billboard = _billboardsPool.Get() as Billboard;
-        billboard.Enable("Not enough\nPlasma!", Color.red);
+        billboard.EnableAsInfo("Not enough\nPlasma!");
     }
 
 

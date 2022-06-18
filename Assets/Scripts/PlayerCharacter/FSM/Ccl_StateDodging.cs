@@ -12,15 +12,16 @@ public class Ccl_StateDodging : Ccl_State
     Vector3 _startingPosition;
     Vector3 _wantedDirection;
 
-    private const float _dodgeDuration = 0.075f;
-    private const float _dodgeSpeed = 50f;
+    private const float _dodgeDuration = 0.1f;
+    private const float _dodgeSpeed = 40f;
     float _dodgeT = 0;
 
     public override void Begin()
     {
         _wantedDirection = _actions.PlayerMovement.GetOrientation();
         _feedbacks.SetAnimationTrigger("Dash");
-        //_actions.PlayerHP._isInvulnerable = true;
+        _actions.PlayerHP.IsInvulnerable = true;
+        _actions.PlayerHP.InvulnerableText();
         _dodgeT = 0;
 
         _feedbacks.PlayDodgeSfx();
@@ -37,7 +38,7 @@ public class Ccl_StateDodging : Ccl_State
 
     public override void Exit()
     {
-        //_actions.PlayerHP._isInvulnerable = false;
+        _actions.PlayerHP.IsInvulnerable = false;
         _actions.StartDodgeCooldown();
     }
 }

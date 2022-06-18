@@ -18,10 +18,7 @@ public class Ccl_StateAiming : Ccl_State
         _feedbacks.PlayZoomInSfx();
         _feedbacks.ZoomCamera();
         _feedbacks.SetAnimationTrigger("Aim");
-        UiManager.Instance.SetText(UiManager.Instance.EText, "Cancel");
-        UiManager.Instance.SetText(UiManager.Instance.NText, "Cancel");
-        UiManager.Instance.SetText(UiManager.Instance.WText, "Cancel");
-        UiManager.Instance.SetText(UiManager.Instance.SText, "Cancel");
+        UiManager.Instance.AimHud();
     }
 
     public override void StateUpdate()
@@ -34,5 +31,6 @@ public class Ccl_StateAiming : Ccl_State
         _actions.DisableCursor();
         _feedbacks.PlayZoomOutSfx();
         _feedbacks.UnzoomCamera();
+        UiManager.Instance.UnaimHud();
     }
 }

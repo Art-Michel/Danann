@@ -18,8 +18,8 @@ public class EntityHP : MonoBehaviour
     [Required][SerializeField] public Image _healthBarRemnant;
     [SerializeField] Pooler _billboardsPool;
     Color _orange = new Color(1,0.4f,0);
-    //parry
-    public bool IsParrying;
+    //shield
+    public bool IsShielding;
     public bool activateRemnant;
     public float remnantTime;
     public float maxRemnantTime;
@@ -31,7 +31,7 @@ public class EntityHP : MonoBehaviour
         activateRemnant = false;
         HealthPoints = _maxHealthPoints;
         _isInvulnerable = false;
-        IsParrying = false;
+        IsShielding = false;
         UpdateHealthBar();
     }
 
@@ -47,9 +47,9 @@ public class EntityHP : MonoBehaviour
             if (HealthPoints <= 0) Die();
             return true;
         }
-        else if (IsParrying)
+        else if (IsShielding)
         {
-            Parry(obj, plasmaRegainValue, attackName);
+            Shield(obj, plasmaRegainValue, attackName);
             return false;
         }
         else
@@ -90,7 +90,7 @@ public class EntityHP : MonoBehaviour
         DamageText(amount);
     }
 
-    protected virtual void Parry(GameObject obj, int plasmaRegainValue, string attackName)
+    protected virtual void Shield(GameObject obj, int plasmaRegainValue, string attackName)
     {
 
     }
@@ -103,18 +103,18 @@ public class EntityHP : MonoBehaviour
     public void InvulnerableText()
     {
         Billboard billboard = _billboardsPool.Get() as Billboard;
-        billboard.Enable("Invulnerable!", Color.white);
+        billboard.EnableAsInfo("Invulnerable!");
     }
 
     public void DamageText(int amount)
     {
         Billboard billboard = _billboardsPool.Get() as Billboard;
-        billboard.Enable(amount.ToString(), _orange);
+        billboard.EnableAsDamage(amount);
     }
 
-    public void ParryingText()
+    public void ShieldingText()
     {
         Billboard billboard = _billboardsPool.Get() as Billboard;
-        billboard.Enable("Parrying!", Color.white);
+        billboard.EnableAsInfo("Shielding!");
     }
 }

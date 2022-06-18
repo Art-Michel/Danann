@@ -31,7 +31,7 @@ public class GP1Shoot : GlobalStates
         FlowControl();
         
         //playshoot
-        //si parry
+        //si shield
         //tp in
         //sinon 
         //boomerang

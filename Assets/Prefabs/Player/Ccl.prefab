@@ -5902,15 +5902,15 @@ MonoBehaviour:
   _lightStartup:
   - 0.02
   - 0.02
-  - 0.1
+  - 0.3
   _lightActive:
-  - 0.05
-  - 0.1
+  - 0.08
+  - 0.15
   - 0.2
   _lightRecovery:
   - 0.2
   - 0.2
-  - 0.4
+  - 0.3
   _moveSpeedWhileAttacking:
   - 0.6
   - 0.3
@@ -5951,7 +5951,7 @@ MonoBehaviour:
   _healthBar: {fileID: 0}
   _healthBarRemnant: {fileID: 0}
   _billboardsPool: {fileID: 1906970742}
-  IsParrying: 0
+  IsShielding: 0
   activateRemnant: 0
   remnantTime: 0
   maxRemnantTime: 0
@@ -6024,8 +6024,8 @@ MonoBehaviour:
   _leftPunchVfx2: {fileID: 1349764750518492935}
   _dashShout: {fileID: 8300000, guid: 6754480ff4987ef48b901107bed43096, type: 3}
   _dashVfx: {fileID: 3731720358044504353}
-  _parry: {fileID: 8300000, guid: 12d4d61011aa98a42ba51fb82d6975da, type: 3}
-  _parryTrigger: {fileID: 8300000, guid: 80add98db84578f478b2c2bad136264e, type: 3}
+  _shield: {fileID: 0}
+  _shieldTrigger: {fileID: 0}
   _error: {fileID: 8300000, guid: 87bca9d342503294193c37cc647ac3d3, type: 3}
   _billboardsPool: {fileID: 1906970742}
   _audioSource: {fileID: 0}

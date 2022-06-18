@@ -21,7 +21,7 @@ public class Spear_StateThrown : Spear_State
         _destination = new Vector3(_ai.Cursor.transform.position.x, _ai.transform.position.y, _ai.Cursor.transform.position.z);
 
         _feedbacks.SetMeshUp(_destination - _startingPosition);
-        _feedbacks.SetImageTransparency(0.5f);
+        UiManager.Instance.SetSpearImage(_ai.IsLeft, true);
         _feedbacks.SetText("");
 
         _t = 0;
