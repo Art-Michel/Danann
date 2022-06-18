@@ -63,9 +63,9 @@ public class SpearFeedbacks : MonoBehaviour
     {
         spearText.text = str;
     }
-    public void SetImageTransparency(float alpha)
+    public void SetImageTransparent(bool boolean)
     {
-        spearImage.color = new Color(1, 1, 1, alpha);
+        UiManager.Instance.
     }
     #endregion
 

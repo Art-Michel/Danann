@@ -17,6 +17,7 @@ public class EntityHP : MonoBehaviour
     [Required][SerializeField] Image _healthBar;
     [Required][SerializeField] public Image _healthBarRemnant;
     [SerializeField] Pooler _billboardsPool;
+    Color _orange = new Color(1,0.4f,0);
     //parry
     public bool IsParrying;
     public bool activateRemnant;
@@ -25,16 +26,16 @@ public class EntityHP : MonoBehaviour
 
     void Start()
     {
-        maxRemnantTime=0.7f;
-        remnantTime=0;
-        activateRemnant=false;
+        maxRemnantTime = 0.7f;
+        remnantTime = 0;
+        activateRemnant = false;
         HealthPoints = _maxHealthPoints;
         _isInvulnerable = false;
         IsParrying = false;
         UpdateHealthBar();
     }
 
-    public virtual bool TakeDamage(int amount, string attackName, int plasmaRegainValue, int revengeGain = 0,GameObject obj = null)
+    public virtual bool TakeDamage(int amount, string attackName, int plasmaRegainValue, int revengeGain = 0, GameObject obj = null)
     {
         if (!_isInvulnerable)
         {
@@ -42,7 +43,7 @@ public class EntityHP : MonoBehaviour
             bool isBoss = _maxHealthPoints > 100;
             if (isBoss) GetComponent<DanuAI>().BuildUpRevenge(revengeGain);
             if (_healthBar) UpdateHealthBar();
-            DamageFeedback(attackName, plasmaRegainValue);
+            DamageFeedback(attackName, plasmaRegainValue, amount);
             if (HealthPoints <= 0) Die();
             return true;
         }
@@ -70,22 +71,23 @@ public class EntityHP : MonoBehaviour
         float value = Mathf.InverseLerp(0, _maxHealthPoints, HealthPoints);
         value = Mathf.Lerp(0, 1, value);
         _healthBar.fillAmount = value;
-        activateRemnant=true;
-    
+        activateRemnant = true;
+
     }
     protected virtual void Die()
     {
         Time.timeScale = 1;
         gameObject.SetActive(false);
-        Invoke("Quit",2);
+        Invoke("Quit", 2);
         Debug.Log(name + " just died");
     }
     void Quit()
     {
         Application.Quit();
     }
-    protected virtual void DamageFeedback(string attackName = "", int plasmaRegainValue = 0)
+    protected virtual void DamageFeedback(string attackName, int plasmaRegainValue, int amount)
     {
+        DamageText(amount);
     }
 
     protected virtual void Parry(GameObject obj, int plasmaRegainValue, string attackName)
@@ -95,18 +97,24 @@ public class EntityHP : MonoBehaviour
 
     internal void TakeDamage(object attackDamage)
     {
-        throw new NotImplementedException();
+        
     }
 
     public void InvulnerableText()
     {
         Billboard billboard = _billboardsPool.Get() as Billboard;
-        billboard.Enable("Invulnerable!");
+        billboard.Enable("Invulnerable!", Color.white);
+    }
+
+    public void DamageText(int amount)
+    {
+        Billboard billboard = _billboardsPool.Get() as Billboard;
+        billboard.Enable(amount.ToString(), _orange);
     }
 
     public void ParryingText()
     {
         Billboard billboard = _billboardsPool.Get() as Billboard;
-        billboard.Enable("Parrying!");
+        billboard.Enable("Parrying!", Color.white);
     }
 }

@@ -22,8 +22,9 @@ public class BossHealth : EntityHP
         //_maxHealthPoints = 500;
     }
 
-    override protected void DamageFeedback(string attackName, int plasmaRegainValue)
+    override protected void DamageFeedback(string attackName, int plasmaRegainValue, int amount)
     {
+        base.DamageFeedback(attackName,plasmaRegainValue,amount);
         SoundManager.Instance.PlayHitSound(attackName);
         _playerFeedbacks.StartShake(AttackShake.ShakeValue[attackName].x, AttackShake.ShakeValue[attackName].y);
         _playerFeedbacks.StartRumble(AttackShake.RumbleValue[attackName].x, AttackShake.RumbleValue[attackName].y, AttackShake.RumbleValue[attackName].z);
@@ -50,7 +51,7 @@ public class BossHealth : EntityHP
             agent.launchDM();
         return base.TakeDamage(amount, attackName, plasmaRegainValue, revengeGain);
     }
-    
+
     private void ResetBlinking()
     {
         _body.SetActive(true);

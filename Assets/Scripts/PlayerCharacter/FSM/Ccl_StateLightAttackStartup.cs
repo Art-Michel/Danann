@@ -23,7 +23,7 @@ public class Ccl_StateLightAttackStartup : Ccl_State
 
     public override void StateUpdate()
     {
-        _t+= Time.deltaTime;
+        _t += Time.deltaTime;
         if (_t >= _max)
             _fsm.ChangeState(Ccl_StateNames.LIGHTATTACKING);
     }

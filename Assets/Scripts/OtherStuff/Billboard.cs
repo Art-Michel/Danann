@@ -7,8 +7,8 @@ public class Billboard : PooledObject
 {
     Camera _camera;
     [SerializeField] TextMeshPro _text;
-    const float _speed = 1f;
-    const float _duration = .5f;
+    const float _speed = 2f;
+    const float _duration = 1f;
     float _t;
 
     void Awake()
@@ -25,9 +25,10 @@ public class Billboard : PooledObject
             _pooler.Return(this);
     }
 
-    public void Enable(string text)
+    public void Enable(string text, Color color)
     {
         _text.text = (text);
+        _text.color = color;
         gameObject.SetActive(true);
         transform.localPosition = Vector3.zero;
         _t = 0;

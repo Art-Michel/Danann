@@ -24,12 +24,8 @@ public class UiManager : LocalManager<UiManager>
     [SerializeField] TextMeshProUGUI _rtText;
     public TextMeshProUGUI RtText { get { return _rtText; } }
 
-
-    [SerializeField] Image _nButton;
-    public Image NButton { get { return _nButton; } }
-
-    [SerializeField] Image _sButton;
-    public Image SButton { get { return _sButton; } }
+    [SerializeField] GameObject _dodge;
+    [SerializeField] GameObject _dash;
 
     [SerializeField] Image _eButton;
     public Image EButton { get { return _eButton; } }
@@ -65,9 +61,37 @@ public class UiManager : LocalManager<UiManager>
     [SerializeField] Sprite _rSpearIcon;
     public Sprite RSpearIcon { get { return _rSpearIcon; } }
 
+    [SerializeField] Sprite _lSpearTransparentIcon;
+    public Sprite LSpearTransparentIcon { get { return _lSpearTransparentIcon; } }
+
+    [SerializeField] Sprite _rSpearTransparentIcon;
+    public Sprite RSpearTransparentIcon { get { return _rSpearTransparentIcon; } }
+
     void SetSprite(Image image, Sprite sprite)
     {
         image.sprite = sprite;
+    }
+
+    public void EnableDash()
+    {
+        _dodge.SetActive(false);
+        _dash.SetActive(true);
+    }
+
+    public void EnableDodge()
+    {
+        _dodge.SetActive(true);
+        _dash.SetActive(false);
+    }
+
+    public void AimHud()
+    {
+
+    }
+
+    public void OnePlasmaFilled()
+    {
+
     }
 
     public void SetText(TextMeshProUGUI textU, string text)

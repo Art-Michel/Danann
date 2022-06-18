@@ -272,7 +272,7 @@ public class PlayerFeedbacks : MonoBehaviour
     public void NotEnoughPlasmaText()
     {
         Billboard billboard = _billboardsPool.Get() as Billboard;
-        billboard.Enable("Not enough\nPlasma!");
+        billboard.Enable("Not enough\nPlasma!", Color.red);
     }
 
 
