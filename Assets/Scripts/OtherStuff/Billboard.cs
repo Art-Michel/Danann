@@ -41,9 +41,10 @@ public class Billboard : PooledObject
     {
         _text.text = text;
         _text.color = Color.white;
+        _text.fontSize = 4;
         gameObject.SetActive(true);
         transform.localPosition = Vector3.zero;
-        _text.fontSize = 4;
+        _t = 0;
     }
 
 }

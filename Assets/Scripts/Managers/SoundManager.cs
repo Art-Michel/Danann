@@ -24,6 +24,7 @@ public class SoundManager : ProjectManager<SoundManager>
     [SerializeField, Foldout("BossSFX")] AudioClip _bossDash;
     [SerializeField, Foldout("BossSFX")] AudioClip _bossBoomerang;
     [SerializeField, Foldout("BossSFX")] AudioClip _bossAllOut;
+
     public void PlayBossTpIn()
     {
         PlaySound(_bossTPIn, 1f);
@@ -34,15 +35,15 @@ public class SoundManager : ProjectManager<SoundManager>
     }
     public void PlayBossShoot()
     {
-        PlaySound(_bossShoot, 1f);
+        PlaySound(_bossShoot, .3f);
     }
     public void PlayBossRiseStart()
     {
-        PlaySound(_bossStartRise, 1f);
+        PlaySound(_bossStartRise, .3f);
     }
     public void PlayBossRiseEnd()
     {
-        PlaySound(_bossEndRise, 1f);
+        PlaySound(_bossEndRise, .3f);
     }
     public void PlayBossDash()
     {
@@ -113,7 +114,7 @@ public class SoundManager : ProjectManager<SoundManager>
 
     public void PlayBlockedHit()
     {
-        PlaySound(_blockedHit, .5f);
+        PlaySound(_blockedHit, .2f);
     }
 
 }

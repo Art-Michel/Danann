@@ -272,6 +272,7 @@ public class PlayerActions : MonoBehaviour
         else
         {
             SetDodgesLeft(0);
+            UiManager.Instance.SetDodgeTransparency(true);
         }
 
         _dodgeBigCooldown = _dodgeMaxCooldown;
@@ -448,7 +449,12 @@ public class PlayerActions : MonoBehaviour
         if (_dodgesLeft < 3)
         {
             _dodgeBigCooldown -= Time.deltaTime;
-            if (_dodgeBigCooldown <= 0) SetDodgesLeft(3);
+            UiManager.Instance.FillDodge(Mathf.InverseLerp(0, _dodgeMaxCooldown, _dodgeBigCooldown));
+            if (_dodgeBigCooldown <= 0)
+            {
+                SetDodgesLeft(3);
+                UiManager.Instance.SetDodgeTransparency(false);
+            }
         }
     }
 

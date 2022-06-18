@@ -27,10 +27,17 @@ public class UiManager : LocalManager<UiManager>
     [SerializeField] TextMeshProUGUI _dodgesCount;
     public TextMeshProUGUI DodgesCount { get { return _dodgesCount; } }
 
+    Color _opaque = new Color(1, 1, 1, 1f);
+    Color _transparent = new Color(1, 1, 1, 0.25f);
+
+    [SerializeField] Image _dodgeImage;
+    [SerializeField] Image _dodgeFrameImage;
+
     [SerializeField] GameObject _dodge;
     [SerializeField] GameObject _dash;
     [SerializeField] GameObject _cancel;
     [SerializeField] Image _eCost;
+    [SerializeField] Image _dodgeFill;
 
     [SerializeField] Image _eButton;
     public Image EButton { get { return _eButton; } }
@@ -149,5 +156,16 @@ public class UiManager : LocalManager<UiManager>
     public void SetText(TextMeshProUGUI textU, string text)
     {
         textU.text = text;
+    }
+
+    public void FillDodge(float f)
+    {
+        _dodgeFill.fillAmount = f;
+    }
+
+    public void SetDodgeTransparency(bool transparent)
+    {
+        if (transparent) _dodgeImage.color = _transparent;
+        else _dodgeImage.color = _opaque;
     }
 }
