@@ -453,6 +453,7 @@ public class PlayerActions : MonoBehaviour
             if (_dodgeBigCooldown <= 0)
             {
                 SetDodgesLeft(3);
+                _playerFeedbacks.StartBlink();
                 UiManager.Instance.SetDodgeTransparency(false);
             }
         }

@@ -117,4 +117,6 @@ public class EntityHP : MonoBehaviour
         Billboard billboard = _billboardsPool.Get() as Billboard;
         billboard.EnableAsInfo("Shielding!");
     }
+
+    
 }

@@ -326,8 +326,44 @@ public class PlayerFeedbacks : MonoBehaviour
     }
     #endregion
 
+    #region meshBlink
+    float _blinkDuration = 0f;
+    const float _blinkSpeed = 30f;
+    const float _blinkStrength = 10;
+    float _blinkT;
+    [SerializeField] Material _meshMaterial;
+
+    bool _isBlinking = false;
+
+    [Button]
+    public void StartBlink(float duration = .3f)
+    {
+        _isBlinking = true;
+        _blinkT = 0;
+        _blinkDuration = duration;
+    }
+
+    void Blink()
+    {
+        _blinkT += Time.deltaTime;
+        _meshMaterial.SetFloat("_LerpValue", Mathf.Sin(_blinkT * _blinkSpeed) * _blinkStrength);
+        if (_blinkT >= _blinkDuration)
+            StopBlink();
+    }
+
+    private void StopBlink()
+    {
+        _meshMaterial.SetFloat("_LerpValue", 0);
+        _isBlinking = false;
+    }
+    #endregion
+
     void Update()
     {
+        if (_isBlinking)
+        {
+            Blink();
+        }
         if (_vcamPerlin.m_AmplitudeGain > 0)
         {
             _shakeT -= Time.deltaTime;
