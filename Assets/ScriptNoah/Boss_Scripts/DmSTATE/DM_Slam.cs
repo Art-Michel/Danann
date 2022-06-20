@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DM_Slam : Dm_State
 {
-   
     Arr2D[] _slamHitbox=new Arr2D[4];
     int _state = 0;
     float[] _startup = new float[3];
@@ -15,17 +14,26 @@ public class DM_Slam : Dm_State
     int _maxSlamCount = 3;
     int _index = 0;
     int _indexer=0;
+    bool _wait;
+    private float maxWaitTime=1;
+    private float waitTime;
+    private Vector3 startPos;
+    Vector3 endPos;
     public override void Begin()
     {
         Init();
         _index = 0;
-        StartPreview();
+        _wait=true;
+        endPos=fsm.agent.GetPlayer().position;
+        startPos=fsm.transform.position;
         Debug.Log(_slamHitbox.Length);
     }
     void Init()
     {
+        stateName="Slam";
+        Debug.Log(stateName);
         _slamHitbox=fsm.GetP1SlamHitBox();
-
+        maxWaitTime=fsm.GetMaxWaitTime();
         Vector3[] frames = new Vector3[3];
         for (int i = 0; i < 3; i++)
         {
@@ -37,6 +45,18 @@ public class DM_Slam : Dm_State
     }
     public override void Update()
     {
+        if (_wait)
+        {
+            fsm.transform.position=Vector3.Lerp(startPos,endPos,waitTime/maxWaitTime);
+            waitTime+=Time.deltaTime;
+            if (waitTime/maxWaitTime>=1)
+            {
+                _wait=false;
+                waitTime=0;
+                StartPreview();
+            }
+            return;
+        }
         _timer += Time.deltaTime;
         if (_state == 0 && _timer > _startup[_index])
             StartAttack();

@@ -505,22 +505,37 @@ public class DanuAI : MonoBehaviour
     public Vector3 GetArenaCenter(){return arenaCenter;}
     public float GetArenaRadius(){return arenaRadius;}
     public bool GetIsPushed(){return isPushed;}
-    
+    [Button]
+    public bool HasDM()
+    {
+        bool hasDM=dmActive||dmOver;
+        /*Debug.Log("vrai et faux"+ (true&&false));
+        Debug.Log("faux et faux"+ (false&&false));
+        Debug.Log("faux et vrai"+ (false&&true));        
+        Debug.Log("vrai ou faux"+ (true||false));
+        Debug.Log("faux ou faux"+ (false||false));
+        Debug.Log("faux ou vrai"+ (false||true));*/
+        Debug.Log(hasDM);
+        return hasDM;
+    }
     public void launchDM()
     {
-        if (dmActive)
+        if (!dmActive)
         {
-        //health.IsInvulnerable=true;
+        health.IsInvulnerable=true;
         dmActive=true;
         //debug
-        dmOver=true;
-        
+        DesperationMove dm=GetComponent<DesperationMove>();
+        dm.enabled=true;
+        m_fsm.enabled=false;
         }
     }
     public void EndDM()
     {
         health.IsInvulnerable=false;
         dmActive=false;
+        DesperationMove dm=GetComponent<DesperationMove>();
+        dm.enabled=false;
         dmOver=true;
     }
 }

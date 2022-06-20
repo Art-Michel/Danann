@@ -172,14 +172,10 @@ public class P2DMixDash : Danu_State
             dir=(-fsm.transform.position+target.position).normalized;
             startPos=fsm.transform.position;
             maxArrival=fsm.transform.position+dir*dashSpeed*dashTime;
-            preview.position=Vector3.Lerp(preview.position, startPos+(dir*dashSpeed*maxDashTime)/2,1);
             Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
-            preview.LookAt(straightTarget);
             fsm.transform.LookAt(straightTarget);
-            Quaternion rot=Quaternion.identity;
-            rot.eulerAngles=new Vector3(0,preview.rotation.eulerAngles.y,preview.rotation.eulerAngles.z);
-            preview.rotation=rot;
-            preview.localScale=new Vector3(fsm.transform.localScale.x,fsm.transform.localScale.y,maxDashTime*dashSpeed);
+            preview.localScale = new Vector3(2,2,6);
+            preview.position = fsm.transform.position +fsm.transform.forward*3;
             return;
         }
         if (afterStrafe <= mafs)
@@ -233,16 +229,10 @@ public class P2DMixDash : Danu_State
         dir = (-fsm.transform.position + target.position).normalized;
         startPos = fsm.transform.position;
         maxArrival = fsm.transform.position + dir * dashSpeed * dashTime;
-        preview.position = startPos + (dir * dashSpeed * maxDashTime) / 2;
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
-        preview.LookAt(straightTarget);
         fsm.transform.LookAt(straightTarget);
-        Quaternion rot=Quaternion.identity;
-        rot.eulerAngles=new Vector3(0,preview.rotation.eulerAngles.y,preview.rotation.eulerAngles.z);
-        preview.rotation=rot;
-
-    
-        preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, maxDashTime * dashSpeed);
+        preview.localScale = new Vector3(2,2,6);
+        preview.position = fsm.transform.position +fsm.transform.forward*3;
     }
 
 }

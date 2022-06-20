@@ -10,8 +10,9 @@ public class MovingSpirale : MonoBehaviour
     public void SetBullets(int newnb){nbBullet=newnb;}
     [SerializeField] bool goLeft;
     [SerializeField] bool shootLeft;
-    bool offset;
-    public float offsetValue;
+    [SerializeField]bool offset;
+    [SerializeField]float offsetValue;
+    public void SetOffset(bool activate,float value){offset=activate;offsetValue=value;}
     int index;
     float radius=27.5f;
     [SerializeField] int angle;
@@ -27,6 +28,9 @@ public class MovingSpirale : MonoBehaviour
     public float lifetime{get;private set;}
     List<GameObject> activeBullets=new List<GameObject>();
     [SerializeField] Transform preview;
+    private float projSpeed;
+    public void SetProjSpeed(float nps){projSpeed=nps;}
+
     // Start is called before the first frame update
     void Start()
     {
@@ -86,6 +90,7 @@ public class MovingSpirale : MonoBehaviour
             go.SetActive(true);
             Projectiles prooj= go.GetComponent<Projectiles>();
             prooj.SetOrigin(pool);
+            prooj.SetSpeed(projSpeed);
             Vector2 pos=new Vector2(go.transform.position.x,go.transform.position.z);
             float rad= angle*Mathf.Deg2Rad;
             pos=new Vector2(Mathf.Cos(rad*index),Mathf.Sin( rad*index));

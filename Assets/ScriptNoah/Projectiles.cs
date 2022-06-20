@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -76,4 +77,11 @@ public class Projectiles : MonoBehaviour
     }
     public void SetSpeed(float newSpeed) { speed = newSpeed; }
     public void SetLifeTime(float newLT) {if (nbTurn!=0) maxLifeTime = newLT; }
+
+    internal void SetSpeed(object projSpeed)
+    {
+        throw new NotImplementedException();
+    }
+
+
 }

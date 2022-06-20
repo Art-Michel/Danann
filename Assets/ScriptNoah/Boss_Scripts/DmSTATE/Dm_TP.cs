@@ -33,8 +33,11 @@ public class Dm_TP : Dm_State
     private bool _lerpOut;
     private bool _lerpIn;
     float camWeight;
+
     void Init()
     {
+        stateName="TP";
+        Debug.Log(stateName+" "+isLast);
         arrival=fsm.GetP2TP_Arrival();
         fakeArrival=fsm.GetP2TP_FakeArrival();
         boomBox=fsm.GetP2TP_Boombox();

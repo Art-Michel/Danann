@@ -26,6 +26,8 @@ public class Laser : MonoBehaviour
     [SerializeField] GameObject cam;
     [SerializeField] GameObject preview;
     bool over;
+    DesperationMove dm;
+    public void SetDM(DesperationMove ndm){dm=ndm;}
     // Start is called before the first frame update
     [Button]
     void Start()
@@ -34,7 +36,7 @@ public class Laser : MonoBehaviour
         delay=main.startDelay.constant;
         StartShaking(firstShakeTime,firstShakeForce);
         preview.SetActive(true);
-
+        
     }
 
     // Update is called once per frame
@@ -90,6 +92,11 @@ public class Laser : MonoBehaviour
         if (lifetime>=0)
         {
             lifetime-=Time.deltaTime;
+        if (lifetime<=1)
+        {
+            goUp=false;
+            Debug.Log(true);
+        }
             return;
         }
         if (lifetime<=0)
@@ -102,7 +109,13 @@ public class Laser : MonoBehaviour
             m_isShaking=false;
             goUp=false;
             over=true;
+            dm.agent.EndDM();
+            dm.End();
+            dm.enabled=false;
+
+            return;
         }
+
     }
 
     private void ExtendHitbox()

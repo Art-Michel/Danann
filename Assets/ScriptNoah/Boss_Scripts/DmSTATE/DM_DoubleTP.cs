@@ -33,6 +33,9 @@ public class DM_DoubleTP : Dm_State
     float camWeight;
     void Init()
     {
+        stateName="DoubleTP";
+        index=0;
+        Debug.Log(stateName);
         arrival=fsm.GetP2TP_Arrival();
         fakeArrival=fsm.GetP2TP_FakeArrival();
         boomBox=fsm.GetP2TP_Boombox();

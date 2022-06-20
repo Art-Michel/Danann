@@ -226,11 +226,10 @@ public class P1CMixDash : Danu_State
         {
             dir=(fsm.agent.GetArenaCenter()-fsm.transform.position).normalized;
             maxArrival=fsm.agent.GetArenaCenter();
-             preview.position = startPos +(maxArrival) / 2;
+            preview.localScale = new Vector3(2,2,6);
+            preview.position = fsm.transform.position +fsm.transform.forward*3;
             Vector3 strTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
-            preview.LookAt(maxArrival);
             fsm.transform.LookAt(maxArrival);
-            preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, maxDashTime * dashSpeed);
             return;
         }
         startPos = fsm.transform.position;
@@ -238,11 +237,10 @@ public class P1CMixDash : Danu_State
         Debug.Log(maxArrival);
         Debug.Log(preview.position);
         maxArrival = startPos + dir * dashSpeed * dashTime;
-        preview.position = startPos +((dir * dashSpeed * maxDashTime) / 2);
+                    preview.localScale = new Vector3(2,2,6);
+            preview.position = fsm.transform.position +fsm.transform.forward*3;
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
-        preview.LookAt(straightTarget);
         fsm.transform.LookAt(straightTarget);
-        preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, maxDashTime * dashSpeed);
     }
 
 }

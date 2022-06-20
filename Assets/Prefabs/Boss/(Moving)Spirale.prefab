@@ -83,6 +83,8 @@ MonoBehaviour:
   nbBullet: 20
   goLeft: 1
   shootLeft: 0
+  offset: 0
+  offsetValue: 0
   angle: 18
   maxDelay: 0.2
   arenaCenter: {x: -10.26, y: 0, z: -3.04}
@@ -189,7 +191,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4973726923705746177}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

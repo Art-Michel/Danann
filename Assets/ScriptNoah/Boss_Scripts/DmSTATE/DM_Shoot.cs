@@ -36,7 +36,9 @@ public class DM_Shoot : Dm_State
 
     }
     void Init()
-    {
+    {        
+        stateName="Shoot";
+        Debug.Log(stateName);
         pool = fsm.GetPool();
         maxLifeTime = fsm.GetP1d_ProjLifeTime();
         delay = fsm.GetP1d_delay();
@@ -84,15 +86,23 @@ public class DM_Shoot : Dm_State
             }
             else
             {
-
+                for (int i=0;i<3;i++)
+                {
                 index++;
                 SoundManager.Instance.PlayBossShoot();
                 GameObject go = pool.Get();
                 go.GetComponent<Projectiles>().SetSpeed(speed);
-                go.GetComponent<Projectiles>().SetTarget(fsm.agent.GetPlayer());
                 go.transform.position = fsm.transform.position;
+                go.transform.LookAt(target);
+                if (i==1)
+                    go.transform.Rotate(0,25,0);
+                else if (i==2)
+                    go.transform.Rotate(0,-25,0);
                 go.SetActive(true);
+
                 go.GetComponent<AttackData>().LaunchAttack();
+                }
+
             }
         }
     }

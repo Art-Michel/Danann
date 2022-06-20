@@ -28,11 +28,15 @@ public class P1DSpin : Danu_State
     private float waitTime;
     bool isSetUp;
     Pool pool;
+    private Vector3 startPos;
+    bool reachedPoint;
+
     // Start is called before the first frame update
     public override void Begin()
     {
         if (!isInit)
             Init();
+        startPos=fsm.transform.position;
         //activation des helices, ou instantiation si c'est la premiere fois
         preview.localScale = new Vector3(1, 1, Vector3.Distance(fsm.transform.position, fsm.agent.GetArenaCenter()));
         preview.position = fsm.transform.position + (fsm.agent.GetArenaCenter() - fsm.transform.position) / 2;
@@ -41,6 +45,7 @@ public class P1DSpin : Danu_State
         waitTime = 0;
         wait = true;
         fsm.agent.vfx[5].SetActive(true);
+        reachedPoint=false;
     }
     public override void Init()
     {
@@ -67,10 +72,16 @@ public class P1DSpin : Danu_State
         if (wait)
         {
             waitTime += Time.deltaTime;
-            fsm.transform.position = Vector3.Lerp(fsm.transform.position, fsm.agent.GetArenaCenter(), waitTime / maxWaitTime);
-            if (fsm.transform.position == fsm.agent.GetArenaCenter())
+            if (!reachedPoint)
             {
-                SpawnBladesPreview();
+                fsm.transform.position = Vector3.Lerp(startPos, fsm.agent.GetArenaCenter(), waitTime / maxWaitTime);
+                if (fsm.transform.position == fsm.agent.GetArenaCenter())
+                {
+                    SpawnBladesPreview();
+                    waitTime-=0.7f;
+                    reachedPoint=true;
+                }
+                return;
             }
             if (waitTime >= maxWaitTime)
             {

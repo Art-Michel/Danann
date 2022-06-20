@@ -17,9 +17,12 @@ public class DM_Rosace : Dm_State
     private float waitTime;
     private float maxWaitTime;
     private Transform preview;
+    float projSpeed;
 
     void Init()
     {
+        stateName="Rosace";
+        Debug.Log(stateName);
         arenaCenter=fsm.agent.GetArenaCenter();
         arenaRadius=fsm.GetArenaDist();
         pool=fsm.GetRosacePool();
@@ -30,7 +33,7 @@ public class DM_Rosace : Dm_State
         spirales=new GameObject[nb];
         maxWaitTime=fsm.GetMaxWaitTime();
         preview = fsm.GetP1sD_Preview();
-
+        projSpeed=fsm.GetProjSpeed();
     }
     // Start is called before the first frame update
     public override void Begin()
@@ -40,7 +43,7 @@ public class DM_Rosace : Dm_State
         preview.position = fsm.transform.position + (fsm.agent.GetArenaCenter() - fsm.transform.position) / 2;
         preview.LookAt(fsm.agent.GetArenaCenter());
         preview.gameObject.SetActive(true);
-        lifetime=nbBullets*maxDelay+5;
+        lifetime=nbBullets*maxDelay+2;
         wait=true;
         fsm.agent.vfx[5].SetActive(true);
         waitTime=0;
@@ -90,18 +93,20 @@ public class DM_Rosace : Dm_State
             pooll.SetUp(null,null,proj);
             go.GetComponentInChildren<MovingSpirale>().SetBullets(nbBullets);
             go.GetComponentInChildren<MovingSpirale>().SetDelay(maxDelay);
+            go.GetComponentInChildren<MovingSpirale>().SetProjSpeed(projSpeed);
+            go.GetComponentInChildren<MovingSpirale>().SetOffset(true,rad*Mathf.Rad2Deg*i);
             spirales[i]=go;
         }
     }
 
     void End()
     {
-        for (int i=0;i<nb;i++)
+        /*for (int i=0;i<nb;i++)
         {
             pool.SecondBack(spirales[i]);
             spirales[i].SetActive(false);
             spirales[i]=null;
 
-        }
+        }*/
     }
 }

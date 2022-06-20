@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.Rendering;
 public class DesperationMove : MonoBehaviour
 {
     [Foldout("Phase 1 Shoot"), SerializeField] private int P1D_nbShot;
@@ -50,6 +52,8 @@ public class DesperationMove : MonoBehaviour
     public int GetRosaceBulletNB(){return bulletNumber;}
     [Foldout("Rosace"), SerializeField] float rosaceDelay;
     public float GetRosaceDelay(){return rosaceDelay;}
+    [Foldout("Rosace"), SerializeField] float projSpeed;
+    public float GetProjSpeed(){return projSpeed;}
     [Foldout("Rosace"), SerializeField] float arenaDist;
     public float GetArenaDist(){return arenaDist;}
     [Foldout("Phase 1 Spin")][SerializeField] private float P1maxWaitTime;
@@ -61,7 +65,8 @@ public class DesperationMove : MonoBehaviour
     [Foldout("Phase 1 Slam")][SerializeField] Arr2D[] p1SlamHitBox;
     public Arr2D[] GetP1SlamHitBox() { return p1SlamHitBox; }
     public DanuAI agent;
-    List<Dm_State> states=new List<Dm_State>();
+    [SerializeField] Volume postProcess;
+    [SerializeField]List<Dm_State> states=new List<Dm_State>();
     enum State
     {
         SHOOT,
@@ -74,30 +79,123 @@ public class DesperationMove : MonoBehaviour
     }
     int index;
     Dm_State curr;
+    [SerializeField] GameObject laserGO;
+    [SerializeField] Vector3 endPos;
+    private float lerpValue;
+    private Vector3 startPos;
+    [SerializeField] float maxTime;
+
+    bool over;
+    private float ppTime;
+    private bool goUp;
+    [SerializeField] float maxWaitingTime;
+    float waitingTime;
+
     // Start is called before the first frame update
     void Start()
     {
-        /*states.Add(new DM_Shoot());
+        states.Add(new DM_DoubleTP());
         states.Add(new DM_DoubleTP());
         states.Add(new DM_Rosace());
         states.Add(new Dm_TP(false));
-        //states.Add(new DM_Slam());
-        states.Add(new Dm_TP(true));*/
-        curr=new DM_Rosace();
+        states.Add(new DM_Slam());
+        states.Add(new Dm_TP(true));
+        states.Add(new Dm_State());
+        Debug.Log(states.Count+"eeeee"+states[index]);
+        curr=new DM_Shoot();
         curr.fsm=this;
-        curr.Begin(); 
+        curr.Begin();
+        goUp=true;
+        waitingTime=0;
+        laserGO.GetComponentInChildren<Laser>().SetDM(this);
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdatePP();
+        if (waitingTime<maxWaitingTime)
+        {
+            waitingTime+=Time.deltaTime;
+            return;
+        }
+        if (!over)
         curr.Update();
+        else
+        Move();
+
         //states[index].Update();
+    }
+
+    public void End()
+    {
+        endPos=agent.GetArenaCenter();
+        transform.position=agent.GetArenaCenter();
+    }
+
+    private void UpdatePP()
+    {
+        if (goUp)
+        {
+            ppTime=Mathf.Clamp(ppTime+Time.deltaTime,0,1);
+        }
+        else
+        {
+            ppTime=Mathf.Clamp(ppTime-Time.deltaTime,0,1);
+        }
+        postProcess.weight=ppTime;
+    }
+
+    private void Move()
+    {
+        lerpValue+=Time.deltaTime;
+        transform.position=Vector3.Lerp(startPos, endPos,lerpValue/maxTime);
+        if (transform.position==endPos)
+        {
+            laserGO.SetActive(true);
+            goUp=false;
+        }
     }
 
     public void Next()
     {
         index++;
+        switch(index)
+        {
+            case 1:
+            curr=new DM_DoubleTP();
+                break;
+            case 2:
+            curr=new DM_Rosace();
+                break;
+            case 3:
+            curr=new Dm_TP(false);
+                break;
+            case 4:
+            curr=new DM_Slam();
+                break;
+            case 5:
+            curr=new Dm_TP(true);
+                break;
+            case 6:
+            curr=new Dm_State();
+                break;
+            case 7:
+            curr=states[index];
+                break;
+
+        }
+        curr.fsm=this;
+        curr.Begin();
+        Debug.Log(index);
+
+        if (index==states.Count-1)
+        {
+            postProcess.weight=0;
+            over=true;
+            Debug.Log(over);
+            startPos=transform.position;
+        }
         if (index>=states.Count)
         {    
             agent.EndDM();

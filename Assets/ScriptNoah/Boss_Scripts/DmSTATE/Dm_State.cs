@@ -5,6 +5,7 @@ using UnityEngine;
 public class Dm_State : MonoBehaviour
 {    
     public DesperationMove fsm;
+    public string stateName;
     public virtual void Begin()
     {
         
