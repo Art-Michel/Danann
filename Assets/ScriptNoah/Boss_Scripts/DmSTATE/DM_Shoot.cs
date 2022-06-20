@@ -17,6 +17,7 @@ public class DM_Shoot : Dm_State
     private float waitTime;
     private float maxWaitTime=0.2f;
     Transform target;
+    private int angle;
 
     // Start is called before the first frame update
     public override void Begin()
@@ -40,6 +41,7 @@ public class DM_Shoot : Dm_State
         stateName="Shoot";
         Debug.Log(stateName);
         pool = fsm.GetPool();
+        angle=fsm.GetShootAngle();
         maxLifeTime = fsm.GetP1d_ProjLifeTime();
         delay = fsm.GetP1d_delay();
         nbShot = fsm.GetP1d_nbShot();
@@ -95,9 +97,9 @@ public class DM_Shoot : Dm_State
                 go.transform.position = fsm.transform.position;
                 go.transform.LookAt(target);
                 if (i==1)
-                    go.transform.Rotate(0,25,0);
+                    go.transform.Rotate(0,angle,0);
                 else if (i==2)
-                    go.transform.Rotate(0,-25,0);
+                    go.transform.Rotate(0,-angle,0);
                 go.SetActive(true);
 
                 go.GetComponent<AttackData>().LaunchAttack();

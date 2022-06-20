@@ -38,7 +38,7 @@ public class DM_Rosace : Dm_State
     // Start is called before the first frame update
     public override void Begin()
     {
-            Init();
+        Init();
         preview.localScale = new Vector3(1, 1, Vector3.Distance(fsm.transform.position, fsm.agent.GetArenaCenter()));
         preview.position = fsm.transform.position + (fsm.agent.GetArenaCenter() - fsm.transform.position) / 2;
         preview.LookAt(fsm.agent.GetArenaCenter());

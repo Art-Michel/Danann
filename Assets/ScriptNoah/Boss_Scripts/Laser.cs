@@ -109,7 +109,6 @@ public class Laser : MonoBehaviour
             m_isShaking=false;
             goUp=false;
             over=true;
-            dm.agent.EndDM();
             dm.End();
             dm.enabled=false;
 

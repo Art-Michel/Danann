@@ -7,40 +7,41 @@ using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.Rendering;
 public class DesperationMove : MonoBehaviour
 {
-    [Foldout("Phase 1 Shoot"), SerializeField] private int P1D_nbShot;
+    [Foldout("Shoot"), SerializeField] private int P1D_nbShot;
     public int GetP1d_nbShot() { return P1D_nbShot; }
-    [Foldout("Phase 1 Shoot"), SerializeField] private float P1D_delay;
+    [Foldout("Shoot"), SerializeField] private int shootAngle;
+    public int GetShootAngle() { return shootAngle; }
+    [Foldout("Shoot"), SerializeField] private float P1D_delay;
     public float GetP1d_delay() { return P1D_delay; }
-    [Foldout("Phase 1 Shoot"), SerializeField] private float P1D_wait;
+    [Foldout("Shoot"), SerializeField] private float P1D_wait;
     public float GetP1d_wait() { return P1D_wait; }
-    [Foldout("Phase 1 Shoot"), SerializeField] private float P1D_ProjLifeTime;
+    [Foldout("Shoot"), SerializeField] private float P1D_ProjLifeTime;
     public float GetP1d_ProjLifeTime() { return P1D_ProjLifeTime; }
-    [Foldout("Phase 1 Shoot"), SerializeField] private float p1d_ShotSpeed;
+    [Foldout("Shoot"), SerializeField] private float p1d_ShotSpeed;
     public float GetP1d_ShotSpeed() { return p1d_ShotSpeed; }
-    [Foldout("Phase 1 Shoot"), SerializeField] private Pool pool;
-     [Foldout("Phase 1 Dash"), SerializeField] Transform p1sDash_preview;
-    
-     [Foldout("Phase 2 TP"), SerializeField] GameObject p2TP_arrival;
+    [Foldout("Shoot"), SerializeField] private Pool pool;
+    [Foldout("Preview"), SerializeField] Transform _preview;
+    [Foldout("TP"), SerializeField] GameObject p2TP_arrival;
     public GameObject GetP2TP_Arrival() { return p2TP_arrival; }
-    [Foldout("Phase 2 TP"), SerializeField] GameObject p2TP_fakeArrival;
+    [Foldout("TP"), SerializeField] GameObject p2TP_fakeArrival;
     public GameObject GetP2TP_FakeArrival() { return p2TP_fakeArrival; }
-    [Foldout("Phase 2 TP"), SerializeField] GameObject p2TP_boomBox;
+    [Foldout("TP"), SerializeField] GameObject p2TP_boomBox;
     public GameObject GetP2TP_Boombox() { return p2TP_boomBox; }
-    [Foldout("Phase 2 TP"), SerializeField] GameObject p2TP_fakeBoomBox;
+    [Foldout("TP"), SerializeField] GameObject p2TP_fakeBoomBox;
     public GameObject GetP2TP_FakeBoombox() { return p2TP_fakeBoomBox; }
-    [Foldout("Phase 2 TP"), SerializeField] float p2TP_FadeTime;
+    [Foldout("TP"), SerializeField] float p2TP_FadeTime;
     public float GetP2TP_Fadetime() { return p2TP_FadeTime; }
-    [Foldout("Phase 2 TP"), SerializeField] float p2TP_Startup;
+    [Foldout("TP"), SerializeField] float p2TP_Startup;
     public float GetP2TP_Startup() { return p2TP_Startup; }
-    [Foldout("Phase 2 TP"), SerializeField] float p2TP_offsetValue;
+    [Foldout("TP"), SerializeField] float p2TP_offsetValue;
     public float GetP2TP_Offset() { return p2TP_offsetValue; }
-    [Foldout("Phase 2 TP"), SerializeField] float p2TP_Reco;
+    [Foldout("TP"), SerializeField] float p2TP_Reco;
     public float GetP2TP_Recovery() { return p2TP_Reco; }
-    [Foldout("Phase 2 TP"), SerializeField] float p2TP_Active;
+    [Foldout("TP"), SerializeField] float p2TP_Active;
     public float GetP2TP_Active() { return p2TP_Active; }
-    [Foldout("Phase 2 TP"), SerializeField] float p2TP_farDist;
+    [Foldout("TP"), SerializeField] float p2TP_farDist;
     public float GetP2TP_FarDist() { return p2TP_farDist; }
-    public Transform GetP1sD_Preview() { return p1sDash_preview; }
+    public Transform GetP1sD_Preview() { return _preview; }
     public Pool GetPool() { return pool; }
     [Foldout("Rosace"), SerializeField] Pool rosacePool;
     public Pool GetRosacePool(){return rosacePool;}
@@ -56,14 +57,15 @@ public class DesperationMove : MonoBehaviour
     public float GetProjSpeed(){return projSpeed;}
     [Foldout("Rosace"), SerializeField] float arenaDist;
     public float GetArenaDist(){return arenaDist;}
-    [Foldout("Phase 1 Spin")][SerializeField] private float P1maxWaitTime;
+    [Foldout("Rosace")][SerializeField] private float P1maxWaitTime;
     public float GetMaxWaitTime() { return P1maxWaitTime; }
-    [Foldout("Phase 1 Slam")][SerializeField] Vector3[] P1AttackFrames = new Vector3[3];
+    [Foldout("Slam")][SerializeField] Vector3[] P1AttackFrames = new Vector3[3];
     public Vector3 GetAttackFrames(int index) { return P1AttackFrames[index]; }
-    [Foldout("Phase 1 Slam")][SerializeField] private float P1SlamRecovery;
+    [Foldout("Slam")][SerializeField] private float P1SlamRecovery;
     public float GetP1SlamRecovery() { return P1SlamRecovery; }
-    [Foldout("Phase 1 Slam")][SerializeField] Arr2D[] p1SlamHitBox;
+    [Foldout("Slam")][SerializeField] Arr2D[] p1SlamHitBox;
     public Arr2D[] GetP1SlamHitBox() { return p1SlamHitBox; }
+    [SerializeField] GameObject meteorShower;
     public DanuAI agent;
     [SerializeField] Volume postProcess;
     [SerializeField]List<Dm_State> states=new List<Dm_State>();
@@ -94,6 +96,7 @@ public class DesperationMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        agent.vfx[6].SetActive(true);
         states.Add(new DM_DoubleTP());
         states.Add(new DM_DoubleTP());
         states.Add(new DM_Rosace());
@@ -129,6 +132,10 @@ public class DesperationMove : MonoBehaviour
 
     public void End()
     {
+            agent.vfx[4].SetActive(false);
+            agent.vfx[6].SetActive(false);
+            agent.EndDM();
+            enabled=false;
         endPos=agent.GetArenaCenter();
         transform.position=agent.GetArenaCenter();
     }
@@ -163,7 +170,9 @@ public class DesperationMove : MonoBehaviour
         switch(index)
         {
             case 1:
-            curr=new DM_DoubleTP();
+                curr=new DM_DoubleTP();
+                meteorShower.SetActive(true);
+
                 break;
             case 2:
             curr=new DM_Rosace();
@@ -198,8 +207,7 @@ public class DesperationMove : MonoBehaviour
         }
         if (index>=states.Count)
         {    
-            agent.EndDM();
-            enabled=false;
+
         }
     }
 }
