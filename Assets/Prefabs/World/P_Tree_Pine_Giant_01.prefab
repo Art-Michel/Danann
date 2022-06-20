@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4717996348025228705, guid: 427cadba0a7beb048a00b2bd7c424068, type: 3}
       propertyPath: m_Name
-      value: SM_Tree_Pine_Giant_01
+      value: P_Tree_Pine_Giant_01
       objectReference: {fileID: 0}
     - target: {fileID: 5346441273325786907, guid: 427cadba0a7beb048a00b2bd7c424068, type: 3}
       propertyPath: m_RootOrder
@@ -65,6 +65,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5346441273325786907, guid: 427cadba0a7beb048a00b2bd7c424068, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519326453053385844, guid: 427cadba0a7beb048a00b2bd7c424068, type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
