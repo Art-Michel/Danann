@@ -31,7 +31,7 @@ public class Billboard : PooledObject
         _text.text = (damage.ToString());
         float damageRatio = Mathf.InverseLerp(0, 15, damage);
         _text.color = Color.Lerp(_cyan, Color.red, damageRatio);
-        _text.fontSize = Mathf.Lerp(4, 7, damageRatio);
+        _text.fontSize = Mathf.Lerp(3, 7, damageRatio);
         gameObject.SetActive(true);
         transform.localPosition = Random.insideUnitSphere;
         _t = 0;
@@ -46,5 +46,4 @@ public class Billboard : PooledObject
         transform.localPosition = Vector3.zero;
         _t = 0;
     }
-
 }

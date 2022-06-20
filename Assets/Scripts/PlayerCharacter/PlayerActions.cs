@@ -454,6 +454,7 @@ public class PlayerActions : MonoBehaviour
             {
                 SetDodgesLeft(3);
                 _playerFeedbacks.StartBlink();
+                _playerFeedbacks.PlayDodgeReffiledSfx();
                 UiManager.Instance.SetDodgeTransparency(false);
             }
         }

@@ -54,6 +54,7 @@ public class PlayerFeedbacks : MonoBehaviour
     #region DodgeRoll
     [SerializeField] TrailRenderer _bodyTrailRenderer;
     [SerializeField] AudioClip _dodge;
+    [SerializeField] AudioClip _dodgeRefilled;
     #endregion
 
     #region Light Attack
@@ -100,6 +101,10 @@ public class PlayerFeedbacks : MonoBehaviour
         if (_volume) _volume.profile.TryGet<Vignette>(out _vignette);
     }
 
+    void Start()
+    {
+        StopBlink();
+    }
     #region Animations
     public void SetAnimationTrigger(string trigger)
     {
@@ -266,6 +271,10 @@ public class PlayerFeedbacks : MonoBehaviour
     {
         PlaySound(_error, 1f);
     }
+    public void PlayDodgeReffiledSfx()
+    {
+        PlaySound(_dodgeRefilled, .1f);
+    }
     #endregion
 
     #region Text
@@ -328,19 +337,21 @@ public class PlayerFeedbacks : MonoBehaviour
 
     #region meshBlink
     float _blinkDuration = 0f;
-    const float _blinkSpeed = 30f;
-    const float _blinkStrength = 10;
+    const float _blinkSpeed = 5f;
+    const float _blinkStrength = 6;
     float _blinkT;
     [SerializeField] Material _meshMaterial;
 
     bool _isBlinking = false;
 
     [Button]
-    public void StartBlink(float duration = .3f)
+    public void StartBlink(float duration = .1f)
     {
         _isBlinking = true;
         _blinkT = 0;
         _blinkDuration = duration;
+        //_meshMaterial.SetFloat("_LerpValue",20);
+        UiManager.Instance.DodgeWhiteFrame.SetActive(true);
     }
 
     void Blink()
@@ -354,6 +365,7 @@ public class PlayerFeedbacks : MonoBehaviour
     private void StopBlink()
     {
         _meshMaterial.SetFloat("_LerpValue", 0);
+        UiManager.Instance.DodgeWhiteFrame.SetActive(false);
         _isBlinking = false;
     }
     #endregion
@@ -378,4 +390,5 @@ public class PlayerFeedbacks : MonoBehaviour
         }
     }
 
+    
 }

@@ -8,7 +8,6 @@ public class Ccl_StateLightAttackStartup : Ccl_State
     {
 
     }
-
     float _t = 0;
     float _max = 0;
 

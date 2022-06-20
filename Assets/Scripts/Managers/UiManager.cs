@@ -38,6 +38,7 @@ public class UiManager : LocalManager<UiManager>
     [SerializeField] GameObject _cancel;
     [SerializeField] Image _eCost;
     [SerializeField] Image _dodgeFill;
+    public GameObject DodgeWhiteFrame;
 
     [SerializeField] Image _eButton;
     public Image EButton { get { return _eButton; } }

@@ -90,7 +90,6 @@ public class PlayerHP : EntityHP
     protected override void Shield(GameObject obj, int plasmaRegainValue, string attackName)
     {
         _playerFeedbacks.PlayShieldTriggerSfx();
-        //Refund Shield cost
         _playerPlasma.IncreasePlasma(plasmaRegainValue);
 
         Ccl_StateShielding stateShielding = _fsm.currentState as Ccl_StateShielding;
@@ -100,7 +99,7 @@ public class PlayerHP : EntityHP
         _bossHealth.TakeDamage(plasmaRegainValue * 5, attackName, 0);
         if (attackIsMelee)
         {
-            _danuAI.Stun(3);
+            _danuAI.Stun(2);
             obj.transform.parent.gameObject.SetActive(false); // renvoyer le projo un jour
         }
         else
@@ -144,13 +143,16 @@ public class PlayerHP : EntityHP
     private void HandlePostDamageInvul()
     {
         _invulerabilityT -= Time.unscaledDeltaTime;
-        if (_invulerabilityT < 0 && _fsm.currentState.Name != Ccl_StateNames.SHIELDING) ResetInvulerability();
+        if (_invulerabilityT < 0) ResetInvulerability();
     }
 
     public void ResetInvulerability()
     {
-        IsInvulnerable = false;
-        IsShielding = false;
+        if (_fsm.currentState.Name != Ccl_StateNames.SHIELDING)
+        {
+            IsInvulnerable = false;
+            IsShielding = false;
+        }
         _hurtbox.ForgetAllAttacks();
         ResetBlinking();
     }
