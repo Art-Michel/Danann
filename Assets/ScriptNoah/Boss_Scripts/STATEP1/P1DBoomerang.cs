@@ -8,7 +8,7 @@ public class P1DBoomerang : Danu_State
     GameObject boomerangL, boomerangR;
     AttackData boomerangAttackData;
     Transform target;
-    Transform preview;
+    GameObject preview;
     float speed;
     float MaxStraightTime;
     Transform curveMidL, curveMidR;
@@ -42,10 +42,8 @@ public class P1DBoomerang : Danu_State
         curveStartR = boomerangR.transform.position + fsm.transform.forward * maxDistance;
         curveEnd = fsm.transform.position;
         Vector3 straightEnd = (curveStartL + curveStartR) / 2;
-        preview.position = fsm.transform.position + (straightEnd - fsm.transform.position) / 2;
-        preview.localScale = new Vector3(5, 1, Vector3.Distance(fsm.transform.position, straightEnd));
         preview.gameObject.SetActive(true);
-        preview.LookAt(straightTarget);
+        fsm.transform.LookAt(straightTarget);
         SoundManager.Instance.PlayBossBoomerang();
         wait = true;
         waitTime=0;

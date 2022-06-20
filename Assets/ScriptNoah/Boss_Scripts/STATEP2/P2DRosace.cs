@@ -18,7 +18,7 @@ public class P2DRosace : Danu_State
     private bool wait;
     private float waitTime;
     private float maxWaitTime;
-    private Transform preview;
+    GameObject preview;
 
     public override void Init()
     {
@@ -40,9 +40,7 @@ public class P2DRosace : Danu_State
     {
         if (!isInit)
             Init();
-        preview.localScale = new Vector3(1, 1, Vector3.Distance(fsm.transform.position, fsm.agent.GetArenaCenter()));
-        preview.position = fsm.transform.position + (fsm.agent.GetArenaCenter() - fsm.transform.position) / 2;
-        preview.LookAt(fsm.agent.GetArenaCenter());
+        fsm.transform.LookAt(fsm.agent.GetArenaCenter());
         preview.gameObject.SetActive(true);
         lifetime=nbBullets*maxDelay+5;
         wait=true;
@@ -99,6 +97,8 @@ public class P2DRosace : Danu_State
             go.SetActive(true);
             pooll.SetUp(null,null,proj);
             go.GetComponentInChildren<MovingSpirale>().SetBullets(nbBullets);
+            go.GetComponentInChildren<MovingSpirale>().SetProjSpeed(5);
+            go.GetComponentInChildren<MovingSpirale>().SetOffset(true,rad*Mathf.Rad2Deg*i);
             go.GetComponentInChildren<MovingSpirale>().SetDelay(maxDelay);
             spirales[i]=go;
         }

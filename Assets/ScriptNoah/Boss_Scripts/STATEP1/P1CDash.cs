@@ -10,7 +10,7 @@ public class P1CDash : Danu_State
 
     }
     [SerializeField] Transform target;
-    [SerializeField] Transform preview;
+    [SerializeField] GameObject preview;
     [SerializeField] float maxDashTime;
     [SerializeField] int dashCount;
     [SerializeField] int maxDashCount;
@@ -62,7 +62,7 @@ public class P1CDash : Danu_State
         }
         if (chargingTime <= maxChargingTime)
         {
-            preview.gameObject.SetActive(true);
+            preview.SetActive(true);
             chargingTime += Time.deltaTime;
             //Vector3 arrival= transform.position+dir*dashSpeed*maxDashTime ;
             //arrival=new Vector3(arrival.x,3.72f,arrival.z);
@@ -111,8 +111,6 @@ public class P1CDash : Danu_State
             dir=(fsm.agent.GetArenaCenter()-fsm.transform.position).normalized;
             startPos = fsm.transform.position;
             maxArrival = fsm.agent.GetArenaCenter();
-            preview.localScale = new Vector3(2,2,6);
-            preview.position = fsm.transform.position +fsm.transform.forward*3;
             fsm.transform.LookAt(fsm.agent.GetArenaCenter());
             preview.gameObject.SetActive(true);
             dashAttackData.LaunchAttack();
@@ -125,8 +123,7 @@ public class P1CDash : Danu_State
         }
         startPos = fsm.transform.position;
         maxArrival = fsm.transform.position + dir * dashSpeed * dashTime;
-            preview.localScale = new Vector3(2,2,6);
-            preview.position = fsm.transform.position +fsm.transform.forward*3;
+
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
         fsm.transform.LookAt(straightTarget);
         dashAttackData.LaunchAttack();

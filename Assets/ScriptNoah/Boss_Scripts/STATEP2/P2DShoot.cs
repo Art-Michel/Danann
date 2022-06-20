@@ -18,6 +18,7 @@ public class P2DShoot : Danu_State
     private float waitTime;
     private float maxWaitTime=0.2f;
     Transform target;
+    private int angle;
 
     // Start is called before the first frame update
     public override void Begin()
@@ -38,7 +39,8 @@ public class P2DShoot : Danu_State
     }
     public override void Init()
     {
-        pool = fsm.GetPool();
+        pool = fsm.GetStraightPool();
+        angle=fsm.GetProjAngle();
         maxLifeTime = fsm.GetP2d_ProjLifeTime();
         delay = fsm.GetP2d_delay();
         nbShot = fsm.GetP2d_nbShot();
@@ -91,11 +93,43 @@ public class P2DShoot : Danu_State
             {
 
                 index++;
-                GameObject go = pool.Get();
-                go.GetComponent<Projectiles>().SetSpeed(speed);
-                go.transform.position = fsm.transform.position;
-                go.SetActive(true);
-                go.GetComponent<AttackData>().LaunchAttack();
+                if (index%2==0)
+                {
+                    for (int i=0;i<3;i++)
+                    {
+                        GameObject go = pool.Get();
+                        go.GetComponent<Projectiles>().SetSpeed(speed);
+                        go.transform.position = fsm.transform.position;
+                        go.transform.LookAt(target);
+                        go.SetActive(true);
+                        go.GetComponent<AttackData>().LaunchAttack();
+                        if (i==1)
+                            go.transform.Rotate(0,angle,0);
+                        else if (i==2)
+                            go.transform.Rotate(0,-angle,0);
+                        go.transform.position-=go.transform.forward*2;
+
+                    }
+                }
+                else
+                {
+                    for (int i=0;i<2;i++)
+                    {
+                        GameObject go = pool.Get();
+                        go.GetComponent<Projectiles>().SetSpeed(speed);
+                        go.transform.position = fsm.transform.position;
+                        go.SetActive(true);
+                        go.transform.LookAt(target);
+
+                        go.GetComponent<AttackData>().LaunchAttack();
+                        if (i==0)
+                            go.transform.Rotate(0,angle/2,0);
+                        else
+                            go.transform.Rotate(0,-angle/2,0);
+                        go.transform.position-=go.transform.forward*2;
+                    }
+                }
+
             }
         }
     }

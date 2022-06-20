@@ -8,7 +8,7 @@ public class P2DBoomerang : Danu_State
     [SerializeField]GameObject boomerangL1, boomerangR1,boomerangL2, boomerangR2;
     [SerializeField]AttackData boomerangAttackData;
     [SerializeField]Transform target;
-    [SerializeField]Transform preview;
+    [SerializeField] GameObject preview;
     [SerializeField]float speed;
     [SerializeField]float MaxStraightTime;
     [SerializeField]Transform curveMidL1, curveMidR1,curveMidL2, curveMidR2;
@@ -47,9 +47,7 @@ public class P2DBoomerang : Danu_State
         curveStartR2 = boomerangR2.transform.position + fsm.transform.forward * maxDistance;
         curveEnd = fsm.transform.position;
         Vector3 straightEnd = (curveStartL1 + curveStartR1+curveStartL2 + curveStartR2) / 4;
-        preview.position = fsm.transform.position + (straightEnd - fsm.transform.position) / 2;
-        preview.localScale = new Vector3(5, 1, Vector3.Distance(fsm.transform.position, straightEnd));
-        preview.LookAt(straightEnd);
+        fsm.transform.LookAt(straightEnd);
         preview.gameObject.SetActive(true);
         
         wait = true;

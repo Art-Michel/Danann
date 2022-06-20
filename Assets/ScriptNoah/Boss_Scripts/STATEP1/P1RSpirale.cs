@@ -18,7 +18,7 @@ public class P1RSpirale : Danu_State
     bool wait;
     private float waitTime;
     private float maxWaitTime;
-    private Transform preview;
+    GameObject preview;
     public override void Init()
     {
         base.Init();
@@ -41,9 +41,7 @@ public class P1RSpirale : Danu_State
             Init();
         lifetime=nbBullets*maxDelay+5;
         waitTime=0;
-        preview.localScale = new Vector3(1, 1, Vector3.Distance(fsm.transform.position, fsm.agent.GetArenaCenter()));
-        preview.position = fsm.transform.position + (fsm.agent.GetArenaCenter() - fsm.transform.position) / 2;
-        preview.LookAt(fsm.agent.GetArenaCenter());
+        fsm.transform.LookAt(fsm.agent.GetArenaCenter());
         preview.gameObject.SetActive(true);
         wait=true;
         SoundManager.Instance.PlayBossAllOut();
@@ -101,7 +99,8 @@ public class P1RSpirale : Danu_State
             go.SetActive(true);
             pooll.SetUp(null,null,proj);
             go.GetComponentInChildren<MovingSpirale>().SetBullets(nbBullets);
-            go.GetComponentInChildren<MovingSpirale>().SetDelay(maxDelay);
+            go.GetComponentInChildren<MovingSpirale>().SetDelay(maxDelay);            
+            go.GetComponentInChildren<MovingSpirale>().SetOffset(true,rad*Mathf.Rad2Deg*i);
             spirales[i]=go;
         }
     }

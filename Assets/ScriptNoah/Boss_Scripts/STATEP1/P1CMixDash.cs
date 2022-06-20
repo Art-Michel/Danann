@@ -17,7 +17,7 @@ public class P1CMixDash : Danu_State
     }
     state actual;
     [SerializeField] Transform target;
-    [SerializeField] Transform preview;
+    [SerializeField] GameObject preview;
     [SerializeField] float maxDashTime;
     [SerializeField] float dashSpeed;
     [SerializeField] float dashMod;
@@ -226,8 +226,7 @@ public class P1CMixDash : Danu_State
         {
             dir=(fsm.agent.GetArenaCenter()-fsm.transform.position).normalized;
             maxArrival=fsm.agent.GetArenaCenter();
-            preview.localScale = new Vector3(2,2,6);
-            preview.position = fsm.transform.position +fsm.transform.forward*3;
+
             Vector3 strTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
             fsm.transform.LookAt(maxArrival);
             return;
@@ -235,10 +234,8 @@ public class P1CMixDash : Danu_State
         startPos = fsm.transform.position;
         Debug.Log(startPos);
         Debug.Log(maxArrival);
-        Debug.Log(preview.position);
         maxArrival = startPos + dir * dashSpeed * dashTime;
-                    preview.localScale = new Vector3(2,2,6);
-            preview.position = fsm.transform.position +fsm.transform.forward*3;
+
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
         fsm.transform.LookAt(straightTarget);
     }

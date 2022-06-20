@@ -148,9 +148,9 @@ private void LerpIn()
         {
             if (index==0)
             {
-                Begin();
                 fsm.agent.vfx[2].SetActive(false);
                 fsm.agent.vfx[3].SetActive(false);
+                Begin();
                 index++;
                 return;
             }

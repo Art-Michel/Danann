@@ -6,7 +6,7 @@ public class P2CDash : Danu_State
 {
     public P2CDash() : base(StateNames.P2C_DASH){}
 [SerializeField] Transform target;
-    [SerializeField] Transform preview;
+    [SerializeField] GameObject preview;
     [SerializeField] float maxDashTime;
     [SerializeField] int dashCount;
     [SerializeField] int maxDashCount;
@@ -36,7 +36,7 @@ public class P2CDash : Danu_State
         maxDashTime = fsm.GetP2sD_MDashT();
         maxDashCount = 3;
         dashAttackData = fsm.GetP2DashAttackData();
-        preview = fsm.GetP2sD_Preview();
+        preview = fsm.GetP1sD_Preview();
         target = fsm.agent.GetPlayer();
         base.Init();
 
@@ -103,8 +103,6 @@ public class P2CDash : Danu_State
         maxArrival = fsm.transform.position + dir * dashSpeed * dashTime;
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
         fsm.transform.LookAt(straightTarget);
-                    preview.localScale = new Vector3(2,2,6);
-            preview.position = fsm.transform.position +fsm.transform.forward*3;
         dashAttackData.LaunchAttack();
             fsm.agent.vfx[0].SetActive(true);
 

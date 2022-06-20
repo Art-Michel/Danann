@@ -13,6 +13,9 @@ public class Danu_FSM : MonoBehaviour
         #region Shoot
     [Foldout("Phase 1 Shoot"), SerializeField] private int P1D_nbShot;
     public int GetP1d_nbShot() { return P1D_nbShot; }
+    [Foldout("Phase 1 Shoot"), SerializeField] private int _angle;
+    public int GetProjAngle() { return _angle; }
+    
     [Foldout("Phase 1 Shoot"), SerializeField] private float P1D_delay;
     public float GetP1d_delay() { return P1D_delay; }
     [Foldout("Phase 1 Shoot"), SerializeField] private float P1D_wait;
@@ -93,8 +96,8 @@ public class Danu_FSM : MonoBehaviour
     public float GetP1BR_Startup() { return p1Br_startup; }
     #endregion
         #region Dash
-    [Foldout("Phase 1 Dash"), SerializeField] Transform p1sDash_preview;
-    public Transform GetP1sD_Preview() { return p1sDash_preview; }
+    [Foldout("Phase 1 Dash"), SerializeField] GameObject p1sDash_preview;
+    public GameObject GetP1sD_Preview() { return p1sDash_preview; }
     [Foldout("Phase 1 Dash"), SerializeField] float p1sDash_MaxDashTime;
     public float GetP1sD_MDashT() { return p1sDash_MaxDashTime; }
     [Foldout("Phase 1 Dash"), SerializeField] int p1sDash_MaxDashCount;
@@ -134,6 +137,8 @@ public class Danu_FSM : MonoBehaviour
     #endregion
     #region Phase 2
         #region Shoot
+    [Foldout("Phase 2 Shoot"), SerializeField] private Pool p2pool;
+    public Pool GetStraightPool() { return p2pool; }
     [Foldout("Phase 2 Shoot"), SerializeField] private int P2D_nbShot;
     public int GetP2d_nbShot() { return P2D_nbShot; }
     [Foldout("Phase 2 Shoot"), SerializeField] private float P2D_delay;

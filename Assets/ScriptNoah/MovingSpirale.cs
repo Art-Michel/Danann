@@ -6,7 +6,7 @@ using NaughtyAttributes;
 public class MovingSpirale : MonoBehaviour
 {
     Pool pool;
-    [SerializeField] int nbBullet;
+    [SerializeField] int nbBullet; 
     public void SetBullets(int newnb){nbBullet=newnb;}
     [SerializeField] bool goLeft;
     [SerializeField] bool shootLeft;
@@ -28,7 +28,7 @@ public class MovingSpirale : MonoBehaviour
     public float lifetime{get;private set;}
     List<GameObject> activeBullets=new List<GameObject>();
     [SerializeField] Transform preview;
-    private float projSpeed;
+    [SerializeField] float projSpeed;
     public void SetProjSpeed(float nps){projSpeed=nps;}
 
     // Start is called before the first frame update

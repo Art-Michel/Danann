@@ -15,7 +15,7 @@ public class P2DMixDash : Danu_State
     }
     state actual;
     [SerializeField] Transform target;
-    [SerializeField] Transform preview;
+    [SerializeField] GameObject preview;
     [SerializeField] float maxDashTime;
     [SerializeField] float dashSpeed;
     [SerializeField] float dashMod;
@@ -47,7 +47,7 @@ public class P2DMixDash : Danu_State
         maxChargingTime = fsm.GetP2sD_ChargingTime();
         dashSpeed = fsm.GetP2sD_DashSpeed();
         maxDashTime = fsm.GetP2sD_MDashT();
-        preview = fsm.GetP2sD_Preview();
+        preview = fsm.GetP1sD_Preview();
         target = fsm.agent.GetPlayer();
         dashMod = fsm.GetP2MD_dMod();
         dashAttackData = fsm.GetP2DashAttackData();
@@ -174,8 +174,6 @@ public class P2DMixDash : Danu_State
             maxArrival=fsm.transform.position+dir*dashSpeed*dashTime;
             Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
             fsm.transform.LookAt(straightTarget);
-            preview.localScale = new Vector3(2,2,6);
-            preview.position = fsm.transform.position +fsm.transform.forward*3;
             return;
         }
         if (afterStrafe <= mafs)
@@ -231,8 +229,6 @@ public class P2DMixDash : Danu_State
         maxArrival = fsm.transform.position + dir * dashSpeed * dashTime;
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
         fsm.transform.LookAt(straightTarget);
-        preview.localScale = new Vector3(2,2,6);
-        preview.position = fsm.transform.position +fsm.transform.forward*3;
     }
 
 }

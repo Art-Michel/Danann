@@ -7,7 +7,7 @@ public class P1DSpin : Danu_State
 {
     public P1DSpin() : base(StateNames.P1D_SPIN) { }
     private GameObject globalGO;
-    Transform preview;
+    GameObject preview;
     Transform[] bladesPreview = new Transform[3];
     AttackData bladesParentAttackData;
     private Transform dSphereN;
@@ -38,9 +38,7 @@ public class P1DSpin : Danu_State
             Init();
         startPos=fsm.transform.position;
         //activation des helices, ou instantiation si c'est la premiere fois
-        preview.localScale = new Vector3(1, 1, Vector3.Distance(fsm.transform.position, fsm.agent.GetArenaCenter()));
-        preview.position = fsm.transform.position + (fsm.agent.GetArenaCenter() - fsm.transform.position) / 2;
-        preview.LookAt(fsm.agent.GetArenaCenter());
+        fsm.transform.LookAt(fsm.agent.GetArenaCenter());
         preview.gameObject.SetActive(true);
         waitTime = 0;
         wait = true;
