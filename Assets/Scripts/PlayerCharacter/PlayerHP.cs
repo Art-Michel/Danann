@@ -27,6 +27,7 @@ public class PlayerHP : EntityHP
     const float _invulerabilityLength = 0.7f;
     float _invulerabilityT;
     float _tookAHit;
+    bool _isShieldingForTheFirstTime = true;
 
     //Init
     PlayerFeedbacks _playerFeedbacks;
@@ -89,14 +90,22 @@ public class PlayerHP : EntityHP
 
     protected override void Shield(GameObject obj, int plasmaRegainValue, string attackName)
     {
-        _playerFeedbacks.PlayShieldTriggerSfx();
-        _playerPlasma.IncreasePlasma(plasmaRegainValue);
-
+        _isShieldingForTheFirstTime = false;
         Ccl_StateShielding stateShielding = _fsm.currentState as Ccl_StateShielding;
         stateShielding.ShieldT = 0f;
 
+        if (_playerPlasma.PlasmaPoints > 0)
+        {
+            _bossHealth.TakeDamage(plasmaRegainValue * 5, attackName, 0);
+            _playerPlasma.SpendPlasma("Renvoi");
+            _playerFeedbacks.PlayShieldTriggerSfx();
+        }
+        else
+        {
+            SoundManager.Instance.PlayBlockedHit();
+        }
+
         bool attackIsMelee = Danu_Attacks.AttackIsMelee[attackName];
-        _bossHealth.TakeDamage(plasmaRegainValue * 5, attackName, 0);
         if (attackIsMelee)
         {
             _danuAI.Stun(2);
@@ -104,7 +113,9 @@ public class PlayerHP : EntityHP
         }
         else
             obj.SetActive(false); // renvoyer le projo un jour
+
     }
+
 
     protected override void Die()
     {
@@ -152,6 +163,7 @@ public class PlayerHP : EntityHP
         {
             IsInvulnerable = false;
             IsShielding = false;
+            _isShieldingForTheFirstTime = true;
         }
         _hurtbox.ForgetAllAttacks();
         ResetBlinking();

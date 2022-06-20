@@ -7,8 +7,8 @@ using NaughtyAttributes;
 
 public class PlayerPlasma : MonoBehaviour
 {
-    public int PlasmaPoints { get; private set; }
-    int _maxPlasmaPoints;
+    public float PlasmaPoints { get; private set; }
+    float _maxPlasmaPoints;
     PlayerFeedbacks _playerFeedbacks;
 
     [SerializeField] Image _plasmaBar;
@@ -16,11 +16,12 @@ public class PlayerPlasma : MonoBehaviour
     int _currentSegment;
     const int _plasmaPerSegment = 20;
 
-    public Dictionary<string, int> _plasmaCost = new Dictionary<string, int>()
+    public Dictionary<string, float> _plasmaCost = new Dictionary<string, float>()
     {
         {Ccl_Attacks.TRIANGLE, 3},
         {Ccl_Attacks.DASHONSPEAR, 1},
-        {Ccl_Attacks.SHIELD, 1}
+        {Ccl_Attacks.SHIELD, 1},
+        {"Renvoi", 0.2f}
     };
 
     void Awake()
@@ -49,16 +50,16 @@ public class PlayerPlasma : MonoBehaviour
 
     public void SpendPlasma(string skill)
     {
-        DecreasePlasma(_plasmaCost[skill]);
+        DecreasePlasma(( _plasmaCost[skill]));
     }
 
-    public void DecreasePlasma(int amount)
+    public void DecreasePlasma(float amount)
     {
         PlasmaPoints = Mathf.Clamp(PlasmaPoints -= amount * _plasmaPerSegment, 0, _maxPlasmaPoints);
         UpdatePlasmaBar();
     }
 
-    public void IncreasePlasma(int amount)
+    public void IncreasePlasma(float amount)
     {
         PlasmaPoints = Mathf.Clamp(PlasmaPoints += amount, 0, _maxPlasmaPoints);
         UpdatePlasmaBar();
