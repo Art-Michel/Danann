@@ -38,8 +38,8 @@ public class Pooler : MonoBehaviour
     PooledObject Create()
     {
         GameObject obj = Instantiate(_prefab);
-        PooledObject bill = obj.GetComponent<PooledObject>();
-        bill.Init(this);
-        return bill;
+        PooledObject pooled = obj.GetComponent<PooledObject>();
+        pooled.Init(this);
+        return pooled;
     }
 }

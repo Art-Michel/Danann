@@ -12,7 +12,7 @@ public class PooledObject : MonoBehaviour
         transform.SetParent(pooler.transform);
     }
 
-    public virtual void Init(Pooler pooler, Transform player, Transform dsetination)
+    public virtual void Init(Pooler pooler, Transform player, Transform destination)
     {
 
     }

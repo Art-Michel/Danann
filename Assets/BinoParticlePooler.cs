@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class BinoParticlePooler : Pooler
 {
-    [SerializeField] Transform _player;
+    
 }
