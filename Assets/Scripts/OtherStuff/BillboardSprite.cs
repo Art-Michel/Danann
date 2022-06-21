@@ -14,5 +14,6 @@ public class BillboardSprite : MonoBehaviour
     void Update()
     {
         transform.forward = _camera.position - transform.position;
+        //transform.up = _camera.up;
     }
 }

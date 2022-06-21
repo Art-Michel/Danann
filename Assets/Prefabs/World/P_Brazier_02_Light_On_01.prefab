@@ -155,7 +155,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4693991055049549463, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363707245071088685, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363707245071088685, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.508
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363707245071088685, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5905248035654302022, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
       propertyPath: m_Name
