@@ -3,70 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlasmaParticle : PooledObject
 {
-    Transform destination;
-    Vector2 vDest;
-    Vector2 origin;
-    Vector2 p1;
+    Transform _destination;
+    Vector2 _vDest;
+    Vector2 _origin;
+    Vector2 _p1;
 
-    [SerializeField] GameObject particle;
+    [SerializeField] Vector2 _minMaxSpeed;
+    float _speed;
 
-    public int plasmaToAdd;
-    public GameObject player;
+    float _t = 0;
 
-    GameObject[] medianPoints;
-
-    [SerializeField] Vector2 MinMaxSpeed;
-    float speed;
-
-    float offset;
-    float t = 0;
-
-    // Start is called before the first frame update
-    void Start()
+    public override void Init(Pooler pooler, Transform player, Transform destination)
     {
-        destination = GameObject.Find("ParticlePoint").transform;
-        gameObject.transform.SetParent(destination);
-        vDest = new Vector2(destination.position.x, destination.position.y);
+        _pooler = pooler;
 
-        int i = Random.Range(0, 4);
-        medianPoints = GameObject.FindGameObjectsWithTag("Median");
-        p1 = medianPoints[i].transform.position;
+        _destination = destination;
+        transform.SetParent(destination);
 
-        origin = gameObject.transform.position;
+        _origin = player.transform.position;
 
-        offset = Random.Range(-2.5f, 2.5f);
-        speed = Random.Range(MinMaxSpeed.x, MinMaxSpeed.y);
+        _speed = Random.Range(_minMaxSpeed.x, _minMaxSpeed.y);
+
+        _t = 0;
     }
 
     void Update()
     {
-        if (t <= 1)
+        if (_t <= 1)
         {
-            t += Time.deltaTime * speed;
+            _t += Time.deltaTime * _speed;
             transform.position = BezierCurve();
-            vDest = new Vector2(destination.position.x + offset, destination.position.y);
+            _vDest = new Vector2(_destination.position.x, _destination.position.y);
         }
-        else
-        {
-            Hit();
-        }
-    }
-
-    void Hit()
-    {
-        Instantiate(particle, transform.position, transform.rotation);
-        Destroy(gameObject);
     }
 
     Vector2 BezierCurve()
     {
-        float u = 1 - t;
-        float tt = t * t;
+        float u = 1 - _t;
+        float tt = _t * _t;
         float uu = u * u;
 
-        Vector2 point = uu * origin;
-        point += 2 * u * t * p1;
-        point += tt * vDest;
+        Vector2 point = uu * _origin;
+        point += 2 * u * _t * _p1;
+        point += tt * _vDest;
         return point;
     }
 }

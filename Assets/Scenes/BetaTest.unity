@@ -423,6 +423,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1614194715868558760, guid: f49a80c0906ed7b4cb313939dce6f0ac, type: 3}
   m_PrefabInstance: {fileID: 83295873}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &85019313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 85019314}
+  - component: {fileID: 85019315}
+  m_Layer: 0
+  m_Name: BinoParticles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &85019314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85019313}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &85019315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85019313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0007b652cddadeb4999b94593e6f5487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 85019313}
 --- !u!1001 &138763568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -846,7 +890,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323480812}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -22.53024, y: 42.64629, z: -42.50714}
+  m_LocalPosition: {x: -22.624733, y: 34.40439, z: -35.409004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2028546034}
@@ -14107,7 +14151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834729807}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -22.53024, y: 42.64629, z: -42.50714}
+  m_LocalPosition: {x: -22.624733, y: 34.40439, z: -35.409004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 384871587}
@@ -14294,7 +14338,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 25.44858
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -15460,7 +15504,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-12364
+  m_Name: pb_Mesh27844
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
