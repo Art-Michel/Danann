@@ -53,9 +53,9 @@ public class PlasmaParticle : PooledObject
         float tt = _t * _t;
         float uu = u * u;
 
-        Vector2 point = uu * _origin.position;
-        point += 2 * u * _t * new Vector2(Camera.main.ScreenToWorldPoint(_p1.transform.position).x, Camera.main.ScreenToWorldPoint(_p1.transform.position).z);
-        point += tt * new Vector2(Camera.main.ScreenToWorldPoint(_destination.transform.position).x, Camera.main.ScreenToWorldPoint(_destination.transform.position).z);
+        Vector3 point = uu * _origin.position;
+        point += 2 * u * _t * Camera.main.ScreenToWorldPoint(new Vector3(_p1.transform.position.x, _p1.transform.position.y, Camera.main.transform.position.y));
+        point += tt * Camera.main.ScreenToWorldPoint(new Vector3(_destination.transform.position.x, _destination.transform.position.y, Camera.main.transform.position.y));
         return point;
     }
 }
