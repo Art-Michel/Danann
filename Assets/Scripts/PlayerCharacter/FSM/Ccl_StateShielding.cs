@@ -36,6 +36,6 @@ public class Ccl_StateShielding : Ccl_State
         _feedbacks.SetAnimationTrigger("Idle");
         _actions.ResetHurtboxSize();
         _feedbacks.StopShieldFeedback();
-        _actions.PlayerHP.ResetInvulerability();
+        _actions.PlayerHP.Invoke("ResetInvulerability",0.1f);
     }
 }
