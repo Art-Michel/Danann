@@ -7,6 +7,7 @@ using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.Rendering;
 public class DesperationMove : MonoBehaviour
 {
+    #region Shoot
     [Foldout("Shoot"), SerializeField] private int P1D_nbShot;
     public int GetP1d_nbShot() { return P1D_nbShot; }
     [Foldout("Shoot"), SerializeField] private int shootAngle;
@@ -23,6 +24,8 @@ public class DesperationMove : MonoBehaviour
     [Foldout("Preview"), SerializeField] Transform _preview;
     [Foldout("TP"), SerializeField] GameObject p2TP_arrival;
     public GameObject GetP2TP_Arrival() { return p2TP_arrival; }
+    #endregion
+    #region TP
     [Foldout("TP"), SerializeField] GameObject p2TP_fakeArrival;
     public GameObject GetP2TP_FakeArrival() { return p2TP_fakeArrival; }
     [Foldout("TP"), SerializeField] GameObject p2TP_boomBox;
@@ -41,6 +44,8 @@ public class DesperationMove : MonoBehaviour
     public float GetP2TP_Active() { return p2TP_Active; }
     [Foldout("TP"), SerializeField] float p2TP_farDist;
     public float GetP2TP_FarDist() { return p2TP_farDist; }
+    #endregion
+    #region Rosace
     public Transform GetP1sD_Preview() { return _preview; }
     public Pool GetPool() { return pool; }
     [Foldout("Rosace"), SerializeField] Pool rosacePool;
@@ -59,12 +64,16 @@ public class DesperationMove : MonoBehaviour
     public float GetArenaDist(){return arenaDist;}
     [Foldout("Rosace")][SerializeField] private float P1maxWaitTime;
     public float GetMaxWaitTime() { return P1maxWaitTime; }
+    #endregion
+    #region Slam
     [Foldout("Slam")][SerializeField] Vector3[] P1AttackFrames = new Vector3[3];
     public Vector3 GetAttackFrames(int index) { return P1AttackFrames[index]; }
     [Foldout("Slam")][SerializeField] private float P1SlamRecovery;
     public float GetP1SlamRecovery() { return P1SlamRecovery; }
     [Foldout("Slam")][SerializeField] Arr2D[] p1SlamHitBox;
     public Arr2D[] GetP1SlamHitBox() { return p1SlamHitBox; }
+
+    #endregion
     [SerializeField] GameObject meteorShower;
     public DanuAI agent;
     [SerializeField] Volume postProcess;
@@ -216,4 +225,6 @@ public class Arr2D
 {
     public GameObject[] arr=new GameObject[3] ;
     public AttackData[] ad=new AttackData[3];
+    public GameObject[] vfx=new GameObject[3];
+
 }

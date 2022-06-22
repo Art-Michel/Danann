@@ -123,13 +123,14 @@ private void LerpIn()
         else if (fadeTime <= MaxFadeTime)
         {
             arrival.SetActive(true);
+            fsm.agent.HideMesh();
             if (!isLast)
             fakeArrival.SetActive(true);
             fadeTime += Time.deltaTime;
         }
         else if (active <= maxActive)
         {
-
+            fsm.agent.ShowMesh();
             //boomBox.SetActive(true);
             boomBoxAttackData.LaunchAttack();
             if (!isLast)

@@ -33,7 +33,7 @@ AttackData[] _slamAttackDatas = new AttackData[3];
         _slamAttackDatas[2] = fsm.GetP2Slam3AttackData();
         Vector3[] frames = new Vector3[3];
         for (int i = 0; i < 3; i++)
-        {
+        { 
             frames[i] = fsm.GetP2AttackFrames(i);
             _startup[i] = frames[i].x;
             _active[i] = frames[i].y;
@@ -63,6 +63,9 @@ AttackData[] _slamAttackDatas = new AttackData[3];
         _state = 0;
         fsm.transform.LookAt(fsm.agent.GetPlayer());
         _slamAttackDatas[_index].gameObject.SetActive(true);
+        SoundManager.Instance.PlayBossRiseStart();
+        fsm.agent.vfx[9+_index].SetActive(true);
+
     }
 
     private void StartAttack()
@@ -106,5 +109,8 @@ AttackData[] _slamAttackDatas = new AttackData[3];
         }   
         for (int i=0;i<_slamHitbox.Length;i++)
                 _slamHitbox[i].SetActive(false);
+            fsm.agent.vfx[9].SetActive(false);
+        fsm.agent.vfx[10].SetActive(false);
+        fsm.agent.vfx[11].SetActive(false);
     }
 }

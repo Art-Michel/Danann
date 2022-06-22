@@ -80,6 +80,8 @@ public class DM_Slam : Dm_State
         SoundManager.Instance.PlayBossRiseStart();
         for (int i=0;i<4;i++)
             _slamHitbox[i].ad[_index].gameObject.SetActive(true);
+        for (int i=0;i<4;i++)
+            _slamHitbox[i].vfx[_index].SetActive(true);
     }
 
     private void StartAttack()

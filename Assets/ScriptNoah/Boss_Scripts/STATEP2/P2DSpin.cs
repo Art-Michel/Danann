@@ -96,9 +96,8 @@ public class P2DSpin: Danu_State
         preview.gameObject.SetActive(false);
         for (int i = 0; i < bladesPreview.Length; i++)
         {
-            bladesPreview[i].gameObject.SetActive(true);
-            bladesPreview[i].localScale = new Vector3(1, 1, Vector3.Distance(center, nwesTrans[i].position));
-            bladesPreview[i].position = center + (nwesTrans[i].position - center) / 2;
+                        bladesPreview[i].gameObject.SetActive(true);
+            bladesPreview[i].position = center;
             bladesPreview[i].LookAt(nwesTrans[i]);
         }
     }

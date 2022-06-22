@@ -67,6 +67,8 @@ public class P1CSlam : Danu_State
         fsm.transform.LookAt(straightTarget);
         SoundManager.Instance.PlayBossRiseStart();
         _slamAttackDatas[_index].gameObject.SetActive(true);
+        fsm.agent.vfx[9+_index].SetActive(true);
+
     }
 
     private void StartAttack()
@@ -114,5 +116,8 @@ public class P1CSlam : Danu_State
         }   
         for (int i=0;i<_slamHitbox.Length;i++)
                 _slamHitbox[i].SetActive(false);
+        fsm.agent.vfx[9].SetActive(false);
+        fsm.agent.vfx[10].SetActive(false);
+        fsm.agent.vfx[11].SetActive(false);
     }
 }

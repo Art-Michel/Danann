@@ -47,7 +47,7 @@ public class P1DSpin : Danu_State
     }
     public override void Init()
     {
-        pool = fsm.GetPool();
+        pool = fsm.GetPool(); 
         //setup des variables
         dist = fsm.GetP1Sp_Dist();
         globalGO = fsm.GetP1GlobalGO();
@@ -110,8 +110,7 @@ public class P1DSpin : Danu_State
         for (int i = 0; i < bladesPreview.Length; i++)
         {
             bladesPreview[i].gameObject.SetActive(true);
-            bladesPreview[i].localScale = new Vector3(1, 1, Vector3.Distance(center, nweTrans[i].position));
-            bladesPreview[i].position = center + (nweTrans[i].position - center) / 2;
+            bladesPreview[i].position = center;
             bladesPreview[i].LookAt(nweTrans[i]);
         }
     }
