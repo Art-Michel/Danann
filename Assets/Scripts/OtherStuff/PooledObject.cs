@@ -10,9 +10,10 @@ public class PooledObject : MonoBehaviour
     {
         _pooler = pooler;
         transform.SetParent(pooler.transform);
+        gameObject.SetActive(false);
     }
 
-    public virtual void Init(Pooler pooler, Transform player, Transform destination)
+    public virtual void Init(Pooler pooler, Transform player, RectTransform destination, RectTransform interm)
     {
 
     }

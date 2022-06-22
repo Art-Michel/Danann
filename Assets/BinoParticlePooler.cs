@@ -4,5 +4,15 @@ using UnityEngine;
 
 public class BinoParticlePooler : Pooler
 {
-    
+    [SerializeField] RectTransform _plasmaGauge;
+    [SerializeField] RectTransform _interm;
+    [SerializeField] Transform _player;
+
+    protected override PooledObject Create()
+    {
+        GameObject obj = Instantiate(_prefab);
+        PooledObject pooled = obj.GetComponent<PooledObject>();
+        pooled.Init(this, _player.transform, _plasmaGauge, _interm);
+        return pooled;
+    }
 }

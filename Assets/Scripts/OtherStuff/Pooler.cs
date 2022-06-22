@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pooler : MonoBehaviour
 {
-    [SerializeField] GameObject _prefab;
+    [SerializeField] protected GameObject _prefab;
     Queue<PooledObject> _prefabs;
     int _initialCount = 10;
 
@@ -35,7 +35,7 @@ public class Pooler : MonoBehaviour
         obj.gameObject.SetActive(false);
     }
 
-    PooledObject Create()
+    protected virtual PooledObject Create()
     {
         GameObject obj = Instantiate(_prefab);
         PooledObject pooled = obj.GetComponent<PooledObject>();

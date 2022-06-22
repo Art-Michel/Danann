@@ -10,6 +10,7 @@ public class PlayerPlasma : MonoBehaviour
     public float PlasmaPoints { get; private set; }
     float _maxPlasmaPoints;
     PlayerFeedbacks _playerFeedbacks;
+    [SerializeField]BinoParticlePooler _binoParticlePooler;
 
     [SerializeField] Image _plasmaBar;
     [SerializeField] List<Image> _segments;
@@ -63,6 +64,8 @@ public class PlayerPlasma : MonoBehaviour
     {
         PlasmaPoints = Mathf.Clamp(PlasmaPoints += amount, 0, _maxPlasmaPoints);
         UpdatePlasmaBar();
+        PlasmaParticle particle = _binoParticlePooler.Get() as PlasmaParticle;
+        particle.Enable();
     }
 
     private void UpdatePlasmaBar()

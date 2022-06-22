@@ -92,7 +92,7 @@ public class PlayerHP : EntityHP
     {
         _isShieldingForTheFirstTime = false;
         Ccl_StateShielding stateShielding = _fsm.currentState as Ccl_StateShielding;
-        stateShielding.ShieldT = 0f;
+        if (_fsm.currentState.Name == Ccl_StateNames.SHIELDING) stateShielding.ShieldT = 0f;
 
         if (_playerPlasma.PlasmaPoints > 0)
         {
