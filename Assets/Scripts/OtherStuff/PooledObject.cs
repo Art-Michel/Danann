@@ -13,7 +13,7 @@ public class PooledObject : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public virtual void Init(Pooler pooler, Transform player, RectTransform destination, RectTransform interm)
+    public virtual void Init(Pooler pooler, Transform player, RectTransform destination, RectTransform interm, PlayerPlasma playerPlasma)
     {
 
     }

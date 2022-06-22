@@ -4,35 +4,48 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PlasmaParticle : PooledObject
 {
+    PlayerPlasma _playerPlasma;
+    ParticleSystem _particleSystem;
+
     RectTransform _destination;
-    Transform _origin;
+    Transform _playerTransform;
+    Vector3 _origin;
     RectTransform _p1;
+
+    float _amount;
 
     [SerializeField] Vector2 _minMaxSpeed;
     float _speed;
-
     float _t = 0;
 
-    public override void Init(Pooler pooler, Transform player, RectTransform destination, RectTransform interm)
+    public override void Init(Pooler pooler, Transform player, RectTransform destination, RectTransform interm, PlayerPlasma playerPlasma)
     {
+        _playerPlasma = playerPlasma;
+        _particleSystem = GetComponent<ParticleSystem>();
+        _playerTransform = player;
         _pooler = pooler;
         _destination = destination;
         _p1 = interm;
-        _origin = player;
         gameObject.SetActive(false);
     }
     
-    public void Enable()
+    public void Enable(float amount)
     {
         gameObject.SetActive(true);
-        transform.position = _origin.position;
-        //transform.position = Random.insideUnitSphere;
+        _origin = _playerTransform.position;
+        transform.position = _origin;
+        _amount = amount;
+        _particleSystem.startSize = Mathf.Lerp(0.2f, 0.7f,Mathf.InverseLerp(1f, 4f, amount));
+        _particleSystem.Clear();
+        _particleSystem.Play();
+
         _t = 0;
         _speed = Random.Range(_minMaxSpeed.x, _minMaxSpeed.y);
     }
 
     void Disable()
     {
+        _playerPlasma.ActuallyIncreasePlasma(_amount);
         _pooler.Return(this);
     }
 
@@ -53,7 +66,7 @@ public class PlasmaParticle : PooledObject
         float tt = _t * _t;
         float uu = u * u;
 
-        Vector3 point = uu * _origin.position;
+        Vector3 point = uu * _origin;
         point += 2 * u * _t * Camera.main.ScreenToWorldPoint(new Vector3(_p1.transform.position.x, _p1.transform.position.y, Camera.main.transform.position.y));
         point += tt * Camera.main.ScreenToWorldPoint(new Vector3(_destination.transform.position.x, _destination.transform.position.y, Camera.main.transform.position.y));
         return point;
