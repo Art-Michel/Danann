@@ -35,7 +35,7 @@ public class PlasmaParticle : PooledObject
         _origin = _playerTransform.position;
         transform.position = _origin;
         _amount = amount;
-        _particleSystem.startSize = Mathf.Lerp(0.2f, 0.7f,Mathf.InverseLerp(1f, 4f, amount));
+        _particleSystem.startSize = Mathf.Lerp(0.5f, 1f,Mathf.InverseLerp(1f, 4f, amount));
         _particleSystem.Clear();
         _particleSystem.Play();
 
