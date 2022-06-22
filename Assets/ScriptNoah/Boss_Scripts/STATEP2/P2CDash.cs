@@ -107,5 +107,10 @@ public class P2CDash : Danu_State
             fsm.agent.vfx[0].SetActive(true);
 
     }
-
+    public override void End()
+    {
+        preview.gameObject.SetActive(false);
+            fsm.agent.vfx[0].SetActive(false);
+                dashAttackData.StopAttack();
+    }
 }

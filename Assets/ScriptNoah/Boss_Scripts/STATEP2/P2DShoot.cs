@@ -25,7 +25,6 @@ public class P2DShoot : Danu_State
     {
         if (!isInit)
             Init();
-
         index = 0;
         timer = 0;
         waitTime=0;
@@ -56,7 +55,6 @@ public class P2DShoot : Danu_State
         if (wait)
         {
             waitTime+=Time.deltaTime;
-
             fsm.transform.LookAt(fsm.agent.GetPlayer());
             float rotateValue=fsm.transform.rotation.eulerAngles.y;
             fsm.transform.rotation=Quaternion.Euler(0,rotateValue,0);
@@ -91,7 +89,6 @@ public class P2DShoot : Danu_State
             }
             else
             {
-
                 index++;
                 if (index%2==0)
                 {
@@ -108,7 +105,6 @@ public class P2DShoot : Danu_State
                         else if (i==2)
                             go.transform.Rotate(0,-angle,0);
                         go.transform.position-=go.transform.forward*2;
-
                     }
                 }
                 else
@@ -120,7 +116,6 @@ public class P2DShoot : Danu_State
                         go.transform.position = fsm.transform.position;
                         go.SetActive(true);
                         go.transform.LookAt(target);
-
                         go.GetComponent<AttackData>().LaunchAttack();
                         if (i==0)
                             go.transform.Rotate(0,angle/2,0);

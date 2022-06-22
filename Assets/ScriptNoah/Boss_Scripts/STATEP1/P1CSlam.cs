@@ -103,4 +103,16 @@ public class P1CSlam : Danu_State
                 orig.FlowControl();
             }
     }
+    public override void End()
+    {
+                        _timer = 0;
+        _state = 0;
+        for (int i=0;i<_slamAttackDatas.Length; i++)
+        {
+            _slamAttackDatas [i].StopAttack();
+            _slamAttackDatas[i].gameObject.SetActive(false);
+        }   
+        for (int i=0;i<_slamHitbox.Length;i++)
+                _slamHitbox[i].SetActive(false);
+    }
 }

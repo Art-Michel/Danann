@@ -68,6 +68,7 @@ public class DanuAI : MonoBehaviour
     private bool dmActive;
     private bool dmOver;
     public List<GameObject> vfx;
+    [SerializeField] Pooler _billboardsPool;
 
     private void Awake() {
         if (m_fsm==null)
@@ -138,6 +139,11 @@ public class DanuAI : MonoBehaviour
         isStun=true;
         m_anims.SetBool("StunTime",true);
     }
+    public void StunText(int amount)
+    {
+        Billboard billboard = _billboardsPool.Get() as Billboard;
+        billboard.EnableAsInfo("Stunned!");
+    }
     // Update is called once per frame
     void Update()
     {
@@ -168,6 +174,7 @@ public class DanuAI : MonoBehaviour
                 m_anims.SetBool("StunTime",false);
                 stunTime=0;
                 maxStunTime=0;
+                NextPattern();
                 isStun=false;
             }
             return;

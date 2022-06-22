@@ -26,7 +26,10 @@ public class Laser : MonoBehaviour
     [SerializeField] GameObject cam;
     [SerializeField] GameObject preview;
     bool over;
-    DesperationMove dm;
+    [SerializeField] int turnRate;
+    [SerializeField] int dir;
+    [SerializeField] DesperationMove dm;
+    [SerializeField]GameObject dad;
     public void SetDM(DesperationMove ndm){dm=ndm;}
     // Start is called before the first frame update
     [Button]
@@ -36,7 +39,7 @@ public class Laser : MonoBehaviour
         delay=main.startDelay.constant;
         StartShaking(firstShakeTime,firstShakeForce);
         preview.SetActive(true);
-        
+        dad.transform.LookAt(dm.agent.GetPlayer());
     }
 
     // Update is called once per frame
@@ -52,10 +55,21 @@ public class Laser : MonoBehaviour
         if (!over)
         {
             VolumeUpdate();
+            Turn();
             MoveTip();
             Live();
         }
         
+    }
+    [Button]
+    private void Turn()
+    {
+        float deb= Vector3.Dot(transform.forward,(-transform.position+dm.agent.GetPlayer().position).normalized);
+        if (deb>=0)
+            dir=-Mathf.Abs(dir);
+        else
+            dir=Mathf.Abs(dir);
+        dad.transform.Rotate(0,turnRate*dir*Time.deltaTime,0);
     }
 
     private void VolumeUpdate()
@@ -145,6 +159,7 @@ public class Laser : MonoBehaviour
 	private Vector3 m_originalPos = Vector3.zero;
     private float volumeTime;
     private bool goUp;
+
 
     public void StartShaking( float time, float force ) {
 		this.m_originalPos = cam.transform.position;

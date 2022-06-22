@@ -239,5 +239,10 @@ public class P1CMixDash : Danu_State
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
         fsm.transform.LookAt(straightTarget);
     }
-
+    public override void End()
+    {
+        preview.gameObject.SetActive(false);
+            fsm.agent.vfx[0].SetActive(false);
+                dashAttackData.StopAttack();
+    }
 }

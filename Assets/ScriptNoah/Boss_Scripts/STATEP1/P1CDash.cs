@@ -129,4 +129,11 @@ public class P1CDash : Danu_State
         dashAttackData.LaunchAttack();
         fsm.agent.vfx[0].SetActive(true);
     }
+    public override void End()
+    {
+        preview.gameObject.SetActive(false);
+            fsm.agent.vfx[0].SetActive(false);
+                dashAttackData.StopAttack();
+
+    }
 }

@@ -58,8 +58,8 @@ public class P1CTeleportation : Danu_State
             Vector3 offset = new Vector3(rand.x, 0, rand.y) * offsetValue;
             arrival.transform.position = target.position + offset;
         }
-        fsm.agent.vfx[1].SetActive(true);
-        fsm.agent.vfx[2].SetActive(true);
+        fsm.agent.vfx[7].SetActive(true);
+        fsm.agent.vfx[8].SetActive(true);
         _lerpIn=true;
         startup=0;
         fadeTime=0;
@@ -84,6 +84,7 @@ public class P1CTeleportation : Danu_State
         target = fsm.agent.GetPlayer();
         arenaCenter = fsm.agent.GetArenaCenter();
         base.Init();
+
     }
     // Update is called once per frame
     public override void Update()
@@ -127,9 +128,13 @@ public class P1CTeleportation : Danu_State
         if (startup <= MaxSartup)
         {
             startup += Time.deltaTime;
+            if (startup<=MaxSartup)
+                fsm.agent.vfx[8].SetActive(false);
+
         }
         else if (fadeTime <= MaxFadeTime)
         {
+            fsm.agent.vfx[8].SetActive(true);
             arrival.SetActive(true);
             fsm.agent.HideMesh();
             fadeTime += Time.deltaTime;
@@ -152,7 +157,7 @@ public class P1CTeleportation : Danu_State
             boomBox.transform.position = arrival.transform.position;
             
             active += Time.deltaTime;
-            fsm.agent.vfx[1].SetActive(false);
+            fsm.agent.vfx[7].SetActive(false);
 
             if (!played)
             {
@@ -189,6 +194,18 @@ public class P1CTeleportation : Danu_State
     }
     public override void End()
     {
+        boomBoxAttackData.StopAttack();
+        _lerpOut=true;
+        arrival.SetActive(false);
+        fsm.agent.vfx[7].SetActive(false);
+        fsm.agent.m_anims.SetTrigger("TPOver");
+        fsm.agent.vfx[7].SetActive(false);
+        fsm.agent.vfx[8].SetActive(false);
+        startup=0;
+        fadeTime=0;
+        active=0;
+        reco=0;
+            fsm.agent.ShowMesh();
 
     }
 

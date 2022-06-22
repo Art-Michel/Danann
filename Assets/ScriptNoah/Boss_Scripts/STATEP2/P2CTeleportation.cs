@@ -36,7 +36,7 @@ public class P2CTeleportation : Danu_State
     float camWeight;
     public override void Init()
     {
-        arrival=fsm.GetP2TP_Arrival();
+        arrival=fsm.GetP1TP_Arrival();
         fakeArrival=fsm.GetP2TP_FakeArrival();
         boomBox=fsm.GetP2TP_Boombox();
         fakeBoomBox=fsm.GetP2TP_FakeBoombox();
@@ -146,12 +146,14 @@ private void LerpIn()
         }
         else if (fadeTime <= MaxFadeTime)
         {
+            fsm.agent.HideMesh();
             arrival.SetActive(true);
             fakeArrival.SetActive(true);
             fadeTime += Time.deltaTime;
         }
         else if (active <= maxActive)
         {
+            fsm.agent.ShowMesh();
 
             //boomBox.SetActive(true);
             boomBoxAttackData.LaunchAttack();
@@ -184,7 +186,20 @@ private void LerpIn()
             }
         }
     }
+    public override void End()
+    {
+        fsm.agent.vfx[2].SetActive(false);
+        fsm.agent.vfx[3].SetActive(false);
+        startup=0;
+        fadeTime=0;
+        active=0;
+        reco=0;
+        boomBoxAttackData.StopAttack();
+        fakeBoomBoxAttackData.StopAttack();
+        fsm.agent.vfx[1].SetActive(false);
+        fsm.agent.ShowMesh();
 
+    }
 
     
 }
