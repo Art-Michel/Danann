@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5687422708530208712}
   - component: {fileID: 5687422708530208709}
   - component: {fileID: 546641022}
+  - component: {fileID: 45831759}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -213,3 +214,19 @@ MonoBehaviour:
   _rSpearIcon: {fileID: 21300000, guid: 8a2dca49ba020674481951718f1615b7, type: 3}
   _lSpearTransparentIcon: {fileID: 21300000, guid: a76f00772ea8ccf4eab649837d231da9, type: 3}
   _rSpearTransparentIcon: {fileID: 21300000, guid: a96a2136c2370804babfea88ec8698ac, type: 3}
+--- !u!114 &45831759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5687422708530208713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0007b652cddadeb4999b94593e6f5487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 2609794823296671412, guid: 6b76a3db6ff9ddf4e93d32ee7d0cc9fd, type: 3}
+  _plasmaGauge: {fileID: 0}
+  _interm: {fileID: 0}
+  _player: {fileID: 0}
