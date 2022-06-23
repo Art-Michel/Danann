@@ -6358,7 +6358,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323480812}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -12.715813, y: 43.020756, z: -50.944977}
+  m_LocalPosition: {x: -13.014698, y: 47.24459, z: -44.9127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2028546034}
@@ -21053,7 +21053,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 761610231}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.510746, y: 0.38745397, z: -20.716295}
+  m_LocalPosition: {x: -10.510407, y: 0.32380158, z: -10.063151}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 384871587}
@@ -21304,7 +21304,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834729807}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -12.715813, y: 43.020756, z: -50.944977}
+  m_LocalPosition: {x: -13.014698, y: 47.24459, z: -44.9127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 384871587}
@@ -21491,7 +21491,7 @@ Camera:
     height: 1
   near clip plane: 13
   far clip plane: 1000
-  field of view: 24.802488
+  field of view: 41.35886
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -21752,46 +21752,6 @@ PrefabInstance:
       propertyPath: _targetGroup
       value: 
       objectReference: {fileID: 761610233}
-    - target: {fileID: 6351119601355520869, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: _plasmaGainSfx1
-      value: 
-      objectReference: {fileID: 8300000, guid: da94b74f4509fc4449551d5098c8d44d, type: 3}
-    - target: {fileID: 6351119601355520869, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: _plasmaGainSfx2
-      value: 
-      objectReference: {fileID: 8300000, guid: 6f58327efc02c5842aaf44592ae5f7ae, type: 3}
-    - target: {fileID: 6351119601355520869, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: _plasmaGainSfx3
-      value: 
-      objectReference: {fileID: 8300000, guid: 5d1f88c1d04ef2c479496c7511fb0587, type: 3}
-    - target: {fileID: 6351119601355520869, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: _plasmaGainSfx4
-      value: 
-      objectReference: {fileID: 8300000, guid: 6cacca07f01884e4fbbf23a1c540336b, type: 3}
-    - target: {fileID: 6351119601355520869, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: _plasmaGainSfx5
-      value: 
-      objectReference: {fileID: 8300000, guid: ff5e29483de912e4583cf211b84eca1d, type: 3}
-    - target: {fileID: 6351119601355520869, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: _plasmaGainSfx6
-      value: 
-      objectReference: {fileID: 8300000, guid: 1f255d9867823a94eb45684a9fa6ad9a, type: 3}
-    - target: {fileID: 6351119601355520869, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: _plasmaGainSfx7
-      value: 
-      objectReference: {fileID: 8300000, guid: 2d50a8e6a043b8c4ba5b8ebc9b209771, type: 3}
-    - target: {fileID: 6351119601355520869, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: _plasmaGainSfx8
-      value: 
-      objectReference: {fileID: 8300000, guid: eebc3c48f33928d46b23094872673c3e, type: 3}
-    - target: {fileID: 6351119601355520869, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: _plasmaGainSfx9
-      value: 
-      objectReference: {fileID: 8300000, guid: f09ff3d2a3d50e44b8fb6c5d3eb400c8, type: 3}
-    - target: {fileID: 6351119601355520869, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: _plasmaGainSfx10
-      value: 
-      objectReference: {fileID: 8300000, guid: e0028c799bc405248a78b1aac56ef742, type: 3}
     - target: {fileID: 6718971616905161990, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: _plasmaBar
       value: 
@@ -29839,7 +29799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4752791896542983718, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4752791896542983718, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: p1sDash_preview
@@ -29847,11 +29807,11 @@ PrefabInstance:
       objectReference: {fileID: 1847934242}
     - target: {fileID: 5178821271800415685, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.45
+      value: -6.62
       objectReference: {fileID: 0}
     - target: {fileID: 5178821271800415685, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.32
+      value: 11.37
       objectReference: {fileID: 0}
     - target: {fileID: 8289406093843463521, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: cam

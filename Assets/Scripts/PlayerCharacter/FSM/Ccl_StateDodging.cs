@@ -12,8 +12,8 @@ public class Ccl_StateDodging : Ccl_State
     Vector3 _startingPosition;
     Vector3 _wantedDirection;
 
-    private const float _dodgeDuration = 0.22f;
-    private const float _dodgeSpeed = 20f;
+    private const float _dodgeDuration = 0.15f;
+    private const float _dodgeSpeed = 30f;
     float _dodgeT = 0;
 
     public override void Begin()
