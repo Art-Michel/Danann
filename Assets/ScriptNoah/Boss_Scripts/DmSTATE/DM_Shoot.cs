@@ -109,7 +109,7 @@ public class DM_Shoot : Dm_State
                 }
                 else
                 {
-                    for (int i=0;i<5;i++)
+                    for (int i=0;i<2;i++)
                     {
                         SoundManager.Instance.PlayBossShoot();
                         GameObject go = pool.Get();
@@ -117,13 +117,9 @@ public class DM_Shoot : Dm_State
                         go.transform.position = fsm.transform.position;
                         go.transform.LookAt(target);
                         if (i==1)
-                            go.transform.Rotate(0,angle,0);
-                        else if (i==2)
-                            go.transform.Rotate(0,-angle,0);
-                        else if (i==3)
-                            go.transform.Rotate(0,-angle*2,0);
-                        else if (i==4)
-                            go.transform.Rotate(0,angle*2,0);
+                            go.transform.Rotate(0,angle/2,0);
+                        else if (i==0)
+                            go.transform.Rotate(0,-angle/2,0);
                         go.SetActive(true);
                         go.transform.position-=go.transform.forward*2;
                         go.GetComponent<AttackData>().LaunchAttack();
