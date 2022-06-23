@@ -4,6 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.SceneManagement;
 
 public class UiManager : LocalManager<UiManager>
 {
@@ -74,7 +77,6 @@ public class UiManager : LocalManager<UiManager>
     [SerializeField] Image _rtButton;
     public Image RtButton { get { return _rtButton; } }
 
-
     [Foldout("ingameUI")]
     [SerializeField] Sprite _punchIcon;
     public Sprite PunchIcon { get { return _punchIcon; } }
@@ -113,9 +115,18 @@ public class UiManager : LocalManager<UiManager>
     public Sprite RSpearTransparentIcon { get { return _rSpearTransparentIcon; } }
     #endregion
 
+    [SerializeField] Volume _volume;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _volume.profile.TryGet<DepthOfField>(out _depthOfField);
+    }
+
     #region pause
     [SerializeField] GameObject _pauseUiParent;
     bool _isPaused = false;
+    DepthOfField _depthOfField;
 
     public void PauseInput()
     {
@@ -129,13 +140,25 @@ public class UiManager : LocalManager<UiManager>
         _ingameUiParent.SetActive(false);
         _pauseUiParent.SetActive(true);
         Time.timeScale = 0;
+        _depthOfField.active = true;
     }
 
-    void Unpause()
+    public void Unpause()
     {
         _ingameUiParent.SetActive(true);
         _pauseUiParent.SetActive(false);
         Time.timeScale = 1;
+        _depthOfField.active = false;
+    }
+
+    public void Quit()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void QuitToDesktop()
+    {
+        Application.Quit();
     }
     #endregion
 

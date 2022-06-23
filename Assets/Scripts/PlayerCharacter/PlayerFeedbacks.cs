@@ -18,7 +18,7 @@ public class PlayerFeedbacks : MonoBehaviour
 
     #endregion
 
-    #region  Plasma
+    #region Plasma
     [SerializeField] AudioClip _segmentFill;
     [SerializeField] GameObject _ShieldVfx;
     [SerializeField] AudioClip _plasmaGainSfx1;
@@ -108,7 +108,10 @@ public class PlayerFeedbacks : MonoBehaviour
         _vcamPerlin = _vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         _cursorSprite = _cursor.GetComponent<SpriteRenderer>();
         _playerActions = GetComponent<PlayerActions>();
-        if (_volume) _volume.profile.TryGet<Vignette>(out _vignette);
+        if (_volume)
+        {
+            _volume.profile.TryGet<Vignette>(out _vignette);
+        }
     }
 
     void Start()
