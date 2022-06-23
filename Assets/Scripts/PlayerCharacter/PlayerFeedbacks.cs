@@ -21,6 +21,16 @@ public class PlayerFeedbacks : MonoBehaviour
     #region  Plasma
     [SerializeField] AudioClip _segmentFill;
     [SerializeField] GameObject _ShieldVfx;
+    [SerializeField] AudioClip _plasmaGainSfx1;
+    [SerializeField] AudioClip _plasmaGainSfx2;
+    [SerializeField] AudioClip _plasmaGainSfx3;
+    [SerializeField] AudioClip _plasmaGainSfx4;
+    [SerializeField] AudioClip _plasmaGainSfx5;
+    [SerializeField] AudioClip _plasmaGainSfx6;
+    [SerializeField] AudioClip _plasmaGainSfx7;
+    [SerializeField] AudioClip _plasmaGainSfx8;
+    [SerializeField] AudioClip _plasmaGainSfx9;
+    [SerializeField] AudioClip _plasmaGainSfx10;
 
     internal void StartShieldFeedback()
     {
@@ -271,9 +281,80 @@ public class PlayerFeedbacks : MonoBehaviour
     {
         PlaySound(_error, 1f);
     }
+
     public void PlayDodgeReffiledSfx()
     {
         PlaySound(_dodgeRefilled, .1f);
+    }
+
+    public void PlayPlasmaGainedSfx(int i)
+    {
+        switch (i)
+        {
+            case 20:
+                PlaySound(_plasmaGainSfx10, .5f);
+                break;
+            case 19:
+                PlaySound(_plasmaGainSfx10, .5f);
+                break;
+            case 18:
+                PlaySound(_plasmaGainSfx9, .5f);
+                break;
+            case 17:
+                PlaySound(_plasmaGainSfx9, .5f);
+                break;
+            case 16:
+                PlaySound(_plasmaGainSfx8, .5f);
+                break;
+            case 15:
+                PlaySound(_plasmaGainSfx8, .5f);
+                break;
+            case 14:
+                PlaySound(_plasmaGainSfx7, .5f);
+                break;
+            case 13:
+                PlaySound(_plasmaGainSfx7, .5f);
+                break;
+            case 12:
+                PlaySound(_plasmaGainSfx6, .5f);
+                break;
+            case 11:
+                PlaySound(_plasmaGainSfx6, .5f);
+                break;
+            case 10:
+                PlaySound(_plasmaGainSfx5, .5f);
+                break;
+            case 9:
+                PlaySound(_plasmaGainSfx5, .5f);
+                break;
+            case 8:
+                PlaySound(_plasmaGainSfx4, .5f);
+                break;
+            case 7:
+                PlaySound(_plasmaGainSfx4, .5f);
+                break;
+            case 6:
+                PlaySound(_plasmaGainSfx3, .5f);
+                break;
+            case 5:
+                PlaySound(_plasmaGainSfx3, .5f);
+                break;
+            case 4:
+                PlaySound(_plasmaGainSfx2, .5f);
+                break;
+            case 3:
+                PlaySound(_plasmaGainSfx2, .5f);
+                break;
+            case 2:
+                PlaySound(_plasmaGainSfx1, .5f);
+                break;
+            case 1:
+                PlaySound(_plasmaGainSfx1, .5f);
+                break;
+            case 0:
+                PlaySound(_plasmaGainSfx1, .5f);
+                break;
+        }
     }
     #endregion
 
@@ -390,5 +471,5 @@ public class PlayerFeedbacks : MonoBehaviour
         }
     }
 
-    
+
 }

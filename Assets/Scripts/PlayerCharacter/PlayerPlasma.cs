@@ -69,6 +69,7 @@ public class PlayerPlasma : MonoBehaviour
     {
         PlasmaPoints = Mathf.Clamp(PlasmaPoints += amount, 0, _maxPlasmaPoints);
         UpdatePlasmaBar();
+        _playerFeedbacks.PlayPlasmaGainedSfx((int)(PlasmaPoints + amount) - (_currentSegment * _plasmaPerSegment));
     }
 
     private void UpdatePlasmaBar()
