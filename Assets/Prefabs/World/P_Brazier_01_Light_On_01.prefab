@@ -149,9 +149,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_Intensity
+      value: 131072
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_Lightmapping
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_UseViewFrustumForShadowCasterCull
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4348565157289762846, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_Intensity
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: useVolumetric
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_ShadowUpdateMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_VolumetricDimmer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_ShadowResolution.m_Level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_ShadowResolution.m_UseOverride
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4693991055049549463, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
       propertyPath: m_StaticEditorFlags

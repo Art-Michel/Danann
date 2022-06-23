@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &5497342369871128713
 Transform:
@@ -149,9 +149,145 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_Range
+      value: 8.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_Intensity
+      value: 131072
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_Lightmapping
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_ColorTemperature
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_LightShadowCasterMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762844, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_UseViewFrustumForShadowCasterCull
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762845, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8594347
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762845, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -6.6402343e-15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762845, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.51124567
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762845, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 3.679561e-15
+      objectReference: {fileID: 0}
     - target: {fileID: 4348565157289762846, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_Intensity
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_LightUnit
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: useVolumetric
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_ShadowUpdateMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_VolumetricDimmer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_NonLightmappedOnly
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_VolumetricFadeDistance
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_VolumetricShadowDimmer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_ShadowResolution.m_Level
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_UseContactShadow.m_Level
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_UpdateShadowOnLightMovement
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_UseContactShadow.m_Override
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_ShadowResolution.m_UseOverride
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348565157289762847, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_UseContactShadow.m_UseOverride
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4693991055049549463, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -175,7 +311,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5905248035654302022, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6495487599207597890, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6495487599207597890, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 433dd11edf8e4194daa5ca09637a935d, type: 3}
