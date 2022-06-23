@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fc5d6bc236c9d446843086cc04f2348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ingameUiParent: {fileID: 0}
   _nText: {fileID: 0}
   _sText: {fileID: 0}
   _eText: {fileID: 0}
@@ -214,6 +215,7 @@ MonoBehaviour:
   _rSpearIcon: {fileID: 21300000, guid: 8a2dca49ba020674481951718f1615b7, type: 3}
   _lSpearTransparentIcon: {fileID: 21300000, guid: a76f00772ea8ccf4eab649837d231da9, type: 3}
   _rSpearTransparentIcon: {fileID: 21300000, guid: a96a2136c2370804babfea88ec8698ac, type: 3}
+  _pauseUiParent: {fileID: 0}
 --- !u!114 &45831759
 MonoBehaviour:
   m_ObjectHideFlags: 0

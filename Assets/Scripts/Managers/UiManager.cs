@@ -3,83 +3,141 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using NaughtyAttributes;
 
 public class UiManager : LocalManager<UiManager>
 {
+    #region ingameui
+    [SerializeField] GameObject _ingameUiParent;
+
+    [Foldout("ingameUI")]
     [SerializeField] TextMeshProUGUI _nText;
     public TextMeshProUGUI NText { get { return _nText; } }
 
+    [Foldout("ingameUI")]
     [SerializeField] TextMeshProUGUI _sText;
     public TextMeshProUGUI SText { get { return _sText; } }
 
+    [Foldout("ingameUI")]
     [SerializeField] TextMeshProUGUI _eText;
     public TextMeshProUGUI EText { get { return _eText; } }
 
+    [Foldout("ingameUI")]
     [SerializeField] TextMeshProUGUI _wText;
     public TextMeshProUGUI WText { get { return _wText; } }
 
+    [Foldout("ingameUI")]
     [SerializeField] TextMeshProUGUI _ltText;
     public TextMeshProUGUI LtText { get { return _ltText; } }
 
+    [Foldout("ingameUI")]
     [SerializeField] TextMeshProUGUI _rtText;
     public TextMeshProUGUI RtText { get { return _rtText; } }
 
+    [Foldout("ingameUI")]
     [SerializeField] TextMeshProUGUI _dodgesCount;
     public TextMeshProUGUI DodgesCount { get { return _dodgesCount; } }
 
     Color _opaque = new Color(1, 1, 1, 1f);
     Color _transparent = new Color(1, 1, 1, 0.25f);
 
+    [Foldout("ingameUI")]
     [SerializeField] Image _dodgeImage;
+    [Foldout("ingameUI")]
     [SerializeField] Image _dodgeFrameImage;
 
+    [Foldout("ingameUI")]
     [SerializeField] GameObject _dodge;
+    [Foldout("ingameUI")]
     [SerializeField] GameObject _dash;
+    [Foldout("ingameUI")]
     [SerializeField] GameObject _cancel;
+    [Foldout("ingameUI")]
     [SerializeField] Image _eCost;
+    [Foldout("ingameUI")]
     [SerializeField] Image _dodgeFill;
     public GameObject DodgeWhiteFrame;
 
+    [Foldout("ingameUI")]
     [SerializeField] Image _eButton;
     public Image EButton { get { return _eButton; } }
 
+    [Foldout("ingameUI")]
     [SerializeField] Image _wButton;
     public Image WButton { get { return _wButton; } }
 
+    [Foldout("ingameUI")]
     [SerializeField] Image _ltButton;
     public Image LtButton { get { return _ltButton; } }
 
+    [Foldout("ingameUI")]
     [SerializeField] Image _rtButton;
     public Image RtButton { get { return _rtButton; } }
 
 
+    [Foldout("ingameUI")]
     [SerializeField] Sprite _punchIcon;
     public Sprite PunchIcon { get { return _punchIcon; } }
 
+    [Foldout("ingameUI")]
     [SerializeField] Sprite _dodgeIcon;
     public Sprite DodgeIcon { get { return _dodgeIcon; } }
 
+    [Foldout("ingameUI")]
     [SerializeField] Sprite _dashIcon;
     public Sprite DashIcon { get { return _dashIcon; } }
 
+    [Foldout("ingameUI")]
     [SerializeField] Sprite _shieldIcon;
     public Sprite ShieldIcon { get { return _shieldIcon; } }
 
+    [Foldout("ingameUI")]
     [SerializeField] Sprite _cancelIcon;
     public Sprite CancelIcon { get { return _cancelIcon; } }
 
+    [Foldout("ingameUI")]
     [SerializeField] Sprite _lSpearIcon;
     public Sprite LSpearIcon { get { return _lSpearIcon; } }
 
+    [Foldout("ingameUI")]
     [SerializeField] Sprite _rSpearIcon;
     public Sprite RSpearIcon { get { return _rSpearIcon; } }
 
+    [Foldout("ingameUI")]
     [SerializeField] Sprite _lSpearTransparentIcon;
     public Sprite LSpearTransparentIcon { get { return _lSpearTransparentIcon; } }
 
+    [Foldout("ingameUI")]
     [SerializeField] Sprite _rSpearTransparentIcon;
 
     public Sprite RSpearTransparentIcon { get { return _rSpearTransparentIcon; } }
+    #endregion
+
+    #region pause
+    [SerializeField] GameObject _pauseUiParent;
+    bool _isPaused = false;
+
+    public void PauseInput()
+    {
+        _isPaused = !_isPaused;
+        if (_isPaused) Pause();
+        else Unpause();
+    }
+
+    void Pause()
+    {
+        _ingameUiParent.SetActive(false);
+        _pauseUiParent.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    void Unpause()
+    {
+        _ingameUiParent.SetActive(true);
+        _pauseUiParent.SetActive(false);
+        Time.timeScale = 1;
+    }
+    #endregion
 
     void SetSprite(Image image, Sprite sprite)
     {

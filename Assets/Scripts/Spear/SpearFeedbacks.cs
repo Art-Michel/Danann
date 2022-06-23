@@ -137,11 +137,11 @@ public class SpearFeedbacks : MonoBehaviour
     {
         _bladeTrail.emitting = false;
     }
-
+    const float rotationSpeed = 2000;
     void AnimateSwing()
     {
-        _swingAnimT += Time.deltaTime * 0.4f;
-        SetMeshRotation(_mesh.rotation.eulerAngles + Vector3.up * Mathf.Lerp(0, 360, _swingAnimT));
+        //_swingAnimT += Time.deltaTime * 0.4f;
+        SetMeshRotation(_mesh.rotation.eulerAngles + Vector3.up * rotationSpeed * Time.deltaTime);
     }
 
     public void SetMeshRotation(Vector3 rotation)

@@ -265,6 +265,14 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""c33bf5e9-214e-46f1-9cc4-ec8ba1f25df3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -399,6 +407,28 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""action"": ""ThrowL"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9b5efbcd-9f6d-49ff-a1d2-da832e9e7b7d"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""82c36636-0ebd-43b3-91d2-64d1068da6ed"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -423,6 +453,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         m_Actions_Dodge = m_Actions.FindAction("Dodge", throwIfNotFound: true);
         m_Actions_ThrowR = m_Actions.FindAction("ThrowR", throwIfNotFound: true);
         m_Actions_ThrowL = m_Actions.FindAction("ThrowL", throwIfNotFound: true);
+        m_Actions_Pause = m_Actions.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -519,6 +550,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
     private readonly InputAction m_Actions_Dodge;
     private readonly InputAction m_Actions_ThrowR;
     private readonly InputAction m_Actions_ThrowL;
+    private readonly InputAction m_Actions_Pause;
     public struct ActionsActions
     {
         private @PlayerInputMap m_Wrapper;
@@ -529,6 +561,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         public InputAction @Dodge => m_Wrapper.m_Actions_Dodge;
         public InputAction @ThrowR => m_Wrapper.m_Actions_ThrowR;
         public InputAction @ThrowL => m_Wrapper.m_Actions_ThrowL;
+        public InputAction @Pause => m_Wrapper.m_Actions_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -556,6 +589,9 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 @ThrowL.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnThrowL;
                 @ThrowL.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnThrowL;
                 @ThrowL.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnThrowL;
+                @Pause.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -578,6 +614,9 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 @ThrowL.started += instance.OnThrowL;
                 @ThrowL.performed += instance.OnThrowL;
                 @ThrowL.canceled += instance.OnThrowL;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -604,5 +643,6 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         void OnDodge(InputAction.CallbackContext context);
         void OnThrowR(InputAction.CallbackContext context);
         void OnThrowL(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

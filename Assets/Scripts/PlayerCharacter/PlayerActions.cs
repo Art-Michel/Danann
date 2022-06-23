@@ -94,6 +94,7 @@ public class PlayerActions : MonoBehaviour
 
         //Inputs
         _inputs.Actions.LightAttack.started += _ => LightAttackInput();
+        _inputs.Actions.Pause.started += _ => Pause();
 
         _inputs.Actions.Dodge.started += _ => DodgeInput();
         _inputs.Actions.Dodge.canceled += _ => DodgeInputReleased();
@@ -427,6 +428,13 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Pause
+    void Pause()
+    {
+        UiManager.Instance.PauseInput();
+    }
     #endregion
 
     void Update()
