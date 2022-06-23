@@ -39,15 +39,13 @@ public class DM_Rosace : Dm_State
     public override void Begin()
     {
         Init();
-        preview.localScale = new Vector3(1, 1, Vector3.Distance(fsm.transform.position, fsm.agent.GetArenaCenter()));
-        preview.position = fsm.transform.position + (fsm.agent.GetArenaCenter() - fsm.transform.position) / 2;
-        preview.LookAt(fsm.agent.GetArenaCenter());
+        fsm.transform.LookAt(fsm.agent.GetArenaCenter());
         preview.gameObject.SetActive(true);
         lifetime=nbBullets*maxDelay+2;
         wait=true;
         fsm.agent.vfx[5].SetActive(true);
         waitTime=0;
-                fsm.agent.m_anims.SetTrigger("RosaceReady");
+        fsm.agent.m_anims.SetTrigger("RosaceReady");
        
     }
 

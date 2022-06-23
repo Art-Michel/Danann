@@ -20,6 +20,7 @@ public class DesperationMove : MonoBehaviour
     public float GetP1d_ProjLifeTime() { return P1D_ProjLifeTime; }
     [Foldout("Shoot"), SerializeField] private float p1d_ShotSpeed;
     public float GetP1d_ShotSpeed() { return p1d_ShotSpeed; }
+
     [Foldout("Shoot"), SerializeField] private Pool pool;
     [Foldout("Preview"), SerializeField] Transform _preview;
     [Foldout("TP"), SerializeField] GameObject p2TP_arrival;
@@ -216,6 +217,8 @@ public class DesperationMove : MonoBehaviour
             postProcess.weight=0;
             over=true;
             Debug.Log(over);
+            transform.LookAt(endPos);
+            _preview.gameObject.SetActive(true);
             startPos=transform.position;
         }
         if (index>=states.Count)

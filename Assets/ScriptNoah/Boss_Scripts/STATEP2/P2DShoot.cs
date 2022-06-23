@@ -30,9 +30,6 @@ public class P2DShoot : Danu_State
         waitTime=0;
         wait=true;
         Vector3 dir = (-fsm.transform.position + target.position).normalized;
-        preview.position = fsm.transform.position + (dir * 10)/2;
-        preview.LookAt(target);
-        preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, 10);
         preview.gameObject.SetActive(true);
 
     }
@@ -58,10 +55,7 @@ public class P2DShoot : Danu_State
             fsm.transform.LookAt(fsm.agent.GetPlayer());
             float rotateValue=fsm.transform.rotation.eulerAngles.y;
             fsm.transform.rotation=Quaternion.Euler(0,rotateValue,0);
-            Vector3 dir = (-fsm.transform.position + target.position).normalized;
-            preview.position = fsm.transform.position + (dir * 10)/2;
-            preview.LookAt(target);
-            preview.localScale = new Vector3(fsm.transform.localScale.x, fsm.transform.localScale.y, 10);
+
             if (waitTime>=maxWaitTime)
             {
                 preview.gameObject.SetActive(false);

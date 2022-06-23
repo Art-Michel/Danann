@@ -51,9 +51,12 @@ public class BossHealth : EntityHP
         if (!activateRemnant)
             oldValue = (HealthPoints / _maxHealthPoints);
         accel = 0;
-        if (percent < 50 && agent.GetPhase() == 1)
+        if (percent < 70 && agent.GetPhase() == 1)
             agent.NextPhase();
-
+        if (agent.HasDM() && (attackName!=Ccl_Attacks.TRAVELINGSPEAR || attackName!=Ccl_Attacks.SPEARSWINGL || attackName!=Ccl_Attacks.SPEARSWINGR))
+                return base.TakeDamage(0, attackName, plasmaRegainValue, revengeGain);
+        else if (agent.HasDM())
+                    return base.TakeDamage(amount/2, attackName, plasmaRegainValue, revengeGain);
         return base.TakeDamage(amount, attackName, plasmaRegainValue, revengeGain);
     }
 

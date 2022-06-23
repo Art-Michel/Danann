@@ -40,6 +40,7 @@ public class Laser : MonoBehaviour
         StartShaking(firstShakeTime,firstShakeForce);
         preview.SetActive(true);
         dad.transform.LookAt(dm.agent.GetPlayer());
+        dm.transform.LookAt(dm.agent.GetPlayer());
     }
 
     // Update is called once per frame
@@ -69,7 +70,9 @@ public class Laser : MonoBehaviour
             dir=-Mathf.Abs(dir);
         else
             dir=Mathf.Abs(dir);
-        dad.transform.Rotate(0,turnRate*dir*Time.deltaTime,0);
+        float rot = turnRate*dir*Time.deltaTime;
+        dad.transform.Rotate(0,rot,0);
+        dm.transform.Rotate(0,rot,0);
     }
 
     private void VolumeUpdate()

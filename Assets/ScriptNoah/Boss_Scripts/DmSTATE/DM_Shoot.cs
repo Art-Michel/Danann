@@ -18,6 +18,7 @@ public class DM_Shoot : Dm_State
     private float maxWaitTime=0.2f;
     Transform target;
     private int angle;
+    int ind;
 
     // Start is called before the first frame update
     public override void Begin()
@@ -49,6 +50,7 @@ public class DM_Shoot : Dm_State
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
         fsm.transform.LookAt(straightTarget);
         preview=fsm.GetP1sD_Preview();
+        maxWaitTime=fsm.GetP1d_wait();
     }
     // Update is called once per frame
     public override void Update()
@@ -64,7 +66,7 @@ public class DM_Shoot : Dm_State
             Vector3 dir = (-fsm.transform.position + target.position).normalized;
             if (waitTime>=maxWaitTime)
             {
-                preview.gameObject.SetActive(false);
+                preview.gameObject.SetActive(false); 
                 wait=false;
             }
             return;
@@ -85,22 +87,49 @@ public class DM_Shoot : Dm_State
             }
             else
             {
-                for (int i=0;i<3;i++)
+                if (index%2==0)
                 {
-                index++;
-                SoundManager.Instance.PlayBossShoot();
-                GameObject go = pool.Get();
-                go.GetComponent<Projectiles>().SetSpeed(speed);
-                go.transform.position = fsm.transform.position;
-                go.transform.LookAt(target);
-                if (i==1)
-                    go.transform.Rotate(0,angle,0);
-                else if (i==2)
-                    go.transform.Rotate(0,-angle,0);
-                go.SetActive(true);
 
-                go.GetComponent<AttackData>().LaunchAttack();
+                    for (int i=0;i<3;i++)
+                    {
+                    SoundManager.Instance.PlayBossShoot();
+                    GameObject go = pool.Get();
+                    go.GetComponent<Projectiles>().SetSpeed(speed);
+                    go.transform.position = fsm.transform.position;
+                    go.transform.LookAt(target);
+                    if (i==1)
+                        go.transform.Rotate(0,angle,0);
+                    else if (i==2)
+                        go.transform.Rotate(0,-angle,0);
+                    go.SetActive(true);
+                    go.transform.position-=go.transform.forward*2;
+
+                    go.GetComponent<AttackData>().LaunchAttack();
+                    }
                 }
+                else
+                {
+                    for (int i=0;i<5;i++)
+                    {
+                        SoundManager.Instance.PlayBossShoot();
+                        GameObject go = pool.Get();
+                        go.GetComponent<Projectiles>().SetSpeed(speed);
+                        go.transform.position = fsm.transform.position;
+                        go.transform.LookAt(target);
+                        if (i==1)
+                            go.transform.Rotate(0,angle,0);
+                        else if (i==2)
+                            go.transform.Rotate(0,-angle,0);
+                        else if (i==3)
+                            go.transform.Rotate(0,-angle*2,0);
+                        else if (i==4)
+                            go.transform.Rotate(0,angle*2,0);
+                        go.SetActive(true);
+                        go.transform.position-=go.transform.forward*2;
+                        go.GetComponent<AttackData>().LaunchAttack();
+                    }
+                }
+                index++;
 
             }
         }

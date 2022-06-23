@@ -529,7 +529,7 @@ public class DanuAI : MonoBehaviour
     {
         if (!dmActive)
         {
-        health.IsInvulnerable=true;
+        //health.IsInvulnerable=true;
         dmActive=true;
         //debug
         m_fsm.curr.End();
