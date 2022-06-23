@@ -125,6 +125,12 @@ private void LerpIn()
             arrival.SetActive(true);
             fakeArrival.SetActive(true);
             fadeTime += Time.deltaTime;
+            if (fadeTime<=MaxFadeTime)
+            {
+                fsm.agent.m_anims.SetTrigger("TPOver");
+                Debug.Log("over");
+            }
+
         }
         else if (active <= maxActive)
         {
@@ -141,7 +147,7 @@ private void LerpIn()
         {
             boomBoxAttackData.StopAttack();
             fakeBoomBoxAttackData.StopAttack();
-                    fsm.agent.vfx[1].SetActive(false);
+            fsm.agent.vfx[1].SetActive(false);
 
             reco += Time.deltaTime;
         }
@@ -151,12 +157,15 @@ private void LerpIn()
             {
                 fsm.agent.vfx[2].SetActive(false);
                 fsm.agent.vfx[3].SetActive(false);
+                fsm.agent.m_anims.SetTrigger("TPReady");
+
                 Begin();
                 index++;
                 return;
             }
             fsm.agent.vfx[2].SetActive(false);
             fsm.agent.vfx[3].SetActive(false);
+
             fsm.Next();
         }
     }

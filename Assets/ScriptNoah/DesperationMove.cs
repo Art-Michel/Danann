@@ -119,6 +119,9 @@ public class DesperationMove : MonoBehaviour
         curr.Begin();
         goUp=true;
         waitingTime=0;
+        agent.m_anims.SetTrigger("DM");
+        agent.m_anims.SetFloat("Pattern",-2);
+
         laserGO.GetComponentInChildren<Laser>().SetDM(this);
     }
 
@@ -168,6 +171,7 @@ public class DesperationMove : MonoBehaviour
         transform.position=Vector3.Lerp(startPos, endPos,lerpValue/maxTime);
         if (transform.position==endPos)
         {
+            agent.m_anims.SetTrigger("LaserReady");
             laserGO.SetActive(true);
             goUp=false;
         }

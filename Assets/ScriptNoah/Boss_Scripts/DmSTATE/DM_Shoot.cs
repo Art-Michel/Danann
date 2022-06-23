@@ -23,6 +23,7 @@ public class DM_Shoot : Dm_State
     public override void Begin()
     {
         Init();
+        fsm.agent.m_anims.SetBool("DM",false);
 
         index = 0;
         timer = 0;
@@ -78,6 +79,7 @@ public class DM_Shoot : Dm_State
             timer = 0;
             if (index > nbShot)
             {
+            fsm.agent.m_anims.SetTrigger("ShootOver");
                 fsm.Next();
                 return;
             }

@@ -116,6 +116,7 @@ public class Laser : MonoBehaviour
         if (lifetime<=0)
         {
             aData.StopAttack();
+            dm.agent.m_anims.SetTrigger("LaserOver");
             foreach(ParticleSystem ps in vfx)
             {
                 ps.Stop();

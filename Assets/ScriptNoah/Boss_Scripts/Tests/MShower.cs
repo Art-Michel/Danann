@@ -14,8 +14,9 @@ public class MShower : MonoBehaviour
     [SerializeField] Vector3 _nextTarget;
     [SerializeField] Vector3 _arenaCenter;
     [SerializeField] Vector3 _meteorFrames;
-    [SerializeField] float _arenaRadius;
+    [SerializeField] float _radius;
     [SerializeField] int _damage;
+    [SerializeField] Transform player;
 
     // Start is called before the first frame update
     void Start()
@@ -36,15 +37,18 @@ public class MShower : MonoBehaviour
         meteor.SetFrames(_meteorFrames);
         meteor.SetOrig(_meteorPool);
         Setup();
-
     }
     private void Setup()
     {
         _timer=0;
         _maxTime=Random.Range(_minInterval,_maxInterval);
-        Vector2 rand=Random.insideUnitCircle*_arenaRadius;
+        Vector2 rand;
+        if (_index%5==0)
+        rand=Vector2.zero;
+        else
+        rand= Random.insideUnitCircle*_radius;
         Vector3 realRand=new Vector3(rand.x,0,rand.y);
-        _nextTarget=_arenaCenter+realRand;
+        _nextTarget=player.position+realRand;
     }
 
     // Update is called once per frame

@@ -51,6 +51,7 @@ public class DM_Slam : Dm_State
             waitTime+=Time.deltaTime;
             if (waitTime/maxWaitTime>=1)
             {
+                fsm.agent.m_anims.SetTrigger("SlamReady");
                 _wait=false;
                 waitTime=0;
                 StartPreview();

@@ -532,6 +532,7 @@ public class DanuAI : MonoBehaviour
         health.IsInvulnerable=true;
         dmActive=true;
         //debug
+        m_fsm.curr.End();
         DesperationMove dm=GetComponent<DesperationMove>();
         dm.enabled=true;
         m_fsm.enabled=false;

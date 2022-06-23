@@ -139,6 +139,9 @@ private void LerpIn()
             boomBox.transform.position = arrival.transform.position;
             fakeBoomBox.transform.position = fakeArrival.transform.position;
             active += Time.deltaTime;
+            if (active<=maxActive)
+                fsm.agent.m_anims.SetTrigger("TPOver");
+
         }
         else if (reco <= maxReco)
         {
