@@ -47,7 +47,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -195,6 +195,9 @@ MonoBehaviour:
   _parryFramePng: {fileID: 0}
   _volume: {fileID: 0}
   _pauseUiParent: {fileID: 0}
+  _blackFade: {fileID: 0}
+  _playerActions: {fileID: 0}
+  _playerMovement: {fileID: 0}
 --- !u!114 &45831759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,6 +235,9 @@ MonoBehaviour:
   _counterAttack: {fileID: 8300000, guid: 596beab896806c040a8fef952d4f2929, type: 3}
   _menuOk: {fileID: 8300000, guid: 902a8dfda90478b47bfa8e1e55753da1, type: 3}
   _menuCancel: {fileID: 8300000, guid: 96a1631336adda243bd0a222454f0542, type: 3}
+  _menuOpen: {fileID: 8300000, guid: 0a8ddd0234b199d419c6e3b3546de633, type: 3}
+  _menuClose: {fileID: 8300000, guid: 160496be54354dd4a9c1ce484c9befe7, type: 3}
+  _menuMove: {fileID: 8300000, guid: 23b29418f34859d41b273be69dccbfe0, type: 3}
   _bossTPIn: {fileID: 8300000, guid: 7f3209784dbfcc24c8317455e45062a6, type: 3}
   _bossTPOut: {fileID: 8300000, guid: 12f9202d4ee334e4bb7a2f9e71ccd141, type: 3}
   _bossShoot: {fileID: 8300000, guid: e15669555f68fc541ad429b4d55af2d2, type: 3}

@@ -147,7 +147,8 @@ public class UiManager : LocalManager<UiManager>
 
     [SerializeField] Image _blackFade;
     float _t;
-    private bool _ShouldFade = false;
+    private bool _ShouldFadeToQuit = false;
+    private bool _ShouldFadeToRestart = false;
 
     [SerializeField] PlayerActions _playerActions;
     [SerializeField] PlayerMovement _playerMovement;
@@ -186,18 +187,32 @@ public class UiManager : LocalManager<UiManager>
     public void Quit()
     {
         Time.timeScale = 1;
-        _ShouldFade = true;
-        _t -= 0;
+        _ShouldFadeToQuit = true;
+        _t = 0.6f;
+    }
+
+    public void Restart()
+    {
+        Time.timeScale = 1;
+        _ShouldFadeToRestart = true;
+        _t = 0.6f;
     }
 
     void Update()
     {
-        if (_ShouldFade)
+        if (_ShouldFadeToQuit)
         {
-            _t += Time.deltaTime * 2;
-            _blackFade.color = new Color(0, 0, 0, Mathf.Clamp(_t, 0.6f, 1));
+            _t += Time.deltaTime * .7f;
+            _blackFade.color = new Color(0, 0, 0, _t);
             if (_t > 1)
                 SceneManager.LoadScene(0);
+        }
+        if (_ShouldFadeToRestart)
+        {
+            _t += Time.deltaTime * .35f;
+            _blackFade.color = new Color(0, 0, 0, _t);
+            if (_t > 1)
+                SceneManager.LoadScene(1);
         }
     }
 
