@@ -7879,6 +7879,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 759470701, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.059000015
+      objectReference: {fileID: 0}
     - target: {fileID: 759470703, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_Intensity
       value: 22.364529
@@ -7886,6 +7890,10 @@ PrefabInstance:
     - target: {fileID: 759470703, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_LightUnit
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 759470704, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: m_Range
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 759470704, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_Intensity
@@ -8021,7 +8029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8637741451736142707, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: _attackDamage
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8637741451736142707, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: _plasmaRegainValue
@@ -8117,6 +8125,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 759470701, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.059
+      objectReference: {fileID: 0}
+    - target: {fileID: 759470704, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: m_Range
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 759470704, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -8136,6 +8152,10 @@ PrefabInstance:
     - target: {fileID: 678328657202796063, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 678328657202796063, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: m_Parameters.alignment
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 678328657202796063, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_Parameters.textureMode
@@ -8271,7 +8291,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 9a5ccda3c9c559f4a9faf83b0dddfc4f, type: 2}
     - target: {fileID: 8637741451736142707, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: _attackDamage
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8637741451736142707, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: _plasmaRegainValue

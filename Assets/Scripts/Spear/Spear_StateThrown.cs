@@ -17,8 +17,8 @@ public class Spear_StateThrown : Spear_State
     {
         _fsm.transform.parent = null;
 
-        _startingPosition = _ai.transform.position;
-        _destination = new Vector3(_ai.Cursor.transform.position.x, _ai.transform.position.y, _ai.Cursor.transform.position.z);
+        _startingPosition = new Vector3(_ai.transform.position.x, _ai.transform.position.y + 1, _ai.transform.position.z);
+        _destination = new Vector3(_ai.Cursor.transform.position.x, _ai.transform.position.y + 1, _ai.Cursor.transform.position.z);
 
         _feedbacks.SetMeshUp(_destination - _startingPosition);
         UiManager.Instance.SetSpearImage(_ai.IsLeft, true);

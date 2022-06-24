@@ -117,6 +117,7 @@ public class SpearFeedbacks : MonoBehaviour
     public void StartSwingAnimation()
     {
         SetMeshRotation(_swingingRot);
+        
         _swingAnimT = 0;
         _isSwinging = true;
         EnableTrail();

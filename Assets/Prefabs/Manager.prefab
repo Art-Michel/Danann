@@ -193,11 +193,19 @@ MonoBehaviour:
   _dashFramePng: {fileID: 0}
   _parryPng: {fileID: 0}
   _parryFramePng: {fileID: 0}
+  _winScreen: {fileID: 0}
+  _lossScreen: {fileID: 0}
+  _lossBlack: {fileID: 0}
+  _winBlack: {fileID: 0}
+  _preWinFlash: {fileID: 0}
+  _winButton: {fileID: 0}
+  _lossButton: {fileID: 0}
   _volume: {fileID: 0}
   _pauseUiParent: {fileID: 0}
   _blackFade: {fileID: 0}
   _playerActions: {fileID: 0}
   _playerMovement: {fileID: 0}
+  _pauseButton: {fileID: 0}
 --- !u!114 &45831759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,10 +246,12 @@ MonoBehaviour:
   _menuOpen: {fileID: 8300000, guid: 0a8ddd0234b199d419c6e3b3546de633, type: 3}
   _menuClose: {fileID: 8300000, guid: 160496be54354dd4a9c1ce484c9befe7, type: 3}
   _menuMove: {fileID: 8300000, guid: 23b29418f34859d41b273be69dccbfe0, type: 3}
+  _playerDeath: {fileID: 8300000, guid: 6a8d11c510569b044bffaade97d88b06, type: 3}
   _bossTPIn: {fileID: 8300000, guid: 7f3209784dbfcc24c8317455e45062a6, type: 3}
   _bossTPOut: {fileID: 8300000, guid: 12f9202d4ee334e4bb7a2f9e71ccd141, type: 3}
   _bossShoot: {fileID: 8300000, guid: e15669555f68fc541ad429b4d55af2d2, type: 3}
   _bossStartRise: {fileID: 8300000, guid: d7276aa9dfcfdaf4c83aa6c33b06b977, type: 3}
+  _bossDeath: {fileID: 8300000, guid: 654516bf422af5c40a68a32e69701235, type: 3}
   _bossEndRise: {fileID: 8300000, guid: 7aa994e3abdff194baf344c8c630bb2f, type: 3}
   _bossDash: {fileID: 8300000, guid: 95464d97cb90051459cfec70f530e315, type: 3}
   _bossBoomerang: {fileID: 8300000, guid: f414bb3603d99674c82b502fd2aaf444, type: 3}
