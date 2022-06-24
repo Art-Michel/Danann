@@ -279,11 +279,15 @@ public class UiManager : LocalManager<UiManager>
             if (_t > 1)
                 DisplayWinScreen();
         }
-        if(_shouldFadeToLose)
+        if (_shouldFadeToLose)
         {
             _t += Time.deltaTime;
             if (_t > .2f)
+            {
                 Time.timeScale = 1;
+                _t = 0;
+                _shouldFadeToLose = false;
+            }
         }
     }
 
