@@ -559,7 +559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 15
+  _attackDamage: 2
   _plasmaRegainValue: 0
   _hitboxes:
   - {fileID: 1478819388}
@@ -571,7 +571,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54006875}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1032,7 +1032,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134930433}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1171,7 +1171,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 221044704}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -22149,7 +22149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 15
+  _attackDamage: 2
   _plasmaRegainValue: 0
   _hitboxes:
   - {fileID: 469997490}
@@ -22161,7 +22161,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 662310013}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -22252,7 +22252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 15
+  _attackDamage: 2
   _plasmaRegainValue: 0
   _hitboxes:
   - {fileID: 850842184}
@@ -22264,7 +22264,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 663245411}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -22574,7 +22574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 30
+  _attackDamage: 3
   _plasmaRegainValue: 0
   _hitboxes:
   - {fileID: 821053810}
@@ -22594,7 +22594,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724959013}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -22677,7 +22677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 20
+  _attackDamage: 2
   _plasmaRegainValue: 0
   _hitboxes:
   - {fileID: 1843113390}
@@ -22697,7 +22697,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 727062196}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -37594,7 +37594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 2
+  _attackDamage: 1
   _plasmaRegainValue: 5
   _hitboxes:
   - {fileID: 131059819}
@@ -37697,7 +37697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 30
+  _attackDamage: 3
   _plasmaRegainValue: 0
   _hitboxes:
   - {fileID: 1525673993}
@@ -37717,7 +37717,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 927800400}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -37800,7 +37800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 30
+  _attackDamage: 3
   _plasmaRegainValue: 0
   _hitboxes:
   - {fileID: 688871083}
@@ -37820,7 +37820,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 933595343}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -48695,7 +48695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 2
+  _attackDamage: 3
   _plasmaRegainValue: 5
   _hitboxes:
   - {fileID: 1473368218}
@@ -48798,7 +48798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 20
+  _attackDamage: 2
   _plasmaRegainValue: 0
   _hitboxes:
   - {fileID: 631964002}
@@ -48818,7 +48818,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320671164}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -59524,7 +59524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 20
+  _attackDamage: 2
   _plasmaRegainValue: 0
   _hitboxes:
   - {fileID: 1849191650}
@@ -59544,7 +59544,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1587255486}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -74657,7 +74657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 15
+  _attackDamage: 2
   _plasmaRegainValue: 0
   _hitboxes:
   - {fileID: 129205841}
@@ -74669,7 +74669,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1941628718}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -79712,6 +79712,7 @@ MonoBehaviour:
   P1D_wait: 0.24
   P1D_ProjLifeTime: 4
   p1d_ShotSpeed: 40
+  sl_MaxTravelTime: 0
   pool: {fileID: 1418700377}
   _preview: {fileID: 8380206358711455303}
   p2TP_arrival: {fileID: 2114472835}
@@ -80531,7 +80532,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290443096290055963}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -80670,7 +80671,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781423171689429972}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -81208,6 +81209,7 @@ MonoBehaviour:
   P1D_wait: 1.05
   P1D_ProjLifeTime: 8
   p1d_ShotSpeed: 7
+  sl_MaxTravelTime: 0.81
   pool: {fileID: 1418700377}
   _preview: {fileID: 644125829}
   p2TP_arrival: {fileID: 2114472835}
@@ -82224,7 +82226,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4126625945475115042}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -87820,7 +87822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 2
+  _attackDamage: 1
   _plasmaRegainValue: 5
   _hitboxes:
   - {fileID: 4828560283248673675}
@@ -113127,7 +113129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 0
   shouldHitAllies: 1
-  _attackDamage: 2
+  _attackDamage: 1
   _plasmaRegainValue: 5
   _hitboxes:
   - {fileID: 33414682578957620}

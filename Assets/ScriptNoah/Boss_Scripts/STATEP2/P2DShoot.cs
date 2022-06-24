@@ -84,6 +84,7 @@ public class P2DShoot : Danu_State
             else
             {
                 index++;
+            SoundManager.Instance.PlayBossShoot();
                 if (index%2==0)
                 {
                     for (int i=0;i<3;i++)

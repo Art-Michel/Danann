@@ -143,6 +143,8 @@ private void LerpIn()
         if (startup <= MaxSartup)
         {
             startup += Time.deltaTime;
+            if (startup>=MaxSartup)
+                SoundManager.Instance.PlayBossTpIn();
         }
         else if (fadeTime <= MaxFadeTime)
         {
@@ -150,6 +152,9 @@ private void LerpIn()
             arrival.SetActive(true);
             fakeArrival.SetActive(true);
             fadeTime += Time.deltaTime;
+            if (fadeTime<=MaxFadeTime)
+                SoundManager.Instance.PlayBossTpOut();
+
         }
         else if (active <= maxActive)
         {

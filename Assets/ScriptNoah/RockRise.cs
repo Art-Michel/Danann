@@ -30,6 +30,6 @@ public class RockRise : MonoBehaviour
         t+=Time.deltaTime;
         Vector3 newPos=Vector3.Lerp(startPos,destPos, speed.Evaluate(t/startup));
         transform.position=newPos;
-        
+        transform.localPosition=new Vector3(0,transform.localPosition.y,0);
     }
 }

@@ -127,6 +127,7 @@ public class MovingSpirale : MonoBehaviour
                 projdir=projAngle;
 
             }
+            SoundManager.Instance.PlayBossShoot();
             //go.transform.position=transform.position+new Vector3(pos.x,transform.position.y,pos.y);
             moveIndex++;
         }

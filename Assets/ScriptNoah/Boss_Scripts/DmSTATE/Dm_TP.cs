@@ -61,7 +61,6 @@ public class Dm_TP : Dm_State
             Init();
         arrival.SetActive(false);
         fakeArrival.SetActive(false);
-
         Vector2 rand = Random.insideUnitCircle;
         Vector3 offset = new Vector3(rand.x, 0, rand.y) * offsetValue;
         arrival.transform.position = target.position + offset;
@@ -119,6 +118,9 @@ private void LerpIn()
         if (startup <= MaxSartup)
         {
             startup += Time.deltaTime;
+            if (startup>=MaxSartup)
+                SoundManager.Instance.PlayBossTpIn();
+
         }
         else if (fadeTime <= MaxFadeTime)
         {
@@ -127,6 +129,8 @@ private void LerpIn()
             if (!isLast)
             fakeArrival.SetActive(true);
             fadeTime += Time.deltaTime;
+            if (fadeTime>=MaxFadeTime)
+                SoundManager.Instance.PlayBossTpOut();
         }
         else if (active <= maxActive)
         {

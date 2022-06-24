@@ -19,6 +19,8 @@ public class DM_Slam : Dm_State
     private float waitTime;
     private Vector3 startPos;
     Vector3 endPos;
+    private float maxTravelTime;
+
     public override void Begin()
     {
         Init();
@@ -34,6 +36,7 @@ public class DM_Slam : Dm_State
         Debug.Log(stateName);
         _slamHitbox=fsm.GetP1SlamHitBox();
         maxWaitTime=fsm.GetMaxWaitTime();
+        maxTravelTime=fsm.GetMaxTravelTime();
         Vector3[] frames = new Vector3[3];
         for (int i = 0; i < 3; i++)
         {
@@ -47,9 +50,9 @@ public class DM_Slam : Dm_State
     {
         if (_wait)
         {
-            fsm.transform.position=Vector3.Lerp(startPos,endPos,waitTime/maxWaitTime);
+            fsm.transform.position=Vector3.Lerp(startPos,endPos,waitTime/maxTravelTime);
             waitTime+=Time.deltaTime;
-            if (waitTime/maxWaitTime>=1)
+            if (waitTime>=(maxWaitTime+maxTravelTime))
             {
                 fsm.agent.m_anims.SetTrigger("SlamReady");
                 _wait=false;

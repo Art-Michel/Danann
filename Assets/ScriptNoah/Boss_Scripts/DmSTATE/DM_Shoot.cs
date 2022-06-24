@@ -125,6 +125,7 @@ public class DM_Shoot : Dm_State
                         go.GetComponent<AttackData>().LaunchAttack();
                     }
                 }
+                SoundManager.Instance.PlayBossShoot();
                 index++;
 
             }

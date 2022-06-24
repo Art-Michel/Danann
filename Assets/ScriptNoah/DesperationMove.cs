@@ -21,6 +21,13 @@ public class DesperationMove : MonoBehaviour
     [Foldout("Shoot"), SerializeField] private float p1d_ShotSpeed;
     public float GetP1d_ShotSpeed() { return p1d_ShotSpeed; }
 
+    [Foldout("Slam"), SerializeField] private float sl_MaxTravelTime;
+
+    public float GetMaxTravelTime()
+    {
+        return sl_MaxTravelTime;
+    }
+
     [Foldout("Shoot"), SerializeField] private Pool pool;
     [Foldout("Preview"), SerializeField] Transform _preview;
     [Foldout("TP"), SerializeField] GameObject p2TP_arrival;

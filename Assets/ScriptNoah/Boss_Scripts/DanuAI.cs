@@ -59,6 +59,12 @@ public class DanuAI : MonoBehaviour
     [SerializeField,Dropdown("testValues")] string testState;
     List<string> testValues{get {return StateNames.e.ToList();}}
     [SerializeField] public bool followsGlobal{get;private set;}
+
+    public bool IsDM()
+    {
+        return dmActive;
+    }
+
     private float revengeSpeed;
     [SerializeField] bool isDebug;
     public bool GetFollowingGlobal(){return followsGlobal;}

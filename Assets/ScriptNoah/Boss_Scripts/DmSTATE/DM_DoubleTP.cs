@@ -62,12 +62,11 @@ public class DM_DoubleTP : Dm_State
             Init();
         arrival.SetActive(false);
         fakeArrival.SetActive(false);
-       
-            Debug.Log("close");
-            Vector2 rand = Random.insideUnitCircle;
-            Vector3 offset = new Vector3(rand.x, 0, rand.y) * offsetValue;
-            arrival.transform.position = target.position + offset;
-            fakeArrival.transform.position = target.position - offset;
+        Debug.Log("close");
+        Vector2 rand = Random.insideUnitCircle;
+        Vector3 offset = new Vector3(rand.x, 0, rand.y) * offsetValue;
+        arrival.transform.position = target.position + offset;
+        fakeArrival.transform.position = target.position - offset;
         fsm.agent.vfx[1].SetActive(true);
         fsm.agent.vfx[2].SetActive(true);
         fsm.agent.vfx[3].SetActive(true);
@@ -118,6 +117,9 @@ private void LerpIn()
         if (startup <= MaxSartup)
         {
             startup += Time.deltaTime;
+            if (startup>=MaxSartup)
+                    SoundManager.Instance.PlayBossTpIn();
+
         }
         else if (fadeTime <= MaxFadeTime)
         {
@@ -125,10 +127,11 @@ private void LerpIn()
             arrival.SetActive(true);
             fakeArrival.SetActive(true);
             fadeTime += Time.deltaTime;
-            if (fadeTime<=MaxFadeTime)
+            if (fadeTime>=MaxFadeTime)
             {
                 fsm.agent.m_anims.SetTrigger("TPOver");
                 Debug.Log("over");
+                SoundManager.Instance.PlayBossTpOut();
             }
 
         }
