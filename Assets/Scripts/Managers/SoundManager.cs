@@ -126,7 +126,7 @@ public class SoundManager : LocalManager<SoundManager>
 
     public void PlayBlockedHit()
     {
-        PlaySound(_blockedHit, .2f);
+        PlaySound(_blockedHit, 1f);
     }
 
     public void PlayMenuOk()
