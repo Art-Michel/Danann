@@ -623,7 +623,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Intensity",
     "m_StageCapability": 3,
-    "m_Value": 5.0,
+    "m_Value": 1.0,
     "m_DefaultValue": 1.0,
     "m_Labels": []
 }
@@ -893,9 +893,9 @@
     "m_ShaderOutputName": "BaseColor",
     "m_StageCapability": 2,
     "m_Value": {
-        "x": 0.5,
-        "y": 0.5,
-        "z": 0.5
+        "x": 1.0,
+        "y": 0.7843137383460999,
+        "z": 0.3843137323856354
     },
     "m_DefaultValue": {
         "x": 0.0,

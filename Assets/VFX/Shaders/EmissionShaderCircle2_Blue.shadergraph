@@ -345,7 +345,7 @@
     "m_Type": "UnityEditor.Rendering.HighDefinition.ShaderGraph.LightingData",
     "m_ObjectId": "15682ab7847945248f8fc5adcc022cc3",
     "m_NormalDropOffSpace": 0,
-    "m_BlendPreserveSpecular": true,
+    "m_BlendPreserveSpecular": false,
     "m_ReceiveDecals": true,
     "m_ReceiveSSR": true,
     "m_ReceiveSSRTransparent": false,
@@ -440,7 +440,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"9b697c342350c904ca5814ce591a9e47\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"70d2506210a18684492d7e93ae29e991\",\"type\":3}}",
         "m_Guid": ""
     },
     "m_Modifiable": true,
@@ -757,8 +757,8 @@
     "m_ShaderOutputName": "Color",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 0.0896226167678833,
-        "y": 0.23482705652713777,
+        "x": 0.4103773832321167,
+        "y": 0.5002246499061585,
         "z": 1.0
     },
     "m_DefaultValue": {
