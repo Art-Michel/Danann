@@ -14,6 +14,11 @@ public class SoundManager : LocalManager<SoundManager>
     [SerializeField] AudioClip _bossSlashedH;
     [SerializeField] AudioClip _bossSwinged;
     [SerializeField] AudioClip _counterAttack;
+    [SerializeField] AudioClip _menuOk;
+    [SerializeField] AudioClip _menuCancel;
+    [SerializeField] AudioClip _menuOpen;
+    [SerializeField] AudioClip _menuClose;
+    [SerializeField] AudioClip _menuMove;
     Dictionary<string, AudioClip> _attackSoundEffect;
     #region Boss
     [SerializeField, Foldout("BossSFX")] AudioClip _bossTPIn;
@@ -117,4 +122,28 @@ public class SoundManager : LocalManager<SoundManager>
         PlaySound(_blockedHit, .2f);
     }
 
+    public void PlayMenuOk()
+    {
+        PlaySound(_menuOk, 1f);
+    }
+
+    public void PlayMenuCancel()
+    {
+        PlaySound(_menuCancel, 1f);
+    }
+
+    public void PlayMenuOpen()
+    {
+        PlaySound(_menuOpen, 1f);
+    }
+
+    public void PlayMenuClose()
+    {
+        PlaySound(_menuClose, 1f);
+    }
+
+    public void PlayMenuMove()
+    {
+        PlaySound(_menuMove, 1f);
+    }
 }

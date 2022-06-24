@@ -125,32 +125,46 @@ public class UiManager : LocalManager<UiManager>
     #endregion
 
     [SerializeField] Volume _volume;
-
+    PlayerInputMap _inputs;
     protected override void Awake()
     {
         base.Awake();
+        _inputs = new PlayerInputMap();
         _volume.profile.TryGet<DepthOfField>(out _dof);
+        _inputs.Actions.Pause.started += _ => PauseInput();
     }
 
     void Start()
     {
         _dof.active = false;
+        _isPaused = false;
     }
 
     #region pause
     [SerializeField] GameObject _pauseUiParent;
-    bool _isPaused = false;
+    bool _isPaused;
     DepthOfField _dof;
 
-    public void PauseInput()
+    [SerializeField] Image _blackFade;
+    float _t;
+    private bool _ShouldFade = false;
+
+    [SerializeField] PlayerActions _playerActions;
+    [SerializeField] PlayerMovement _playerMovement;
+
+    void PauseInput()
     {
-        _isPaused = !_isPaused;
-        if (_isPaused) Pause();
+        Debug.Log(_isPaused);
+        if (!_isPaused) Pause();
         else Unpause();
     }
 
     void Pause()
     {
+        _isPaused = true;
+        _playerActions.enabled = false;
+        _playerMovement.enabled = false;
+        SoundManager.Instance.PlayMenuOpen();
         _ingameUiParent.SetActive(false);
         _pauseUiParent.SetActive(true);
         Time.timeScale = 0;
@@ -159,19 +173,41 @@ public class UiManager : LocalManager<UiManager>
 
     public void Unpause()
     {
+        _isPaused = false;
         _ingameUiParent.SetActive(true);
+        _playerActions.enabled = true;
+        _playerMovement.enabled = true;
         _pauseUiParent.SetActive(false);
         Time.timeScale = 1;
         _dof.active = false;
+        SoundManager.Instance.PlayMenuClose();
     }
 
     public void Quit()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(0);
+        _ShouldFade = true;
+        _t -= 0;
+    }
+
+    void Update()
+    {
+        if (_ShouldFade)
+        {
+            _t += Time.deltaTime * 2;
+            _blackFade.color = new Color(0, 0, 0, Mathf.Clamp(_t, 0.6f, 1));
+            if (_t > 1)
+                SceneManager.LoadScene(0);
+        }
     }
 
     public void QuitToDesktop()
+    {
+        Time.timeScale = 1;
+        Invoke("QuitGame", 0.2f);
+    }
+
+    void QuitGame()
     {
         Application.Quit();
     }
@@ -247,7 +283,7 @@ public class UiManager : LocalManager<UiManager>
 
     public void OnePlasmaFilled()
     {
-        Color opaque = new Color(1,1,1,1f);
+        Color opaque = new Color(1, 1, 1, 1f);
         _dashPng.color = opaque;
         _dashFramePng.color = opaque;
         _parryFramePng.color = opaque;
@@ -255,7 +291,7 @@ public class UiManager : LocalManager<UiManager>
     }
     public void OnePlasmaEmptied()
     {
-        Color transparent = new Color(1,1,1,0.5f);
+        Color transparent = new Color(1, 1, 1, 0.5f);
         _dashPng.color = transparent;
         _dashFramePng.color = transparent;
         _parryFramePng.color = transparent;
@@ -277,4 +313,16 @@ public class UiManager : LocalManager<UiManager>
         if (transparent) _dodgeImage.color = _transparent;
         else _dodgeImage.color = _opaque;
     }
+
+    #region disable inputs on Player disable to avoid weird inputs
+    private void OnEnable()
+    {
+        _inputs.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _inputs.Disable();
+    }
+    #endregion
 }

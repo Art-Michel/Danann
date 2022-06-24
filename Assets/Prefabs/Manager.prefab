@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5687422708530208710}
-  - component: {fileID: 5687422708530208711}
   - component: {fileID: 5687422708530208712}
   - component: {fileID: 5687422708530208709}
   - component: {fileID: 546641022}
   - component: {fileID: 45831759}
+  - component: {fileID: 7421590886004538860}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -35,32 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5687422708530208711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5687422708530208713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b704ab24b577c284cb3309f2c471bb29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bossPunched: {fileID: 8300000, guid: ff914d4b36e5994449b2b6854cea38dc, type: 3}
-  _blockedHit: {fileID: 8300000, guid: ad669621ff865374e9db99d32c91bd0a, type: 3}
-  _bossPunchedH: {fileID: 8300000, guid: 38e62451aa53c604ba8733758818d589, type: 3}
-  _bossSlashedH: {fileID: 8300000, guid: 17cccd1e441eaec4884813c0928966dc, type: 3}
-  _bossSwinged: {fileID: 8300000, guid: e0b913ef99f982e44aae2d866298fe81, type: 3}
-  _counterAttack: {fileID: 8300000, guid: 596beab896806c040a8fef952d4f2929, type: 3}
-  _bossTPIn: {fileID: 8300000, guid: 7f3209784dbfcc24c8317455e45062a6, type: 3}
-  _bossTPOut: {fileID: 8300000, guid: 12f9202d4ee334e4bb7a2f9e71ccd141, type: 3}
-  _bossShoot: {fileID: 8300000, guid: e15669555f68fc541ad429b4d55af2d2, type: 3}
-  _bossStartRise: {fileID: 8300000, guid: d7276aa9dfcfdaf4c83aa6c33b06b977, type: 3}
-  _bossEndRise: {fileID: 8300000, guid: 7aa994e3abdff194baf344c8c630bb2f, type: 3}
-  _bossDash: {fileID: 8300000, guid: 95464d97cb90051459cfec70f530e315, type: 3}
-  _bossBoomerang: {fileID: 8300000, guid: f414bb3603d99674c82b502fd2aaf444, type: 3}
-  _bossAllOut: {fileID: 8300000, guid: 7884e612d495f0040bf0f4151cebb26c, type: 3}
 --- !u!82 &5687422708530208712
 AudioSource:
   m_ObjectHideFlags: 0
@@ -215,6 +189,11 @@ MonoBehaviour:
   _rSpearIcon: {fileID: 21300000, guid: 8a2dca49ba020674481951718f1615b7, type: 3}
   _lSpearTransparentIcon: {fileID: 21300000, guid: a76f00772ea8ccf4eab649837d231da9, type: 3}
   _rSpearTransparentIcon: {fileID: 21300000, guid: a96a2136c2370804babfea88ec8698ac, type: 3}
+  _dashPng: {fileID: 0}
+  _dashFramePng: {fileID: 0}
+  _parryPng: {fileID: 0}
+  _parryFramePng: {fileID: 0}
+  _volume: {fileID: 0}
   _pauseUiParent: {fileID: 0}
 --- !u!114 &45831759
 MonoBehaviour:
@@ -233,3 +212,31 @@ MonoBehaviour:
   _interm: {fileID: 0}
   _player: {fileID: 0}
   _playerPlasma: {fileID: 0}
+--- !u!114 &7421590886004538860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5687422708530208713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b704ab24b577c284cb3309f2c471bb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bossPunched: {fileID: 8300000, guid: ff914d4b36e5994449b2b6854cea38dc, type: 3}
+  _blockedHit: {fileID: 8300000, guid: ad669621ff865374e9db99d32c91bd0a, type: 3}
+  _bossPunchedH: {fileID: 8300000, guid: 38e62451aa53c604ba8733758818d589, type: 3}
+  _bossSlashedH: {fileID: 8300000, guid: 17cccd1e441eaec4884813c0928966dc, type: 3}
+  _bossSwinged: {fileID: 8300000, guid: e0b913ef99f982e44aae2d866298fe81, type: 3}
+  _counterAttack: {fileID: 8300000, guid: 596beab896806c040a8fef952d4f2929, type: 3}
+  _menuOk: {fileID: 8300000, guid: 902a8dfda90478b47bfa8e1e55753da1, type: 3}
+  _menuCancel: {fileID: 8300000, guid: 96a1631336adda243bd0a222454f0542, type: 3}
+  _bossTPIn: {fileID: 8300000, guid: 7f3209784dbfcc24c8317455e45062a6, type: 3}
+  _bossTPOut: {fileID: 8300000, guid: 12f9202d4ee334e4bb7a2f9e71ccd141, type: 3}
+  _bossShoot: {fileID: 8300000, guid: e15669555f68fc541ad429b4d55af2d2, type: 3}
+  _bossStartRise: {fileID: 8300000, guid: d7276aa9dfcfdaf4c83aa6c33b06b977, type: 3}
+  _bossEndRise: {fileID: 8300000, guid: 7aa994e3abdff194baf344c8c630bb2f, type: 3}
+  _bossDash: {fileID: 8300000, guid: 95464d97cb90051459cfec70f530e315, type: 3}
+  _bossBoomerang: {fileID: 8300000, guid: f414bb3603d99674c82b502fd2aaf444, type: 3}
+  _bossAllOut: {fileID: 8300000, guid: 7884e612d495f0040bf0f4151cebb26c, type: 3}

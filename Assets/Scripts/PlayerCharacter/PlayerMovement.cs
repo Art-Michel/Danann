@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         {
             EaseInMovement();
             Move();
-            transform.position = new Vector3(transform.position.x, 0, transform.position.z); // character controller sucks
+            transform.position = new Vector3(transform.position.x, 0.22f, transform.position.z); // character controller sucks
         }
         AnimateWalk();
 

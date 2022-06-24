@@ -35,7 +35,6 @@ public class TitleScreen : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(_t);
         if (_shouldPlay)
         {
             _t += Time.deltaTime;
@@ -51,6 +50,11 @@ public class TitleScreen : MonoBehaviour
     }
 
     public void Quit()
+    {
+       Invoke("QuitGame",0.2f);
+    }
+
+    void QuitGame()
     {
         Application.Quit();
     }
