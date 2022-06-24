@@ -216,6 +216,7 @@ public class UiManager : LocalManager<UiManager>
     }
 
     [SerializeField] GameObject _pauseButton;
+
     void Pause()
     {
         _isPaused = true;
@@ -366,6 +367,7 @@ public class UiManager : LocalManager<UiManager>
         _eCost.enabled = true;
     }
 
+    [SerializeField] GameObject _dashGlow;
     public void OnePlasmaFilled()
     {
         Color opaque = new Color(1, 1, 1, 1f);
@@ -373,6 +375,7 @@ public class UiManager : LocalManager<UiManager>
         _dashFramePng.color = opaque;
         _parryFramePng.color = opaque;
         _parryPng.color = opaque;
+        _dashGlow.SetActive(true);
     }
     public void OnePlasmaEmptied()
     {
@@ -381,6 +384,7 @@ public class UiManager : LocalManager<UiManager>
         _dashFramePng.color = transparent;
         _parryFramePng.color = transparent;
         _parryPng.color = transparent;
+        _dashGlow.SetActive(false);
     }
 
     public void SetText(TextMeshProUGUI textU, string text)

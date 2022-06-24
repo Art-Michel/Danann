@@ -5337,6 +5337,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad728a26f53e7fd4f950998c4ecc9500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &337838889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 337838889, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
+  m_PrefabInstance: {fileID: 1133639716}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &354228069 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 470928875, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
@@ -5617,6 +5622,10 @@ PrefabInstance:
       propertyPath: _wButton
       value: 
       objectReference: {fileID: 305074756}
+    - target: {fileID: 546641022, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
+      propertyPath: _dashGlow
+      value: 
+      objectReference: {fileID: 337838889}
     - target: {fileID: 546641022, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
       propertyPath: _ltButton
       value: 
@@ -8113,7 +8122,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-6614
+  m_Name: pb_Mesh-6792
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
