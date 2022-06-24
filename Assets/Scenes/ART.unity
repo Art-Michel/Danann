@@ -5774,10 +5774,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 7421590886004538860, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
-      propertyPath: _blockedHit
-      value: 
-      objectReference: {fileID: 8300000, guid: 75d13cd27ad23644d9b9480c0a92f7bd, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
 --- !u!114 &546641021 stripped
@@ -7524,30 +7520,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2273474929206431970, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3307730332190608908, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: m_Range
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3307730332190608908, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: m_Intensity
-      value: 1048576
-      objectReference: {fileID: 0}
-    - target: {fileID: 3307730332190608908, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: m_ShadowRadius
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3307730332190608915, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: m_Intensity
-      value: 23
-      objectReference: {fileID: 0}
-    - target: {fileID: 3307730332190608915, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: m_ShapeRadius
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3410175772069140196, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: spearText
       value: 
@@ -7564,30 +7536,6 @@ PrefabInstance:
       propertyPath: _targetGroup
       value: 
       objectReference: {fileID: 761610233}
-    - target: {fileID: 4673816664390931598, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: m_Range
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673816664390931598, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: m_Intensity
-      value: 1048576
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673816664390931598, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: m_ShadowRadius
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673816664390931601, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: m_Intensity
-      value: 23
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673816664390931601, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: m_LightUnit
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673816664390931601, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
-      propertyPath: m_ShapeRadius
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4785268684903943270, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: spearText
       value: 
@@ -8158,7 +8106,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-88896
+  m_Name: pb_Mesh-6768
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

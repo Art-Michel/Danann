@@ -48,7 +48,8 @@ public class PlayerFeedbacks : MonoBehaviour
     [SerializeField] Volume _volume;
     [SerializeField] GameObject _cursor;
     SpriteRenderer _cursorSprite;
-    Color orange = new Color(1, .9f, .8f);
+    Color _orange = new Color(1, .8f, .2f);
+    Color _blue = new Color(0, .5f, 1f);
 
     Vignette _vignette;
 
@@ -139,9 +140,9 @@ public class PlayerFeedbacks : MonoBehaviour
     public void ChangeCursorColor(bool isLeft)
     {
         if (isLeft)
-            _cursorSprite.color = orange;
+            _cursorSprite.color = _orange;
         else
-            _cursorSprite.color = Color.blue;
+            _cursorSprite.color = _blue;
     }
     #endregion
 
@@ -452,7 +453,7 @@ public class PlayerFeedbacks : MonoBehaviour
 
     private void StopBlink()
     {
-        _meshMaterial.SetFloat("_LerpValue", 0);
+        _meshMaterial.SetFloat("_LerpValue", -.1f);
         UiManager.Instance.DodgeWhiteFrame.SetActive(false);
         _isBlinking = false;
     }
