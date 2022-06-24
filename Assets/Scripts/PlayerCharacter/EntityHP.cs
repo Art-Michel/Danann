@@ -12,7 +12,7 @@ public class EntityHP : MonoBehaviour
     public bool IsInvulnerable { get { return _isInvulnerable; } set { _isInvulnerable = value; } }
 
 
-    bool _isInvulnerable;
+    protected bool _isInvulnerable;
     [Required][SerializeField] protected PlayerPlasma _playerplasma;
     [Required][SerializeField] Image _healthBar;
     [Required][SerializeField] public Image _healthBarRemnant;
@@ -76,9 +76,7 @@ public class EntityHP : MonoBehaviour
     }
     protected virtual void Die()
     {
-        Time.timeScale = 1;
         gameObject.SetActive(false);
-        Invoke("Quit", 2);
         Debug.Log(name + " just died");
     }
     void Quit()

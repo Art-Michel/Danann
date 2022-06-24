@@ -39,17 +39,20 @@ public class Hurtbox : MonoBehaviour
     public void SetRadius(float radius)
     {
         _radius = radius;
-        HalfRadius = radius/2;
+        HalfRadius = radius / 2;
     }
 
     public void TakeHit(GameObject obj, string attackName, int attackDamage, int plasmaRegainValue)
     {
-        if (_attacksThatHitMe.Contains(attackName))
-            return;
-        else
+        if (this.gameObject.activeInHierarchy)
         {
-            if (_hurtboxOwnerHP.TakeDamage(attackDamage, attackName, plasmaRegainValue, 0, obj))
-                _attacksThatHitMe.Add(attackName);
+            if (_attacksThatHitMe.Contains(attackName))
+                return;
+            else
+            {
+                if (_hurtboxOwnerHP.TakeDamage(attackDamage, attackName, plasmaRegainValue, 0, obj))
+                    _attacksThatHitMe.Add(attackName);
+            }
         }
     }
 

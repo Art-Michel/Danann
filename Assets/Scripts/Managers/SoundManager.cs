@@ -25,6 +25,7 @@ public class SoundManager : LocalManager<SoundManager>
     [SerializeField, Foldout("BossSFX")] AudioClip _bossTPOut;
     [SerializeField, Foldout("BossSFX")] AudioClip _bossShoot;
     [SerializeField, Foldout("BossSFX")] AudioClip _bossStartRise;
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossDeath;
     [SerializeField, Foldout("BossSFX")] AudioClip _bossEndRise;
     [SerializeField, Foldout("BossSFX")] AudioClip _bossDash;
     [SerializeField, Foldout("BossSFX")] AudioClip _bossBoomerang;
@@ -105,6 +106,11 @@ public class SoundManager : LocalManager<SoundManager>
     public void PlayBossPunched()
     {
         PlaySound(_bossPunched, 3f);
+    }
+
+    internal void PlayBossDie()
+    {
+        PlaySound(_bossDeath, 1f);
     }
 
     public void PlayBossPunchedH()

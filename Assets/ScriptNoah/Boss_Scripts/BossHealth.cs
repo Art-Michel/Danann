@@ -88,4 +88,13 @@ public class BossHealth : EntityHP
     {
         if (_isBlinking) _body.SetActive(!_body.activeSelf);
     }
+
+    [Button]
+    protected override void Die()
+    {
+        SoundManager.Instance.PlayBossDie();
+        UiManager.Instance.PreWinScreen();
+        base.Die();
+        Time.timeScale = 0.2f;
+    }
 }

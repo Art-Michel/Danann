@@ -7,9 +7,12 @@ using NaughtyAttributes;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.SceneManagement;
+using System;
+using UnityEngine.EventSystems;
 
 public class UiManager : LocalManager<UiManager>
 {
+    EventSystem m_EventSystem;
     #region ingameui
     [SerializeField] GameObject _ingameUiParent;
 
@@ -107,6 +110,8 @@ public class UiManager : LocalManager<UiManager>
 
     [Foldout("ingameUI")]
     [SerializeField] Sprite _lSpearTransparentIcon;
+
+
     public Sprite LSpearTransparentIcon { get { return _lSpearTransparentIcon; } }
 
     [Foldout("ingameUI")]
@@ -124,6 +129,54 @@ public class UiManager : LocalManager<UiManager>
     public Sprite RSpearTransparentIcon { get { return _rSpearTransparentIcon; } }
     #endregion
 
+    #region Win and Loss
+
+    [SerializeField] GameObject _winScreen;
+    [SerializeField] GameObject _lossScreen;
+    [SerializeField] Image _lossBlack;
+    [SerializeField] Image _winBlack;
+    bool _shouldFadeToWin = false;
+    [SerializeField] Image _preWinFlash;
+
+    internal void PreWinScreen()
+    {
+        _t = 0;
+        _preWinFlash.gameObject.SetActive(true);
+        _shouldFadeToWin = true;
+    }
+    [SerializeField] GameObject _winButton;
+    public void DisplayWinScreen()
+    {
+        _shouldFadeToWin = false;
+        _playerActions.gameObject.SetActive(false);
+        _canPause = false;
+        _playerMovement.enabled = false;
+        _blackFade = _winBlack;
+        _playerActions.enabled = false;
+        _ingameUiParent.SetActive(false);
+        _dof.active = true;
+        _winScreen.SetActive(true);
+        m_EventSystem.SetSelectedGameObject(_winButton);
+    }
+
+    [SerializeField] GameObject _lossButton;
+    bool _shouldFadeToLose = false;
+    public void DisplayLossScreen()
+    {
+        _canPause = false;
+        _t = 0;
+        Time.timeScale = 0.1f;
+        _shouldFadeToLose = true;
+        _playerMovement.enabled = false;
+        _playerActions.enabled = false;
+        _ingameUiParent.SetActive(false);
+        _blackFade = _lossBlack;
+        _dof.active = true;
+        _lossScreen.SetActive(true);
+        m_EventSystem.SetSelectedGameObject(_lossButton);
+    }
+    #endregion
+
     [SerializeField] Volume _volume;
     PlayerInputMap _inputs;
     protected override void Awake()
@@ -132,6 +185,7 @@ public class UiManager : LocalManager<UiManager>
         _inputs = new PlayerInputMap();
         _volume.profile.TryGet<DepthOfField>(out _dof);
         _inputs.Actions.Pause.started += _ => PauseInput();
+        m_EventSystem = EventSystem.current;
     }
 
     void Start()
@@ -141,6 +195,7 @@ public class UiManager : LocalManager<UiManager>
     }
 
     #region pause
+    bool _canPause = true;
     [SerializeField] GameObject _pauseUiParent;
     bool _isPaused;
     DepthOfField _dof;
@@ -160,6 +215,7 @@ public class UiManager : LocalManager<UiManager>
         else Unpause();
     }
 
+    [SerializeField] GameObject _pauseButton;
     void Pause()
     {
         _isPaused = true;
@@ -170,6 +226,7 @@ public class UiManager : LocalManager<UiManager>
         _pauseUiParent.SetActive(true);
         Time.timeScale = 0;
         _dof.active = true;
+        m_EventSystem.SetSelectedGameObject(_pauseButton);
     }
 
     public void Unpause()
@@ -213,6 +270,19 @@ public class UiManager : LocalManager<UiManager>
             _blackFade.color = new Color(0, 0, 0, _t);
             if (_t > 1)
                 SceneManager.LoadScene(1);
+        }
+        if (_shouldFadeToWin)
+        {
+            _t += Time.deltaTime;
+            _preWinFlash.color = new Color(1, 1, 1, _t);
+            if (_t > 1)
+                DisplayWinScreen();
+        }
+        if(_shouldFadeToLose)
+        {
+            _t += Time.deltaTime;
+            if (_t > .2f)
+                Time.timeScale = 1;
         }
     }
 

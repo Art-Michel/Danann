@@ -100,7 +100,7 @@ public class PlayerHP : EntityHP
             _playerPlasma.SpendPlasma("Renvoi");
             _playerFeedbacks.PlayShieldTriggerSfx();
         }
-        else
+        else if (IsInvulnerable)
         {
             SoundManager.Instance.PlayBlockedHit();
         }
@@ -121,6 +121,7 @@ public class PlayerHP : EntityHP
     {
         _playerFeedbacks.StopShake();
         _playerFeedbacks.StopRumble();
+        UiManager.Instance.DisplayLossScreen();
         base.Die();
     }
 
