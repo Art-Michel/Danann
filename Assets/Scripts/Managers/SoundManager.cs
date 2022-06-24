@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 
-public class SoundManager : ProjectManager<SoundManager>
+public class SoundManager : LocalManager<SoundManager>
 {
     [NonSerialized] public AudioSource AudioSource;
     [SerializeField] AudioClip _bossPunched;

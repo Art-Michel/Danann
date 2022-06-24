@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class BillboardSprite : MonoBehaviour
 {
-    Transform _camera;
+    [SerializeField]Transform _camera;
 
     void Awake()
     {
-        _camera = Camera.main.transform;
+        if(_camera == null)_camera = Camera.main.transform;
     }
 
     void Update()
     {
-        transform.forward = _camera.position - transform.position;
+        if (_camera) transform.forward = _camera.position - transform.position;
         //transform.up = _camera.up;
     }
 }

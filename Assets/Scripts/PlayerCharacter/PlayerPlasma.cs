@@ -99,11 +99,15 @@ public class PlayerPlasma : MonoBehaviour
         _segments[_currentSegment].enabled = true;
         _currentSegment++;
         _playerFeedbacks.PlaySegmentFill();
+        if (_currentSegment == 1)
+            UiManager.Instance.OnePlasmaFilled();
     }
 
     private void DepleteSegment()
     {
         _currentSegment--;
         _segments[_currentSegment].enabled = false;
+        if (_currentSegment == 0)
+            UiManager.Instance.OnePlasmaEmptied();
     }
 }

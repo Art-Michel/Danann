@@ -1,18 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TitleScreen : MonoBehaviour
 {
     [SerializeField] Image _blackFade;
+    [SerializeField] Volume _volume;
+    DepthOfField _dof;
     float _t;
     private bool _shouldPlay = false;
 
+    void Awake()
+    {
+        if (_volume)
+        {
+            _volume.profile.TryGet<DepthOfField>(out _dof);
+        }
+    }
     void Start()
     {
         _shouldPlay = false;
+        _dof.active = true;
     }
 
     public void Play()

@@ -112,6 +112,15 @@ public class UiManager : LocalManager<UiManager>
     [Foldout("ingameUI")]
     [SerializeField] Sprite _rSpearTransparentIcon;
 
+    [Foldout("ingameUI")]
+    [SerializeField] Image _dashPng;
+    [Foldout("ingameUI")]
+    [SerializeField] Image _dashFramePng;
+    [Foldout("ingameUI")]
+    [SerializeField] Image _parryPng;
+    [Foldout("ingameUI")]
+    [SerializeField] Image _parryFramePng;
+
     public Sprite RSpearTransparentIcon { get { return _rSpearTransparentIcon; } }
     #endregion
 
@@ -120,13 +129,18 @@ public class UiManager : LocalManager<UiManager>
     protected override void Awake()
     {
         base.Awake();
-        _volume.profile.TryGet<DepthOfField>(out _depthOfField);
+        _volume.profile.TryGet<DepthOfField>(out _dof);
+    }
+
+    void Start()
+    {
+        _dof.active = false;
     }
 
     #region pause
     [SerializeField] GameObject _pauseUiParent;
     bool _isPaused = false;
-    DepthOfField _depthOfField;
+    DepthOfField _dof;
 
     public void PauseInput()
     {
@@ -140,7 +154,7 @@ public class UiManager : LocalManager<UiManager>
         _ingameUiParent.SetActive(false);
         _pauseUiParent.SetActive(true);
         Time.timeScale = 0;
-        _depthOfField.active = true;
+        _dof.active = true;
     }
 
     public void Unpause()
@@ -148,11 +162,12 @@ public class UiManager : LocalManager<UiManager>
         _ingameUiParent.SetActive(true);
         _pauseUiParent.SetActive(false);
         Time.timeScale = 1;
-        _depthOfField.active = false;
+        _dof.active = false;
     }
 
     public void Quit()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 
@@ -232,7 +247,19 @@ public class UiManager : LocalManager<UiManager>
 
     public void OnePlasmaFilled()
     {
-
+        Color opaque = new Color(1,1,1,1f);
+        _dashPng.color = opaque;
+        _dashFramePng.color = opaque;
+        _parryFramePng.color = opaque;
+        _parryPng.color = opaque;
+    }
+    public void OnePlasmaEmptied()
+    {
+        Color transparent = new Color(1,1,1,0.5f);
+        _dashPng.color = transparent;
+        _dashFramePng.color = transparent;
+        _parryFramePng.color = transparent;
+        _parryPng.color = transparent;
     }
 
     public void SetText(TextMeshProUGUI textU, string text)
