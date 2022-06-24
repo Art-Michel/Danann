@@ -122,6 +122,7 @@ public class PlayerHP : EntityHP
         _playerFeedbacks.StopShake();
         _playerFeedbacks.StopRumble();
         UiManager.Instance.DisplayLossScreen();
+        SoundManager.Instance.PlayDeathSound();
         base.Die();
     }
 

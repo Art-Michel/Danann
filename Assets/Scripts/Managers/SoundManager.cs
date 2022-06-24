@@ -19,6 +19,7 @@ public class SoundManager : LocalManager<SoundManager>
     [SerializeField] AudioClip _menuOpen;
     [SerializeField] AudioClip _menuClose;
     [SerializeField] AudioClip _menuMove;
+    [SerializeField] AudioClip _playerDeath;
     Dictionary<string, AudioClip> _attackSoundEffect;
     #region Boss
     [SerializeField, Foldout("BossSFX")] AudioClip _bossTPIn;
@@ -151,5 +152,9 @@ public class SoundManager : LocalManager<SoundManager>
     public void PlayMenuMove()
     {
         PlaySound(_menuMove, 1f);
+    }
+    public void PlayDeathSound()
+    {
+        PlaySound(_playerDeath, 1f);
     }
 }
