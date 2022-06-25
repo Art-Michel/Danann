@@ -5770,10 +5770,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5687422708530208712, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7bf5141dcc864854992430d08855e096, type: 3}
+    - target: {fileID: 5687422708530208712, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5687422708530208713, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
       propertyPath: m_Name
       value: Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 7421590886004538860, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
+      propertyPath: _triangleCancel
+      value: 
+      objectReference: {fileID: 8300000, guid: 7f4d1207e56e4f744b3bed321f207db6, type: 3}
+    - target: {fileID: 7421590886004538860, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
+      propertyPath: _triangleCharge
+      value: 
+      objectReference: {fileID: 8300000, guid: 7bf5141dcc864854992430d08855e096, type: 3}
+    - target: {fileID: 7421590886004538860, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
+      propertyPath: _triangleExplosion
+      value: 
+      objectReference: {fileID: 8300000, guid: 6b56e57d54c120d4383b58553bfec493, type: 3}
+    - target: {fileID: 7421590886004538860, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
+      propertyPath: _triangleActivation
+      value: 
+      objectReference: {fileID: 8300000, guid: 599d4b88eb1b7de48bbd3f6a5317ea4a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
 --- !u!114 &546641021 stripped
@@ -5927,7 +5951,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4752791896542983718, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7104880329030482775, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: m_Range
@@ -7476,6 +7500,10 @@ PrefabInstance:
       propertyPath: _bossHealth
       value: 
       objectReference: {fileID: 79463832}
+    - target: {fileID: 20423502006755893, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
+      propertyPath: _maxHealthPoints
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1267046315873582156, guid: cd3a32a76a7f0644baaf316c338e6df3, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -227,6 +227,7 @@ public class UiManager : LocalManager<UiManager>
         _pauseUiParent.SetActive(true);
         Time.timeScale = 0;
         _dof.active = true;
+        GameManager.Instance.DisableHurtboxes();
         m_EventSystem.SetSelectedGameObject(_pauseButton);
     }
 
@@ -239,6 +240,7 @@ public class UiManager : LocalManager<UiManager>
         _pauseUiParent.SetActive(false);
         Time.timeScale = 1;
         _dof.active = false;
+        GameManager.Instance.EnableHurtboxes();
         SoundManager.Instance.PlayMenuClose();
     }
 
@@ -361,6 +363,13 @@ public class UiManager : LocalManager<UiManager>
         EButton.sprite = CancelIcon;
         WButton.sprite = CancelIcon;
         _eCost.enabled = false;
+        if (_playerActions._currentlyTargettedSpear.SpearAi.IsLeft)
+        {
+            if (_playerActions._rightSpear.currentState.Name == Spear_StateNames.IDLE || _playerActions._rightSpear.currentState.Name == Spear_StateNames.ATTACKING)
+                LtText.text = "ULT";
+        }
+        else if (_playerActions._leftSpear.currentState.Name == Spear_StateNames.IDLE || _playerActions._leftSpear.currentState.Name == Spear_StateNames.ATTACKING)
+            RtText.text = "ULT";
     }
 
     public void UntargetHud()
@@ -381,6 +390,7 @@ public class UiManager : LocalManager<UiManager>
         _parryPng.color = opaque;
         _dashGlow.SetActive(true);
     }
+
     public void OnePlasmaEmptied()
     {
         Color transparent = new Color(1, 1, 1, 0.5f);

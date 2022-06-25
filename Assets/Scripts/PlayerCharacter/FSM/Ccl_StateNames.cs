@@ -12,4 +12,5 @@
     public const string DASHING = "StateDashing";
     public const string HITSTUN = "StateHitstun";
     public const string TARGETTING = "StateTargetting";
+    public const string TRIANGLING = "StateTriangling";
 }

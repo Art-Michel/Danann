@@ -32,7 +32,7 @@ public class PlayerPlasma : MonoBehaviour
 
     void Start()
     {
-        PlasmaPoints = 0;
+        PlasmaPoints = 60;
         _currentSegment = 0;
         _maxPlasmaPoints = _segments.Count * _plasmaPerSegment;
         foreach (Image segment in _segments) segment.enabled = false;

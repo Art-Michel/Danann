@@ -13,7 +13,7 @@ public class PlayerHP : EntityHP
 
 
     //time slow
-    const float _slowdownLength = 0.3f;
+    const float _slowdownLength = 0.03f;
     float _slowdownT;
     private const float _timeScalePostHit = 0.05f;
     private bool _timeIsSlow;
@@ -24,7 +24,7 @@ public class PlayerHP : EntityHP
     #endregion
 
     //invul
-    const float _invulerabilityLength = 0.7f;
+    const float _invulerabilityLength = 0.9f;
     float _invulerabilityT;
     float _tookAHit;
     bool _isShieldingForTheFirstTime = true;
@@ -135,7 +135,7 @@ public class PlayerHP : EntityHP
     }
     private void HandlePostDamageTimeSlow()
     {
-        _slowdownT -= Time.unscaledDeltaTime;
+        _slowdownT -= Time.deltaTime;
         if (_slowdownT < 0) ResetSlowdown();
     }
     private void ResetSlowdown()
@@ -155,7 +155,7 @@ public class PlayerHP : EntityHP
 
     private void HandlePostDamageInvul()
     {
-        _invulerabilityT -= Time.unscaledDeltaTime;
+        _invulerabilityT -= Time.deltaTime;
         if (_invulerabilityT < 0) ResetInvulerability();
     }
 

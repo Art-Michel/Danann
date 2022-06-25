@@ -8113,6 +8113,10 @@ PrefabInstance:
       propertyPath: _spearTransformWhenAttached
       value: 
       objectReference: {fileID: 3023749069325140284}
+    - target: {fileID: 8133032020798367786, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: PlayerActions
+      value: 
+      objectReference: {fileID: 6696278159164135574}
     - target: {fileID: 8637741451736142707, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: _attackName
       value: RightSpearSwing
@@ -8399,6 +8403,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9a5ccda3c9c559f4a9faf83b0dddfc4f, type: 2}
+    - target: {fileID: 8133032020798367786, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: PlayerActions
+      value: 
+      objectReference: {fileID: 6696278159164135574}
     - target: {fileID: 8637741451736142707, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: _attackDamage
       value: 2
