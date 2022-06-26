@@ -42,21 +42,20 @@ public class BossHealth : EntityHP
     public override bool TakeDamage(float amount, string attackName, int plasmaRegainValue, int revengeGain = 0, GameObject obj = null)
     {
         float percent = (HealthPoints / _maxHealthPoints) * 100;
-        
+        if (agent.IsDM() && (attackName != Ccl_Attacks.TRAVELINGSPEAR || attackName != Ccl_Attacks.SPEARSWINGL || attackName != Ccl_Attacks.SPEARSWINGR))
+            return base.TakeDamage(0, attackName, plasmaRegainValue, revengeGain);
         if (((HealthPoints-amount)/_maxHealthPoints)*100<=5 && !agent.HasDM())
         {
-            amount=(int)HealthPoints-(int)((5/100)*_maxHealthPoints);
-                        agent.launchDM();
+            amount = (int)(HealthPoints - ((5f / 100f) * _maxHealthPoints)) + 1;
+            agent.launchDM();
+            return base.TakeDamage(amount, attackName, plasmaRegainValue, revengeGain);
         }
         if (!activateRemnant)
             oldValue = (HealthPoints / _maxHealthPoints);
         accel = 0;
         if (percent < 70 && agent.GetPhase() == 1)
             agent.NextPhase();
-        if (agent.IsDM()&& (attackName!=Ccl_Attacks.TRAVELINGSPEAR || attackName!=Ccl_Attacks.SPEARSWINGL || attackName!=Ccl_Attacks.SPEARSWINGR))
-                return base.TakeDamage(0, attackName, plasmaRegainValue, revengeGain);
-        else if (agent.HasDM())
-                    return base.TakeDamage(amount/2, attackName, plasmaRegainValue, revengeGain);
+
         return base.TakeDamage(amount, attackName, plasmaRegainValue, revengeGain);
     }
 
