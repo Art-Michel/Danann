@@ -173,6 +173,7 @@ public class PlayerActions : MonoBehaviour
         CurrentlyHeldSpear = spear;
         _fsm.ChangeState(Ccl_StateNames.AIMING);
         spear.ChangeState(Spear_StateNames.AIMING);
+        spear.SpearFeedbacks.AimedFeedbacks();
     }
 
     public void EnableCursor()
@@ -204,6 +205,7 @@ public class PlayerActions : MonoBehaviour
             _playerFeedbacks.SetAnimationTrigger("Idle");
             _playerFeedbacks.SetCameraTargetWeight(4, 0);
             CurrentlyHeldSpear.ChangeState(Spear_StateNames.ATTACHED);
+            CurrentlyHeldSpear.SpearFeedbacks.UnaimedFeedbacks();
             CurrentlyHeldSpear = null;
             _isPressingDodge = false;
         }
@@ -216,6 +218,7 @@ public class PlayerActions : MonoBehaviour
     {
         _fsm.ChangeState(Ccl_StateNames.THROWING);
         CurrentlyHeldSpear.ChangeState(Spear_StateNames.THROWN);
+        CurrentlyHeldSpear.SpearFeedbacks.UnaimedFeedbacks();
         CurrentlyHeldSpear = null;
     }
     #endregion
@@ -265,10 +268,10 @@ public class PlayerActions : MonoBehaviour
         Ccl_StateTriangling state = _fsm.currentState as Ccl_StateTriangling;
         state.StopAttack();
         _fsm.ChangeState(Ccl_StateNames.IDLE);
-        _rightSpear.SpearFeedbacks.UntargettedFeedbacks(false);
-        _leftSpear.SpearFeedbacks.UntargettedFeedbacks(false);
         StopTargettingSpear(false ,_rightSpear);
         StopTargettingSpear(false ,_leftSpear);
+        _leftSpear.SpearFeedbacks.UntargettedFeedbacks(false);
+        _rightSpear.SpearFeedbacks.UntargettedFeedbacks(false);
     }
 
     public void RecallSpears()
@@ -492,6 +495,7 @@ public class PlayerActions : MonoBehaviour
             StopTargettingSpear(false, _currentlyTargettedSpear);
             SpearDashedOn = spear;
             _fsm.ChangeState(Ccl_StateNames.DASHING);
+            _isPressingDodge = false;
         }
     }
     public void EnableDashHitbox()

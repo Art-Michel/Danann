@@ -363,13 +363,7 @@ public class UiManager : LocalManager<UiManager>
         EButton.sprite = CancelIcon;
         WButton.sprite = CancelIcon;
         _eCost.enabled = false;
-        if (_playerActions._currentlyTargettedSpear.SpearAi.IsLeft)
-        {
-            if (_playerActions._rightSpear.currentState.Name == Spear_StateNames.IDLE || _playerActions._rightSpear.currentState.Name == Spear_StateNames.ATTACKING)
-                LtText.text = "ULT";
-        }
-        else if (_playerActions._leftSpear.currentState.Name == Spear_StateNames.IDLE || _playerActions._leftSpear.currentState.Name == Spear_StateNames.ATTACKING)
-            RtText.text = "ULT";
+        
     }
 
     public void UntargetHud()

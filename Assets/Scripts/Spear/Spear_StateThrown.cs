@@ -46,12 +46,11 @@ public class Spear_StateThrown : Spear_State
 
     public override void Exit()
     {
-        _feedbacks.SetText("Focus");
+        if(_fsm.PlayerActions._currentlyTargettedSpear == null)_feedbacks.SetText("Focus");
+        else _feedbacks.SetText("Ult");
         _feedbacks.SetCameraTargetWeight(4, 0);
         _ai.TravelingAttackData.StopAttack();
         if (_bufferTarget)
-        {
             _fsm.PlayerActions.TargetSpear(_fsm);
-        }
     }
 }

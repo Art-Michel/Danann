@@ -129,7 +129,7 @@ public class PlayerFeedbacks : MonoBehaviour
     #region Aiming Feedbacks
     public void ZoomCamera()
     {
-        _vignette.intensity.Override(0.6f);
+        _vignette.intensity.Override(0.5f);
     }
 
     public void UnzoomCamera()
