@@ -36,7 +36,7 @@ public class P2CTeleportation : Danu_State
     float camWeight;
     public override void Init()
     {
-        arrival=fsm.GetP1TP_Arrival();
+        arrival=fsm.GetP2TP_Arrival();
         fakeArrival=fsm.GetP2TP_FakeArrival();
         boomBox=fsm.GetP2TP_Boombox();
         fakeBoomBox=fsm.GetP2TP_FakeBoombox();
@@ -59,8 +59,7 @@ public class P2CTeleportation : Danu_State
         if(!isInit)
             Init();
         destination=fsm.GetP1TP_Destination();
-        arrival.SetActive(false);
-        fakeArrival.SetActive(false);
+
         if (destination == P1CTeleportation.destPoints.FAR)
         {
             Debug.Log("far");
@@ -94,8 +93,6 @@ public class P2CTeleportation : Danu_State
             fakeArrival.transform.position = target.position - offset;
         }
         fsm.agent.vfx[1].SetActive(true);
-        fsm.agent.vfx[2].SetActive(true);
-        fsm.agent.vfx[3].SetActive(true);
         startup=0;
         fadeTime=0;
         active=0;
@@ -144,13 +141,16 @@ private void LerpIn()
         {
             startup += Time.deltaTime;
             if (startup>=MaxSartup)
+            {
                 SoundManager.Instance.PlayBossTpIn();
+        fsm.agent.vfx[2].SetActive(true);
+        fsm.agent.vfx[3].SetActive(true);
+            }
         }
         else if (fadeTime <= MaxFadeTime)
         {
             fsm.agent.HideMesh();
-            arrival.SetActive(true);
-            fakeArrival.SetActive(true);
+
             fadeTime += Time.deltaTime;
             if (fadeTime<=MaxFadeTime)
                 SoundManager.Instance.PlayBossTpOut();

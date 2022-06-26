@@ -152,7 +152,9 @@ private void LerpIn()
             boomBoxAttackData.StopAttack();
             fakeBoomBoxAttackData.StopAttack();
                     fsm.agent.vfx[1].SetActive(false);
-
+            if (isLast)
+            reco += Time.deltaTime*2;
+            else
             reco += Time.deltaTime;
         }
         else

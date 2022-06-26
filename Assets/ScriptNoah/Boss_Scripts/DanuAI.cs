@@ -60,11 +60,6 @@ public class DanuAI : MonoBehaviour
     List<string> testValues{get {return StateNames.e.ToList();}}
     [SerializeField] public bool followsGlobal{get;private set;}
 
-    public bool IsDM()
-    {
-        return dmActive;
-    }
-
     private float revengeSpeed;
     [SerializeField] bool isDebug;
     public bool GetFollowingGlobal(){return followsGlobal;}
@@ -153,7 +148,7 @@ public class DanuAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PosLock();
+        //PosLock();
         ApplyStun();
         UpdateRevenge();
 
@@ -518,6 +513,10 @@ public class DanuAI : MonoBehaviour
     public Vector3 GetArenaCenter(){return arenaCenter;}
     public float GetArenaRadius(){return arenaRadius;}
     public bool GetIsPushed(){return isPushed;}
+    public bool IsDM()
+    {
+        return dmActive;
+    }
     [Button]
     public bool HasDM()
     {
