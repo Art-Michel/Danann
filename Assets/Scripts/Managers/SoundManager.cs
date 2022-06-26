@@ -13,6 +13,7 @@ public class SoundManager : LocalManager<SoundManager>
     [SerializeField] AudioClip _bossPunchedH;
     [SerializeField] AudioClip _bossSlashedH;
     [SerializeField] AudioClip _bossSwinged;
+    [SerializeField] AudioClip _bossZapped;
     [SerializeField] AudioClip _counterAttack;
     [SerializeField] AudioClip _menuOk;
     [SerializeField] AudioClip _menuCancel;
@@ -25,6 +26,7 @@ public class SoundManager : LocalManager<SoundManager>
     [SerializeField] AudioClip _triangleActivation;
     [SerializeField] AudioClip _triangleCancel;
     [SerializeField] AudioClip _triangleExplosion;
+    [SerializeField] AudioClip _triangleBreak;
     Dictionary<string, AudioClip> _attackSoundEffect;
     #region Boss
     [SerializeField, Foldout("BossSFX")] AudioClip _bossTPIn;
@@ -89,6 +91,8 @@ public class SoundManager : LocalManager<SoundManager>
         {Ccl_Attacks.SPEARSWINGL, _bossSwinged},
         {Ccl_Attacks.SPEARSWINGR, _bossSwinged},
         {Ccl_Attacks.TRAVELINGSPEAR, _bossSlashedH},
+        {Ccl_Attacks.TRIANGLETICK, _bossZapped},
+        {Ccl_Attacks.TRIANGLEBOOM, _bossPunchedH},
         {Danu_Attacks.DASH, _counterAttack},
         {Danu_Attacks.DASH2, _counterAttack},
         {Danu_Attacks.PROJECTILE, _counterAttack},
@@ -127,6 +131,11 @@ public class SoundManager : LocalManager<SoundManager>
     public void PlayBossHeavySlashed()
     {
         PlaySound(_bossSlashedH, 5f);
+    }
+
+    public void PlayBossZapped()
+    {
+        PlaySound(_bossZapped, 5f);
     }
 
     public void PlayBlockedHit()
@@ -182,5 +191,10 @@ public class SoundManager : LocalManager<SoundManager>
     internal void PlayTriangleExplosion()
     {
         PlaySound(_triangleExplosion, 1f);
+    }
+
+    internal void PlayTriangleBreak()
+    {
+        PlaySound(_triangleBreak, 1f);
     }
 }

@@ -129,15 +129,18 @@ public class SpearFeedbacks : MonoBehaviour
     #endregion
 
     #region Aiming
+    [SerializeField] GameObject _aimingVfx;
+
     public void AimedFeedbacks()
     {
+        _aimingVfx.SetActive(true);
         spearImage.transform.localScale = Vector3.one;
     }
 
     public void UnaimedFeedbacks()
     {
         spearImage.transform.localScale = Vector3.one * 0.8f;
-
+        _aimingVfx.SetActive(false);
     }
     #endregion
 

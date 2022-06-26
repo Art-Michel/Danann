@@ -140,10 +140,17 @@ public class PlayerFeedbacks : MonoBehaviour
     public void ChangeCursorColor(bool isLeft)
     {
         if (isLeft)
-            _cursorSprite.color = _orange;
+        {
+            _blueCursor.SetActive(false);
+            _orangeCursor.SetActive(true);
+        }
         else
-            _cursorSprite.color = _blue;
+        {
+            _orangeCursor.SetActive(false);
+            _blueCursor.SetActive(true);
+        }
     }
+
     #endregion
 
     #region Targetting feedbacks
@@ -432,6 +439,8 @@ public class PlayerFeedbacks : MonoBehaviour
     [SerializeField] Material _meshMaterial;
 
     bool _isBlinking = false;
+    [SerializeField] GameObject _orangeCursor;
+    [SerializeField] GameObject _blueCursor;
 
     [Button]
     public void StartBlink(float duration = .1f)

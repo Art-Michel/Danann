@@ -22,7 +22,7 @@ public class BossHealth : EntityHP
         //_maxHealthPoints = 500;
     }
 
-    override protected void DamageFeedback(string attackName, int plasmaRegainValue, int amount)
+    override protected void DamageFeedback(string attackName, int plasmaRegainValue, float amount)
     {
         base.DamageFeedback(attackName,plasmaRegainValue,amount);
         SoundManager.Instance.PlayHitSound(attackName);
@@ -39,7 +39,7 @@ public class BossHealth : EntityHP
         if (_blinkingT <= 0) ResetBlinking();
     }
 
-    public override bool TakeDamage(int amount, string attackName, int plasmaRegainValue, int revengeGain = 0, GameObject obj = null)
+    public override bool TakeDamage(float amount, string attackName, int plasmaRegainValue, int revengeGain = 0, GameObject obj = null)
     {
         float percent = (HealthPoints / _maxHealthPoints) * 100;
         

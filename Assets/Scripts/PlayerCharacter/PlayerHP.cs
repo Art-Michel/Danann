@@ -50,7 +50,7 @@ public class PlayerHP : EntityHP
         _maxHealthPoints = 5;
     }
 
-    override protected void DamageFeedback(string attackName = "", int plasmaRegainValue = 0, int amount = 0)
+    override protected void DamageFeedback(string attackName = "", int plasmaRegainValue = 0, float amount = 0)
     {
         base.DamageFeedback(attackName, plasmaRegainValue, amount);
         _playerFeedbacks.PlayPlayerHurtSfx();

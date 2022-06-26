@@ -14,9 +14,9 @@ public class PlayerActions : MonoBehaviour
     PlayerInputMap _inputs;
     Ccl_FSM _fsm;
     public PlayerMovement PlayerMovement { get; private set; }
-    PlayerPlasma _playerPlasma;
-    [Required]public Spear_FSM _leftSpear;
-    [Required]public Spear_FSM _rightSpear;
+    public PlayerPlasma _playerPlasma { get; private set; }
+    [Required] public Spear_FSM _leftSpear;
+    [Required] public Spear_FSM _rightSpear;
 
     #endregion
 
@@ -246,7 +246,7 @@ public class PlayerActions : MonoBehaviour
     #region Super
     void Super(Spear_FSM spear)
     {
-        if (_playerPlasma.VerifyPlasma(Ccl_Attacks.TRIANGLE))
+        if (_playerPlasma.VerifyPlasma(Ccl_Attacks.TRIANGLEBOOM))
         {
             _currentlyTargettedSpear.ChangeState(Spear_StateNames.TRIANGLING);
             spear.ChangeState(Spear_StateNames.TRIANGLING);
@@ -268,8 +268,8 @@ public class PlayerActions : MonoBehaviour
         Ccl_StateTriangling state = _fsm.currentState as Ccl_StateTriangling;
         state.StopAttack();
         _fsm.ChangeState(Ccl_StateNames.IDLE);
-        StopTargettingSpear(false ,_rightSpear);
-        StopTargettingSpear(false ,_leftSpear);
+        StopTargettingSpear(false, _rightSpear);
+        StopTargettingSpear(false, _leftSpear);
         _leftSpear.SpearFeedbacks.UntargettedFeedbacks(false);
         _rightSpear.SpearFeedbacks.UntargettedFeedbacks(false);
     }

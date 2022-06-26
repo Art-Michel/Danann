@@ -26,7 +26,7 @@ public class Billboard : PooledObject
             _pooler.Return(this);
     }
 
-    public void EnableAsDamage(int damage)
+    public void EnableAsDamage(float damage)
     {
         _text.text = (damage.ToString());
         float damageRatio = Mathf.InverseLerp(0, 15, damage);

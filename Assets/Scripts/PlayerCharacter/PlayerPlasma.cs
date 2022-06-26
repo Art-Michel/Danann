@@ -19,7 +19,9 @@ public class PlayerPlasma : MonoBehaviour
 
     public Dictionary<string, float> _plasmaCost = new Dictionary<string, float>()
     {
-        {Ccl_Attacks.TRIANGLE, 3},
+        {Ccl_Attacks.TRIANGLEBOOM, 3},
+        {"TriangleBreak", 2},
+        {"TriangleStop", 1},
         {Ccl_Attacks.DASHONSPEAR, 1},
         {Ccl_Attacks.SHIELD, 1},
         {"Renvoi", 0.2f}
