@@ -50,6 +50,8 @@ public class P1CSlam : Danu_State
             StartRecovery();
         if (_state == 2 && _timer > _recovery[_index])
         {
+        _slamAttackDatas[_index].gameObject.SetActive(false);
+
             _index++;
             if (_index == _maxSlamCount)
                 Exit();
@@ -89,7 +91,6 @@ public class P1CSlam : Danu_State
         _state = 2;
 
         _slamAttackDatas[_index].StopAttack();
-        _slamAttackDatas[_index].gameObject.SetActive(false);
         _slamHitbox[_index].SetActive(false);
     }
 
