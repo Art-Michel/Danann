@@ -462,7 +462,7 @@ public class PlayerFeedbacks : MonoBehaviour
 
     private void StopBlink()
     {
-        _meshMaterial.SetFloat("_LerpValue", -.1f);
+        _meshMaterial.SetFloat("_LerpValue", 0f);
         UiManager.Instance.DodgeWhiteFrame.SetActive(false);
         _isBlinking = false;
     }

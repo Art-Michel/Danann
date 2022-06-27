@@ -141,6 +141,7 @@ public class UiManager : LocalManager<UiManager>
     internal void PreWinScreen()
     {
         _t = 0;
+        GameManager.Instance.DisableHurtboxes();
         _preWinFlash.gameObject.SetActive(true);
         _shouldFadeToWin = true;
     }
