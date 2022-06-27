@@ -10,20 +10,35 @@ public class Ccl_StateTriangling : Ccl_State
     }
     float _t;
     float _startup = 2.8f;
+    bool _bossStartedInside;
+    float _tickCooldown;
+    const float _tickMaxCooldown = 0.075f;
 
     public override void Begin()
     {
         _t = 0f;
+        _tickCooldown = 0;
+        UiManager.Instance.AimHud();
         SoundManager.Instance.AudioSource.Play();
         TriangleGeneration.Instance.Begin();
+        _bossStartedInside = TriangleGeneration.Instance.CheckIsIn();
     }
 
     public override void StateUpdate()
     {
         _t += Time.deltaTime;
         _actions.SlowDownDuringTriangling(Mathf.Lerp(1, 0, (Mathf.InverseLerp(0, _startup, _t))));
-        if(!TriangleGeneration.Instance.CheckIsIn())
+
+        _tickCooldown -= Time.deltaTime;
+        if (TriangleGeneration.Instance.CheckIsIn() && _tickCooldown <= 0)
+        {
+            TriangleGeneration.Instance.TickOnBoss(_t);
+            _tickCooldown = _tickMaxCooldown;
+        }
+
+        if (!TriangleGeneration.Instance.CheckIsIn() && _bossStartedInside)
             BreakAttack();
+
         if (_t > _startup)
             Activate();
     }
@@ -33,7 +48,7 @@ public class Ccl_StateTriangling : Ccl_State
         SoundManager.Instance.AudioSource.Stop();
         SoundManager.Instance.PlayTriangleActivation();
         SoundManager.Instance.PlayTriangleExplosion();
-        if(TriangleGeneration.Instance.CheckIsIn())
+        if (TriangleGeneration.Instance.CheckIsIn())
             TriangleGeneration.Instance.BlowUpOnBoss();
         _fsm.ChangeState(Ccl_StateNames.IDLE);
         _actions.RecallSpears();
@@ -59,6 +74,7 @@ public class Ccl_StateTriangling : Ccl_State
 
     public override void Exit()
     {
+        UiManager.Instance.UnaimHud();
         _actions.ResetMovementSpeed();
         TriangleGeneration.Instance.Stop();
     }

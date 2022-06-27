@@ -195,6 +195,6 @@ public class SoundManager : LocalManager<SoundManager>
 
     internal void PlayTriangleBreak()
     {
-        PlaySound(_triangleBreak, 1f);
+        PlaySound(_triangleBreak, 2f);
     }
 }

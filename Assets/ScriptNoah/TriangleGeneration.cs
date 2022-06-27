@@ -16,8 +16,7 @@ public class TriangleGeneration : LocalManager<TriangleGeneration>
     GameObject _go;
 
     [SerializeField] Transform target;
-    float _tickCooldown;
-    const float _tickMaxCooldown = 0.075f;
+
     [SerializeField] BossHealth _bossHealth;
     float _damageModifier;
 
@@ -86,11 +85,8 @@ public class TriangleGeneration : LocalManager<TriangleGeneration>
 
             latestMesh.vertices = vertices;
             _damageModifier = 60 / Area(player.position, lSpear.position, rSpear.position);
-            _damageModifier =  Mathf.Clamp(_damageModifier, 0.7f, 1.3f);
+            _damageModifier = Mathf.Clamp(_damageModifier, 0.7f, 1.3f);
 
-            _tickCooldown -= Time.deltaTime;
-            if (CheckIsIn() && _tickCooldown <= 0)
-                TickOnBoss();
         }
     }
     [Button]
@@ -101,18 +97,17 @@ public class TriangleGeneration : LocalManager<TriangleGeneration>
         float A2 = Area(target.position, player.position, rSpear.position);
         float A3 = Area(target.position, lSpear.position, player.position);
         float Af = (A1 + A2 + A3);
-        return A<Af+1f && A>Af-1f;
+        return A < Af + 1f && A > Af - 1f;
     }
 
     public void BlowUpOnBoss()
     {
-        _bossHealth.TakeDamage((float)System.Math.Round(50f * _damageModifier), Ccl_Attacks.TRIANGLEBOOM, 0);
+        _bossHealth.TakeDamage((float)System.Math.Round(80f * _damageModifier), Ccl_Attacks.TRIANGLEBOOM, 0);
     }
 
-    void TickOnBoss()
+    public void TickOnBoss(float elapsedTime)
     {
-        _bossHealth.TakeDamage((float)System.Math.Round(1f * _damageModifier, 1), Ccl_Attacks.TRIANGLETICK, 0);
-        _tickCooldown = _tickMaxCooldown;
+        _bossHealth.TakeDamage((float)System.Math.Round(1f * _damageModifier * elapsedTime, 1), Ccl_Attacks.TRIANGLETICK, 0);
     }
 
     float Area(Vector3 A, Vector3 B, Vector3 C)
