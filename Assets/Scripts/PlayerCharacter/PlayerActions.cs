@@ -311,7 +311,10 @@ public class PlayerActions : MonoBehaviour
             Dash(_currentlyTargettedSpear);
 
         else if ((_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKRECOVERY || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKSTARTUP))
-            TryToDodge();
+            {
+                
+                TryToDodge();
+            }
 
         else if (_fsm.currentState.Name == Ccl_StateNames.AIMING)
             CancelAim();
@@ -319,6 +322,7 @@ public class PlayerActions : MonoBehaviour
         else if (_fsm.currentState.Name == Ccl_StateNames.TRIANGLING)
             CancelSuper();
     }
+
     void DodgeInputReleased()
     {
         _isPressingDodge = false;
