@@ -6298,7 +6298,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323480812}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -10.194775, y: 44.985947, z: -34.157135}
+  m_LocalPosition: {x: -12.361928, y: 41.198387, z: -39.56633}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2028546034}
@@ -22332,7 +22332,7 @@ GameObject:
   - component: {fileID: 713626158}
   - component: {fileID: 713626157}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: PlaneUltiTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22502,7 +22502,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 761610231}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.920437, y: 0, z: -1.4764167}
+  m_LocalPosition: {x: -12.5238, y: 0, z: -11.086757}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 384871587}
@@ -22629,7 +22629,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834729807}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -10.194775, y: 44.985947, z: -34.157135}
+  m_LocalPosition: {x: -12.361928, y: 41.198387, z: -39.56633}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 384871587}
@@ -22816,7 +22816,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 38.488224
+  field of view: 23.035145
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
