@@ -35,7 +35,7 @@ public class EntityHP : MonoBehaviour
         UpdateHealthBar();
     }
 
-    public virtual bool TakeDamage(int amount, string attackName, int plasmaRegainValue, int revengeGain = 0, GameObject obj = null)
+    public virtual bool TakeDamage(float amount, string attackName, int plasmaRegainValue, int revengeGain = 0, GameObject obj = null)
     {
         if (!_isInvulnerable)
         {
@@ -83,7 +83,7 @@ public class EntityHP : MonoBehaviour
     {
         Application.Quit();
     }
-    protected virtual void DamageFeedback(string attackName, int plasmaRegainValue, int amount)
+    protected virtual void DamageFeedback(string attackName, int plasmaRegainValue, float amount)
     {
         DamageText(amount);
     }
@@ -104,7 +104,7 @@ public class EntityHP : MonoBehaviour
         billboard.EnableAsInfo("Invulnerable!");
     }
 
-    public void DamageText(int amount)
+    public void DamageText(float amount)
     {
         Billboard billboard = _billboardsPool.Get() as Billboard;
         billboard.EnableAsDamage(amount);

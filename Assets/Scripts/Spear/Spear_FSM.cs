@@ -8,6 +8,7 @@ public class Spear_FSM : MonoBehaviour
     private Dictionary<string, Spear_State> states;
     public SpearAI SpearAi { get; private set; }
     public SpearFeedbacks SpearFeedbacks { get; private set; }
+    public PlayerActions PlayerActions;
 
     public Spear_State currentState { get; private set; }
     public Spear_State previousState { get; private set; }

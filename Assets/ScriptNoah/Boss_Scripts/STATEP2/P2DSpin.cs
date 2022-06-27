@@ -180,10 +180,6 @@ public class P2DSpin: Danu_State
         float delta = 1 / dist;
         for (int i = 0; i < nblades.Count; i++)
         {
-            Debug.Log(nblades.Count);
-            Debug.Log(wblades.Count);
-            Debug.Log(eblades.Count);
-            Debug.Log(sblades.Count);
             pool.SecondBack(nblades[i]);
             pool.SecondBack(wblades[i]);
             pool.SecondBack(eblades[i]);

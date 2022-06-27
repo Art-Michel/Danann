@@ -68,6 +68,8 @@ public class DM_Slam : Dm_State
             StartRecovery();
         if (_state == 2 && _timer > _recovery[_index])
         {
+            for (int i=0;i<_slamHitbox.Length;i++)
+                _slamHitbox[i].arr[_index].SetActive(false);
             _index++;
             if (_index == _maxSlamCount)
                 Exit();
@@ -112,8 +114,6 @@ public class DM_Slam : Dm_State
         for (int i=0;i<4;i++)
         {   
             _slamHitbox[i].ad[_index].StopAttack();
-            _slamHitbox[i].ad[_index].gameObject.SetActive(false);
-            _slamHitbox[i].arr[_index].SetActive(false);
         }
     }
 

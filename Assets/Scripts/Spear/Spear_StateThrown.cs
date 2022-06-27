@@ -13,8 +13,11 @@ public class Spear_StateThrown : Spear_State
     Vector3 _destination;
     float _t = 0;
 
+    bool _bufferTarget = false;
+
     public override void Begin()
     {
+        _bufferTarget = false;
         _fsm.transform.parent = null;
 
         _startingPosition = new Vector3(_ai.transform.position.x, _ai.transform.position.y + 1, _ai.transform.position.z);
@@ -36,10 +39,18 @@ public class Spear_StateThrown : Spear_State
             _fsm.ChangeState(Spear_StateNames.IDLE);
     }
 
+    public void BufferTarget()
+    {
+        _bufferTarget = true;
+    }
+
     public override void Exit()
     {
-        _feedbacks.SetText("Focus");
+        if(_fsm.PlayerActions._currentlyTargettedSpear == null)_feedbacks.SetText("Focus");
+        else _feedbacks.SetText("Ult");
         _feedbacks.SetCameraTargetWeight(4, 0);
         _ai.TravelingAttackData.StopAttack();
+        if (_bufferTarget)
+            _fsm.PlayerActions.TargetSpear(_fsm);
     }
 }

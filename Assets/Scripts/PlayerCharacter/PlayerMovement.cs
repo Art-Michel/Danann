@@ -52,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         canMove = canMove || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING;
         canMove = canMove || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKSTARTUP;
         canMove = canMove || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKRECOVERY;
+        canMove = canMove || _fsm.currentState.Name == Ccl_StateNames.TRIANGLING;
         if (canMove)
         {
             EaseInMovement();

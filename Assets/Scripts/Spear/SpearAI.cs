@@ -11,7 +11,7 @@ public class SpearAI : MonoBehaviour
     [Required] SpearFeedbacks _spearFeedbacks;
 
     public Transform CclBody;
-    private Spear_FSM _fsm;
+    public Spear_FSM _fsm;
     private bool _enemyInRange;
 
     [Required][SerializeField] Transform _spearTransformWhenAttached;

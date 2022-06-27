@@ -98,17 +98,49 @@ public class SpearFeedbacks : MonoBehaviour
         SetSpearCameraTargetRadius(_spearAi.IsLeft, 6);
         _targetArrow.SetActive(true);
         PlayTargetSfx();
+        spearImage.transform.localScale = Vector3.one;
+        if (_spearAi.IsLeft)
+        {
+            if (_spearAi._fsm.PlayerActions._rightSpear.currentState.Name == Spear_StateNames.IDLE || _spearAi._fsm.PlayerActions._rightSpear.currentState.Name == Spear_StateNames.ATTACKING || _spearAi._fsm.PlayerActions._rightSpear.currentState.Name == Spear_StateNames.THROWN)
+                UiManager.Instance.RtText.text = "ULT";
+        }
+        else if (_spearAi._fsm.PlayerActions._leftSpear.currentState.Name == Spear_StateNames.IDLE || _spearAi._fsm.PlayerActions._leftSpear.currentState.Name == Spear_StateNames.ATTACKING || _spearAi._fsm.PlayerActions._rightSpear.currentState.Name == Spear_StateNames.THROWN)
+            UiManager.Instance.LtText.text = "ULT";
     }
 
     public void UntargettedFeedbacks(bool gotRecalled)
     {
+        spearImage.transform.localScale = Vector3.one * 0.8f;
         SetSpearCameraTargetRadius(_spearAi.IsLeft, 4);
         _targetArrow.SetActive(false);
         if (gotRecalled)
         {
             PlayUntargetSfx();
-            SetText("Focus");
+            SetText("Target");
         }
+        if (_spearAi.IsLeft)
+        {
+            if (_spearAi._fsm.PlayerActions._rightSpear.currentState.Name == Spear_StateNames.IDLE || _spearAi._fsm.PlayerActions._rightSpear.currentState.Name == Spear_StateNames.ATTACKING || _spearAi._fsm.PlayerActions._rightSpear.currentState.Name == Spear_StateNames.THROWN)
+                UiManager.Instance.RtText.text = "Target";
+        }
+        else if (_spearAi._fsm.PlayerActions._leftSpear.currentState.Name == Spear_StateNames.IDLE || _spearAi._fsm.PlayerActions._leftSpear.currentState.Name == Spear_StateNames.ATTACKING || _spearAi._fsm.PlayerActions._rightSpear.currentState.Name == Spear_StateNames.THROWN)
+            UiManager.Instance.LtText.text = "Target";
+    }
+    #endregion
+
+    #region Aiming
+    [SerializeField] GameObject _aimingVfx;
+
+    public void AimedFeedbacks()
+    {
+        _aimingVfx.SetActive(true);
+        spearImage.transform.localScale = Vector3.one;
+    }
+
+    public void UnaimedFeedbacks()
+    {
+        spearImage.transform.localScale = Vector3.one * 0.8f;
+        _aimingVfx.SetActive(false);
     }
     #endregion
 
@@ -117,7 +149,7 @@ public class SpearFeedbacks : MonoBehaviour
     public void StartSwingAnimation()
     {
         SetMeshRotation(_swingingRot);
-        
+
         _swingAnimT = 0;
         _isSwinging = true;
         EnableTrail();

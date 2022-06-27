@@ -13,13 +13,20 @@ public class SoundManager : LocalManager<SoundManager>
     [SerializeField] AudioClip _bossPunchedH;
     [SerializeField] AudioClip _bossSlashedH;
     [SerializeField] AudioClip _bossSwinged;
+    [SerializeField] AudioClip _bossZapped;
     [SerializeField] AudioClip _counterAttack;
     [SerializeField] AudioClip _menuOk;
     [SerializeField] AudioClip _menuCancel;
     [SerializeField] AudioClip _menuOpen;
+
     [SerializeField] AudioClip _menuClose;
     [SerializeField] AudioClip _menuMove;
     [SerializeField] AudioClip _playerDeath;
+    [SerializeField] AudioClip _triangleCharge;
+    [SerializeField] AudioClip _triangleActivation;
+    [SerializeField] AudioClip _triangleCancel;
+    [SerializeField] AudioClip _triangleExplosion;
+    [SerializeField] AudioClip _triangleBreak;
     Dictionary<string, AudioClip> _attackSoundEffect;
     #region Boss
     [SerializeField, Foldout("BossSFX")] AudioClip _bossTPIn;
@@ -84,6 +91,8 @@ public class SoundManager : LocalManager<SoundManager>
         {Ccl_Attacks.SPEARSWINGL, _bossSwinged},
         {Ccl_Attacks.SPEARSWINGR, _bossSwinged},
         {Ccl_Attacks.TRAVELINGSPEAR, _bossSlashedH},
+        {Ccl_Attacks.TRIANGLETICK, _bossZapped},
+        {Ccl_Attacks.TRIANGLEBOOM, _bossPunchedH},
         {Danu_Attacks.DASH, _counterAttack},
         {Danu_Attacks.DASH2, _counterAttack},
         {Danu_Attacks.PROJECTILE, _counterAttack},
@@ -124,6 +133,11 @@ public class SoundManager : LocalManager<SoundManager>
         PlaySound(_bossSlashedH, 5f);
     }
 
+    public void PlayBossZapped()
+    {
+        PlaySound(_bossZapped, 5f);
+    }
+
     public void PlayBlockedHit()
     {
         PlaySound(_blockedHit, 1f);
@@ -153,8 +167,34 @@ public class SoundManager : LocalManager<SoundManager>
     {
         PlaySound(_menuMove, 1f);
     }
+
     public void PlayDeathSound()
     {
         PlaySound(_playerDeath, 1f);
+    }
+
+    public void PlayTriangleCharge()
+    {
+        this.AudioSource.Play();
+    }
+
+    public void PlayTriangleActivation()
+    {
+        PlaySound(_triangleActivation, 1f);
+    }
+
+    internal void PlayTriangleCancel()
+    {
+        PlaySound(_triangleCancel, .2f);
+    }
+
+    internal void PlayTriangleExplosion()
+    {
+        PlaySound(_triangleExplosion, 1f);
+    }
+
+    internal void PlayTriangleBreak()
+    {
+        PlaySound(_triangleBreak, 2f);
     }
 }

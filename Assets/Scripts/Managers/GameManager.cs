@@ -25,4 +25,16 @@ public class GameManager : LocalManager<GameManager>
         EnemyHurtboxes.CopyTo(Hurtboxes, 0);
         AllyHurtboxes.CopyTo(Hurtboxes, EnemyHurtboxes.Length);
     }
+
+    public void EnableHurtboxes()
+    {
+        foreach (Hurtbox hurtbox in Hurtboxes)
+            hurtbox.enabled = true;
+    }
+
+    public void DisableHurtboxes()
+    {
+        foreach (Hurtbox hurtbox in Hurtboxes)
+            hurtbox.enabled = false;
+    }
 }
