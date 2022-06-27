@@ -112,6 +112,7 @@ public class P1DBoomerang : Danu_State
             straightTime=0;
             startCurve=false;
             fsm.agent.m_anims.SetTrigger("BoomerangOver");
+            boomerangAttackData.StopAttack();
             if (orig == null)
             {
                 fsm.agent.ToIdle();

@@ -131,6 +131,7 @@ public class P2DBoomerang : Danu_State
             curveTime=0;
             straightTime=0;
             startCurve=false;
+            boomerangAttackData.StopAttack();
             if (orig == null)
             {
                 fsm.agent.ToIdle();

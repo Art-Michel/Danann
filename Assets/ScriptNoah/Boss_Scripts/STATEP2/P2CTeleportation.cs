@@ -152,7 +152,7 @@ private void LerpIn()
             fsm.agent.HideMesh();
 
             fadeTime += Time.deltaTime;
-            if (fadeTime<=MaxFadeTime)
+            if (fadeTime>=MaxFadeTime)
                 SoundManager.Instance.PlayBossTpOut();
 
         }

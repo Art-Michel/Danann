@@ -126,6 +126,7 @@ public class DesperationMove : MonoBehaviour
         curr.fsm=this;
         curr.Begin();
         goUp=true;
+        ppTime=0.7f;
         waitingTime=0;
         agent.m_anims.SetTrigger("DM");
         agent.m_anims.SetFloat("Pattern",-2);
@@ -168,7 +169,7 @@ public class DesperationMove : MonoBehaviour
         }
         else
         {
-            ppTime=Mathf.Clamp(ppTime-Time.deltaTime,0,1);
+            ppTime=0;
         }
         postProcess.weight=ppTime;
     }

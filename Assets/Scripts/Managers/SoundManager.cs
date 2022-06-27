@@ -49,7 +49,7 @@ public class SoundManager : LocalManager<SoundManager>
     }
     public void PlayBossShoot()
     {
-        PlaySound(_bossShoot, .3f);
+        PlaySound(_bossShoot, .2f);
     }
     public void PlayBossRiseStart()
     {

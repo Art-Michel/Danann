@@ -3,25 +3,37 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class BossHealth : EntityHP
 {
     private bool _isBlinking;
     const float _blinkingDuration = 0.3f;
     float _blinkingT = 0;
-
+    Image shieldBar;
+    Image shieldRemnants;
+    GameObject shieldGO;
     [SerializeField] PlayerFeedbacks _playerFeedbacks;
     DanuAI agent;
     [Required][SerializeField] GameObject _body;
     private float oldValue;
     private float accel;
+    private int shieldPoint;
+    private int maxShieldPoint;
+    private float shieldRemnantTime;
+    private bool activateShieldRemnant;
 
     void Awake()
     {
         agent = GetComponent<DanuAI>();
         //_maxHealthPoints = 500;
     }
+    public void ActivateShield()
+    {
+        shieldPoint=maxShieldPoint;
+        shieldGO.SetActive(true);
+        agent.UpdateShield(shieldPoint);
 
+    }
     override protected void DamageFeedback(string attackName, int plasmaRegainValue, float amount)
     {
         base.DamageFeedback(attackName,plasmaRegainValue,amount);
@@ -42,7 +54,25 @@ public class BossHealth : EntityHP
     public override bool TakeDamage(float amount, string attackName, int plasmaRegainValue, int revengeGain = 0, GameObject obj = null)
     {
         float percent = (HealthPoints / _maxHealthPoints) * 100;
-        if (agent.IsDM() && (attackName != Ccl_Attacks.TRAVELINGSPEAR || attackName != Ccl_Attacks.SPEARSWINGL || attackName != Ccl_Attacks.SPEARSWINGR))
+        bool cond =attackName == Ccl_Attacks.TRAVELINGSPEAR; 
+        cond=cond || attackName == Ccl_Attacks.SPEARSWINGL;
+        cond=cond|| attackName == Ccl_Attacks.SPEARSWINGR;
+        if (agent.IsShielded() && !cond)
+        {
+            shieldPoint--;
+            shieldBar.fillAmount=shieldPoint*0.25f;
+            activateShieldRemnant=true;
+            agent.UpdateShield(shieldPoint);
+            accel=0;
+            if (shieldPoint<=0)
+            {
+                DesactivateShield();
+            }
+            return base.TakeDamage(0, attackName, plasmaRegainValue, revengeGain);
+
+        }
+
+        if (agent.IsDM() && (cond))
             return base.TakeDamage(0, attackName, plasmaRegainValue, revengeGain);
         if (((HealthPoints-amount)/_maxHealthPoints)*100<=5 && !agent.HasDM())
         {
@@ -59,6 +89,11 @@ public class BossHealth : EntityHP
         return base.TakeDamage(amount, attackName, plasmaRegainValue, revengeGain);
     }
 
+    private void DesactivateShield()
+    {
+        shieldGO.SetActive(false);
+    }
+
     private void ResetBlinking()
     {
         _body.SetActive(true);
@@ -68,7 +103,13 @@ public class BossHealth : EntityHP
     void Update()
     {
         if (_isBlinking) HandlePostDamageBlinking();
+        UpdateRemnant();
+        UpdateShieldRemnant();
         accel = Mathf.Clamp(accel + Time.deltaTime, 0, 1);
+
+    }
+    private void UpdateRemnant() 
+    {
         if (!activateRemnant)
             return;
         remnantTime += Time.deltaTime * accel;
@@ -82,7 +123,21 @@ public class BossHealth : EntityHP
             activateRemnant = false;
         }
     }
+    private void UpdateShieldRemnant() 
+    {
+        if (!activateShieldRemnant)
+            return;
+        shieldRemnantTime += Time.deltaTime * accel;
+        float value = Mathf.InverseLerp(0, maxShieldPoint, shieldPoint);
+        value = Mathf.Lerp(0, 1, value);
+        shieldRemnants.fillAmount = Mathf.Lerp(oldValue, value, shieldRemnantTime / maxRemnantTime);
 
+        if (remnantTime >= maxRemnantTime)
+        {
+            shieldRemnantTime = 0;
+            activateShieldRemnant = false;
+        }
+    }
     void FixedUpdate()
     {
         if (_isBlinking) _body.SetActive(!_body.activeSelf);
@@ -95,5 +150,6 @@ public class BossHealth : EntityHP
         UiManager.Instance.PreWinScreen();
         base.Die();
         Time.timeScale = 0.2f;
+        this.enabled=false;
     }
 }

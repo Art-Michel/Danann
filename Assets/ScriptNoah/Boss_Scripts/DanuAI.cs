@@ -70,7 +70,8 @@ public class DanuAI : MonoBehaviour
     private bool dmOver;
     public List<GameObject> vfx;
     [SerializeField] Pooler _billboardsPool;
-
+    private bool isShielded;
+    [SerializeField] List<GameObject> shields;
     private void Awake() {
         if (m_fsm==null)
             m_fsm=GetComponent<Danu_FSM>();
@@ -92,7 +93,7 @@ public class DanuAI : MonoBehaviour
             meshP1.SetActive(true);
         else
             meshP2.SetActive(true);
-    }
+    } 
     // Start is called before the first frame update
     void Start()
     {
@@ -153,6 +154,17 @@ public class DanuAI : MonoBehaviour
         UpdateRevenge();
 
     }
+    public void UpdateShield(int shieldIndex)
+    {
+        shieldIndex--;
+        for (int i=0;i<shields.Count;i++)
+        {
+            if (shieldIndex>i)
+            shields[i].SetActive(false);
+            else
+            shields[i].SetActive(false);
+        }
+    }
     void UpdateRevenge()
     {
         if (revenge>0 && revengeTime>=revengeMaxTime)
@@ -197,6 +209,10 @@ public class DanuAI : MonoBehaviour
         Debug.Log("e");
     }
     [Button]
+    public bool IsShielded()
+    {
+        return isShielded;
+    }
     void ShowDist()
     {
         float distance=Vector3.Distance(transform.position,player.position);
@@ -205,6 +221,7 @@ public class DanuAI : MonoBehaviour
     [Button]
     public void NextPattern() 
     {
+        PosLock();
         if (isDebug)
         {
             Vector3 playerPos=player.position;
@@ -312,6 +329,7 @@ public class DanuAI : MonoBehaviour
     } 
     public void NextP2Pattern() 
     {
+        PosLock();
         if (isDebug)
         {
             Vector3 playerPos=player.position;
