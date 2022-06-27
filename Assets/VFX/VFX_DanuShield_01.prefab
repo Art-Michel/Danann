@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3266686067459772804}
   m_Layer: 0
-  m_Name: VFX_Invincible_Boss
+  m_Name: VFX_DanuShield_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,10 +38,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3266686067459772804}
     m_Modifications:
-    - target: {fileID: 7510428696070453602, guid: 4e9350cf8b32acc4c95ebb03b8c55c81, type: 3}
-      propertyPath: m_RenderAlignment
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7510428696070453603, guid: 4e9350cf8b32acc4c95ebb03b8c55c81, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -88,7 +84,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7510428696070453604, guid: 4e9350cf8b32acc4c95ebb03b8c55c81, type: 3}
       propertyPath: m_Name
-      value: BubbleSphere
+      value: BubbleSphere1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e9350cf8b32acc4c95ebb03b8c55c81, type: 3}
