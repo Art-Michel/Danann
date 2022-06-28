@@ -366,13 +366,12 @@ public class PlayerActions : MonoBehaviour
         }
 
         _dodgeBigCooldown = _dodgeMaxCooldown;
-        this._playerFeedbacks.SetTrailRenderer(true, false);
+        this._playerFeedbacks.SetTrailRenderer(false);
         _canDodge = false;
     }
 
     private void CanDodgeAgain()
     {
-        this._playerFeedbacks.SetTrailRenderer(false, false);
         _canDodge = true;
     }
 

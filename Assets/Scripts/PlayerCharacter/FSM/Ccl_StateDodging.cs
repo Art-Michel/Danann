@@ -25,7 +25,7 @@ public class Ccl_StateDodging : Ccl_State
         _dodgeT = 0;
 
         _feedbacks.PlayDodgeSfx();
-        _feedbacks.SetTrailRenderer(true, true);
+        _feedbacks.SetTrailRenderer(true);
     }
 
     public override void StateUpdate()

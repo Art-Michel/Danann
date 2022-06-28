@@ -416,19 +416,22 @@ public class UiManager : LocalManager<UiManager>
 
     public void CheckIfUltReady()
     {
-        bool leftSpearIsReady = _playerActions._leftSpear.currentState.Name == Spear_StateNames.IDLE;
-        leftSpearIsReady = leftSpearIsReady || _playerActions._leftSpear.currentState.Name == Spear_StateNames.ATTACKING;
-
-        bool rightSpearIsReady = _playerActions._rightSpear.currentState.Name == Spear_StateNames.IDLE;
-        rightSpearIsReady = rightSpearIsReady || _playerActions._rightSpear.currentState.Name == Spear_StateNames.ATTACKING;
-
-        bool _playerIsReady = _playerActions._playerPlasma.VerifyPlasma(Ccl_Attacks.TRIANGLEBOOM);
-        if (leftSpearIsReady && rightSpearIsReady && _playerIsReady && _ultReminder.activeSelf == false)
+        if (_playerActions._leftSpear.currentState != null)
         {
-            EnableUltReminder();
+            bool leftSpearIsReady = _playerActions._leftSpear.currentState.Name == Spear_StateNames.IDLE;
+            leftSpearIsReady = leftSpearIsReady || _playerActions._leftSpear.currentState.Name == Spear_StateNames.ATTACKING;
+
+            bool rightSpearIsReady = _playerActions._rightSpear.currentState.Name == Spear_StateNames.IDLE;
+            rightSpearIsReady = rightSpearIsReady || _playerActions._rightSpear.currentState.Name == Spear_StateNames.ATTACKING;
+
+            bool _playerIsReady = _playerActions._playerPlasma.VerifyPlasma(Ccl_Attacks.TRIANGLEBOOM);
+            if (leftSpearIsReady && rightSpearIsReady && _playerIsReady && _ultReminder.activeSelf == false)
+            {
+                EnableUltReminder();
+            }
+            else
+                DisableUltReminder();
         }
-        else
-            DisableUltReminder();
     }
 
     void EnableUltReminder()
