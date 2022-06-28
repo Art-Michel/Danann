@@ -111,7 +111,6 @@ public class Laser : MonoBehaviour
             lifetime-=Time.deltaTime;
         if (lifetime<=1)
         {
-            goUp=false;
             Debug.Log(true);
         }
             return;
@@ -195,7 +194,6 @@ public class Laser : MonoBehaviour
 				force = config.force;
 			}
 			config.time -= Time.deltaTime;
-            Debug.Log(config.time);
 			if( config.time <= 0.0f ) {
 				this.m_configs.RemoveAt( i );
 			}

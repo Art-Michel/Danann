@@ -9,9 +9,9 @@ public class BossHealth : EntityHP
     private bool _isBlinking;
     const float _blinkingDuration = 0.3f;
     float _blinkingT = 0;
-    Image shieldBar;
-    Image shieldRemnants;
-    GameObject shieldGO;
+    [SerializeField]Image shieldBar;
+    [SerializeField]Image shieldRemnants;
+    [SerializeField]GameObject shieldGO;
     [SerializeField] PlayerFeedbacks _playerFeedbacks;
     DanuAI agent;
     [Required][SerializeField] GameObject _body;
