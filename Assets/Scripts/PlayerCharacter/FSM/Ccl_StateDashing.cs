@@ -33,7 +33,6 @@ public class Ccl_StateDashing : Ccl_State
         _feedbacks.PlayDashingShoutSfx();
         _feedbacks.EnableDashVfx(true);
         _actions.EnableDashHitbox();
-        _feedbacks.SetTrailRenderer(true, true);
     }
 
     public override void StateUpdate()
@@ -51,6 +50,5 @@ public class Ccl_StateDashing : Ccl_State
         _actions.PlayerHP.IsInvulnerable = false;
         _actions.DisableDashHitbox();
         _feedbacks.EnableDashVfx(false);
-        _feedbacks.SetTrailRenderer(true, false);
     }
 }

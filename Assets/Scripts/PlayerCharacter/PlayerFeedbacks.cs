@@ -63,7 +63,7 @@ public class PlayerFeedbacks : MonoBehaviour
     #endregion
 
     #region DodgeRoll
-    [SerializeField] TrailRenderer _bodyTrailRenderer;
+    [SerializeField] ParticleSystem _bodyTrailRenderer;
     [SerializeField] AudioClip _dodge;
     [SerializeField] AudioClip _dodgeRefilled;
     #endregion
@@ -194,10 +194,13 @@ public class PlayerFeedbacks : MonoBehaviour
 
     #region Dodgeroll Feedbacks
 
-    public void SetTrailRenderer(bool enabled, bool emitting)
+    public void SetTrailRenderer(bool enabled)
     {
-        _bodyTrailRenderer.enabled = enabled;
-        _bodyTrailRenderer.emitting = emitting;
+        if (enabled)
+            _bodyTrailRenderer.Play();
+        else
+            _bodyTrailRenderer.Stop();
+
     }
     #endregion
 
