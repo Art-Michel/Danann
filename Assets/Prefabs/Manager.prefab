@@ -207,6 +207,7 @@ MonoBehaviour:
   _playerMovement: {fileID: 0}
   _pauseButton: {fileID: 0}
   _dashGlow: {fileID: 0}
+  _ultReminder: {fileID: 0}
 --- !u!114 &45831759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +255,7 @@ MonoBehaviour:
   _triangleCancel: {fileID: 8300000, guid: 7f4d1207e56e4f744b3bed321f207db6, type: 3}
   _triangleExplosion: {fileID: 8300000, guid: 6b56e57d54c120d4383b58553bfec493, type: 3}
   _triangleBreak: {fileID: 8300000, guid: bd16bac6aec54084ab53d13ede548438, type: 3}
+  _ultReady: {fileID: 8300000, guid: c0186d5f9423a8046949be1ba95e7397, type: 3}
   _bossTPIn: {fileID: 8300000, guid: 7f3209784dbfcc24c8317455e45062a6, type: 3}
   _bossTPOut: {fileID: 8300000, guid: 12f9202d4ee334e4bb7a2f9e71ccd141, type: 3}
   _bossShoot: {fileID: 8300000, guid: e15669555f68fc541ad429b4d55af2d2, type: 3}
