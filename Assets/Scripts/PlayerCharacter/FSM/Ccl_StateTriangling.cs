@@ -36,7 +36,7 @@ public class Ccl_StateTriangling : Ccl_State
         _tickCooldown -= Time.deltaTime;
 
         TriangleGeneration.Instance.SetMaterialColor(_t/_startup);
-        
+
         if (TriangleGeneration.Instance.CheckIsIn() && _tickCooldown <= 0)
         {
             TriangleGeneration.Instance.TickOnBoss(_t);
@@ -76,6 +76,7 @@ public class Ccl_StateTriangling : Ccl_State
         SoundManager.Instance.PlayTriangleBreak();
         _fsm.ChangeState(Ccl_StateNames.IDLE);
         _actions.RecallSpears();
+        TriangleGeneration.Instance.BreakAttack();
         _actions._playerPlasma.SpendPlasma("TriangleBreak");
     }
 

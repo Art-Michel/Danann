@@ -308,71 +308,71 @@ public class PlayerFeedbacks : MonoBehaviour
             switch (i)
             {
                 case 20:
-                    PlaySound(_plasmaGainSfx10, .25f);
+                    PlaySound(_plasmaGainSfx10, .17f);
                     break;
                 case 19:
-                    PlaySound(_plasmaGainSfx10, .25f);
+                    PlaySound(_plasmaGainSfx10, .17f);
                     break;
                 case 18:
-                    PlaySound(_plasmaGainSfx9, .25f);
+                    PlaySound(_plasmaGainSfx9, .17f);
                     break;
                 case 17:
-                    PlaySound(_plasmaGainSfx9, .25f);
+                    PlaySound(_plasmaGainSfx9, .17f);
                     break;
                 case 16:
-                    PlaySound(_plasmaGainSfx8, .25f);
+                    PlaySound(_plasmaGainSfx8, .17f);
                     break;
                 case 15:
-                    PlaySound(_plasmaGainSfx8, .25f);
+                    PlaySound(_plasmaGainSfx8, .17f);
                     break;
                 case 14:
-                    PlaySound(_plasmaGainSfx7, .25f);
+                    PlaySound(_plasmaGainSfx7, .17f);
                     break;
                 case 13:
-                    PlaySound(_plasmaGainSfx7, .25f);
+                    PlaySound(_plasmaGainSfx7, .17f);
                     break;
                 case 12:
-                    PlaySound(_plasmaGainSfx6, .25f);
+                    PlaySound(_plasmaGainSfx6, .17f);
                     break;
                 case 11:
-                    PlaySound(_plasmaGainSfx6, .25f);
+                    PlaySound(_plasmaGainSfx6, .17f);
                     break;
                 case 10:
-                    PlaySound(_plasmaGainSfx5, .25f);
+                    PlaySound(_plasmaGainSfx5, .17f);
                     break;
                 case 9:
-                    PlaySound(_plasmaGainSfx5, .25f);
+                    PlaySound(_plasmaGainSfx5, .17f);
                     break;
                 case 8:
-                    PlaySound(_plasmaGainSfx4, .25f);
+                    PlaySound(_plasmaGainSfx4, .17f);
                     break;
                 case 7:
-                    PlaySound(_plasmaGainSfx4, .25f);
+                    PlaySound(_plasmaGainSfx4, .17f);
                     break;
                 case 6:
-                    PlaySound(_plasmaGainSfx3, .25f);
+                    PlaySound(_plasmaGainSfx3, .17f);
                     break;
                 case 5:
-                    PlaySound(_plasmaGainSfx3, .25f);
+                    PlaySound(_plasmaGainSfx3, .17f);
                     break;
                 case 4:
-                    PlaySound(_plasmaGainSfx2, .25f);
+                    PlaySound(_plasmaGainSfx2, .17f);
                     break;
                 case 3:
-                    PlaySound(_plasmaGainSfx2, .25f);
+                    PlaySound(_plasmaGainSfx2, .17f);
                     break;
                 case 2:
-                    PlaySound(_plasmaGainSfx1, .25f);
+                    PlaySound(_plasmaGainSfx1, .17f);
                     break;
                 case 1:
-                    PlaySound(_plasmaGainSfx1, .25f);
+                    PlaySound(_plasmaGainSfx1, .17f);
                     break;
                 case 0:
-                    PlaySound(_plasmaGainSfx1, .25f);
+                    PlaySound(_plasmaGainSfx1, .17f);
                     break;
             }
         else
-            PlaySound(_plasmaGainSfx10, .25f);
+            PlaySound(_plasmaGainSfx10, .17f);
 
     }
     #endregion

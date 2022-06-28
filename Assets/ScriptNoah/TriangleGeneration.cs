@@ -20,6 +20,7 @@ public class TriangleGeneration : LocalManager<TriangleGeneration>
     [SerializeField] BossHealth _bossHealth;
     float _damageModifier;
     [SerializeField] ParticleSystem boomVFX;
+    [SerializeField] ParticleSystem _vfxBreak;
 
     // Start is called before the first frame update
     [Button]
@@ -100,6 +101,13 @@ public class TriangleGeneration : LocalManager<TriangleGeneration>
 
         }
     }
+
+    public void BreakAttack()
+    {
+        _vfxBreak.Clear();
+        _vfxBreak.Play();
+    }
+
     [Button]
     public bool CheckIsIn()
     {
