@@ -33,6 +33,7 @@ public class BossHealth : EntityHP
     {
         shieldPoint=maxShieldPoint;
         shieldGO.SetActive(true);
+        shieldBar.fillAmount=1;
         agent.UpdateShield(shieldPoint);
 
     }
