@@ -26,6 +26,7 @@ public class TriangleGeneration : LocalManager<TriangleGeneration>
     public void Begin()
     {
         gameObject.SetActive(true);
+        SetMaterialColor(0);
         Vector3[] vertices = new Vector3[3];
         Vector2[] uv = new Vector2[3];
         int[] tri = new int[6];
@@ -33,7 +34,7 @@ public class TriangleGeneration : LocalManager<TriangleGeneration>
         Vector3 playPos = new Vector3(player.position.x, player.position.y, player.position.z);
         Vector3 lSpPos = new Vector3(lSpear.position.x, player.position.y, lSpear.position.z);
         Vector3 rSpPos = new Vector3(rSpear.position.x, player.position.y, rSpear.position.z);
-        
+
         vertices[0] = playPos;
         vertices[1] = lSpPos;
         vertices[2] = rSpPos;
@@ -69,8 +70,14 @@ public class TriangleGeneration : LocalManager<TriangleGeneration>
     {
         gameObject.SetActive(false);
         Destroy(_go);
-        if (boomVFX!=null)
+        if (boomVFX != null)
             boomVFX.Clear();
+    }
+
+    public void SetMaterialColor(float f)
+    {
+        Debug.Log(f);
+        triMat.SetFloat("supersmashbrosmelee", f);
     }
 
     // Update is called once per frame
@@ -107,7 +114,7 @@ public class TriangleGeneration : LocalManager<TriangleGeneration>
     public void BlowUpOnBoss()
     {
         _bossHealth.TakeDamage((float)System.Math.Round(80f * _damageModifier), Ccl_Attacks.TRIANGLEBOOM, 0);
-        if (boomVFX!=null)
+        if (boomVFX != null)
             boomVFX.Play();
     }
 

@@ -93,10 +93,13 @@ public class SpearFeedbacks : MonoBehaviour
     }
 
     #region Targetting
+    [SerializeField] GameObject _targettedCircle;
+
     public void TargettedFeedbacks()
     {
         SetSpearCameraTargetRadius(_spearAi.IsLeft, 6);
         _targetArrow.SetActive(true);
+        _targettedCircle.SetActive(true);
         PlayTargetSfx();
         spearImage.transform.localScale = Vector3.one;
         if (_spearAi.IsLeft)
@@ -111,6 +114,7 @@ public class SpearFeedbacks : MonoBehaviour
     public void UntargettedFeedbacks(bool gotRecalled)
     {
         spearImage.transform.localScale = Vector3.one * 0.8f;
+        _targettedCircle.SetActive(false);
         SetSpearCameraTargetRadius(_spearAi.IsLeft, 4);
         _targetArrow.SetActive(false);
         if (gotRecalled)

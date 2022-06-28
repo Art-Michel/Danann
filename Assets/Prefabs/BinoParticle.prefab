@@ -4073,7 +4073,7 @@ ParticleSystem:
     widthOverTrail:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 0.19
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4088,13 +4088,13 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.10501099
+          time: 0.24841309
           value: 0
-          inSlope: 0
-          outSlope: 0
+          inSlope: -3.7726252
+          outSlope: -3.7726252
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0.16102256
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2

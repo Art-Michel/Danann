@@ -14,9 +14,13 @@ public class Ccl_StateTriangling : Ccl_State
     float _tickCooldown;
     const float _tickMaxCooldown = 0.075f;
 
+
     public override void Begin()
     {
         _t = 0f;
+        SpearRaysManager.Instance.EnableLeftRay(true);
+        SpearRaysManager.Instance.EnableRightRay(true);
+        SpearRaysManager.Instance.EnableLRRay(true);
         _tickCooldown = 0;
         UiManager.Instance.AimHud();
         SoundManager.Instance.AudioSource.Play();
@@ -30,6 +34,9 @@ public class Ccl_StateTriangling : Ccl_State
         _actions.SlowDownDuringTriangling(Mathf.Lerp(1, 0, (Mathf.InverseLerp(0, _startup, _t))));
 
         _tickCooldown -= Time.deltaTime;
+
+        TriangleGeneration.Instance.SetMaterialColor(_t/_startup);
+        
         if (TriangleGeneration.Instance.CheckIsIn() && _tickCooldown <= 0)
         {
             TriangleGeneration.Instance.TickOnBoss(_t);
@@ -74,6 +81,9 @@ public class Ccl_StateTriangling : Ccl_State
 
     public override void Exit()
     {
+        SpearRaysManager.Instance.EnableLeftRay(false);
+        SpearRaysManager.Instance.EnableRightRay(false);
+        SpearRaysManager.Instance.EnableLRRay(false);
         UiManager.Instance.UnaimHud();
         _actions.ResetMovementSpeed();
         TriangleGeneration.Instance.Stop();
