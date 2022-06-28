@@ -307,12 +307,14 @@ public class PlayerActions : MonoBehaviour
     private void DodgeInput()
     {
         _isPressingDodge = true;
+        
         if (_fsm.currentState.Name == Ccl_StateNames.TARGETTING && _currentlyTargettedSpear != null)
             Dash(_currentlyTargettedSpear);
 
         else if ((_fsm.currentState.Name == Ccl_StateNames.IDLE || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKRECOVERY || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKING || _fsm.currentState.Name == Ccl_StateNames.LIGHTATTACKSTARTUP))
             {
-                
+                if(_dodgesLeft <= 0 || !_canDodge)
+                    _playerFeedbacks.PlayErrorSfx();
                 TryToDodge();
             }
 

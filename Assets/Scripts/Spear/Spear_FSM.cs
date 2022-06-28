@@ -19,6 +19,7 @@ public class Spear_FSM : MonoBehaviour
         states = new Dictionary<string, Spear_State>();
         SpearAi = GetComponent<SpearAI>();
         this.SpearFeedbacks = GetComponent<SpearFeedbacks>();
+        
     }
 
     void Start()

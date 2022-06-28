@@ -27,6 +27,8 @@ public class SoundManager : LocalManager<SoundManager>
     [SerializeField] AudioClip _triangleCancel;
     [SerializeField] AudioClip _triangleExplosion;
     [SerializeField] AudioClip _triangleBreak;
+    [SerializeField] AudioClip _ultReady;
+
     Dictionary<string, AudioClip> _attackSoundEffect;
     #region Boss
     [SerializeField, Foldout("BossSFX")] AudioClip _bossTPIn;
@@ -196,5 +198,10 @@ public class SoundManager : LocalManager<SoundManager>
     internal void PlayTriangleBreak()
     {
         PlaySound(_triangleBreak, 2f);
+    }
+
+    internal void PlayUltReady()
+    {
+        PlaySound(_ultReady, 0.5f);
     }
 }

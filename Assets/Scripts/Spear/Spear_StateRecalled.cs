@@ -15,6 +15,8 @@ public class Spear_StateRecalled : Spear_State
 
     public override void Begin()
     {
+        UiManager.Instance.CheckIfUltReady();
+        
         _startingPosition = _ai.transform.position;
         _destination = _ai.CclBody.position;
 

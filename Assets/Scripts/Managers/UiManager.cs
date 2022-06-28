@@ -364,7 +364,7 @@ public class UiManager : LocalManager<UiManager>
         EButton.sprite = CancelIcon;
         WButton.sprite = CancelIcon;
         _eCost.enabled = false;
-        
+
     }
 
     public void UntargetHud()
@@ -410,6 +410,36 @@ public class UiManager : LocalManager<UiManager>
     {
         if (transparent) _dodgeImage.color = _transparent;
         else _dodgeImage.color = _opaque;
+    }
+
+    [SerializeField] GameObject _ultReminder;
+
+    public void CheckIfUltReady()
+    {
+        bool leftSpearIsReady = _playerActions._leftSpear.currentState.Name == Spear_StateNames.IDLE;
+        leftSpearIsReady = leftSpearIsReady || _playerActions._leftSpear.currentState.Name == Spear_StateNames.ATTACKING;
+
+        bool rightSpearIsReady = _playerActions._rightSpear.currentState.Name == Spear_StateNames.IDLE;
+        rightSpearIsReady = rightSpearIsReady || _playerActions._rightSpear.currentState.Name == Spear_StateNames.ATTACKING;
+
+        bool _playerIsReady = _playerActions._playerPlasma.VerifyPlasma(Ccl_Attacks.TRIANGLEBOOM);
+        if (leftSpearIsReady && rightSpearIsReady && _playerIsReady && _ultReminder.activeSelf == false)
+        {
+            EnableUltReminder();
+        }
+        else
+            DisableUltReminder();
+    }
+
+    void EnableUltReminder()
+    {
+        _ultReminder.SetActive(true);
+        SoundManager.Instance.PlayUltReady();
+    }
+
+    void DisableUltReminder()
+    {
+        _ultReminder.SetActive(false);
     }
 
     #region disable inputs on Player disable to avoid weird inputs

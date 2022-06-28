@@ -46,8 +46,10 @@ public class PlayerPlasma : MonoBehaviour
         if (PlasmaPoints >= _plasmaCost[skill] * _plasmaPerSegment)
             return true;
         else
+        {
             _playerFeedbacks.PlayErrorSfx();
-        _playerFeedbacks.NotEnoughPlasmaText();
+            _playerFeedbacks.NotEnoughPlasmaText();
+        }
         return false;
     }
 
@@ -99,6 +101,7 @@ public class PlayerPlasma : MonoBehaviour
     private void NewSegmentFilled()
     {
         _segments[_currentSegment].enabled = true;
+        UiManager.Instance.CheckIfUltReady();
         _currentSegment++;
         _playerFeedbacks.PlaySegmentFill();
         if (_currentSegment == 1)
@@ -108,6 +111,7 @@ public class PlayerPlasma : MonoBehaviour
     private void DepleteSegment()
     {
         _currentSegment--;
+        UiManager.Instance.CheckIfUltReady();
         _segments[_currentSegment].enabled = false;
         if (_currentSegment == 0)
             UiManager.Instance.OnePlasmaEmptied();
