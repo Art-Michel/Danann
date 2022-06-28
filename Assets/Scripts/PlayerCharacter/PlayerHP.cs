@@ -28,6 +28,7 @@ public class PlayerHP : EntityHP
     float _invulerabilityT;
     float _tookAHit;
     bool _isShieldingForTheFirstTime = true;
+    [SerializeField] ParticleSystem _ShieldCounterVfx;
 
     //Init
     PlayerFeedbacks _playerFeedbacks;
@@ -99,6 +100,8 @@ public class PlayerHP : EntityHP
             _bossHealth.TakeDamage(plasmaRegainValue * 5, attackName, 0);
             _playerPlasma.SpendPlasma("Renvoi");
             _playerFeedbacks.PlayShieldTriggerSfx();
+            _ShieldCounterVfx.Clear();
+            _ShieldCounterVfx.Play();
         }
         else if (IsInvulnerable)
         {
