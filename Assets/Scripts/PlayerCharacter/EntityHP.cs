@@ -83,8 +83,12 @@ public class EntityHP : MonoBehaviour
     {
         Application.Quit();
     }
+
+    [SerializeField] ParticleSystem _impactVfx;
     protected virtual void DamageFeedback(string attackName, int plasmaRegainValue, float amount)
     {
+        _impactVfx.Clear();
+        _impactVfx.Play();
         DamageText(amount);
     }
 

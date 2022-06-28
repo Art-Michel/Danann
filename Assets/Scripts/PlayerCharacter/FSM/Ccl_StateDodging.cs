@@ -38,6 +38,7 @@ public class Ccl_StateDodging : Ccl_State
 
     public override void Exit()
     {
+        _feedbacks.SetTrailRenderer(false);
         _actions.PlayerHP.IsInvulnerable = false;
         _actions.StartDodgeCooldown();
     }

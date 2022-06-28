@@ -366,7 +366,6 @@ public class PlayerActions : MonoBehaviour
         }
 
         _dodgeBigCooldown = _dodgeMaxCooldown;
-        this._playerFeedbacks.SetTrailRenderer(false);
         _canDodge = false;
     }
 

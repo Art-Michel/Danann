@@ -424,11 +424,9 @@ public class UiManager : LocalManager<UiManager>
             bool rightSpearIsReady = _playerActions._rightSpear.currentState.Name == Spear_StateNames.IDLE;
             rightSpearIsReady = rightSpearIsReady || _playerActions._rightSpear.currentState.Name == Spear_StateNames.ATTACKING;
 
-            bool _playerIsReady = _playerActions._playerPlasma.VerifyPlasma(Ccl_Attacks.TRIANGLEBOOM);
-            if (leftSpearIsReady && rightSpearIsReady && _playerIsReady && _ultReminder.activeSelf == false)
-            {
+            bool _playerIsReady = _playerActions._playerPlasma.PlasmaPoints >= 60f;
+            if (leftSpearIsReady && rightSpearIsReady && _playerIsReady)
                 EnableUltReminder();
-            }
             else
                 DisableUltReminder();
         }
@@ -436,8 +434,11 @@ public class UiManager : LocalManager<UiManager>
 
     void EnableUltReminder()
     {
-        _ultReminder.SetActive(true);
-        SoundManager.Instance.PlayUltReady();
+        if (_ultReminder.activeSelf == false)
+        {
+            _ultReminder.SetActive(true);
+            SoundManager.Instance.PlayUltReady();
+        }
     }
 
     void DisableUltReminder()
