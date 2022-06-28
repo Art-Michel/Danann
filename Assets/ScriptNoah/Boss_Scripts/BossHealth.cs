@@ -15,6 +15,7 @@ public class BossHealth : EntityHP
     [SerializeField] PlayerFeedbacks _playerFeedbacks;
     DanuAI agent;
     [Required][SerializeField] GameObject _body;
+    public void SetBody(GameObject nbody){_body=nbody;}
     private float oldValue;
     private float accel;
     private int shieldPoint;
@@ -57,6 +58,9 @@ public class BossHealth : EntityHP
         bool cond =attackName == Ccl_Attacks.TRAVELINGSPEAR; 
         cond=cond || attackName == Ccl_Attacks.SPEARSWINGL;
         cond=cond|| attackName == Ccl_Attacks.SPEARSWINGR;
+
+        if (agent.IsDM())
+            return base.TakeDamage(0, attackName, plasmaRegainValue, revengeGain);
         if (agent.IsShielded() && !cond)
         {
             shieldPoint--;
@@ -71,9 +75,6 @@ public class BossHealth : EntityHP
             return base.TakeDamage(0, attackName, plasmaRegainValue, revengeGain);
 
         }
-
-        if (agent.IsDM() && (cond))
-            return base.TakeDamage(0, attackName, plasmaRegainValue, revengeGain);
         if (((HealthPoints-amount)/_maxHealthPoints)*100<=5 && !agent.HasDM())
         {
             amount = (int)(HealthPoints - ((5f / 100f) * _maxHealthPoints)) + 1;

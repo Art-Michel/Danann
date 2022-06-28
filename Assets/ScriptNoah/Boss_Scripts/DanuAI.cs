@@ -64,6 +64,7 @@ public class DanuAI : MonoBehaviour
     [SerializeField] bool isDebug;
     public bool GetFollowingGlobal(){return followsGlobal;}
     public Animator m_anims;
+    public Animator m_animsP2;
     [SerializeField] GameObject meshP1;
     [SerializeField] GameObject meshP2;
     private bool dmActive;
@@ -72,6 +73,7 @@ public class DanuAI : MonoBehaviour
     [SerializeField] Pooler _billboardsPool;
     private bool isShielded;
     [SerializeField] List<GameObject> shields;
+    DanuShield shieldTime;
     private void Awake() {
         if (m_fsm==null)
             m_fsm=GetComponent<Danu_FSM>();
@@ -79,6 +81,7 @@ public class DanuAI : MonoBehaviour
         if (gfsm==null)
             gfsm=GetComponent<Danu_GlobalFSM>();
         gfsm.agent=this;
+        shieldTime=GetComponent<DanuShield>();
     }
     public void HideMesh()
     {
@@ -140,6 +143,7 @@ public class DanuAI : MonoBehaviour
             maxStunTime=sTime;
         isStun=true;
         m_anims.SetBool("StunTime",true);
+        m_animsP2.SetBool("StunTime",true);
     }
     public void StunText(int amount)
     {
@@ -185,6 +189,7 @@ public class DanuAI : MonoBehaviour
             if (stunTime>=maxStunTime)
             {
                 m_anims.SetBool("StunTime",false);
+                m_animsP2.SetBool("StunTime",false);
                 stunTime=0;
                 maxStunTime=0;
                 NextPattern();
@@ -262,17 +267,20 @@ public class DanuAI : MonoBehaviour
                             {
                                 m_fsm.ChangeState(StateNames.P1C_MIXDASH);
                                 m_anims.SetInteger("Pattern",2);
+                                m_animsP2.SetInteger("Pattern",2);
                             }
                             else
                             {
                                 m_fsm.ChangeState(StateNames.P1C_DASH);
                                 m_anims.SetInteger("Pattern",1);
+                                m_animsP2.SetInteger("Pattern",1);
 
                             }
                             break;
                         case 2:
                             m_fsm.ChangeState(StateNames.P1C_SLAM);
                                 m_anims.SetInteger("Pattern",3);
+                                m_animsP2.SetInteger("Pattern",3);
                             break;
                         case 3:
                             Vector3 playerPos=player.position;
@@ -288,14 +296,17 @@ public class DanuAI : MonoBehaviour
                             }
                             m_fsm.ChangeState(StateNames.P1C_TELEPORTATION);
                                m_anims.SetInteger("Pattern",0);
+                               m_animsP2.SetInteger("Pattern",0);
                             break;
                         case 4:
                             m_fsm.ChangeState(StateNames.P1D_BOOMERANG);
                                 m_anims.SetInteger("Pattern",4);
+                                m_animsP2.SetInteger("Pattern",4);
                             break;
                         case 5:
                             m_fsm.ChangeState(StateNames.P1D_SHOOT);
                                 m_anims.SetInteger("Pattern",5);
+                                m_animsP2.SetInteger("Pattern",5);
                             break;
                         case 6:
                             int randSP=Random.Range(0,2);
@@ -303,11 +314,13 @@ public class DanuAI : MonoBehaviour
                             {
                                 m_fsm.ChangeState(StateNames.P1R_SPIRALE);
                                 m_anims.SetInteger("Pattern",6);
+                                m_animsP2.SetInteger("Pattern",6);
                             }
                             else
                             {
                                 m_fsm.ChangeState(StateNames.P1D_SPIN);
                                 m_anims.SetInteger("Pattern",7);
+                                m_animsP2.SetInteger("Pattern",7);
                             }
                             break;                    
 
@@ -344,14 +357,14 @@ public class DanuAI : MonoBehaviour
                 m_fsm.SetTPDest(P1CTeleportation.destPoints.FAR);  
             }
             switch(testState){
-                case StateNames.P2C_TELEPORTATION:m_anims.SetInteger("Pattern",0); break;
-                case StateNames.P2C_DASH:m_anims.SetInteger("Pattern",1); break;
-                case StateNames.P2C_MIXDASH:m_anims.SetInteger("Pattern",2); break;
-                case StateNames.P2C_SLAM:m_anims.SetInteger("Pattern",3);Debug.Log("bulet");break;
-                case StateNames.P2D_BOOMERANG:m_anims.SetInteger("Pattern",4); break;
-                case StateNames.P2D_SHOOT:m_anims.SetInteger("Pattern",5); break;
-                case StateNames.P2R_SPIRALE:m_anims.SetInteger("Pattern",6); break;
-                case StateNames.P2D_SPIN:m_anims.SetInteger("Pattern",7); break;}
+                case StateNames.P2C_TELEPORTATION:m_anims.SetInteger("Pattern",0); m_animsP2.SetInteger("Pattern",0); break;
+                case StateNames.P2C_DASH:m_anims.SetInteger("Pattern",1);m_animsP2.SetInteger("Pattern",1); break;
+                case StateNames.P2C_MIXDASH:m_anims.SetInteger("Pattern",2);m_animsP2.SetInteger("Pattern",2); break;
+                case StateNames.P2C_SLAM:m_anims.SetInteger("Pattern",3);m_animsP2.SetInteger("Pattern",3);break;
+                case StateNames.P2D_BOOMERANG:m_anims.SetInteger("Pattern",4);m_animsP2.SetInteger("Pattern",4); break;
+                case StateNames.P2D_SHOOT:m_anims.SetInteger("Pattern",5);m_animsP2.SetInteger("Pattern",5); break;
+                case StateNames.P2R_SPIRALE:m_anims.SetInteger("Pattern",6);m_animsP2.SetInteger("Pattern",6); break;
+                case StateNames.P2D_SPIN:m_anims.SetInteger("Pattern",7);m_animsP2.SetInteger("Pattern",7); break;}
             m_fsm.ChangeState(testState);
             return;
             
@@ -370,18 +383,21 @@ public class DanuAI : MonoBehaviour
                             if (rand==1)
                             {
                                 m_anims.SetInteger("Pattern",2);
+                                m_animsP2.SetInteger("Pattern",2);
                                 m_fsm.ChangeState(StateNames.P2C_MIXDASH);
                             }
                             else
                             {
                                 m_fsm.ChangeState(StateNames.P2C_DASH);
                                 m_anims.SetInteger("Pattern",1);
+                                m_animsP2.SetInteger("Pattern",1);
 
                             }
                             break;
                         case 2:
                             m_fsm.ChangeState(StateNames.P2C_SLAM);
                                 m_anims.SetInteger("Pattern",3);
+                                m_animsP2.SetInteger("Pattern",3);
                             break;
                         case 3:
                             Vector3 playerPos=player.position;
@@ -397,22 +413,27 @@ public class DanuAI : MonoBehaviour
                             }
                             m_fsm.ChangeState(StateNames.P2C_TELEPORTATION);
                                m_anims.SetInteger("Pattern",0);
+                               m_animsP2.SetInteger("Pattern",0);
                             break;
                         case 4:
                             m_fsm.ChangeState(StateNames.P2D_BOOMERANG);
                                 m_anims.SetInteger("Pattern",4);
+                                m_animsP2.SetInteger("Pattern",4);
                             break;
                         case 5:
                             m_fsm.ChangeState(StateNames.P2D_SHOOT);
                                 m_anims.SetInteger("Pattern",5);
+                                m_animsP2.SetInteger("Pattern",5);
                             break;
                         case 6:
                             m_fsm.ChangeState(StateNames.P2R_SPIRALE);
                                 m_anims.SetInteger("Pattern",6);
+                                m_animsP2.SetInteger("Pattern",6);
                             break;                                   
                         case 7:
                             m_fsm.ChangeState(StateNames.P2D_SPIN);
                                 m_anims.SetInteger("Pattern",7);
+                                m_animsP2.SetInteger("Pattern",7);
                             break;                    
 
                     }
@@ -485,6 +506,10 @@ public class DanuAI : MonoBehaviour
         vfx[4].SetActive(true);
         meshP1.SetActive(false);
         meshP2.SetActive(true);
+        m_anims.gameObject.SetActive(false);
+        m_animsP2.gameObject.SetActive(true);
+        GetComponent<BossHealth>().SetBody(meshP2);
+        shieldTime.enabled=true;
         //Add all P2 states and remove all P1 states
     }
     public int GetPhase() { return phase; }
@@ -498,6 +523,7 @@ public class DanuAI : MonoBehaviour
     public void ToIdle()
     {
         m_anims.SetInteger("Pattern",-1);
+        m_animsP2.SetInteger("Pattern",-1);
         /*
         chain=Mathf.Clamp(chain--,0,maxChain);
         if (phase==1)

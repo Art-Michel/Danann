@@ -128,8 +128,8 @@ public class DesperationMove : MonoBehaviour
         goUp=true;
         ppTime=0.7f;
         waitingTime=0;
-        agent.m_anims.SetTrigger("DM");
-        agent.m_anims.SetFloat("Pattern",-2);
+        agent.m_animsP2.SetTrigger("DM");
+        agent.m_animsP2.SetFloat("Pattern",-2);
 
         laserGO.GetComponentInChildren<Laser>().SetDM(this);
     }

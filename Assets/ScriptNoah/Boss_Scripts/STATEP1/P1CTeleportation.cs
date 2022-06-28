@@ -47,9 +47,10 @@ public class P1CTeleportation : Danu_State
             arrival.transform.position = fsm.transform.position + dir;
             if (Vector3.Distance(arrival.transform.position, arenaCenter) >= fsm.agent.GetArenaRadius())
             {
-                dir = fsm.transform.position - target.position;
+                dir = arenaCenter - target.position;
                 dir.Normalize();
-                arrival.transform.position = fsm.agent.GetArenaRadius() * dir;
+                dir=-dir;
+                arrival.transform.position =arenaCenter+ fsm.agent.GetArenaRadius() * dir;
             }
         }
         else
@@ -57,6 +58,10 @@ public class P1CTeleportation : Danu_State
             Vector2 rand = Random.insideUnitCircle;
             Vector3 offset = new Vector3(rand.x, 0, rand.y) * offsetValue;
             arrival.transform.position = target.position + offset;
+            if (Vector3.Distance(arrival.transform.position, arenaCenter) >= fsm.agent.GetArenaRadius())
+            {
+                arrival.transform.position=target.position;
+            }
         }
         fsm.agent.vfx[7].SetActive(true);
         fsm.agent.vfx[8].SetActive(true);

@@ -54,7 +54,7 @@ public class DM_Slam : Dm_State
             waitTime+=Time.deltaTime;
             if (waitTime>=(maxWaitTime+maxTravelTime))
             {
-                fsm.agent.m_anims.SetTrigger("SlamReady");
+                fsm.agent.m_animsP2.SetTrigger("SlamReady");
                 _wait=false;
                 waitTime=0;
                 StartPreview();
@@ -95,7 +95,7 @@ public class DM_Slam : Dm_State
         _timer = 0;
         _state = 1;
                 if (_index == _maxSlamCount-1)
-            fsm.agent.m_anims.SetTrigger("RiseOver");
+            fsm.agent.m_animsP2.SetTrigger("RiseOver");
        
         for (int i=0;i<4;i++)
         {

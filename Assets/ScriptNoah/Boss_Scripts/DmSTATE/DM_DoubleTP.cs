@@ -129,7 +129,7 @@ private void LerpIn()
             fadeTime += Time.deltaTime;
             if (fadeTime>=MaxFadeTime)
             {
-                fsm.agent.m_anims.SetTrigger("TPOver");
+                fsm.agent.m_animsP2.SetTrigger("TPOver");
                 Debug.Log("over");
                 SoundManager.Instance.PlayBossTpOut();
             }
@@ -160,7 +160,7 @@ private void LerpIn()
             {
                 fsm.agent.vfx[2].SetActive(false);
                 fsm.agent.vfx[3].SetActive(false);
-                fsm.agent.m_anims.SetTrigger("TPReady");
+                fsm.agent.m_animsP2.SetTrigger("TPReady");
 
                 Begin();
                 index++;

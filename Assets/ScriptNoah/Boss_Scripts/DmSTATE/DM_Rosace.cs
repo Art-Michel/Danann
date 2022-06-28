@@ -45,7 +45,7 @@ public class DM_Rosace : Dm_State
         wait=true;
         fsm.agent.vfx[5].SetActive(true);
         waitTime=0;
-        fsm.agent.m_anims.SetTrigger("RosaceReady");
+        fsm.agent.m_animsP2.SetTrigger("RosaceReady");
        
     }
 
@@ -99,7 +99,7 @@ public class DM_Rosace : Dm_State
 
     void End()
     {
-                fsm.agent.m_anims.SetTrigger("RosaceOver");
+                fsm.agent.m_animsP2.SetTrigger("RosaceOver");
         /*for (int i=0;i<nb;i++)
         {
             pool.SecondBack(spirales[i]);
