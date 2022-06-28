@@ -65,11 +65,20 @@ public class BossHealth : EntityHP
         bool cond =attackName == Ccl_Attacks.TRAVELINGSPEAR; 
         cond=cond || attackName == Ccl_Attacks.SPEARSWINGL;
         cond=cond|| attackName == Ccl_Attacks.SPEARSWINGR;
-
+        cond=cond||attackName==Ccl_Attacks.TRIANGLETICK;
         if (agent.IsDM())
             return base.TakeDamage(0, attackName, plasmaRegainValue, revengeGain);
         if (agent.IsShielded() )
         {
+            if (attackName==Ccl_Attacks.TRIANGLEBOOM)
+            {
+                shieldPoint=0;
+                shieldBar.fillAmount=shieldPoint*0.25f;
+                activateShieldRemnant=true;
+                agent.UpdateShield(shieldPoint);
+                DesactivateShield();
+                return base.TakeDamage(amount, attackName, plasmaRegainValue, revengeGain);
+            }
             if ( !cond)
             {
 

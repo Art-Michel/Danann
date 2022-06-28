@@ -73,6 +73,7 @@ public class DanuAI : MonoBehaviour
     [SerializeField] Pooler _billboardsPool;
     private bool isShielded;
     [SerializeField] List<GameObject> shields;
+
     DanuShield shieldTime;
     private void Awake() {
         if (m_fsm==null)
@@ -142,6 +143,8 @@ public class DanuAI : MonoBehaviour
         else
             maxStunTime=sTime;
         isStun=true;
+        vfx[16].SetActive(true);
+        vfx[15].SetActive(true);
         m_anims.SetBool("StunTime",true);
         m_animsP2.SetBool("StunTime",true);
     }
@@ -166,9 +169,17 @@ public class DanuAI : MonoBehaviour
     public void UpdateShield(int shieldIndex)
     {
         if (shieldIndex>0)
-        isShielded=true;
+        {
+            isShielded=true;
+            shieldTime.PlayShieldBreak(shieldIndex);
+        }
         else 
-        isShielded=false;
+        {
+            isShielded=false;
+           shieldTime.DesactivateShield();
+           for (int i=0;i<shields.Count;i++)
+           shields[i].SetActive(false);
+        }
         for (int i=0;i<shields.Count;i++)
         {
             if (shieldIndex>i)
@@ -201,6 +212,8 @@ public class DanuAI : MonoBehaviour
                 stunTime=0;
                 maxStunTime=0;
                 NextPattern();
+                vfx[16].SetActive(false);
+                vfx[15].SetActive(false);
                 isStun=false;
             }
             return;

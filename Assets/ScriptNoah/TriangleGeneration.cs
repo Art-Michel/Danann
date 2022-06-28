@@ -19,6 +19,7 @@ public class TriangleGeneration : LocalManager<TriangleGeneration>
 
     [SerializeField] BossHealth _bossHealth;
     float _damageModifier;
+    [SerializeField] ParticleSystem boomVFX;
 
     // Start is called before the first frame update
     [Button]
@@ -32,6 +33,7 @@ public class TriangleGeneration : LocalManager<TriangleGeneration>
         Vector3 playPos = new Vector3(player.position.x, player.position.y, player.position.z);
         Vector3 lSpPos = new Vector3(lSpear.position.x, player.position.y, lSpear.position.z);
         Vector3 rSpPos = new Vector3(rSpear.position.x, player.position.y, rSpear.position.z);
+        
         vertices[0] = playPos;
         vertices[1] = lSpPos;
         vertices[2] = rSpPos;
@@ -67,6 +69,8 @@ public class TriangleGeneration : LocalManager<TriangleGeneration>
     {
         gameObject.SetActive(false);
         Destroy(_go);
+        if (boomVFX!=null)
+            boomVFX.Clear();
     }
 
     // Update is called once per frame
@@ -103,6 +107,8 @@ public class TriangleGeneration : LocalManager<TriangleGeneration>
     public void BlowUpOnBoss()
     {
         _bossHealth.TakeDamage((float)System.Math.Round(80f * _damageModifier), Ccl_Attacks.TRIANGLEBOOM, 0);
+        if (boomVFX!=null)
+            boomVFX.Play();
     }
 
     public void TickOnBoss(float elapsedTime)

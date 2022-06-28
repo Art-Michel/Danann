@@ -178,6 +178,8 @@ public class P2DSpin: Danu_State
         bladesParentAttackData.StopAttack();
         globalGO.transform.rotation = Quaternion.identity;
         float delta = 1 / dist;
+        for (int i = 0; i < bladesPreview.Length; i++)
+            bladesPreview[i].gameObject.SetActive(false);
         for (int i = 0; i < nblades.Count; i++)
         {
             pool.SecondBack(nblades[i]);
