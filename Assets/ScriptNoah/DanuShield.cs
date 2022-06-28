@@ -15,6 +15,9 @@ public class DanuShield : MonoBehaviour
     [SerializeField] List<GameObject> shieldsBreak;
     public void PlayShieldBreak(int ind)
     {
+        ind--;
+        if (ind==4||ind==0)
+            return;
         shieldsBreak[ind].SetActive(false);
         shieldsBreak[ind].SetActive(true);
     }

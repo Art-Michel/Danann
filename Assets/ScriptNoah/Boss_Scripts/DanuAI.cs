@@ -175,10 +175,11 @@ public class DanuAI : MonoBehaviour
         }
         else 
         {
+            shieldTime.PlayShieldBreak(shieldIndex);
             isShielded=false;
-           shieldTime.DesactivateShield();
-           for (int i=0;i<shields.Count;i++)
-           shields[i].SetActive(false);
+            shieldTime.DesactivateShield();
+            for (int i=0;i<shields.Count;i++)
+                shields[i].SetActive(false);
         }
         for (int i=0;i<shields.Count;i++)
         {
@@ -212,7 +213,9 @@ public class DanuAI : MonoBehaviour
                 stunTime=0;
                 maxStunTime=0;
                 NextPattern();
+                if (phase==1)
                 vfx[16].SetActive(false);
+                else
                 vfx[15].SetActive(false);
                 isStun=false;
             }

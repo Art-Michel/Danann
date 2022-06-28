@@ -121,7 +121,6 @@ public class DesperationMove : MonoBehaviour
         states.Add(new DM_Slam());
         states.Add(new Dm_TP(true));
         states.Add(new Dm_State());
-        Debug.Log(states.Count+"eeeee"+states[index]);
         curr=new DM_Shoot();
         curr.fsm=this;
         curr.Begin();
@@ -153,10 +152,10 @@ public class DesperationMove : MonoBehaviour
 
     public void End()
     {
-            agent.vfx[4].SetActive(false);
-            agent.vfx[6].SetActive(false);
-            agent.EndDM();
-            enabled=false;
+        agent.vfx[4].SetActive(false);
+        agent.vfx[6].SetActive(false);
+        agent.EndDM();
+        enabled=false;
         endPos=agent.GetArenaCenter();
         transform.position=agent.GetArenaCenter();
     }
@@ -194,7 +193,6 @@ public class DesperationMove : MonoBehaviour
             case 1:
                 curr=new DM_DoubleTP();
                 meteorShower.SetActive(true);
-
                 break;
             case 2:
             curr=new DM_Rosace();
@@ -224,7 +222,6 @@ public class DesperationMove : MonoBehaviour
         {
             postProcess.weight=0;
             over=true;
-            Debug.Log(over);
             transform.LookAt(endPos);
             _preview.gameObject.SetActive(true);
             startPos=transform.position;

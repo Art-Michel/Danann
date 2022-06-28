@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dm_State : MonoBehaviour
+public class Dm_State 
 {    
     public DesperationMove fsm;
     public string stateName;
