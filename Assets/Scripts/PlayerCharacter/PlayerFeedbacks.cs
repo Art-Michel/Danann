@@ -299,7 +299,7 @@ public class PlayerFeedbacks : MonoBehaviour
 
     public void PlayDodgeReffiledSfx()
     {
-        PlaySound(_dodgeRefilled, .15f);
+        PlaySound(_dodgeRefilled, .2f);
     }
 
     public void PlayPlasmaGainedSfx(int i)
