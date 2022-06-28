@@ -5357,7 +5357,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3647937731055758408
 Transform:
   m_ObjectHideFlags: 0
@@ -6438,7 +6438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1293270357623560097
 Transform:
   m_ObjectHideFlags: 0
@@ -7773,6 +7773,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1293270357623560097}
     m_Modifications:
+    - target: {fileID: 2247216100744081138, guid: bfbce51a99779434da31306bd054ce03, type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2247216101287994403, guid: bfbce51a99779434da31306bd054ce03, type: 3}
       propertyPath: m_Name
       value: VFX_Aiming_Target_Yellow
@@ -7820,6 +7824,10 @@ PrefabInstance:
     - target: {fileID: 2247216101287994404, guid: bfbce51a99779434da31306bd054ce03, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247216101638530176, guid: bfbce51a99779434da31306bd054ce03, type: 3}
+      propertyPath: prewarm
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbce51a99779434da31306bd054ce03, type: 3}
@@ -8840,6 +8848,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5547731485519976306}
     - target: {fileID: 8038885432945350682, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: _targettedCircle
+      value: 
+      objectReference: {fileID: 1481949227166579328}
+    - target: {fileID: 8038885432945350682, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: _spearTransformWhenAttached
       value: 
       objectReference: {fileID: 3023749069325140284}
@@ -8946,6 +8958,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3647937731055758408}
     m_Modifications:
+    - target: {fileID: 748757246595749912, guid: 8011811d319a47244a2efa0b121f7eb4, type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 748757247143334601, guid: 8011811d319a47244a2efa0b121f7eb4, type: 3}
       propertyPath: m_Name
       value: VFX_Aiming_Target_Blue
@@ -8993,6 +9009,10 @@ PrefabInstance:
     - target: {fileID: 748757247143334606, guid: 8011811d319a47244a2efa0b121f7eb4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 748757247488070250, guid: 8011811d319a47244a2efa0b121f7eb4, type: 3}
+      propertyPath: prewarm
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8011811d319a47244a2efa0b121f7eb4, type: 3}
@@ -9248,6 +9268,10 @@ PrefabInstance:
       propertyPath: _aimingVfx
       value: 
       objectReference: {fileID: 2595049610667193909}
+    - target: {fileID: 8038885432945350682, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: _targettedCircle
+      value: 
+      objectReference: {fileID: 6335772534946634459}
     - target: {fileID: 8133032020798367786, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: PlayerActions
       value: 
@@ -9341,6 +9365,10 @@ PrefabInstance:
     - target: {fileID: 748757246595749912, guid: 8011811d319a47244a2efa0b121f7eb4, type: 3}
       propertyPath: prewarm
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 748757246595749912, guid: 8011811d319a47244a2efa0b121f7eb4, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 748757246595749914, guid: 8011811d319a47244a2efa0b121f7eb4, type: 3}
       propertyPath: m_LocalScale.x
@@ -9437,6 +9465,10 @@ PrefabInstance:
     - target: {fileID: 748757247488070250, guid: 8011811d319a47244a2efa0b121f7eb4, type: 3}
       propertyPath: prewarm
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 748757247488070250, guid: 8011811d319a47244a2efa0b121f7eb4, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8011811d319a47244a2efa0b121f7eb4, type: 3}
@@ -10546,6 +10578,10 @@ PrefabInstance:
       propertyPath: prewarm
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2247216100744081138, guid: bfbce51a99779434da31306bd054ce03, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2247216101287994403, guid: bfbce51a99779434da31306bd054ce03, type: 3}
       propertyPath: m_Name
       value: VFX_Aiming_Target_Yellow
@@ -10613,6 +10649,10 @@ PrefabInstance:
     - target: {fileID: 2247216101638530176, guid: bfbce51a99779434da31306bd054ce03, type: 3}
       propertyPath: prewarm
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247216101638530176, guid: bfbce51a99779434da31306bd054ce03, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2247216101638530190, guid: bfbce51a99779434da31306bd054ce03, type: 3}
       propertyPath: m_LocalScale.x
