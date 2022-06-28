@@ -171,6 +171,7 @@ public class DanuAI : MonoBehaviour
         if (shieldIndex>0)
         {
             isShielded=true;
+            if (shieldIndex!=4)
             shieldTime.PlayShieldBreak(shieldIndex);
         }
         else 
