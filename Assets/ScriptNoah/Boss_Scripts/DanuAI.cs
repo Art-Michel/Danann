@@ -158,13 +158,21 @@ public class DanuAI : MonoBehaviour
         UpdateRevenge();
 
     }
+    public void ActivateShield()
+    {
+        for (int i=0;i<shields.Count;i++)
+            shields[i].SetActive(true);
+    }
     public void UpdateShield(int shieldIndex)
     {
-        shieldIndex--;
+        if (shieldIndex>0)
+        isShielded=true;
+        else 
+        isShielded=false;
         for (int i=0;i<shields.Count;i++)
         {
             if (shieldIndex>i)
-            shields[i].SetActive(false);
+            shields[i].SetActive(true);
             else
             shields[i].SetActive(false);
         }
@@ -506,8 +514,8 @@ public class DanuAI : MonoBehaviour
         vfx[4].SetActive(true);
         meshP1.SetActive(false);
         meshP2.SetActive(true);
-        m_anims.gameObject.SetActive(false);
-        m_animsP2.gameObject.SetActive(true);
+        //m_anims.gameObject.SetActive(false);
+        //m_animsP2.gameObject.SetActive(true);
         GetComponent<BossHealth>().SetBody(meshP2);
         shieldTime.enabled=true;
         //Add all P2 states and remove all P1 states

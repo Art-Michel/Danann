@@ -19,9 +19,10 @@ public class BossHealth : EntityHP
     private float oldValue;
     private float accel;
     private int shieldPoint;
-    private int maxShieldPoint;
+    [SerializeField] private int maxShieldPoint;
     private float shieldRemnantTime;
     private bool activateShieldRemnant;
+    private float oldShieldValue;
 
     void Awake()
     {
@@ -54,6 +55,12 @@ public class BossHealth : EntityHP
 
     public override bool TakeDamage(float amount, string attackName, int plasmaRegainValue, int revengeGain = 0, GameObject obj = null)
     {
+        if (!activateRemnant)
+            oldValue = (HealthPoints / _maxHealthPoints);
+        accel = 0;        
+        if (!activateShieldRemnant)
+            oldShieldValue = (HealthPoints / _maxHealthPoints);
+        
         float percent = (HealthPoints / _maxHealthPoints) * 100;
         bool cond =attackName == Ccl_Attacks.TRAVELINGSPEAR; 
         cond=cond || attackName == Ccl_Attacks.SPEARSWINGL;
@@ -61,8 +68,11 @@ public class BossHealth : EntityHP
 
         if (agent.IsDM())
             return base.TakeDamage(0, attackName, plasmaRegainValue, revengeGain);
-        if (agent.IsShielded() && !cond)
+        if (agent.IsShielded() )
         {
+            if ( !cond)
+            {
+
             shieldPoint--;
             shieldBar.fillAmount=shieldPoint*0.25f;
             activateShieldRemnant=true;
@@ -73,6 +83,8 @@ public class BossHealth : EntityHP
                 DesactivateShield();
             }
             return base.TakeDamage(0, attackName, plasmaRegainValue, revengeGain);
+            }
+                        return base.TakeDamage(0, attackName, plasmaRegainValue, revengeGain);
 
         }
         if (((HealthPoints-amount)/_maxHealthPoints)*100<=5 && !agent.HasDM())
@@ -81,9 +93,6 @@ public class BossHealth : EntityHP
             agent.launchDM();
             return base.TakeDamage(amount, attackName, plasmaRegainValue, revengeGain);
         }
-        if (!activateRemnant)
-            oldValue = (HealthPoints / _maxHealthPoints);
-        accel = 0;
         if (percent < 70 && agent.GetPhase() == 1)
             agent.NextPhase();
 
@@ -93,6 +102,8 @@ public class BossHealth : EntityHP
     private void DesactivateShield()
     {
         shieldGO.SetActive(false);
+        agent.UpdateShield(shieldPoint);
+
     }
 
     private void ResetBlinking()
@@ -131,9 +142,9 @@ public class BossHealth : EntityHP
         shieldRemnantTime += Time.deltaTime * accel;
         float value = Mathf.InverseLerp(0, maxShieldPoint, shieldPoint);
         value = Mathf.Lerp(0, 1, value);
-        shieldRemnants.fillAmount = Mathf.Lerp(oldValue, value, shieldRemnantTime / maxRemnantTime);
+        shieldRemnants.fillAmount = Mathf.Lerp(oldShieldValue, value, shieldRemnantTime / maxRemnantTime);
 
-        if (remnantTime >= maxRemnantTime)
+        if (shieldRemnantTime >= maxRemnantTime)
         {
             shieldRemnantTime = 0;
             activateShieldRemnant = false;

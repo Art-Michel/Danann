@@ -15,7 +15,8 @@ public class DanuShield : MonoBehaviour
     {
         agent=GetComponent<DanuAI>();
         bh=GetComponent<BossHealth>();   
-        bh.ActivateShield(); 
+        bh.ActivateShield();
+        agent.ActivateShield(); 
     }
 
     // Update is called once per frame
@@ -28,6 +29,7 @@ public class DanuShield : MonoBehaviour
         {
             shieldActive=true;
             bh.ActivateShield();
+            agent.ActivateShield(); 
         }
     }
 }
