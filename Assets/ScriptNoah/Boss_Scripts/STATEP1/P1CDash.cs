@@ -62,6 +62,7 @@ public class P1CDash : Danu_State
         }
         if (chargingTime <= maxChargingTime)
         {
+            fsm.agent.vfx[0].SetActive(true);
             preview.SetActive(true);
             chargingTime += Time.deltaTime;
             //Vector3 arrival= transform.position+dir*dashSpeed*maxDashTime ;
@@ -114,7 +115,6 @@ public class P1CDash : Danu_State
             fsm.transform.LookAt(fsm.agent.GetArenaCenter());
             preview.gameObject.SetActive(true);
             dashAttackData.LaunchAttack();
-            fsm.agent.vfx[0].SetActive(true);
             return;
         }
         else
