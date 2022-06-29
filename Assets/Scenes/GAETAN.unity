@@ -12377,7 +12377,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-12820
+  m_Name: pb_Mesh-9342
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13930,6 +13930,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3023105402794909113, guid: 93b660a9de543ef4f9bd45d7d7c032f1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c5077daf1b02ca24087372908caae841, type: 2}
     - target: {fileID: 4482682488302345054, guid: 93b660a9de543ef4f9bd45d7d7c032f1, type: 3}
       propertyPath: m_Name
       value: WorldBuilding_Full
