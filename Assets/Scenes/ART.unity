@@ -6093,6 +6093,10 @@ PrefabInstance:
       propertyPath: _playerfeedbacks
       value: 
       objectReference: {fileID: 902433838}
+    - target: {fileID: 1145471978, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1716253134436969643, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: m_Name
       value: BossGameObject_1
@@ -6122,6 +6126,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 257248487}
     - target: {fileID: 2577399527204082855, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: _maxHealthPoints
+      value: 380
+      objectReference: {fileID: 0}
+    - target: {fileID: 2577399527204082855, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: _playerFeedbacks
       value: 
       objectReference: {fileID: 902433838}
@@ -6129,6 +6137,30 @@ PrefabInstance:
       propertyPath: _healthBarRemnant
       value: 
       objectReference: {fileID: 1133639718}
+    - target: {fileID: 4027488366541735896, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: m_Intensity
+      value: 30.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027488366541735896, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: m_LightUnit
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027488366541735896, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: useVolumetric
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027488366541735896, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: m_ShadowNearPlane
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027488366541735896, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: m_ShadowResolution.m_Level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027488366541735896, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: m_ShadowResolution.m_UseOverride
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4112063746909185506, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -6173,6 +6205,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7104880329030482775, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7104880329030482775, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7104880329030482775, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7104880329030482775, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7104880329030482775, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: m_Intensity
+      value: 154175760
+      objectReference: {fileID: 0}
+    - target: {fileID: 7104880329030482775, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7104880329030482775, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8289406093843463521, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: cam
       value: 
@@ -6181,7 +6241,9 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 902433842}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1145471978, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+    - {fileID: 1145471977, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
 --- !u!1 &611166298
 GameObject:
@@ -8817,7 +8879,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-12074
+  m_Name: pb_Mesh-42342
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

@@ -557,13 +557,13 @@ public class PlayerActions : MonoBehaviour
     private void OnEnable()
     {
         _inputs.Enable();
-        Gamepad.current.SetMotorSpeeds(0,0);
+        if(Gamepad.current !=null)Gamepad.current.SetMotorSpeeds(0,0);
     }
 
     private void OnDisable()
     {
         _inputs.Disable();
-        Gamepad.current.SetMotorSpeeds(0,0);
+        if(Gamepad.current !=null)Gamepad.current.SetMotorSpeeds(0,0);
     }
     #endregion
 }
