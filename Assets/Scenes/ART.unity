@@ -34435,6 +34435,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1776218585897986422, guid: 93b660a9de543ef4f9bd45d7d7c032f1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 642e0c2563b293547bc56d1ad3970592, type: 2}
     - target: {fileID: 4482682488302345054, guid: 93b660a9de543ef4f9bd45d7d7c032f1, type: 3}
       propertyPath: m_Name
       value: WorldBuilding_Full
