@@ -392,7 +392,7 @@ public class UiManager : LocalManager<UiManager>
 
     public void OnePlasmaEmptied()
     {
-        Color transparent = new Color(1, 1, 1, 0.5f);
+        Color transparent = new Color(.7f, .7f, .7f, 0.5f);
         _dashPng.color = transparent;
         _dashFramePng.color = transparent;
         _parryFramePng.color = transparent;

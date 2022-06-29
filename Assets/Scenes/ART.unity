@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 1f5db291879cdbb41b54cbbf15dc304b, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: f71ba210c9d3aea448fc4b0199273139, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -5292,7 +5292,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323480812}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -22.242586, y: 34.40439, z: -38.00796}
+  m_LocalPosition: {x: -22.376282, y: 42.506012, z: -44.597473}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2028546034}
@@ -7226,7 +7226,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834729807}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -22.242586, y: 34.40439, z: -38.00796}
+  m_LocalPosition: {x: -22.376282, y: 42.506012, z: -44.597473}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 384871587}
@@ -7413,7 +7413,7 @@ Camera:
     height: 1
   near clip plane: 13
   far clip plane: 1000
-  field of view: 60
+  field of view: 24.885107
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
