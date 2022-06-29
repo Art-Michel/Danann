@@ -15458,50 +15458,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 7421590886004538860, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
-      propertyPath: _bossDM
-      value: 
-      objectReference: {fileID: 8300000, guid: 27726539ba2bfa949963a51b96649d92, type: 3}
-    - target: {fileID: 7421590886004538860, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
-      propertyPath: _bossDeath
-      value: 
-      objectReference: {fileID: 8300000, guid: 6d1f0e9586c34d0418319212b4912dcf, type: 3}
-    - target: {fileID: 7421590886004538860, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
-      propertyPath: _bossLaser
-      value: 
-      objectReference: {fileID: 8300000, guid: a0a3fda01181ce44a94cdf535f9c23ed, type: 3}
-    - target: {fileID: 7421590886004538860, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
-      propertyPath: _bossTPCharge
-      value: 
-      objectReference: {fileID: 8300000, guid: d09ab6c5e3415214e98bfd3907d5bacc, type: 3}
-    - target: {fileID: 7421590886004538860, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
-      propertyPath: _bossMeteorBoom
-      value: 
-      objectReference: {fileID: 8300000, guid: 1b45ae828a1a8c148b6070731514057c, type: 3}
-    - target: {fileID: 7421590886004538860, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
-      propertyPath: _bossShieldBreak
-      value: 
-      objectReference: {fileID: 8300000, guid: ea743228f4699334a94f3653f91e3f83, type: 3}
-    - target: {fileID: 7421590886004538860, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
-      propertyPath: _bossMeteorCharge
-      value: 
-      objectReference: {fileID: 8300000, guid: d09ab6c5e3415214e98bfd3907d5bacc, type: 3}
-    - target: {fileID: 7421590886004538860, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
-      propertyPath: _bossBoomerangFly1
-      value: 
-      objectReference: {fileID: 8300000, guid: 99355f36ff7b619409e62ebe00299929, type: 3}
-    - target: {fileID: 7421590886004538860, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
-      propertyPath: _bossBoomerangFly2
-      value: 
-      objectReference: {fileID: 8300000, guid: ed0d780bc5a62474d8def0116d09cdc4, type: 3}
-    - target: {fileID: 7421590886004538860, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
-      propertyPath: _bossBoomerangCharge
-      value: 
-      objectReference: {fileID: 8300000, guid: 6c4e6c0b51bdebc429a5a4c7ae9d69bb, type: 3}
-    - target: {fileID: 7421590886004538860, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
-      propertyPath: _bossShiedlSmallBreak
-      value: 
-      objectReference: {fileID: 8300000, guid: cafd4ce8f1192a947b9a8b063961dbe6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66c445d7b3ef17243a09acc55f6f6f34, type: 3}
 --- !u!1 &103313453
@@ -21495,7 +21451,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036379528}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -22.376282, y: 42.506012, z: -44.597473}
+  m_LocalPosition: {x: -22.242586, y: 34.40439, z: -38.00796}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 351849129}
@@ -21682,7 +21638,7 @@ Camera:
     height: 1
   near clip plane: 13
   far clip plane: 1000
-  field of view: 24.885107
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -24333,7 +24289,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1733735300}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -22.376282, y: 42.506012, z: -44.597473}
+  m_LocalPosition: {x: -22.242586, y: 34.40439, z: -38.00796}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1358527973}
@@ -26977,6 +26933,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1515801594}
+    - target: {fileID: 8289406093843463521, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: isDebug
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
 --- !u!1 &2131683471 stripped

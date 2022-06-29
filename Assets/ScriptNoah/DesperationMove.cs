@@ -154,6 +154,7 @@ public class DesperationMove : MonoBehaviour
     {
         agent.vfx[4].SetActive(false);
         agent.vfx[6].SetActive(false);
+        postProcess.weight=0;
         agent.EndDM();
         enabled=false;
         endPos=agent.GetArenaCenter();

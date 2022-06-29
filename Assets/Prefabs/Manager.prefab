@@ -3498,14 +3498,23 @@ MonoBehaviour:
   _triangleBreak: {fileID: 8300000, guid: bd16bac6aec54084ab53d13ede548438, type: 3}
   _ultReady: {fileID: 8300000, guid: c0186d5f9423a8046949be1ba95e7397, type: 3}
   _bossTPIn: {fileID: 8300000, guid: 7f3209784dbfcc24c8317455e45062a6, type: 3}
+  _bossTPCharge: {fileID: 8300000, guid: d09ab6c5e3415214e98bfd3907d5bacc, type: 3}
   _bossTPOut: {fileID: 8300000, guid: 12f9202d4ee334e4bb7a2f9e71ccd141, type: 3}
   _bossShoot: {fileID: 8300000, guid: e15669555f68fc541ad429b4d55af2d2, type: 3}
   _bossStartRise: {fileID: 8300000, guid: d7276aa9dfcfdaf4c83aa6c33b06b977, type: 3}
-  _bossDeath: {fileID: 8300000, guid: 654516bf422af5c40a68a32e69701235, type: 3}
+  _bossDeath: {fileID: 8300000, guid: 6d1f0e9586c34d0418319212b4912dcf, type: 3}
   _bossEndRise: {fileID: 8300000, guid: 7aa994e3abdff194baf344c8c630bb2f, type: 3}
   _bossDash: {fileID: 8300000, guid: 95464d97cb90051459cfec70f530e315, type: 3}
-  _bossBoomerang: {fileID: 8300000, guid: f414bb3603d99674c82b502fd2aaf444, type: 3}
+  _bossBoomerangCharge: {fileID: 8300000, guid: 6c4e6c0b51bdebc429a5a4c7ae9d69bb, type: 3}
+  _bossBoomerangFly1: {fileID: 8300000, guid: 99355f36ff7b619409e62ebe00299929, type: 3}
+  _bossBoomerangFly2: {fileID: 8300000, guid: ed0d780bc5a62474d8def0116d09cdc4, type: 3}
   _bossAllOut: {fileID: 8300000, guid: 7884e612d495f0040bf0f4151cebb26c, type: 3}
+  _bossLaser: {fileID: 8300000, guid: a0a3fda01181ce44a94cdf535f9c23ed, type: 3}
+  _bossMeteorCharge: {fileID: 8300000, guid: d09ab6c5e3415214e98bfd3907d5bacc, type: 3}
+  _bossMeteorBoom: {fileID: 8300000, guid: 1b45ae828a1a8c148b6070731514057c, type: 3}
+  _bossDM: {fileID: 8300000, guid: 27726539ba2bfa949963a51b96649d92, type: 3}
+  _bossShiedlSmallBreak: {fileID: 8300000, guid: cafd4ce8f1192a947b9a8b063961dbe6, type: 3}
+  _bossShieldBreak: {fileID: 8300000, guid: ea743228f4699334a94f3653f91e3f83, type: 3}
 --- !u!114 &1887106434
 MonoBehaviour:
   m_ObjectHideFlags: 0
