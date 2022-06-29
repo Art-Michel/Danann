@@ -148,6 +148,7 @@ public class UiManager : LocalManager<UiManager>
     [SerializeField] GameObject _winButton;
     public void DisplayWinScreen()
     {
+        Cursor.visible = true;
         _shouldFadeToWin = false;
         _playerActions.gameObject.SetActive(false);
         _canPause = false;
@@ -164,6 +165,7 @@ public class UiManager : LocalManager<UiManager>
     bool _shouldFadeToLose = false;
     public void DisplayLossScreen()
     {
+        Cursor.visible = true;
         _canPause = false;
         _t = 0;
         Time.timeScale = 0.1f;
@@ -220,6 +222,7 @@ public class UiManager : LocalManager<UiManager>
 
     void Pause()
     {
+        Cursor.visible = true;
         _isPaused = true;
         _playerActions.enabled = false;
         _playerMovement.enabled = false;
@@ -235,6 +238,7 @@ public class UiManager : LocalManager<UiManager>
     public void Unpause()
     {
         _isPaused = false;
+        Cursor.visible = true;
         _ingameUiParent.SetActive(true);
         _playerActions.enabled = true;
         _playerMovement.enabled = true;

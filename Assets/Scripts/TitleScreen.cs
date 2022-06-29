@@ -57,6 +57,7 @@ public class TitleScreen : MonoBehaviour
     void Start()
     {
         if (Gamepad.current != null) Gamepad.current.SetMotorSpeeds(0, 0);
+        Cursor.visible = true;
         _shouldPlay = false;
         _dof.active = true;
 

@@ -16,6 +16,7 @@ public class GameManager : LocalManager<GameManager>
     void Start()
     {
         Time.timeScale=1;
+        Cursor.visible = false;
 #if UNITY_EDITOR
         SOMeshes.Init(_configSOMeshes);
         #endif
