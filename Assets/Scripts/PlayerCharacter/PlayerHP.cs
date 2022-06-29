@@ -97,7 +97,7 @@ public class PlayerHP : EntityHP
         if (_playerPlasma.PlasmaPoints > 0)
         {
             _bossHealth.TakeDamage(plasmaRegainValue * 5, attackName, 0);
-            if (_isShieldingForTheFirstTime) _playerPlasma.SpendPlasma("Renvoi");
+            if (!_isShieldingForTheFirstTime) _playerPlasma.SpendPlasma("Renvoi");
             _playerFeedbacks.PlayShieldTriggerSfx();
             _ShieldCounterVfx.Clear();
             _ShieldCounterVfx.Play();
