@@ -291,20 +291,9 @@ public class DanuAI : MonoBehaviour
                     switch (chance)
                     {
                         case 1:
-                            int rand=Random.Range(0,2);
-                            if (rand==1)
-                            {
-                                m_fsm.ChangeState(StateNames.P1C_MIXDASH);
-                                m_anims.SetInteger("Pattern",2);
-                                m_animsP2.SetInteger("Pattern",2);
-                            }
-                            else
-                            {
                                 m_fsm.ChangeState(StateNames.P1C_DASH);
                                 m_anims.SetInteger("Pattern",1);
                                 m_animsP2.SetInteger("Pattern",1);
-
-                            }
                             break;
                         case 2:
                             m_fsm.ChangeState(StateNames.P1C_SLAM);
@@ -407,21 +396,9 @@ public class DanuAI : MonoBehaviour
                     switch (chance)
                     {
                         case 1:
-                        
-                            int rand=Random.Range(0,2);
-                            if (rand==1)
-                            {
-                                m_anims.SetInteger("Pattern",2);
-                                m_animsP2.SetInteger("Pattern",2);
-                                m_fsm.ChangeState(StateNames.P2C_MIXDASH);
-                            }
-                            else
-                            {
-                                m_fsm.ChangeState(StateNames.P2C_DASH);
-                                m_anims.SetInteger("Pattern",1);
-                                m_animsP2.SetInteger("Pattern",1);
-
-                            }
+                            m_fsm.ChangeState(StateNames.P2C_DASH);
+                            m_anims.SetInteger("Pattern",1);
+                            m_animsP2.SetInteger("Pattern",1);
                             break;
                         case 2:
                             m_fsm.ChangeState(StateNames.P2C_SLAM);

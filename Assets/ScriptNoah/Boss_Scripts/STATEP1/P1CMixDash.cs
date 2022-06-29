@@ -120,6 +120,9 @@ public class P1CMixDash : Danu_State
         Vector3 offset = left * Random.Range(-15, 15);
         offset = new Vector3(offset.x, 0, offset.z);
         strafeDest = fsm.transform.position + offset;
+        if (Vector3.Distance(strafeDest,fsm.agent.GetArenaCenter())>=fsm.agent.GetArenaRadius())
+            strafeDest= (strafeDest-fsm.agent.GetArenaCenter())*(fsm.agent.GetArenaRadius()/1.3f)+fsm.agent.GetArenaCenter();  
+        Debug.Log(strafeDest);
     }
 
     private bool CanDash()
@@ -231,10 +234,13 @@ public class P1CMixDash : Danu_State
             fsm.transform.LookAt(maxArrival);
             return;
         }
+        else
+            maxArrival = startPos + dir * dashSpeed * dashTime;
         startPos = fsm.transform.position;
         Debug.Log(startPos);
         Debug.Log(maxArrival);
-        maxArrival = startPos + dir * dashSpeed * dashTime;
+        if (Vector3.Distance( maxArrival,fsm.agent.GetArenaCenter())>=fsm.agent.GetArenaRadius())
+            maxArrival= maxArrival-fsm.agent.GetArenaCenter()*(fsm.agent.GetArenaRadius()/1.3f);
 
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
         fsm.transform.LookAt(straightTarget);

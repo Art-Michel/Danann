@@ -16,7 +16,7 @@ public class EntityHP : MonoBehaviour
     [Required][SerializeField] protected PlayerPlasma _playerplasma;
     [Required][SerializeField] Image _healthBar;
     [Required][SerializeField] public Image _healthBarRemnant;
-    [SerializeField] Pooler _billboardsPool;
+    [SerializeField] protected Pooler _billboardsPool;
     Color _orange = new Color(1,0.4f,0);
     //shield
     public bool IsShielding;

@@ -101,6 +101,8 @@ public class P2CDash : Danu_State
         dir = (-fsm.transform.position + target.position).normalized;
         startPos = fsm.transform.position;
         maxArrival = fsm.transform.position + dir * dashSpeed * dashTime;
+        if (Vector3.Distance( maxArrival,fsm.agent.GetArenaCenter())>=fsm.agent.GetArenaRadius())
+            maxArrival= maxArrival-fsm.agent.GetArenaCenter()*(fsm.agent.GetArenaRadius()/1.3f);
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
         fsm.transform.LookAt(straightTarget);
         dashAttackData.LaunchAttack();

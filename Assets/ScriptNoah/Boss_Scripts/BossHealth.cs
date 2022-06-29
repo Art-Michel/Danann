@@ -23,7 +23,7 @@ public class BossHealth : EntityHP
     private float shieldRemnantTime;
     private bool activateShieldRemnant;
     private float oldShieldValue;
-
+    [SerializeField] RectTransform invulText;
     void Awake()
     {
         agent = GetComponent<DanuAI>();
@@ -63,10 +63,11 @@ public class BossHealth : EntityHP
             oldShieldValue = (HealthPoints / _maxHealthPoints);
         
         float percent = (HealthPoints / _maxHealthPoints) * 100;
-        bool cond =attackName == Ccl_Attacks.TRAVELINGSPEAR; 
-        cond=cond || attackName == Ccl_Attacks.SPEARSWINGL;
-        cond=cond|| attackName == Ccl_Attacks.SPEARSWINGR;
-        cond=cond||attackName==Ccl_Attacks.TRIANGLETICK;
+        bool isDistance =attackName == Ccl_Attacks.TRAVELINGSPEAR; 
+        isDistance=isDistance || attackName == Ccl_Attacks.SPEARSWINGL;
+        isDistance=isDistance|| attackName == Ccl_Attacks.SPEARSWINGR;
+        isDistance=isDistance||attackName==Ccl_Attacks.TRIANGLETICK;
+        isDistance=isDistance||attackName==Danu_Attacks.PROJECTILE ;
         if (agent.IsDM())
             return base.TakeDamage(0, attackName, plasmaRegainValue, revengeGain);
         if (agent.IsShielded() )
@@ -80,21 +81,22 @@ public class BossHealth : EntityHP
                 DesactivateShield();
                 return base.TakeDamage(amount, attackName, plasmaRegainValue, revengeGain);
             }
-            if ( !cond)
+            if ( !isDistance)
             {
 
-            shieldPoint--;
-            shieldBar.fillAmount=shieldPoint*0.25f;
-            activateShieldRemnant=true;
-            agent.UpdateShield(shieldPoint);
-            accel=0;
-            if (shieldPoint<=0)
-            {
-                DesactivateShield();
+                shieldPoint--;
+                shieldBar.fillAmount=shieldPoint*0.25f;
+                activateShieldRemnant=true;
+                agent.UpdateShield(shieldPoint);
+                accel=0;
+                if (shieldPoint<=0)
+                {
+                    DesactivateShield();
+                }
+                return base.TakeDamage(0, attackName, plasmaRegainValue, revengeGain);
             }
+            InvulnerableShieldingText();
             return base.TakeDamage(0, attackName, plasmaRegainValue, revengeGain);
-            }
-                        return base.TakeDamage(0, attackName, plasmaRegainValue, revengeGain);
 
         }
         if (((HealthPoints-amount)/_maxHealthPoints)*100<=5 && !agent.HasDM())
@@ -109,7 +111,10 @@ public class BossHealth : EntityHP
 
         return base.TakeDamage(amount, attackName, plasmaRegainValue, revengeGain);
     }
-
+    public void InvulnerableShieldingText()
+    {
+        invulText.gameObject.SetActive(true);
+    }
     private void DesactivateShield()
     {
         shieldGO.SetActive(false);
