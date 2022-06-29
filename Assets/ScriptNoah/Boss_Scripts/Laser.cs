@@ -41,6 +41,7 @@ public class Laser : MonoBehaviour
         preview.SetActive(true);
         dad.transform.LookAt(dm.agent.GetPlayer());
         dm.transform.LookAt(dm.agent.GetPlayer());
+        SoundManager.Instance.PlayBossLaser();
     }
 
     // Update is called once per frame
@@ -94,6 +95,7 @@ public class Laser : MonoBehaviour
             delay-=Time.deltaTime;
             if (delay<=0)
             {
+
                 goUp=true;
                 preview.SetActive(false);
                 StartShaking(lifetime, secondShakeForce);

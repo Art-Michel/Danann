@@ -28,6 +28,7 @@ public class Meteor : MonoBehaviour
         _state=0;
         _timer=0;
         isSetup=true;
+        SoundManager.Instance.PlayBossMeteorCharge();
         preview.SetActive(true);
         boombox.SetActive(false);
     }
@@ -42,6 +43,7 @@ public class Meteor : MonoBehaviour
         if (_state == 0 && _timer > _frames.x)
         {
             StartAttack();
+            SoundManager.Instance.PlayBossMeteorBoom();
             Debug.Log("ee");
         }
         if (_state == 1 && _timer > _frames.y)

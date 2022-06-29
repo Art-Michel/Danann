@@ -172,11 +172,15 @@ public class DanuAI : MonoBehaviour
         {
             isShielded=true;
             if (shieldIndex!=4)
-            shieldTime.PlayShieldBreak(shieldIndex);
+            {
+                shieldTime.PlayShieldBreak(shieldIndex);
+                SoundManager.Instance.PlayBossSmallBreak();
+            }
         }
         else 
         {
             shieldTime.PlayShieldBreak(shieldIndex);
+            SoundManager.Instance.PlayBossBreak();
             isShielded=false;
             shieldTime.DesactivateShield();
             for (int i=0;i<shields.Count;i++)

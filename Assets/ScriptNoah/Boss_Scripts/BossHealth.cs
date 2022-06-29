@@ -101,6 +101,7 @@ public class BossHealth : EntityHP
         {
             amount = (int)(HealthPoints - ((5f / 100f) * _maxHealthPoints)) + 1;
             agent.launchDM();
+            SoundManager.Instance.PlayDMTransition();
             return base.TakeDamage(amount, attackName, plasmaRegainValue, revengeGain);
         }
         if (percent < 70 && agent.GetPhase() == 1)

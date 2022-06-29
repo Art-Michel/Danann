@@ -58,7 +58,8 @@ public class Dm_TP : Dm_State
     // Start is called before the first frame update
     public override void Begin() 
     {        
-            Init();
+        Init();
+        SoundManager.Instance.PlayBossTpCharge();
         arrival.SetActive(false);
         fakeArrival.SetActive(false);
         Vector2 rand = Random.insideUnitCircle;

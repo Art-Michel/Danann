@@ -38,6 +38,7 @@ public class P1CTeleportation : Danu_State
             Init();
         destination=fsm.GetP1TP_Destination();
         arrival.SetActive(false);
+        SoundManager.Instance.PlayBossTpCharge();
         if (destination == destPoints.FAR)
         {
             float dist = farDist / Vector3.Distance(fsm.transform.position, target.position);

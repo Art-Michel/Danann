@@ -59,6 +59,7 @@ public class P2CTeleportation : Danu_State
         if(!isInit)
             Init();
         destination=fsm.GetP1TP_Destination();
+        SoundManager.Instance.PlayBossTpCharge();
 
         if (destination == P1CTeleportation.destPoints.FAR)
         {

@@ -44,7 +44,7 @@ public class P1DBoomerang : Danu_State
         Vector3 straightEnd = (curveStartL + curveStartR) / 2;
         preview.gameObject.SetActive(true);
         fsm.transform.LookAt(straightTarget);
-        SoundManager.Instance.PlayBossBoomerang();
+        SoundManager.Instance.PlayBossBoomerangCharge();
         wait = true;
         waitTime=0;
     }
@@ -77,6 +77,7 @@ public class P1DBoomerang : Danu_State
             if (waitTime >= maxWaitTime)
             {
                 wait = false;
+                SoundManager.Instance.PlayBossBoomerangGo();
                 boomerangAttackData.LaunchAttack();
             }
             return;
@@ -100,6 +101,7 @@ public class P1DBoomerang : Danu_State
         {    
             preview.gameObject.SetActive(false);
             startCurve = true;
+            SoundManager.Instance.PlayBossBoomerangBack();
             UpdateCurve();
         }
     }

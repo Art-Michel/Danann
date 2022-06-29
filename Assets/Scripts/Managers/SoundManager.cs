@@ -32,15 +32,59 @@ public class SoundManager : LocalManager<SoundManager>
     Dictionary<string, AudioClip> _attackSoundEffect;
     #region Boss
     [SerializeField, Foldout("BossSFX")] AudioClip _bossTPIn;
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossTPCharge;
     [SerializeField, Foldout("BossSFX")] AudioClip _bossTPOut;
     [SerializeField, Foldout("BossSFX")] AudioClip _bossShoot;
     [SerializeField, Foldout("BossSFX")] AudioClip _bossStartRise;
     [SerializeField, Foldout("BossSFX")] AudioClip _bossDeath;
     [SerializeField, Foldout("BossSFX")] AudioClip _bossEndRise;
     [SerializeField, Foldout("BossSFX")] AudioClip _bossDash;
-    [SerializeField, Foldout("BossSFX")] AudioClip _bossBoomerang;
-    [SerializeField, Foldout("BossSFX")] AudioClip _bossAllOut;
 
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossBoomerangCharge;
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossBoomerangFly1;
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossBoomerangFly2;
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossAllOut;
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossLaser;
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossMeteorCharge;
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossMeteorBoom;
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossDM;
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossShiedlSmallBreak;
+    [SerializeField, Foldout("BossSFX")] AudioClip _bossShieldBreak;
+    public void PlayBossLaser()
+    {
+        PlaySound(_bossLaser,1f);
+    }
+    public void PlayBossSmallBreak()
+    {
+        PlaySound(_bossShiedlSmallBreak,1f);
+    }    public void PlayBossBreak()
+    {
+        PlaySound(_bossShieldBreak,0.7f);
+    }
+    public void PlayDMTransition()
+    {
+        PlaySound(_bossDM,1f);
+    }
+    public void PlayBossMeteorCharge()
+    {
+        PlaySound(_bossMeteorCharge, 0.2f);
+    }
+    public void PlayBossMeteorBoom()
+    {
+        PlaySound(_bossMeteorBoom, 0.2f);
+    }
+    public void PlayBossBoomerangBack()
+    {
+        PlaySound(_bossBoomerangFly2, 1f);
+    }
+    public void PlayBossBoomerangCharge()
+    {
+        PlaySound(_bossBoomerangCharge, 1f);
+    }
+    public void PlayBossTpCharge()
+    {
+        PlaySound(_bossTPCharge, 1.8f);
+    }
     public void PlayBossTpIn()
     {
         PlaySound(_bossTPIn, 1f);
@@ -65,9 +109,9 @@ public class SoundManager : LocalManager<SoundManager>
     {
         PlaySound(_bossDash, 1f);
     }
-    public void PlayBossBoomerang()
+    public void PlayBossBoomerangGo()
     {
-        PlaySound(_bossBoomerang, 1f);
+        PlaySound(_bossBoomerangFly1, 1f);
     }
     public void PlayBossAllOut()
     {
@@ -122,7 +166,7 @@ public class SoundManager : LocalManager<SoundManager>
 
     internal void PlayBossDie()
     {
-        PlaySound(_bossDeath, 1f);
+        PlaySound(_bossDeath, 2f);
     }
 
     public void PlayBossPunchedH()

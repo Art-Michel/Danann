@@ -61,6 +61,7 @@ public class DM_DoubleTP : Dm_State
     {        
             Init();
         arrival.SetActive(false);
+        SoundManager.Instance.PlayBossTpCharge();
         fakeArrival.SetActive(false);
         Debug.Log("close");
         Vector2 rand = Random.insideUnitCircle;
