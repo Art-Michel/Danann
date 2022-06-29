@@ -3,6 +3,7 @@ using UnityEngine;
 using NaughtyAttributes;
 using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.Rendering;
+using UnityEngine.InputSystem;
 public class Laser : MonoBehaviour
 {
     [SerializeField]private int firstShakeTime = 5;
@@ -41,6 +42,8 @@ public class Laser : MonoBehaviour
         preview.SetActive(true);
         dad.transform.LookAt(dm.agent.GetPlayer());
         dm.transform.LookAt(dm.agent.GetPlayer());
+            if (Gamepad.current!=null)
+                Gamepad.current.SetMotorSpeeds(0.1f,0.1f);
         SoundManager.Instance.PlayBossLaser();
     }
 
@@ -49,6 +52,7 @@ public class Laser : MonoBehaviour
     {
 
         ShakeUpdate();
+        VolumeUpdate();
         if (delay>=0)
         {
             Delay();
@@ -56,13 +60,28 @@ public class Laser : MonoBehaviour
         }
         if (!over)
         {
-            VolumeUpdate();
             Turn();
+            CheckRumbling();
             MoveTip();
             Live();
         }
         
     }
+
+    private void CheckRumbling()
+    {
+        if (Gamepad.current==null)
+            return;
+        if (!_playerfeedbacks.GetIsRumbling())
+            Gamepad.current.ResumeHaptics();
+    }
+
+    private void ShakeControl()
+    {
+        if (Gamepad.current!=null)
+            Gamepad.current.SetMotorSpeeds(0.5f,0.5f);
+    }
+
     [Button]
     private void Turn()
     {
@@ -95,6 +114,7 @@ public class Laser : MonoBehaviour
             delay-=Time.deltaTime;
             if (delay<=0)
             {
+            ShakeControl();
 
                 goUp=true;
                 preview.SetActive(false);
@@ -125,6 +145,9 @@ public class Laser : MonoBehaviour
             {
                 ps.Stop();
             }
+            _volume.weight=0;
+            if (Gamepad.current!=null)
+                Gamepad.current.SetMotorSpeeds(0,0);
             m_isShaking=false;
             goUp=false;
             over=true;
@@ -135,7 +158,11 @@ public class Laser : MonoBehaviour
         }
 
     }
-
+    private void OnDisable() 
+    {
+        if (Gamepad.current!=null)
+            Gamepad.current.ResetHaptics();
+    }
     private void ExtendHitbox()
     {
         float delta = 1f/children.Count;
@@ -164,7 +191,7 @@ public class Laser : MonoBehaviour
 	private Vector3 m_originalPos = Vector3.zero;
     private float volumeTime;
     private bool goUp;
-
+    [SerializeField] PlayerFeedbacks _playerfeedbacks;
 
     public void StartShaking( float time, float force ) {
 		this.m_originalPos = cam.transform.position;

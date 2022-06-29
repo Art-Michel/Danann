@@ -414,10 +414,12 @@ public class PlayerFeedbacks : MonoBehaviour
     #region rumble
     private float _rumbleT;
     private bool _isRumbling;
+    public bool GetIsRumbling(){return _isRumbling;}
     public void StartRumble(float duration, float lowFrequencyIntensity, float highFrequencyIntensity)
     {
         if (Gamepad.current != null)
         {
+            Gamepad.current.ResumeHaptics();
             Gamepad.current.SetMotorSpeeds(lowFrequencyIntensity, highFrequencyIntensity);
             _rumbleT = duration;
             _isRumbling = true;
@@ -428,7 +430,7 @@ public class PlayerFeedbacks : MonoBehaviour
     {
         if (Gamepad.current != null)
         {
-            Gamepad.current.SetMotorSpeeds(0, 0);
+            Gamepad.current.PauseHaptics();
             _vcamPerlin.m_AmplitudeGain = 0;
             _isRumbling = false;
         }

@@ -64,7 +64,7 @@ public class Meteor : MonoBehaviour
 
         preview.SetActive(false);
         boombox.SetActive(true);
-        //_attackData.LaunchAttack();
+        _attackData.LaunchAttack();
 
     }
 
@@ -73,6 +73,6 @@ public class Meteor : MonoBehaviour
         _state++;
         _timer=0;
         boombox.SetActive(false);
-        //_attackData.StopAttack();
+        _attackData.StopAttack();
     }
 }
