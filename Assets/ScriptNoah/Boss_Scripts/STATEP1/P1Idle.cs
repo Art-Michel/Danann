@@ -9,13 +9,26 @@ public class P1Idle : Danu_State
     // Start is called before the first frame update
     public override void Begin()
     {
-        idleTime=fsm.agent.GetWaitingTime();
+        if (!isInit)
+        {
+            idleTime=fsm.agent.GetWaitingTime()+3;
+            Debug.Log("firstTime ?");
+            Init();
+        }
+        else
+        {
+            idleTime=fsm.agent.GetWaitingTime();       
+        }
+
         Vector2 nextRelativePosition=Random.insideUnitCircle*fsm.agent.GetMovementRange();
         Vector3 nextTargetPos=new Vector3(fsm.transform.position.x+nextRelativePosition.x,fsm.transform.position.y,fsm.transform.position.z+nextRelativePosition.y);
         IdleMovement=nextTargetPos;
         fsm.agent.RestoreChain();
     }
-    
+    public override void Init()
+    {
+        base.Init();
+    }
     // Update is called once per frame
     public override void Update()
     {
@@ -39,4 +52,3 @@ public class P1Idle : Danu_State
         idleTime=newTime;
     }
 }
-;

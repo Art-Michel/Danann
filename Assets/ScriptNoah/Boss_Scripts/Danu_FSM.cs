@@ -293,7 +293,9 @@ public class Danu_FSM : MonoBehaviour
     }
     #endregion
     int indexx;
-
+    bool wait;
+    float beforeFight=2;
+    float timer;
 
     public Danu_State curr { get; private set; }
     public Danu_State prev { get; private set; }
@@ -338,6 +340,12 @@ public class Danu_FSM : MonoBehaviour
 
     void Update()
     {
+        if (wait)
+        {
+            timer+=Time.deltaTime;
+            if (timer>=beforeFight)
+                wait=false;
+        }
         if (agent.isStun)
         {
             return;

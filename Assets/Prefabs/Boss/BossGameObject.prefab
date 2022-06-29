@@ -84197,6 +84197,10 @@ MonoBehaviour:
   - {x: 0.4, y: 0.7, z: 1}
   - {x: 0.5, y: 0.8, z: 1}
   - {x: 0.8, y: 0.9, z: 1}
+  P1MoveFrames:
+  - 0
+  - 0
+  - 0
   P1SlamRecovery: 0
   p1SlamHitBox:
   - arr:
@@ -85399,7 +85403,7 @@ MonoBehaviour:
   revenge: 0
   maxRevenge: 100
   health: {fileID: 2577399527204082855}
-  waitingTime: 0.5
+  waitingTime: 1.5
   arenaRadius: 19
   arenaCenter: {x: -12.4, y: 0, z: -5.4}
   movementRange: 6
@@ -85721,6 +85725,10 @@ MonoBehaviour:
   - {x: 0.4, y: 0.1, z: 1}
   - {x: 0.6, y: 0.1, z: 1}
   - {x: 0.9, y: 0.1, z: 1}
+  P1MoveFrames:
+  - 0.8
+  - 0.4
+  - 0.2
   P1SlamRecovery: 0
   p1SlamHitBox:
   - arr:

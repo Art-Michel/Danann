@@ -76,6 +76,8 @@ public class DesperationMove : MonoBehaviour
     #region Slam
     [Foldout("Slam")][SerializeField] Vector3[] P1AttackFrames = new Vector3[3];
     public Vector3 GetAttackFrames(int index) { return P1AttackFrames[index]; }
+    [Foldout("Slam")][SerializeField] float[] P1MoveFrames= new float[3];
+    public float GetMoveFrames(int index) { return P1MoveFrames[index]; }
     [Foldout("Slam")][SerializeField] private float P1SlamRecovery;
     public float GetP1SlamRecovery() { return P1SlamRecovery; }
     [Foldout("Slam")][SerializeField] Arr2D[] p1SlamHitBox;
