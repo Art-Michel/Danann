@@ -5420,8 +5420,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 1
   shouldHitAllies: 0
-  _attackDamage: 2
-  _plasmaRegainValue: 2
+  _attackDamage: 3
+  _plasmaRegainValue: 4
   _hitboxes:
   - {fileID: 6868656391946405962}
   - {fileID: 6696278159188641473}
@@ -6924,8 +6924,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldHitEnemies: 1
   shouldHitAllies: 0
-  _attackDamage: 1
-  _plasmaRegainValue: 1
+  _attackDamage: 2
+  _plasmaRegainValue: 2
   _hitboxes:
   - {fileID: 4157928151669737584}
   - {fileID: 6696278158720648605}
@@ -8655,6 +8655,14 @@ PrefabInstance:
       propertyPath: _attackName
       value: TravelingSpear
       objectReference: {fileID: 0}
+    - target: {fileID: 152619026, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: _attackDamage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 152619026, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: _plasmaRegainValue
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 759470700, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -8865,11 +8873,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8637741451736142707, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: _attackDamage
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8637741451736142707, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: _plasmaRegainValue
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8684172199197681728, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9031,6 +9039,14 @@ PrefabInstance:
     - target: {fileID: 152619026, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: _attackName
       value: TravelingSpear
+      objectReference: {fileID: 0}
+    - target: {fileID: 152619026, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: _attackDamage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 152619026, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
+      propertyPath: _plasmaRegainValue
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 759470700, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_IsActive
@@ -9278,11 +9294,11 @@ PrefabInstance:
       objectReference: {fileID: 6696278159164135574}
     - target: {fileID: 8637741451736142707, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: _attackDamage
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8637741451736142707, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: _plasmaRegainValue
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8684172199197681728, guid: 7a74c5193c2565244acc6ab8842e9cbb, type: 3}
       propertyPath: m_LocalPosition.y

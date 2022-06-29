@@ -24,7 +24,7 @@ public class PlayerPlasma : MonoBehaviour
         {"TriangleStop", 1},
         {Ccl_Attacks.DASHONSPEAR, 1},
         {Ccl_Attacks.SHIELD, 1},
-        {"Renvoi", 0.2f}
+        {"Renvoi", 0.15f}
     };
 
     void Awake()

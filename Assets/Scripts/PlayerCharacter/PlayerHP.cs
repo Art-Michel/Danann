@@ -91,14 +91,13 @@ public class PlayerHP : EntityHP
 
     protected override void Shield(GameObject obj, int plasmaRegainValue, string attackName)
     {
-        _isShieldingForTheFirstTime = false;
         Ccl_StateShielding stateShielding = _fsm.currentState as Ccl_StateShielding;
         if (_fsm.currentState.Name == Ccl_StateNames.SHIELDING) stateShielding.ShieldT = 0f;
 
         if (_playerPlasma.PlasmaPoints > 0)
         {
             _bossHealth.TakeDamage(plasmaRegainValue * 5, attackName, 0);
-            _playerPlasma.SpendPlasma("Renvoi");
+            if (_isShieldingForTheFirstTime) _playerPlasma.SpendPlasma("Renvoi");
             _playerFeedbacks.PlayShieldTriggerSfx();
             _ShieldCounterVfx.Clear();
             _ShieldCounterVfx.Play();
@@ -108,6 +107,7 @@ public class PlayerHP : EntityHP
             SoundManager.Instance.PlayBlockedHit();
         }
 
+        _isShieldingForTheFirstTime = false;
         bool attackIsMelee = Danu_Attacks.AttackIsMelee[attackName];
         if (attackIsMelee)
         {

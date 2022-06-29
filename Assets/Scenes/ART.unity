@@ -4958,7 +4958,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 583993297}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a851233fff5b21a4ab34b03e4cf8b587, type: 3}
   m_Name: 
@@ -5287,7 +5287,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323480812}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -22.376282, y: 42.506012, z: -44.597473}
+  m_LocalPosition: {x: -22.376282, y: 42.50601, z: -44.597473}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2028546034}
@@ -6547,11 +6547,15 @@ PrefabInstance:
       objectReference: {fileID: 902433842}
     - target: {fileID: 8289406093843463521, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: isDebug
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8289406093843463521, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8289406093843463521, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
+      propertyPath: testState
+      value: P1CSlam
       objectReference: {fileID: 0}
     - target: {fileID: 8289406093843463521, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: arenaRadius
@@ -7657,7 +7661,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834729807}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -22.376282, y: 42.506012, z: -44.597473}
+  m_LocalPosition: {x: -22.376282, y: 42.50601, z: -44.597473}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 384871587}
