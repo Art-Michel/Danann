@@ -27,6 +27,7 @@ public class BossHealth : EntityHP
     void Awake()
     {
         agent = GetComponent<DanuAI>();
+        shieldRemnants.fillAmount=0;
         //_maxHealthPoints = 500;
     }
     public void ActivateShield()
@@ -58,10 +59,7 @@ public class BossHealth : EntityHP
     {
         if (!activateRemnant)
             oldValue = (HealthPoints / _maxHealthPoints);
-        accel = 0;        
-        if (!activateShieldRemnant)
-            oldShieldValue = (HealthPoints / _maxHealthPoints);
-        
+        accel = 0;          
         float percent = (HealthPoints / _maxHealthPoints) * 100;
         bool isDistance =attackName == Ccl_Attacks.TRAVELINGSPEAR; 
         isDistance=isDistance || attackName == Ccl_Attacks.SPEARSWINGL;
@@ -119,7 +117,6 @@ public class BossHealth : EntityHP
     {
         shieldGO.SetActive(false);
         agent.UpdateShield(shieldPoint);
-
     }
 
     private void ResetBlinking()
@@ -132,7 +129,6 @@ public class BossHealth : EntityHP
     {
         if (_isBlinking) HandlePostDamageBlinking();
         UpdateRemnant();
-        UpdateShieldRemnant();
         accel = Mathf.Clamp(accel + Time.deltaTime, 0, 1);
 
     }
@@ -149,21 +145,6 @@ public class BossHealth : EntityHP
         {
             remnantTime = 0;
             activateRemnant = false;
-        }
-    }
-    private void UpdateShieldRemnant() 
-    {
-        if (!activateShieldRemnant)
-            return;
-        shieldRemnantTime += Time.deltaTime * accel;
-        float value = Mathf.InverseLerp(0, maxShieldPoint, shieldPoint);
-        value = Mathf.Lerp(0, 1, value);
-        shieldRemnants.fillAmount = Mathf.Lerp(oldShieldValue, value, shieldRemnantTime / maxRemnantTime);
-
-        if (shieldRemnantTime >= maxRemnantTime)
-        {
-            shieldRemnantTime = 0;
-            activateShieldRemnant = false;
         }
     }
     void FixedUpdate()

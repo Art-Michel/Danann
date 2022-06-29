@@ -7,7 +7,9 @@ public class P1CTeleportation : Danu_State
     public P1CTeleportation() : base(StateNames.P1C_TELEPORTATION) { }
     GameObject arrival;
     GameObject boomBox;
+    private GameObject departBoomBox;
     AttackData boomBoxAttackData;
+    AttackData departAttackData;
     [SerializeField] Transform target;
     [SerializeField] destPoints destination;
     [SerializeField] float MaxFadeTime;
@@ -79,6 +81,8 @@ public class P1CTeleportation : Danu_State
         camWeight=fsm.GetP1TP_CamWeight();
         arrival = fsm.GetP1TP_Arrival();
         boomBox = fsm.GetP1TP_Boombox();
+        departBoomBox=fsm.GetDepartBoombox();
+        departAttackData=departBoomBox.GetComponent<AttackData>();
         boomBoxAttackData = boomBox.GetComponent<AttackData>();
         destination = fsm.GetP1TP_Destination();
         MaxFadeTime = fsm.GetP1TP_Fadetime();
@@ -135,11 +139,15 @@ public class P1CTeleportation : Danu_State
         {
             startup += Time.deltaTime;
             if (startup<=MaxSartup)
+            {
+                departAttackData.LaunchAttack();
                 fsm.agent.vfx[8].SetActive(false);
-
+            }
         }
         else if (fadeTime <= MaxFadeTime)
         {
+            if (fadeTime>0.1f)
+                departAttackData.StopAttack();
             fsm.agent.vfx[8].SetActive(true);
             arrival.SetActive(true);
             fsm.agent.HideMesh();

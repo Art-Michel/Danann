@@ -6,6 +6,7 @@ public class DM_DoubleTP : Dm_State
 {
      GameObject arrival, fakeArrival;
     GameObject boomBox,fakeBoomBox;
+    private GameObject departBoomBox;
     AttackData boomBoxAttackData,fakeBoomBoxAttackData;
     Transform target;
     [SerializeField] P1CTeleportation.destPoints destination;
@@ -27,6 +28,8 @@ public class DM_DoubleTP : Dm_State
     float reco;
     int index;
     [SerializeField]float arenaRadius;
+    AttackData departAttackData;
+
     CinemachineTargetGroup cam;
     private bool _lerpOut;
     private bool _lerpIn;
@@ -40,6 +43,8 @@ public class DM_DoubleTP : Dm_State
         fakeArrival=fsm.GetP2TP_FakeArrival();
         boomBox=fsm.GetP2TP_Boombox();
         fakeBoomBox=fsm.GetP2TP_FakeBoombox();
+        departBoomBox=fsm.GetDepartBoombox();
+        departAttackData=departBoomBox.GetComponent<AttackData>();
         boomBoxAttackData=boomBox.GetComponent<AttackData>();
         fakeBoomBoxAttackData=fakeBoomBox.GetComponent<AttackData>();
         MaxFadeTime = fsm.GetP2TP_Fadetime();
@@ -119,11 +124,16 @@ private void LerpIn()
         {
             startup += Time.deltaTime;
             if (startup>=MaxSartup)
-                    SoundManager.Instance.PlayBossTpIn();
+            {
+                departAttackData.LaunchAttack();   
+                SoundManager.Instance.PlayBossTpIn();
+            }
 
         }
         else if (fadeTime <= MaxFadeTime)
         {
+            if (fadeTime>0.1f)
+                departAttackData.StopAttack();
             fsm.agent.HideMesh();
             arrival.SetActive(true);
             fakeArrival.SetActive(true);

@@ -9,6 +9,7 @@ public class P2CTeleportation : Danu_State
 
     GameObject arrival, fakeArrival;
     GameObject boomBox,fakeBoomBox;
+    private GameObject departBoomBox;
     AttackData boomBoxAttackData,fakeBoomBoxAttackData;
     Transform target;
     [SerializeField] P1CTeleportation.destPoints destination;
@@ -18,6 +19,8 @@ public class P2CTeleportation : Danu_State
     [SerializeField] float maxReco;
     [SerializeField] float maxActive;
     [SerializeField] float farDist;
+    AttackData departAttackData;
+
     float fadeTime;
     float startup;
     float active;
@@ -40,6 +43,8 @@ public class P2CTeleportation : Danu_State
         fakeArrival=fsm.GetP2TP_FakeArrival();
         boomBox=fsm.GetP2TP_Boombox();
         fakeBoomBox=fsm.GetP2TP_FakeBoombox();
+        departBoomBox=fsm.GetDepartBoombox();
+        departAttackData=departBoomBox.GetComponent<AttackData>();
         boomBoxAttackData=boomBox.GetComponent<AttackData>();
         fakeBoomBoxAttackData=fakeBoomBox.GetComponent<AttackData>();
         MaxFadeTime = fsm.GetP2TP_Fadetime();
@@ -143,13 +148,16 @@ private void LerpIn()
             startup += Time.deltaTime;
             if (startup>=MaxSartup)
             {
+                departAttackData.LaunchAttack();
                 SoundManager.Instance.PlayBossTpIn();
-        fsm.agent.vfx[2].SetActive(true);
-        fsm.agent.vfx[3].SetActive(true);
+                fsm.agent.vfx[2].SetActive(true);
+                fsm.agent.vfx[3].SetActive(true);
             }
         }
         else if (fadeTime <= MaxFadeTime)
         {
+            if (fadeTime>0.1f)
+                departAttackData.StopAttack();
             fsm.agent.HideMesh();
 
             fadeTime += Time.deltaTime;

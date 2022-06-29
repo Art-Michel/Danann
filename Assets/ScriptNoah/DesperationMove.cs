@@ -52,6 +52,8 @@ public class DesperationMove : MonoBehaviour
     public float GetP2TP_Active() { return p2TP_Active; }
     [Foldout("TP"), SerializeField] float p2TP_farDist;
     public float GetP2TP_FarDist() { return p2TP_farDist; }
+    [Foldout("TP"), SerializeField] GameObject TP_departBoomBox;
+    public GameObject GetDepartBoombox() { return TP_departBoomBox; }
     #endregion
     #region Rosace
     public Transform GetP1sD_Preview() { return _preview; }

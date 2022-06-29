@@ -287,7 +287,7 @@ public class DanuAI : MonoBehaviour
             float revengePercent=revenge*100/maxRevenge;
             if (goingRandom)
             {
-                int chance=Random.Range(1,6);
+                int chance=Random.Range(1,7);
                     switch (chance)
                     {
                         case 1:
@@ -316,30 +316,23 @@ public class DanuAI : MonoBehaviour
                                m_anims.SetInteger("Pattern",0);
                                m_animsP2.SetInteger("Pattern",0);
                             break;
-                        case 4:
-                            m_fsm.ChangeState(StateNames.P1D_BOOMERANG);
-                                m_anims.SetInteger("Pattern",4);
-                                m_animsP2.SetInteger("Pattern",4);
-                            break;
+
                         case 5:
                             m_fsm.ChangeState(StateNames.P1D_SHOOT);
                                 m_anims.SetInteger("Pattern",5);
                                 m_animsP2.SetInteger("Pattern",5);
                             break;
                         case 6:
-                            int randSP=Random.Range(0,2);
-                            if (randSP==1)
-                            {
+                            
                                 m_fsm.ChangeState(StateNames.P1R_SPIRALE);
                                 m_anims.SetInteger("Pattern",6);
                                 m_animsP2.SetInteger("Pattern",6);
-                            }
-                            else
-                            {
-                                m_fsm.ChangeState(StateNames.P1D_SPIN);
-                                m_anims.SetInteger("Pattern",7);
-                                m_animsP2.SetInteger("Pattern",7);
-                            }
+                            
+                            break;
+                        case 4:            
+                            m_fsm.ChangeState(StateNames.P1D_SPIN);
+                            m_anims.SetInteger("Pattern",7);
+                            m_animsP2.SetInteger("Pattern",7);
                             break;                    
 
                     }
@@ -392,7 +385,7 @@ public class DanuAI : MonoBehaviour
             float revengePercent=revenge*100/maxRevenge;
             if (goingRandom)
             {
-                int chance=Random.Range(1,8);
+                int chance=Random.Range(1,7);
                     switch (chance)
                     {
                         case 1:
@@ -421,11 +414,6 @@ public class DanuAI : MonoBehaviour
                                m_anims.SetInteger("Pattern",0);
                                m_animsP2.SetInteger("Pattern",0);
                             break;
-                        case 4:
-                            m_fsm.ChangeState(StateNames.P2D_BOOMERANG);
-                                m_anims.SetInteger("Pattern",4);
-                                m_animsP2.SetInteger("Pattern",4);
-                            break;
                         case 5:
                             m_fsm.ChangeState(StateNames.P2D_SHOOT);
                                 m_anims.SetInteger("Pattern",5);
@@ -436,7 +424,7 @@ public class DanuAI : MonoBehaviour
                                 m_anims.SetInteger("Pattern",6);
                                 m_animsP2.SetInteger("Pattern",6);
                             break;                                   
-                        case 7:
+                        case 4:
                             m_fsm.ChangeState(StateNames.P2D_SPIN);
                                 m_anims.SetInteger("Pattern",7);
                                 m_animsP2.SetInteger("Pattern",7);

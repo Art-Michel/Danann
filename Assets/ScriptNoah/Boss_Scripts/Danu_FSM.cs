@@ -116,6 +116,8 @@ public class Danu_FSM : MonoBehaviour
     public GameObject GetP1TP_Arrival() { return p1TP_arrival; }
     [Foldout("Phase 1 TP"), SerializeField] GameObject p1TP_boomBox;
     public GameObject GetP1TP_Boombox() { return p1TP_boomBox; }
+    [Foldout("Phase 1 TP"), SerializeField] GameObject TP_departBoomBox;
+    public GameObject GetDepartBoombox() { return TP_departBoomBox; }
     [Foldout("Phase 1 TP"), SerializeField] P1CTeleportation.destPoints p1TP_destination;
     public P1CTeleportation.destPoints GetP1TP_Destination() { return p1TP_destination; }
     public void SetTPDest(P1CTeleportation.destPoints newDest) { p1TP_destination = newDest; }
