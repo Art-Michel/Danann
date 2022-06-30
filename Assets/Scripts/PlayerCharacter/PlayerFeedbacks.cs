@@ -294,7 +294,7 @@ public class PlayerFeedbacks : MonoBehaviour
 
     public void PlayErrorSfx()
     {
-        PlaySound(_error, 2f);
+        PlaySound(_error, 3f);
     }
 
     public void PlayDodgeReffiledSfx()

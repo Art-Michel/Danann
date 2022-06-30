@@ -45,7 +45,7 @@ public class UiManager : LocalManager<UiManager>
     public TextMeshProUGUI DodgesCount { get { return _dodgesCount; } }
 
     Color _opaque = new Color(1, 1, 1, 1f);
-    Color _transparent = new Color(1, 1, 1, 0.25f);
+    Color _transparent = new Color(.5f, 0, 0, 0.25f);
 
     [Foldout("ingameUI")]
     [SerializeField] Image _dodgeImage;
@@ -392,7 +392,7 @@ public class UiManager : LocalManager<UiManager>
 
     public void OnePlasmaEmptied()
     {
-        Color transparent = new Color(.7f, .7f, .7f, 0.5f);
+        Color transparent = new Color(.5f, .0f, .0f, 0.5f);
         _dashPng.color = transparent;
         _dashFramePng.color = transparent;
         _parryFramePng.color = transparent;
