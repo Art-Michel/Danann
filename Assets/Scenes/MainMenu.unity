@@ -20215,11 +20215,11 @@ RectTransform:
   m_Father: {fileID: 1613652382}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -406.91827, y: 0.00053406}
-  m_SizeDelta: {x: 1106.1628, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1124.69, y: 0}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1560087514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22898,26 +22898,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Art Michel: Game Design/Programmer/Lighting
-
-
-    Noah Boisard:  Game
-    Design/Programmer/VFX
-
-
-    Diane Lemercier : UI/Concept art/environment art
-
-
-    Gaetan
-    Perraudin: Chara art/Concept art/environment art
-
-
-    Nolwenn Grole: Lighting/Chara
-    art/Concept art/Environment art/Animation
-
-
-    Prune Martin: VFX/Concept art/Environment
-    art/'
+  m_text: "MICHEL Art: Game Design / Programming / Lighting\n\nBOISARD Noah:  Game
+    Design / Programming / VFX\n\nLEMERCIER Diane : UI / Concept-Art / Environment-Art\n\nPERRAUDIN
+    Ga\xEBtan: Character-Art / Concept-Art / Environment-Art\n\nGROLE Nolwenn: Lighting
+    / Character-Art / Concept-Art / Environment-Art / Animation\n\nMARTIN Prune:
+    VFX / Concept-Art / Environment-Art"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: be80c5cbb37c41f489b74e120c54b95c, type: 2}
   m_sharedMaterial: {fileID: -8576698348817618474, guid: be80c5cbb37c41f489b74e120c54b95c, type: 2}
@@ -22980,7 +22965,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 76.80017, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -24113,11 +24098,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Special Thanks : \nAntonin Congy/Tony Gimazane/Renaud Ory/Chlo\xE9 Ravallec\nMoeva
-    \"Boz\" Mondoha/ Lisa Dauges/ Damian Connolly\nAlpha&Beta Tester : \nKrep/Alice\"Rak\"/Tristan/Moon/Thibault
-    Pannier/Nathan Tandille/\r\nJoseph Pelloquet/Chlo\xE9 Kubacki-Kiluns/Yann Foucaud\r\nRichier
-    Paul/Xzibit (Th\xE9o Luret)/XamedProtocol/Moustik/Xan/\r\nMaxime/Adrien C/Antoine
-    Bailly-Maitre/Zo\xE9 Bordina"
+  m_text: "Special Thanks -\nCONGY Antonin, GIMAZANE Tony, ORY Renaud, RAVALLEC Chlo\xE9\nMoeva
+    \"Boz\" MONDOHA, DAUG\xC8S Lisa, CONNOLLY Damian\n\nAlpha&Beta Testers -\nKrep,
+    Alice\"Rak\", Tristan, Moon, Thibault PANNIER, Nathan TANDILLE,\nJoseph PELLOQUET,
+    Chlo\xE9 KUBACKI-Kiluns, Yann FOUCAUD\r\nRICHIER Paul, Xzibit (Th\xE9o LURET),
+    XamedProtocol, Moustik, Xan, \nMaxime, Adrien C, Antoine BAILLY-MAITRE, Zo\xE9
+    BORDINA"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: be80c5cbb37c41f489b74e120c54b95c, type: 2}
   m_sharedMaterial: {fileID: -8576698348817618474, guid: be80c5cbb37c41f489b74e120c54b95c, type: 2}
