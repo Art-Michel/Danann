@@ -24,6 +24,7 @@ public class BossHealth : EntityHP
     private bool activateShieldRemnant;
     private float oldShieldValue;
     [SerializeField] RectTransform invulText;
+    [SerializeField] GameObject dmText;
     void Awake()
     {
         agent = GetComponent<DanuAI>();
@@ -77,9 +78,8 @@ public class BossHealth : EntityHP
                 activateShieldRemnant=true;
                 agent.UpdateShield(shieldPoint);
                 DesactivateShield();
-                return base.TakeDamage(amount, attackName, plasmaRegainValue, revengeGain);
             }
-            if ( !isDistance)
+            else if ( !isDistance)
             {
 
                 shieldPoint--;
@@ -93,14 +93,18 @@ public class BossHealth : EntityHP
                 }
                 return base.TakeDamage(0, attackName, plasmaRegainValue, revengeGain);
             }
+            else
+            {
             InvulnerableShieldingText();
             return base.TakeDamage(0, attackName, plasmaRegainValue, revengeGain);
+            }
 
         }
         if (((HealthPoints-amount)/_maxHealthPoints)*100<=5 && !agent.HasDM())
         {
             amount = (int)(HealthPoints - ((5f / 100f) * _maxHealthPoints)) + 1;
             agent.launchDM();
+            DMText();
             SoundManager.Instance.PlayDMTransition();
             return base.TakeDamage(amount, attackName, plasmaRegainValue, revengeGain);
         }
@@ -112,6 +116,10 @@ public class BossHealth : EntityHP
     public void InvulnerableShieldingText()
     {
         invulText.gameObject.SetActive(true);
+    }
+    public void DMText()
+    {
+        dmText.SetActive(true);
     }
     private void DesactivateShield()
     {

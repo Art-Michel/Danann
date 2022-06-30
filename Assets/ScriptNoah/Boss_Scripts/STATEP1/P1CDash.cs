@@ -62,13 +62,16 @@ public class P1CDash : Danu_State
         }
         if (chargingTime <= maxChargingTime)
         {
-            fsm.agent.vfx[0].SetActive(true);
             preview.SetActive(true);
             chargingTime += Time.deltaTime;
+            fsm.transform.position += dir * Time.deltaTime;
             //Vector3 arrival= transform.position+dir*dashSpeed*maxDashTime ;
             //arrival=new Vector3(arrival.x,3.72f,arrival.z);
             if (chargingTime>=maxChargingTime*0.8f && !playedSound)
-            {    SoundManager.Instance.PlayBossDash();
+            {    
+                SoundManager.Instance.PlayBossDash();
+                fsm.agent.vfx[0].SetActive(true);
+                dashAttackData.LaunchAttack();
                 playedSound=true;
             }
             return;
@@ -114,7 +117,6 @@ public class P1CDash : Danu_State
             maxArrival = fsm.agent.GetArenaCenter();
             fsm.transform.LookAt(fsm.agent.GetArenaCenter());
             preview.gameObject.SetActive(true);
-            dashAttackData.LaunchAttack();
             return;
         }
         else
@@ -126,8 +128,6 @@ public class P1CDash : Danu_State
             maxArrival= maxArrival-fsm.agent.GetArenaCenter()*(fsm.agent.GetArenaRadius()/1.3f);
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
         fsm.transform.LookAt(straightTarget);
-        dashAttackData.LaunchAttack();
-        fsm.agent.vfx[0].SetActive(true);
     }
     public override void End()
     {

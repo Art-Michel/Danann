@@ -46,7 +46,7 @@ public class DanuAI : MonoBehaviour
     private bool isPushed;
     private float hp;
     private float maxHP;
-    private List<string> lastStates=new List<string>();
+    private string lastStates;
     [SerializeField]int maxCap;
     [SerializeField] bool goingRandom;
     [SerializeField] private int maxProjectilePool;
@@ -218,9 +218,7 @@ public class DanuAI : MonoBehaviour
                 stunTime=0;
                 maxStunTime=0;
                 NextPattern();
-                if (phase==1)
                 vfx[16].SetActive(false);
-                else
                 vfx[15].SetActive(false);
                 isStun=false;
             }
@@ -256,6 +254,7 @@ public class DanuAI : MonoBehaviour
     public void NextPattern() 
     {
         PosLock();
+        string nextState="";
         if (isDebug)
         {
             Vector3 playerPos=player.position;
@@ -291,12 +290,12 @@ public class DanuAI : MonoBehaviour
                     switch (chance)
                     {
                         case 1:
-                                m_fsm.ChangeState(StateNames.P1C_DASH);
+                                nextState=StateNames.P1C_DASH;
                                 m_anims.SetInteger("Pattern",1);
                                 m_animsP2.SetInteger("Pattern",1);
                             break;
                         case 2:
-                            m_fsm.ChangeState(StateNames.P1C_SLAM);
+                                nextState=StateNames.P1C_SLAM;
                                 m_anims.SetInteger("Pattern",3);
                                 m_animsP2.SetInteger("Pattern",3);
                             break;
@@ -312,30 +311,37 @@ public class DanuAI : MonoBehaviour
                             {
                                 m_fsm.SetTPDest(P1CTeleportation.destPoints.CLOSE);  
                             }
-                            m_fsm.ChangeState(StateNames.P1C_TELEPORTATION);
+                            nextState=StateNames.P1C_TELEPORTATION;
                                m_anims.SetInteger("Pattern",0);
                                m_animsP2.SetInteger("Pattern",0);
                             break;
 
                         case 5:
-                            m_fsm.ChangeState(StateNames.P1D_SHOOT);
+                            nextState=StateNames.P1D_SHOOT;
                                 m_anims.SetInteger("Pattern",5);
                                 m_animsP2.SetInteger("Pattern",5);
                             break;
                         case 6:
                             
-                                m_fsm.ChangeState(StateNames.P1R_SPIRALE);
+                                nextState=StateNames.P1R_SPIRALE;
                                 m_anims.SetInteger("Pattern",6);
                                 m_animsP2.SetInteger("Pattern",6);
                             
                             break;
                         case 4:            
-                            m_fsm.ChangeState(StateNames.P1D_SPIN);
+                            nextState=StateNames.P1D_SPIN;
                             m_anims.SetInteger("Pattern",7);
                             m_animsP2.SetInteger("Pattern",7);
                             break;                    
 
                     }
+                    if (nextState==lastStates)
+                    {
+                        Debug.Log(nextState +" : "+lastStates);
+                        NextPattern();
+                    }    
+                    else
+                        m_fsm.ChangeState(nextState);
                     return;
             }
             else
@@ -354,6 +360,7 @@ public class DanuAI : MonoBehaviour
     public void NextP2Pattern() 
     {
         PosLock();
+        string nextState="";
         if (isDebug)
         {
             Vector3 playerPos=player.position;
@@ -389,12 +396,12 @@ public class DanuAI : MonoBehaviour
                     switch (chance)
                     {
                         case 1:
-                            m_fsm.ChangeState(StateNames.P2C_DASH);
+                            nextState=StateNames.P2C_DASH;
                             m_anims.SetInteger("Pattern",1);
                             m_animsP2.SetInteger("Pattern",1);
                             break;
                         case 2:
-                            m_fsm.ChangeState(StateNames.P2C_SLAM);
+                            nextState=StateNames.P2C_SLAM;
                                 m_anims.SetInteger("Pattern",3);
                                 m_animsP2.SetInteger("Pattern",3);
                             break;
@@ -410,27 +417,30 @@ public class DanuAI : MonoBehaviour
                             {
                                 m_fsm.SetTPDest(P1CTeleportation.destPoints.CLOSE);  
                             }
-                            m_fsm.ChangeState(StateNames.P2C_TELEPORTATION);
+                           nextState=StateNames.P2C_TELEPORTATION;
                                m_anims.SetInteger("Pattern",0);
                                m_animsP2.SetInteger("Pattern",0);
                             break;
                         case 5:
-                            m_fsm.ChangeState(StateNames.P2D_SHOOT);
+                            nextState=StateNames.P2D_SHOOT;
                                 m_anims.SetInteger("Pattern",5);
                                 m_animsP2.SetInteger("Pattern",5);
                             break;
                         case 6:
-                            m_fsm.ChangeState(StateNames.P2R_SPIRALE);
+                           nextState=StateNames.P2R_SPIRALE;
                                 m_anims.SetInteger("Pattern",6);
                                 m_animsP2.SetInteger("Pattern",6);
                             break;                                   
                         case 4:
-                            m_fsm.ChangeState(StateNames.P2D_SPIN);
+                            nextState=StateNames.P2D_SPIN;
                                 m_anims.SetInteger("Pattern",7);
                                 m_animsP2.SetInteger("Pattern",7);
                             break;                    
-
                     }
+                    if (nextState==lastStates)
+                        NextP2Pattern();
+                    else
+                        m_fsm.ChangeState(nextState);
                     return;
             }
             else
@@ -447,7 +457,7 @@ public class DanuAI : MonoBehaviour
             NextP2Pattern();
         }
     }
-    public void NextGlobalPattern()
+   /* public void NextGlobalPattern()
     {
             float revengePercent=revenge*100/maxRevenge;
             dist = Vector3.Distance(transform.position, player.position);
@@ -491,7 +501,7 @@ public class DanuAI : MonoBehaviour
                 m_fsm.ChangeState(StateNames.P1D_SPIN);
                 Debug.Log("midwest");
             }
-    }
+    }*/
     public void NextPhase()
     {
         if (phase != 1)
@@ -532,9 +542,7 @@ public class DanuAI : MonoBehaviour
     */
         /*if (m_fsm.curr.name==StateNames.P1IDLE)
             return;*/
-        lastStates.Add(m_fsm.curr.name);
-        if(lastStates.Count>maxCap)
-            lastStates.RemoveAt(0);
+        lastStates=m_fsm.curr.name;
          m_fsm.ChangeState(StateNames.P1IDLE);
     }
     public float GetWaitingTime()

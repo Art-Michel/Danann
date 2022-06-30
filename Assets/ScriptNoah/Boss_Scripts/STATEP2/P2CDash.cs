@@ -61,9 +61,14 @@ public class P2CDash : Danu_State
         {
             preview.gameObject.SetActive(true);
             chargingTime += Time.deltaTime;
+            fsm.transform.position += dir * Time.deltaTime;
             //Vector3 arrival= transform.position+dir*dashSpeed*maxDashTime ;
             //arrival=new Vector3(arrival.x,3.72f,arrival.z);
-
+            if (chargingTime>=maxChargingTime)
+            {
+                dashAttackData.LaunchAttack();
+                fsm.agent.vfx[0].SetActive(true);
+            }
             return;
         }
         dashTime += Time.deltaTime;
@@ -105,8 +110,7 @@ public class P2CDash : Danu_State
             maxArrival= maxArrival-fsm.agent.GetArenaCenter()*(fsm.agent.GetArenaRadius()/1.3f);
         Vector3 straightTarget =new Vector3( target.position.x,fsm.transform.position.y,target.position.z);
         fsm.transform.LookAt(straightTarget);
-        dashAttackData.LaunchAttack();
-            fsm.agent.vfx[0].SetActive(true);
+
 
     }
     public override void End()

@@ -25,12 +25,15 @@ public class DanuShield : MonoBehaviour
         bh=GetComponent<BossHealth>();   
         bh.ActivateShield();
         agent.ActivateShield(); 
+        bh.InvulnerableShieldingText();
+
         bossHB.SetRadius(shieldRadius);
     }
     public void ReActivate()
     {
         timer=0;
-        shieldActive=false;
+        shieldActive=true;
+        bh.InvulnerableShieldingText();
         bossHB.SetRadius(shieldRadius);
     }
     // Update is called once per frame
@@ -50,5 +53,6 @@ public class DanuShield : MonoBehaviour
     public void DesactivateShield()
     {
         bossHB.SetRadius(baseRadius);
+        shieldActive=false;
     }
 }
