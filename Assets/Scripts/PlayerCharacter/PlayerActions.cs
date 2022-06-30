@@ -297,9 +297,10 @@ public class PlayerActions : MonoBehaviour
     #region Recalling
     void Recall(Spear_FSM spear)
     {
-        _fsm.ChangeState(Ccl_StateNames.RECALLING);
-        spear.ChangeState(Spear_StateNames.RECALLED);
+        Spear_FSM mario = spear;
         StopTargettingSpear(false, spear);
+        mario.ChangeState(Spear_StateNames.RECALLED);
+        _fsm.ChangeState(Ccl_StateNames.RECALLING);
     }
     #endregion
 
