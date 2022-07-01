@@ -7015,7 +7015,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323480812}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -22.242586, y: 34.40439, z: -38.00796}
+  m_LocalPosition: {x: -22.376282, y: 42.506012, z: -44.597473}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2028546034}
@@ -9626,7 +9626,7 @@ PrefabInstance:
       objectReference: {fileID: 902433842}
     - target: {fileID: 8289406093843463521, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: isDebug
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8289406093843463521, guid: 82065d86eec89b941a14eeeccb54a76b, type: 3}
       propertyPath: testState
@@ -11492,7 +11492,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834729807}
   m_LocalRotation: {x: 0.46174863, y: -0, z: -0, w: 0.8870109}
-  m_LocalPosition: {x: -22.242586, y: 34.40439, z: -38.00796}
+  m_LocalPosition: {x: -22.376282, y: 42.506012, z: -44.597473}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 384871587}
@@ -11679,7 +11679,7 @@ Camera:
     height: 1
   near clip plane: 13
   far clip plane: 1000
-  field of view: 60
+  field of view: 24.885107
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -14458,6 +14458,64 @@ PrefabInstance:
     - target: {fileID: 1379127434, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1550789538, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1550789539, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1550789539, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1550789539, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1550789539, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1550789539, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1550789539, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1550789539, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1550789539, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 184.29999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1550789539, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1550789539, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677873480, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.7000122
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677873480, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677873481, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
+      propertyPath: m_text
+      value: 'Enemy invulnerable,
+
+        just keep dodging!'
       objectReference: {fileID: 0}
     - target: {fileID: 1753668192, guid: 0223134c8a4be744da286df1e7e61f9f, type: 3}
       propertyPath: m_Color.a
@@ -17412,11 +17470,11 @@ RectTransform:
   m_Father: {fileID: 1441651357}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -740.1, y: 461.57996}
-  m_SizeDelta: {x: 472.33, y: 184.3}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 472.33, y: 184.29999}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1550789540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18274,7 +18332,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.7, y: -23}
+  m_AnchoredPosition: {x: 0.7000122, y: -6.9999695}
   m_SizeDelta: {x: 433.6661, y: 82.146}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1677873481
@@ -18297,7 +18355,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Focus on dodging !
+  m_text: 'Enemy invulnerable,
+
+    just keep dodging!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: be80c5cbb37c41f489b74e120c54b95c, type: 2}
   m_sharedMaterial: {fileID: -8576698348817618474, guid: be80c5cbb37c41f489b74e120c54b95c, type: 2}
