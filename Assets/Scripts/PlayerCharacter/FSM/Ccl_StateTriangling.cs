@@ -35,7 +35,7 @@ public class Ccl_StateTriangling : Ccl_State
 
         _tickCooldown -= Time.deltaTime;
 
-        TriangleGeneration.Instance.SetMaterialColor(_t/_startup);
+        TriangleGeneration.Instance.SetMaterialColor(_t / _startup);
 
         if (TriangleGeneration.Instance.CheckIsIn() && _tickCooldown <= 0)
         {
@@ -64,10 +64,13 @@ public class Ccl_StateTriangling : Ccl_State
 
     public void StopAttack()
     {
+        if (_t >0.35f)
+        {
+            SoundManager.Instance.PlayTriangleCancel();
+            _actions._playerPlasma.SpendPlasma("TriangleStop");
+        }
         SoundManager.Instance.AudioSource.Stop();
-        SoundManager.Instance.PlayTriangleCancel();
         _actions.ResetSpears();
-        _actions._playerPlasma.SpendPlasma("TriangleStop");
     }
 
     void BreakAttack()
