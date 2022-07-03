@@ -60,6 +60,9 @@ public class DesperationMove : MonoBehaviour
     public Pool GetPool() { return pool; }
     [Foldout("Rosace"), SerializeField] Pool rosacePool;
     public Pool GetRosacePool(){return rosacePool;}
+    [Foldout("Rosace"), SerializeField] Transform aoePreview;
+    public Transform GetAOEPreview(){return aoePreview;} 
+
     [Foldout("Rosace"), SerializeField] GameObject straightProj;
     public GameObject GetStraightProj(){return straightProj;} 
     [Foldout("Rosace"), SerializeField] int rosaceNumber;

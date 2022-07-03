@@ -260,6 +260,8 @@ public class Danu_FSM : MonoBehaviour
     public Pool GetRosacePool(){return rosacePool;}
     [Foldout("Rosace"), SerializeField] GameObject straightProj;
     public GameObject GetStraightProj(){return straightProj;} 
+    [Foldout("Rosace"), SerializeField] Transform aoePreview;
+    public Transform GetAOEPreview(){return aoePreview;} 
     [Foldout("Rosace"), SerializeField] int rosaceNumber;
     public int GetRosaceNumber(){return rosaceNumber;}    
     [Foldout("Rosace"), SerializeField] int bulletNumber;

@@ -32,7 +32,7 @@ public class DM_Rosace : Dm_State
         maxDelay=fsm.GetRosaceDelay();
         spirales=new GameObject[nb];
         maxWaitTime=fsm.GetMaxWaitTime();
-        preview = fsm.GetP1sD_Preview();
+        preview = fsm.GetAOEPreview();
         projSpeed=fsm.GetProjSpeed();
     }
     // Start is called before the first frame update

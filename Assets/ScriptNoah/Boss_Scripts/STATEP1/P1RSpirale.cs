@@ -18,7 +18,7 @@ public class P1RSpirale : Danu_State
     bool wait;
     private float waitTime;
     private float maxWaitTime;
-    GameObject preview;
+    Transform preview;
     public override void Init()
     {
         base.Init();
@@ -31,7 +31,7 @@ public class P1RSpirale : Danu_State
         maxDelay=fsm.GetRosaceDelay();
         maxWaitTime=fsm.GetP1MaxWaitTime();
         spirales=new GameObject[nb];
-        preview = fsm.GetP1sD_Preview();
+        preview = fsm.GetAOEPreview();
 
     }
     // Start is called before the first frame update

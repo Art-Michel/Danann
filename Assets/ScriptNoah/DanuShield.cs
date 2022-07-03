@@ -11,7 +11,7 @@ public class DanuShield : MonoBehaviour
     DanuAI agent;
     [SerializeField] Hurtbox bossHB;
     float baseRadius=2.68f;
-    float shieldRadius=8.1f;
+    float shieldRadius=4.72f;
     [SerializeField] List<GameObject> shieldsBreak;
     public void PlayShieldBreak(int ind)
     {
@@ -40,7 +40,10 @@ public class DanuShield : MonoBehaviour
     void Update()
     {
         if (shieldActive)
+        {
+            bossHB.SetRadius(shieldRadius);
             return;
+        }
         timer+= Time.deltaTime;
         if (timer>=maxTimer)
         {
