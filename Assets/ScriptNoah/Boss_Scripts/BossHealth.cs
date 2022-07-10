@@ -39,6 +39,13 @@ public class BossHealth : EntityHP
         agent.UpdateShield(shieldPoint);
 
     }
+    public void DesactivateShieldFromDM()
+    {
+        shieldPoint=0;
+        shieldBar.fillAmount=0;
+        shieldGO.SetActive(false);
+        agent.UpdateShield(shieldPoint);
+    }
     override protected void DamageFeedback(string attackName, int plasmaRegainValue, float amount)
     {
         base.DamageFeedback(attackName,plasmaRegainValue,amount);

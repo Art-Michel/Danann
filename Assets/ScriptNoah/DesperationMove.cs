@@ -136,7 +136,7 @@ public class DesperationMove : MonoBehaviour
         waitingTime=0;
         agent.m_animsP2.SetTrigger("DM");
         agent.m_animsP2.SetFloat("Pattern",-2);
-
+        GetComponent<DanuShield>().enabled=false;
         laserGO.GetComponentInChildren<Laser>().SetDM(this);
     }
 

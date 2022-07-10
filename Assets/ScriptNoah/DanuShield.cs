@@ -58,4 +58,8 @@ public class DanuShield : MonoBehaviour
         bossHB.SetRadius(baseRadius);
         shieldActive=false;
     }
+    private void OnDisable() {
+        DesactivateShield();
+        bh.DesactivateShieldFromDM();
+    }
 }
